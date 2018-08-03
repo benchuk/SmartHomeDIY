@@ -1,0 +1,179 @@
+<div class="navbar navbar-fixed-top">
+	<div class="navbar-inner">
+		<div class="container">
+			<a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+			</a>
+			<a class="brand" href="#">
+				<%= title %>
+			</a>
+			<div class="nav-collapse">
+				<ul class="nav">
+					<li class="active">
+						<a href="#">Home</a>
+					</li>
+					<li>
+						<a href="#about">About</a>
+					</li>
+					<li>
+						<a href="#contact">Contact</a>
+					</li>
+				</ul>
+			</div>
+			<!--/.nav-collapse -->
+		</div>
+	</div>
+</div>
+
+<div class="container">
+
+	<!-- Main hero unit for a primary marketing message or call to action -->
+	<div class="hero-unit">
+		<h1>SmartHome</h1>
+		<hr>
+
+
+		<!-- <button class="btn btn-primary">Default<div class="ripple-container"></div></button> -->
+		<!-- *********************************************************	 -->
+		<div class="card card-nav-tabs">
+			<div class="header header-success">
+				<!-- colors: "header-primary", "header-info", "header-success", "header-warning", "header-danger" -->
+				<div class="nav-tabs-navigation">
+					<div class="nav-tabs-wrapper">
+						<ul class="nav nav-tabs" data-tabs="tabs">
+
+
+							<li class="active">
+								<a href="#ac" data-toggle="tab" aria-expanded="true">
+									<i class="material-icons">face</i>
+									AC Living Room
+									<div class="ripple-container"></div>
+								</a>
+							</li>
+
+							<li class="">
+								<a href="#sahdes" data-toggle="tab" aria-expanded="true">
+									<i class="material-icons">face</i>
+									Shades Living Rooom
+									<div class="ripple-container"></div>
+								</a>
+							</li>
+							<li class="">
+								<a href="#lights" data-toggle="tab" aria-expanded="false">
+									<i class="material-icons">chat</i>
+									Lights Living Room
+									<div class="ripple-container"></div>
+								</a>
+							</li>
+							<li class="">
+								<a href="#settings" data-toggle="tab" aria-expanded="false">
+									<i class="material-icons">build</i>
+									Test-Debug
+									<div class="ripple-container"></div>
+								</a>
+
+							</li>
+						</ul>
+					</div>
+				</div>
+			</div>
+			<div class="content">
+				<div>Debug</div>
+				<% remotes.forEach(function(c) { %>
+					<div>
+						<%= c.groupName %>
+					</div>
+					<% }); %>
+
+						<div class="tab-content text-center">
+							<div class="tab-pane active" id="ac">
+								<p>
+
+									<form method="post" action="/newcommand" style="display:none" id="recordForm">
+										<input type="text" class="form-control" placeholder="Name" name="name">
+										<input type="text" class="form-control" placeholder="Address" name="address" value="004">
+										<input type="text" class="form-control" placeholder="Command" name="command" value="001">
+										<input type="text" class="form-control" placeholder="Remote Group" name="group" value="AC living room">
+
+										<input type="submit" id="close">
+									</form>
+
+									<button class="btn btn-primary btn-large showrecord" id="004:000">Record</button>
+
+
+
+									<%if (remotes && remotes.length > 0 ) { %>
+									
+										<% remotes[0].commands.forEach(function(c) { %>
+											<button class="btn btn-primary btn-large" id="<%=c.address %>:<%=c.commandFile %>">
+												<%= c.commandName %>
+											</button>
+											<% }); %>
+									<% } %>
+
+													<button class="btn btn-primary btn-large" id="004:002">Off</button>
+													<button class="btn btn-primary btn-large" id="004:001">Reset Station</button>
+
+								</p>
+							</div>
+							<div class="tab-pane" id="sahdes">
+								<p>
+
+									<button class="btn btn-block  btn-primary " data-toggle="modal" data-target="#myModal">
+										<i class="material-icons">library_books</i> Classic
+										<div class="ripple-container"></div>
+									</button>
+
+
+									<button class="btn btn-primary btn-large" id="003:000">Stop</button>
+									<button class="btn btn-primary btn-large" id="003:001">Move Up</button>
+									<button class="btn btn-primary btn-large" id="003:002">Move Down</button>
+									<button class="btn btn-primary btn-large" id="003:003">Reset</button>
+								</p>
+							</div>
+							<div class="tab-pane" id="lights">
+								<p>
+									<div class="togglebutton">
+										<label>
+											<input type="checkbox" checked="">
+											<span class="toggle"></span>
+											Center Living Room
+										</label>
+									</div>
+								</p>
+							</div>
+							<div class="tab-pane" id="settings">
+								<p>
+									<button class="btn btn-primary btn-large" id="002:000">Stop 3</button>
+									<button class="btn btn-primary btn-large" id="002:001">Move Up 3</button>
+									<button class="btn btn-primary btn-large" id="002:002">Move Down 3</button>
+									<button class="btn btn-primary btn-large" id="002:003">Reset 3</button>
+
+									<button class="btn btn-primary btn-large" id="005:004">S1 toogle</button>
+								</p>
+							</div>
+						</div>
+			</div>
+		</div>
+
+		<!-- *********************************************************	 -->
+
+
+
+	</div>
+
+</div>
+
+<!-- Example row of columns -->
+
+
+<hr>
+
+<footer>
+	<p>&copy; SmartHome</p>
+</footer>
+
+</div>
+<!-- /container -->

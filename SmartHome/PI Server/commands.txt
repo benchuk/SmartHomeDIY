@@ -1,0 +1,14 @@
+connect to process console
+=============================
+strace -p1234 -s9999 -e write
+
+
+see running process
+===================
+ps axg
+
+
+kill process
+=================
+
+kill -9 PID

@@ -1,0 +1,47 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+        
+        {
+            "name": "Arduino",
+            "type": "arduino",
+            "request": "launch",
+            "program": "$}",
+            "cwd": "$}",
+            "MIMode": "gdb",
+            "targetArchitecture": "arm",
+            "miDebuggerPath": "C:/4.8.3-2014q1/bin/arm-none-eabi-gdb.exe",
+            "debugServerPath": "C:\\Users\\Ben\\Downloads\\openocd-0.9.0\\bin\\openocd.exe",
+            "debugServerArgs": "",
+            "customLaunchSetupCommands": [
+                {
+                    "text": "target remote localhost:3333"
+                },
+                {
+                    "text": "file $}"
+                },
+                {
+                    "text": "load"
+                },
+                {
+                    "text": "monitor reset halt"
+                },
+                {
+                    "text": "monitor reset init"
+                }
+            ],
+            "stopAtEntry": true,
+            "serverStarted": "Info\\ :\\ [\\w\\d\\.]*:\\ hardware",
+            "launchCompleteCommand": "exec-continue",
+            "filterStderr": true,
+            "args": []
+        },
+        {
+            "name": "Debug",
+            "type": "gdb",
+            "request": "launch",
+            "target": "./bin/executable",
+            "cwd": "${workspaceRoot}"
+        }
+    ]
+}

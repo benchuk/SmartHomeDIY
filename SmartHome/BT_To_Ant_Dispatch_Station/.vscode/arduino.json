@@ -1,0 +1,6 @@
+{
+    "board": "arduino:avr:nano",
+    "configuration": "cpu=atmega328",
+    "port": "COM4",
+    "sketch": "BT_To_Ant_Dispatch_Station.ino"
+}

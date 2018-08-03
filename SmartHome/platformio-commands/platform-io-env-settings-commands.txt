@@ -1,0 +1,6 @@
+platformio settings set force_verbose YES
+
+
+platformio device list
+
+platformio device monitor --baud 115200

@@ -1,0 +1,1 @@
+This project records IR Signal, save it to EPROM and will send the same code on request by ID.

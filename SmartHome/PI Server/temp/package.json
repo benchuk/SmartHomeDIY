@@ -1,0 +1,32 @@
+{
+  "name": "node-express-twitter-bootstrap",
+  "version": "0.0.1",
+  "description": "Node express twitter with ejs templates",
+  "main": "server.js",
+  "dependencies": {
+    "ejs-locals": "~1.0.2",
+    "express": "~3.1.0"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": "",
+  "keywords": [
+    "express",
+    "bootstrap"
+  ],
+  "author": {
+    "name": "Jalal Hejazi"
+  },
+  "license": "BSD",
+  "readmeFilename": "README.md",
+  "readme": "#  Node.js Boostrap \n+ using Express 3.x \n+ EJS \n+ Twitter Bootstrap v2\n+ Responsive CSS3\n\n\n# Getting Started\n\n\n- cd node-express-twitter-bootstrap\n- npm install express ejs ejs-locals\n- node server.js\n\n ",
+  "_id": "node-express-twitter-bootstrap@0.0.1",
+  "dist": {
+    "shasum": "a7f1803f81381c7d24e1121d031b1c1182a4019b"
+  },
+  "_from": "node-express-twitter-bootstrap@",
+  "_resolved": "https://registry.npmjs.org/node-express-twitter-bootstrap/-/node-express-twitter-bootstrap-0.0.1.tgz"
+}

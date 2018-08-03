@@ -1,0 +1,229 @@
+avrdude -P COM3 -b 19200 -c avrisp -p m328p -v -e -U efuse:w:0x05:m -U hfuse:w:0xD6:m -U lfuse:w:0xFF:m
+
+avrdude -P COM3 -b 19200 -c avrisp -p m328p -v -e -U flash:w:optiboot_atmega328.hex -U lock:w:0x0F:m
+
+
+C:\Users\Ben\AppData\Local\Arduino15\packages\arduino\tools\avrdude\6.3.0-arduino9/bin/avrdude -CC:\Users\Ben\AppData\Local\Arduino15\packages\arduino\tools\avrdude\6.3.0-arduino9/etc/avrdude.conf -v -patmega328p -cstk500v1 -PCOM3 -b19200 -Uflash:w:C:\Users\Ben\AppData\Local\Arduino15\packages\arduino\hardware\avr\1.6.18/bootloaders/atmega/ATmegaBOOT_168_atmega328.hex:i -Ulock:w:0x0F:m 
+======= burn bootloader====
+**this**
+C:\Users\Ben\Downloads\avrdude\bin>
+avrdude -C "C:\Users\Ben\Downloads\avrdude\etc\avrdude.conf" -P COM3 -b 19200 -c avrisp -p m328p -v -e -U efuse:w:0x05:m -U hfuse:w:0xD6:m -U lfuse:w:0xFF:m -F
+**this**
+C:\Users\Ben\Downloads\avrdude\bin>
+avrdude -C "C:\Users\Ben\Downloads\avrdude\etc\avrdude.conf" -P COM3 -b 19200 -c avrisp -p m328p -v -e -U flash:w:optiboot_atmega328.hex -U lock:w:0x0F:m -F
+===============================
+
+avrdude -C "C:\Users\Ben\Downloads\avrdude\etc\avrdude.conf" -P COM3 -b 19200 -c avrisp -p m328p -v -e -U efuse:w:0x05:m -U hfuse:w:0xDE:m -U lfuse:w:0xFF:m -F
+avrdude -C "C:\Users\Ben\Downloads\avrdude\etc\avrdude.conf" -P COM3 -b 19200 -c avrisp -p m328p -v -e -U flash:w:optiboot_atmega328.hex -U lock:w:0x0F:m -F
+
+
+====================== was working ok I think
+avrdude -C "C:\Users\Ben\Downloads\avrdude\etc\avrdude.conf" -P COM3 -b 19200 -c avrisp -p m328p -v -e -U efuse:w:0x05:m -U hfuse:w:0xDE:m -U lfuse:w:0xFF:m
+avrdude -C "C:\Users\Ben\Downloads\avrdude\etc\avrdude.conf" -P COM3 -b 19200 -c avrisp -p m328p -v -e -U flash:w:optiboot_atmega328.hex -U lock:w:0x0F:m
+
+avrdude -C "C:\Users\Ben\Downloads\avrdude\etc\avrdude.conf" -P COM3 -b 19200 -c stk500v1 -p m328p -v -e -U efuse:w:0x05:m -U hfuse:w:0xDE:m -U lfuse:w:0xFF:m
+avrdude -C "C:\Users\Ben\Downloads\avrdude\etc\avrdude.conf" -P COM3 -b 19200 -c stk500v1 -p m328p -v -e -U flash:w:optiboot_atmega328.hex -U lock:w:0x0F:m
+
+
+=====================
+
+
+
+nano.menu.cpu.atmega328.upload.speed=57600
+
+nano.menu.cpu.atmega328.bootloader.low_fuses=0xFF
+nano.menu.cpu.atmega328.bootloader.high_fuses=0xDA
+nano.menu.cpu.atmega328.bootloader.extended_fuses=0xFD
+
+
+atmega328o.upload.speed=115200
+atmega328o.bootloader.low_fuses=0xff
+atmega328o.bootloader.high_fuses=0xde
+atmega328o.bootloader.extended_fuses=0x05
+atmega328o.bootloader.path=optiboot
+atmega328o.bootloader.file=optiboot_atmega328.hex
+atmega328o.bootloader.unlock_bits=0x3F
+atmega328o.bootloader.lock_bits=0x0F
+=========================================
+
+avrdude -C "C:\Users\Ben\Downloads\avrdude\etc\avrdude.conf" -P COM3 -b 19200 -c avrisp -p m328p -v -e -U efuse:w:0x05:m -U hfuse:w:0xD6:m -U lfuse:w:0xFF:m -F
+
+avrdude -C "C:\Users\Ben\Downloads\avrdude\etc\avrdude.conf" -P COM3 -b 19200 -c avrisp -p m328p -v -e -U flash:w:optiboot_pro_16MHz.hex -U lock:w:0x0F:m -F
+
+
+C:\Program Files (x86)\Arduino\hardware\arduino\avr\bootloaders\atmega
+
+
+C:\Program Files (x86)\Arduino\hardware\arduino\avr\boards.txt
+
+
+## Arduino Nano w/ ATmega328
+## -------------------------
+nano.menu.cpu.atmega328=ATmega328
+
+nano.menu.cpu.atmega328.upload.maximum_size=30720
+nano.menu.cpu.atmega328.upload.maximum_data_size=2048
+nano.menu.cpu.atmega328.upload.speed=57600
+
+nano.menu.cpu.atmega328.bootloader.low_fuses=0xFF
+nano.menu.cpu.atmega328.bootloader.high_fuses=0xDA
+nano.menu.cpu.atmega328.bootloader.extended_fuses=0x05
+nano.menu.cpu.atmega328.bootloader.file=atmega/ATmegaBOOT_168_atmega328.hex
+
+nano.menu.cpu.atmega328.build.mcu=atmega328p
+
+
+
+
+avrdude -C "C:\Users\Ben\Downloads\avrdude\etc\avrdude.conf" -F -p atmega328p -P COM6 -c arduino -b 115200 -U eeprom:w:0x30,0x30,0x31,0x30,0x30,0x30:m
+
+avrdude -C "C:\Users\Ben\Downloads\avrdude\etc\avrdude.conf" -F -p atmega328p -P COM5 -c stk500v1 -b 115200 -U eeprom:w:0x30,0x30,0x31,0x30,0x30,0x30:m
+avrdude -C "C:\Users\Ben\Downloads\avrdude\etc\avrdude.conf" -F -p atmega328p -P COM6 -c stk500v1 -b 115200 -U eeprom:w:0x30,0x30,0x30,0x30,0x30,0x31:m
+
+
+avrdude -c usbtiny -p atmega328p -U flash:w:optiboot-nrf24l01-flasher-atmega328p-16mhz.hex
+
+
+================	upload flasher to local arduino station =============
+avrdude -C "C:\Users\Ben\Downloads\avrdude\etc\avrdude.conf" -c avrisp -p m328p -P COM5 -U flash:w:optiboot-nrf24l01-flasher-atmega328p-16mhz.hex -F
+avrdude -C "C:\Users\Ben\Downloads\avrdude\etc\avrdude.conf" -c avrisp -p m328p -P COM6 -U flash:w:optiboot-nrf24l01-flasher-atmega328p-16mhz.hex -F
+avrdude -C "C:\Users\Ben\Downloads\avrdude\etc\avrdude.conf" -c avrisp -p m328p -P COM6 -U flash:w:flasher.hex
+C:\Users\Ben\AppData\Local\Arduino15\packages\arduino\tools\avrdude\6.3.0-arduino9/bin/avrdude -CC:\Users\Ben\AppData\Local\Arduino15\packages\arduino\tools\avrdude\6.3.0-arduino9/etc/avrdude.conf -v -patmega328p -carduino -PCOM5 -b57600 -D -Uflash:w:C:\Users\Ben\AppData\Local\Temp\arduino_build_728080/text.ino.hex:i 
+avrdude -C "C:\Users\Ben\Downloads\avrdude\etc\avrdude.conf" -v -patmega328p -carduino -PCOM5 -b57600 -D -U flash:w:flasher.hex
+avrdude -C "C:\Users\Ben\Downloads\avrdude\etc\avrdude.conf" -v -patmega328p -cstk500v1 -PCOM5 -b115200 -D -U flash:w:text.ino.standard.hex
+
+avrdude -C "C:\Users\Ben\Downloads\avrdude\etc\avrdude.conf" -v -patmega328p -carduino -PCOM5 -b57600 -D -U flash:w:optiboot-nrf24l01-flasher-atmega328p-16mhz.hex
+
+
+==============================================================================
+
+============	set up address to remote and local arduino	============
+avrdude -C "C:\Users\Ben\Downloads\avrdude\etc\avrdude.conf" -F -p atmega328p -P COM5 -c arduino -b 115200 -U eeprom:w:0x30,0x30,0x31,0x30,0x30,0x30:m
+avrdude -C "C:\Users\Ben\Downloads\avrdude\etc\avrdude.conf" -F -p atmega328p -P COM6 -c arduino -b 115200 -U eeprom:w:0x30,0x30,0x30,0x30,0x30,0x31:m
+==============================================================================
+
+test
+-----------
+avrdude -C "C:\Users\Ben\Downloads\avrdude\etc\avrdude.conf" -F -p atmega328p -P COM5 -c arduino -b 115200 -U eeprom:w:0x30,0x30,0x30,0x30,0x30,0x31:m
+avrdude -C "C:\Users\Ben\Downloads\avrdude\etc\avrdude.conf" -F -p atmega328p -P COM6 -c arduino -b 115200 -U eeprom:w:0x30,0x30,0x31,0x30,0x30,0x30:m
+
+
+ok - just burn the hex file to port
+=============
+avrdude -C "C:\Users\Ben\Downloads\avrdude\etc\avrdude.conf" -V -p atmega328p -c stk500v1 -P COM6 -b 57600 -U flash:w:text.ino.standard.hex:i
+avrdude -C "C:\Users\Ben\Downloads\avrdude\etc\avrdude.conf" -V -p atmega328p -c arduino -P COM6 -b 57600 -U flash:w:text.ino.standard.hex -vvvv
+avrdude -C "C:\Users\Ben\Downloads\avrdude\etc\avrdude.conf" -V -p atmega328p -c arduino -P COM5 -b 115200 -U flash:w:text.ino.standard.hex -vvvv
+=============
+
+avrdude -C "C:\Users\Ben\Downloads\avrdude\etc\avrdude.conf" -v -v -v -v -patmega328p -carduino -P\\.\COM6 -b115200 -D -Uflash:w:text.ino.standard.hex:i
+
+
+
+bad avrdude -C "C:\Users\Ben\Downloads\avrdude\etc\avrdude.conf" -V -F -p atmega328p -c stk500v1 -P COM5 -b 57600 -U flash:w:text.ino.standard.hex -vvvv
+avrdude -C "C:\Users\Ben\Downloads\avrdude\etc\avrdude.conf" -v -patmega328p -carduino -PCOM5 -b57600 -D -U flash:w:text.ino.standard.hex
+
+============================================
+Uploading Arduino hex file using avrdude
+~~~~~~~~~~~~~~
+http://stackoverflow.com/questions/23780125/uploading-arduino-hex-file-using-avrdude
+avrdude -C/usr/share/arduino/hardware/tools/avrdude.conf -v -v -v -v -patmega328p -c arduino -P/dev/ttyUSB0 -b57600 -D -U flash:w:/tmp/build8135728863211847829.tmp/sketch_may21b.cpp.hex:i 
+https://forum.arduino.cc/index.php?topic=410618.0
+C:\Arduino102\hardware/tools/avr/bin/avrdude -CC:\Arduino102\hardware/tools/avr/etc/avrdude.conf -v -v -v -v -p atmega328p -c arduino -P\\.\COM3 -b115200 -D -Uflash:w:C:\Users\Usr1\AppData\Local\Temp\build1538115773179135859.tmp\Blink.cpp.hex:i
+http://forum.arduino.cc/index.php?topic=48479.0
+avrdude.exe -V -F -C avrdude.conf -p atmega168 -c stk500v1 -P COM2 -b 57600 -U flash:w:Blink.cpp.hex -vvvv
+============================================
+
+
+folders:
+*** C:\Users\Ben\Downloads\avrdude\bin
+*** this one ** C:\Users\Ben\Downloads\avrdude\bin>
+*** this one ** C:\Users\Ben\Documents\Arduino\text
+*** original boorloader nano *** C:\Program Files (x86)\Arduino\hardware\arduino\avr\bootloaders\atmega
+*** original 2 C:\Users\Ben\AppData\Local\Arduino15\packages\arduino\hardware\avr\1.6.18
+*** C:\Users\Ben\Documents\optibootnrf24\avr\bootloaders\optiboot-nrf24l01
+G:\Cloud\Dropbox
+C:\Program Files (x86)\Arduino\hardware\tools\avr\bin>
+C:\Users\Ben\Downloads\optiboot-master.zip\optiboot-master\optiboot\bootloaders\optiboot
+C:\Users\Ben\Documents\optiboot\optiboot\bootloaders\optiboot
+C:\Users\Ben\Documents\lights
+C:\Users\Ben\Documents\arduinodiy\Tools
+F:\Cloud\MegaNew\Development Movies\Emmbeded
+
+
+
+============================================================================================================================================================
+how to remote upload a sketch using the local flasher
+============================================================================================================================================================
+WROKING!!! cd C:\Users\Ben\Downloads\avrdude\bin
+avrdude -C "C:\Users\Ben\Downloads\avrdude\etc\avrdude.conf" -v -patmega328p -c arduino -PCOM5 -b115200 -D -U flash:w:text.ino.hex
+avrdude -C "C:\Users\Ben\Downloads\avrdude\etc\avrdude.conf" -v -patmega328p -c arduino -PCOM4 -b115200 -D -U flash:w:text.ino.hex
+
+avrdude -C "C:\Users\Ben\Downloads\avrdude\etc\avrdude.conf" -v -patmega328p -c arduino -PCOM5 -b115200 -D -U flash:w:remote_station_for_ota_tests.ino.hex
+avrdude -C "C:\Users\Ben\Downloads\avrdude\etc\avrdude.conf" -v -patmega328p -c arduino -PCOM3 -b115200 -D -U flash:w:remote_station_for_ota_tests.ino.hex
+
+avrdude -C "C:\Users\Ben\Downloads\avrdude\etc\avrdude.conf" -v -patmega328p -c arduino -PCOM3 -b115200 -D -U flash:w:shade_station.ino.hex
+
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+============================================================================================================================================================
+Burn bootloader with the tinysubisp - https://learn.sparkfun.com/tutorials/installing-an-arduino-bootloader
+============================================================================================================================================================
+cd C:\Users\Ben\Downloads\avrdude\bin>avrdude
+copy the optiboot_atmega328.hex from C:\Users\Ben\Documents\arduinodiy\Arduino Porjects\Projects\SmartHome\OTA or download from https://github.com/nicolas-schurando/optiboot-nrf24l01/tree/master/avr/bootloaders/optiboot-nrf24l01
+run the following 2 commands:
+!!!note the DA:
+!!!!!!!!!!!!!!!!!!  cd C:\Users\Ben\Downloads\avrdude\bin
+!!!!!!!!!!!!!!!!!!	avrdude -C "C:\Users\Ben\Downloads\avrdude\etc\avrdude.conf" -b 19200 -c usbtiny -p m328p -v -e -U efuse:w:0xFD:m -U hfuse:w:0xDA:m -U lfuse:w:0xFF:m -F
+!!!!!!!!!!!!!!!!!!  avrdude -C "C:\Users\Ben\Downloads\avrdude\etc\avrdude.conf" -b 19200 -c usbtiny -p m328p -v -e -U flash:w:optiboot_atmega328_without_watchdog.hex -U lock:w:0x0F:m
+avrdude -C "C:\Users\Ben\Downloads\avrdude\etc\avrdude.conf" -b 19200 -c usbtiny -p m328p -v -e -U flash:w:optiboot_atmega328_with_watchdog_auto_reset_every_4_sec.hex -U lock:w:0x0F:m
+
+avrdude -C "C:\Users\Ben\Downloads\avrdude\etc\avrdude.conf" -b 19200 -c usbtiny -p m328p -v -e -U efuse:w:0x05:m -U hfuse:w:0xD6:m -U lfuse:w:0xFF:m
+avrdude -C "C:\Users\Ben\Downloads\avrdude\etc\avrdude.conf" -b 19200 -c usbtiny -p m328p -v -e -U flash:w:optiboot_atmega328.hex -U lock:w:0x0F:m
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+simple falsh
+
+avrdude -C "C:\Users\Ben\Downloads\avrdude\etc\avrdude.conf"-b 19200 -c usbtiny -p m328p -U flash:w:programName.hex
+
+--------------------------
+																						  
+avrdude -C "C:\Users\Ben\Downloads\avrdude\etc\avrdude.conf" -b 19200 -c usbtiny -p m328p -v -e -U efuse:w:0x05:m -U hfuse:w:0xD6:m -U lfuse:w:0xFF:m -F
+avrdude -C "C:\Users\Ben\Downloads\avrdude\etc\avrdude.conf" -b 19200 -c usbtiny -p m328p -v -e -U efuse:w:0xFD:m -U hfuse:w:0xDA:m -U lfuse:w:0xFF:m -F
+avrdude -C "C:\Users\Ben\Downloads\avrdude\etc\avrdude.conf" -b 19200 -c usbtiny -p m328p -vvvv -e -U flash:w:optiboot_atmega328.hex -U lock:w:0x0F:m -F
+
+avrdude -C "C:\Users\Ben\Downloads\avrdude\etc\avrdude.conf" -v -patmega328p -c arduino -PCOM5 -b115200 -D -U flash:w:remote_station_for_ota_tests.ino.hex -F
+
+avrdude -C "C:\Users\Ben\Downloads\avrdude\etc\avrdude.conf" -b 19200 -c usbtiny -p m328p -v -e -U efuse:w:0xFD:m -U hfuse:w:0xD6:m -U lfuse:w:0xFF:m
+
+avrdude -C "C:\Users\Ben\Downloads\avrdude\etc\avrdude.conf" -b 19200 -c usbtiny -p m328p -v -e -U flash:w:optiboot-nrf24l01-flasher.ino.with_bootloader.hex -U lock:w:0x0F:m
+
+avrdude -C "C:\Users\Ben\Downloads\avrdude\etc\avrdude.conf" -b 19200 -c usbtiny -p m328p -v -e -U flash:w:optiboot_atmega328_1_5.hex -U lock:w:0x0F:m
+
+avrdude -C "C:\Users\Ben\Downloads\avrdude\etc\avrdude.conf" -b19200 -c usbtiny -p m328p -v -e -U flash:w:optiboot_atmega328_pro_8MHz.hex -U lock:w:0x0F:m
+
+
+avrdude -C "C:\Users\Ben\Downloads\avrdude\etc\avrdude.conf" -b 19200 -c usbtiny -p m328p -v -e -U efuse:w:0x05:m -U hfuse:w:0xD6:m -U lfuse:w:0xFF:m -F
+avrdude -C "C:\Users\Ben\Downloads\avrdude\etc\avrdude.conf" -b 19200 -c usbtiny -p m328p -v -e -U flash:w:optiboot_pro_20mhz.hex -U lock:w:0x0F:m -F
+
+avrdude -C "C:\Users\Ben\Downloads\avrdude\etc\avrdude.conf" -b 19200 -c usbtiny -p m328p -v -e -U efuse:w:0x05:m -U hfuse:w:0xDE:m -U lfuse:w:0xFF:m -F
+avrdude -C "C:\Users\Ben\Downloads\avrdude\etc\avrdude.conf" -b 19200 -c usbtiny -p m328p -v -e -U flash:w:optiboot_atmega328.hex -U lock:w:0x0F:m -F
+
+
+avrdude -C "C:\Users\Ben\Downloads\avrdude\etc\avrdude.conf" -b 19200 -c usbtiny -p m328p -v -e -U efuse:w:0x05:m -U hfuse:w:0xDE:m -U lfuse:w:0xFF:m -F
+avrdude -C "C:\Users\Ben\Downloads\avrdude\etc\avrdude.conf" -b 19200 -c usbtiny -p m328p -v -e -U flash:w:optiboot_atmega328.hex -U lock:w:0x0F:m -F
+
+
+
+
+
+avrdude -C "C:\Users\Ben\Downloads\avrdude\etc\avrdude.conf" -P COM7 -b 19200 -c avrisp -p m328p -v -e -U efuse:w:0x05:m -U hfuse:w:0xD6:m -U lfuse:w:0xFF:m -F
+
+avrdude -C "C:\Users\Ben\Downloads\avrdude\etc\avrdude.conf" -P COM7 -b 19200 -c avrisp -p m328p -v -e -U flash:w:optiboot_pro_16MHz.hex -U lock:w:0x0F:m -F
+
+
+avrdude -C "C:\Users\Ben\Downloads\avrdude\etc\avrdude.conf" -V -F -p atmega328p -c arduino -P COM5 -b 115200 -U flash:w: remote_station_for_ota_tests.ino.hex
+avrdude -C "C:\Users\Ben\Downloads\avrdude\etc\avrdude.conf" -V -F -p atmega328p -c stk500v1 -P COM5 -b 115200 -U flash:w: remote_station_for_ota_tests.ino.hex -vvvv
+
+
+avrdude -C "C:\Users\Ben\Downloads\avrdude\etc\avrdude.conf" -P COM7 -b 19200 -c avrisp -p m328p -v -e -U flash:w:optiboot_atmega328.hex -U lock:w:0x0F:m -F
+-c stk500v1 -P COM2 -b 57600 -U flash:w:Blink.cpp.hex -vvvv
