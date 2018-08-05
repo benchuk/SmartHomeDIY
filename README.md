@@ -51,3 +51,6 @@ Add feature list
 
 ### BT TO ANT DISPATCH SYSTEM ###
 ![BT_To_Ant_Dispatch_Station_model_bb.jpg](https://bitbucket.org/repo/86Rb8B/images/3146339184-BT_To_Ant_Dispatch_Station_model_bb.jpg)
+
+### Bootloader modifications for OTA
+https://youtu.be/8xJqVeZkEw8
