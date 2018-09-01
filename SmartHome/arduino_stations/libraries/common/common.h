@@ -175,8 +175,7 @@ void set_Radio_CE(int pinNumber)
 
 void startRF(void)
 {
-  //STRING NULL TERMINATION
-  cmd[3] = 0;
+  cmd[3] = 0;//STRING NULL TERMINATION
   cmd[0] = 'x';
   cmd[1] = 'x';
   cmd[2] = 'x';

@@ -20,6 +20,9 @@
 		},
 		{
 			"path": "web_server\\PI Server\\project_pi_node_server"
+		},
+		{
+			"path": "arduino_stations\\libraries"
 		}
 	],
 	"settings": {
