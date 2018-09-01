@@ -1,0 +1,25 @@
+ /etc/init.d $ sudo -u pi /opt/node/bin/node /home/pi/app/app.js
+
+
+sudo chown -R `whoami` /opt
+sudo chown -R `whoami` /sys/class/gpio 
+
+sudo -u pi /opt/node/bin/node stream-server.js 123456
+
+
+ffmpeg -f dshow -s 640x480 -r 35 -i video="Philips SPC230NC Webcam" out.avi
+
+ffmpeg -f dshow -s 640x480 -r 35 -i video="Philips SPC230NC Webcam" http://192.168.1.106:8082/123456/640/480
+
+
+
+
+http://192.168.1.106:8082/123456/640/480
+
+ffmpeg -f dshow -s 320x240  -i video="Philips SPC230NC Webcam"  -r 30 -f mpeg1video http://192.168.1.106:8082/123456/320/240
+
+
+ffmpeg -f dshow -s 320x240  -i video="Philips SPC230NC Webcam"  -r 35 -b 1000k -f mpeg1video http://192.168.1.106:8082/123456/320/240
+
+
+sudo chown -R `whoami` ~/.npm
