@@ -9,6 +9,11 @@ The Arduino stations should be flashed with the attached custom bootloader to en
 
 ### Flashing remote station from VSCODE script (task) TBD ###
 
+* My youtube [video](https://youtu.be/8xJqVeZkEw8) to get more info.
+* Also read  [here](https://www.2bitornot2bit.com/blog/arduino-bootloader-with-ota-over-the-air-support-over-nrf24l01) to get a better understanding 
+
+
+
 ### How do I get set up? ###
 
 * -------- TBD ---------
