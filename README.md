@@ -1,8 +1,36 @@
 Project Description
 
-### What is this repository for? ###
+### Smart Home DIY ###
+This project is a DIY home automation, you can have multuple arduino stations controlling anything at you home from your phone (webpage currently)
+The Arduino stations should be flashed with the attached custom bootloader to enable remote upload of sketches from your development computer via RF24 (instead of tearing the wall apart each time)
 
-Add feature list
+
+
+### How do I get set up? ###
+
+* Summary of set up
+* Configuration
+* Dependencies
+* Database configuration
+* How to run tests
+* Deployment instructions
+
+
+
+### IR UNIVERSIAL STATION ###
+![IR_STATION_MODEL1.PNG](https://bitbucket.org/repo/86Rb8B/images/2365154433-IR_STATION_MODEL1.PNG)# Smart Home Arduino #
+
+### PI SERVER WITH NODE AND SERIAL COMMANDS SENT USING BT TO BT TO ANT DISPATCH STATION ###
+![PI_STATION_MODEL1.PNG](https://bitbucket.org/repo/86Rb8B/images/3356847782-PI_STATION_MODEL1.PNG)
+
+### BT TO ANT DISPATCH SYSTEM ###
+![BT_To_Ant_Dispatch_Station_model_bb.jpg](https://bitbucket.org/repo/86Rb8B/images/3146339184-BT_To_Ant_Dispatch_Station_model_bb.jpg)
+
+### Bootloader modifications for OTA
+https://youtu.be/8xJqVeZkEw8
+
+
+Planned features list:
 
 * RF24
 * IR
@@ -22,35 +50,3 @@ Add feature list
 * IR Control for Aircondition - temp sensors. weather forcast and outside temperator and humidity - start aircondition for x hours and auto close - with temp variation plans.
 * Remote update the other arduinos from ANT.
 * Send notifications when dish washer is done (no power consumption)
-
-### How do I get set up? ###
-
-* Summary of set up
-* Configuration
-* Dependencies
-* Database configuration
-* How to run tests
-* Deployment instructions
-
-### Contribution guidelines ###
-
-* Writing tests
-* Code review
-* Other guidelines
-
-### Who do I talk to? ###
-
-* Repo owner or admin
-* Other community or team contact
-
-### IR UNIVERSIAL STATION ###
-![IR_STATION_MODEL1.PNG](https://bitbucket.org/repo/86Rb8B/images/2365154433-IR_STATION_MODEL1.PNG)# Smart Home Arduino #
-
-### PI SERVER WITH NODE AND SERIAL COMMANDS SENT USING BT TO BT TO ANT DISPATCH STATION ###
-![PI_STATION_MODEL1.PNG](https://bitbucket.org/repo/86Rb8B/images/3356847782-PI_STATION_MODEL1.PNG)
-
-### BT TO ANT DISPATCH SYSTEM ###
-![BT_To_Ant_Dispatch_Station_model_bb.jpg](https://bitbucket.org/repo/86Rb8B/images/3146339184-BT_To_Ant_Dispatch_Station_model_bb.jpg)
-
-### Bootloader modifications for OTA
-https://youtu.be/8xJqVeZkEw8
