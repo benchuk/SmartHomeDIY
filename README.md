@@ -3,17 +3,20 @@ Project Description
 ### Smart Home DIY ###
 This project is a DIY home automation, you can have multuple arduino stations controlling anything at you home from your phone (webpage currently)
 The Arduino stations should be flashed with the attached custom bootloader to enable remote upload of sketches from your development computer via RF24 (instead of tearing the wall apart each time)
+-------- TBD DOCS LAYOUT EXAMPLES STATIONS---------
 
+### Code layout ###
 
+### Flashing remote station from VSCODE script (task) TBD ###
 
 ### How do I get set up? ###
 
-* Summary of set up
-* Configuration
-* Dependencies
-* Database configuration
-* How to run tests
-* Deployment instructions
+* -------- TBD ---------
+* -------- TBD ---------
+* -------- TBD ---------
+* -------- TBD ---------
+* -------- TBD ---------
+* -------- TBD ---------
 
 
 
