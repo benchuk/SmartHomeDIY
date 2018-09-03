@@ -1,4 +1,5 @@
 
+@echo off
 SET HEX=%1\..\.pioenvs\nanoatmega328\firmware.hex
 SET CONF=%2\avr\windows\avrdude\etc\avrdude.conf
 ECHO %HEX%

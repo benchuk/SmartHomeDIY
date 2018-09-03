@@ -1,4 +1,5 @@
 
+@echo off
 cd ..
 cd OTA\bootloader_with_ota_support\optiboot-nrf24l01-master\avr\bootloaders\optiboot-nrf24l01
 

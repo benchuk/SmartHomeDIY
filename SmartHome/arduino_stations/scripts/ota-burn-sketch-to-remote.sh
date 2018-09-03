@@ -1,4 +1,5 @@
 #!/bin/bash 
+@echo off
 # osascript -e 'tell app "System Events" to display dialog "Make sure flasher station is connected, then press OK"'
 for i; do 
     echo $i 
