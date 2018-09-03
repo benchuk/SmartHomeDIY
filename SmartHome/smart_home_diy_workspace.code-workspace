@@ -23,6 +23,9 @@
 		},
 		{
 			"path": "arduino_stations\\libraries"
+		},
+		{
+			"path": "arduino_stations/scripts"
 		}
 	],
 	"settings": {
