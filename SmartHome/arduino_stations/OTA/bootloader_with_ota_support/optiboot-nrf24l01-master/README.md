@@ -14,7 +14,7 @@ through the nRF24L01+ chip if one is connected.  Over serial it behaves as norma
 
 The nRF24L01+ modules (PCB with the radio chip, antenna and a few other things) can be had
 for less than $1 from the likes of ebay.  Add an Arduino clone for $2.50 and it's a wireless
-Arduino for $3.50.
+Arduino for $3.50.dir
 
 Optiboot
 ========

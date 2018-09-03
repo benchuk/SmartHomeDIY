@@ -25,6 +25,26 @@
         }
     },
     {
+        "label": "compile_bootloader_avr",
+        "type": "shell",
+        "command": ".compile_bootloader.sh",
+        "windows": {
+            "command": ".\\compile_bootloader.bat"
+        },
+        "args": ["${workspaceFolder}"
+        ],
+        "options": {
+            "cwd": "${workspaceRoot}/"
+        },
+        "group": "test",
+        "presentation": {
+            "reveal": "always",
+            "panel": "new",
+            "focus":false,
+            "echo":false
+        }
+    },
+    {
         "label": "compile-and-flash-custom-bootloader",
         "type": "shell",
         "command": "./compile-and-flash-custom-bootloader.sh",
