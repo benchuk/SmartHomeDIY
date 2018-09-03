@@ -1,1 +1,4 @@
 *.DB
+SmartHome/arduino_stations/scripts/avr/windows/avrdude/bin/firmware.hex
+*.DB-shm
+*.DB-wal

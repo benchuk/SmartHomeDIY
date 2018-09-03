@@ -3,6 +3,7 @@
 for i; do 
     echo $i 
 done 
+
 avrdude -C "C:\Users\Ben\Downloads\avrdude\etc\avrdude.conf" -v -patmega328p -c arduino -PCOM5 -b115200 -D -U flash:w:text.ino.hex
 
 

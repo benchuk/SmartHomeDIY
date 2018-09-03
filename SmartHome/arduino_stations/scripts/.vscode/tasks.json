@@ -11,7 +11,7 @@
             "command": ".\\ota-burn-sketch-to-remote.bat"
         },
         "args": [
-            "${file}"
+            "${fileDirname}","${workspaceFolder}"
         ],
         "options": {
             "cwd": "${workspaceRoot}/"
@@ -21,7 +21,7 @@
             "reveal": "always",
             "panel": "new",
             "focus":false,
-            "echo":true
+            "echo":false
         }
     },
     {
