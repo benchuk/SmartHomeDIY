@@ -2,3 +2,4 @@
 SmartHome/arduino_stations/scripts/avr/windows/avrdude/bin/firmware.hex
 *.DB-shm
 *.DB-wal
+SmartHome/arduino_stations/IR/project_ir/src/IR_STATION_WITH_SD.ino.cpp
