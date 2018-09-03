@@ -1,6 +1,5 @@
 # 1 "baudcheck.c"
-# 1 "/Users/ben/Google Drive/Electronics/Arduino/Code/Arduino Porjects/Projects/SmartHome/OTA/optiboot-nrf24l01-master/avr/bootloaders/optiboot-nrf24l01//"
-# 1 "<built-in>"
+# 1 "/Users/ben/docs/MyGit/SmartHomeDIY/SmartHome/arduino_stations/OTA/bootloader_with_ota_support/optiboot-nrf24l01-master/avr/bootloaders/optiboot-nrf24l01//"
 # 1 "<command-line>"
 # 1 "baudcheck.c"
 # 20 "baudcheck.c"

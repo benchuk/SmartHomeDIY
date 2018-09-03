@@ -27,7 +27,7 @@
     {
         "label": "compile_bootloader_avr",
         "type": "shell",
-        "command": ".compile_bootloader.sh",
+        "command": "./compile_bootloader.sh",
         "windows": {
             "command": ".\\compile_bootloader.bat"
         },
