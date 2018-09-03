@@ -1,14 +1,10 @@
-@echo off   
+@echo off
 echo -----------------------------------                                                                                                                                                                                                                                                          
 echo flash bootloader with ota support
 echo -----------------------------------
 
-for i; do 
-    echo $i 
-done 
-
-CONF=%1\avr\windows\avrdude\etc\avrdude.conf
-AVB_BIN=%1\avr\windows\avrdude\bin\
+SET CONF=%1\avr\windows\avrdude\etc\avrdude.conf
+SET AVB_BIN=%1\avr\windows\avrdude\bin\
 ECHO %AVB_BIN%
 ECHO %CONF%
 
