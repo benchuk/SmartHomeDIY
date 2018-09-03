@@ -2,12 +2,13 @@
     // See https://go.microsoft.com/fwlink/?LinkId=733558
     // for the documentation about the tasks.json format
     "version": "2.0.0",
-    "tasks": [{
-        "label": "burn-remote",
+    "tasks": [
+        {
+        "label": "ota-burn-selectedFile-to-remote",
         "type": "shell",
-        "command": "./burn-remote.sh",
+        "command": "./ota-burn-sketch-to-remote.sh",
         "windows": {
-            "command": ".\\burn-remote.bat"
+            "command": ".\\ota-burn-sketch-to-remote.bat"
         },
         "args": [
             "${file}"
@@ -22,5 +23,27 @@
             "focus":false,
             "echo":true
         }
-    }]
+    },
+    {
+        "label": "compile-and-flash-custom-bootloader",
+        "type": "shell",
+        "command": "./compile-and-flash-custom-bootloader.sh",
+        "windows": {
+            "command": ".\\compile-and-flash-custom-bootloader.bat"
+        },
+        "args": [
+            "Test"
+        ],
+        "options": {
+            "cwd": "${workspaceRoot}/"
+        },
+        "group": "test",
+        "presentation": {
+            "reveal": "always",
+            "panel": "new",
+            "focus":false,
+            "echo":true
+        }
+    }
+]
 }
