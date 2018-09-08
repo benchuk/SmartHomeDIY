@@ -174,7 +174,7 @@ const int SelectSD = 4; // pinnenummer brukt for CS til SD-kortet
 //char fileName[8];
 // we will store up to 100 pulse pairs (this is -a lot-)
 //uint8_t pulses[120][2];  // pair is high and low pulse - need to optimize
-uint8_t pulses[95][2];    // pair is high and low pulse - need to optimize
+uint8_t pulses[120][2];    // pair is high and low pulse - need to optimize
 uint8_t currentpulse = 0; // index for pulses we're storing
 // int IRledPin =  13;    // LED connected to digital pin 13
 #define IRledPin 7 // OUT LED connected to digital pin 7 - OUT PIN
@@ -211,13 +211,32 @@ void updateSendLed(bool sending)
   }
 }
 
+void reportLedCriticalError()
+{
+  while (1)
+  {
+    digitalWrite(SendLedPin, HIGH);
+    delay(500);
+    digitalWrite(SendLedPin, LOW);
+    delay(500);
+  }
+}
+
+void blinkReady()
+{
+  digitalWrite(RecLedPin, HIGH);
+  delay(50);
+  digitalWrite(RecLedPin, LOW);
+  delay(50);
+}
+
 void enableSD(void)
 {
   digitalWrite(SD_SWITCH_LINE1, HIGH);
   digitalWrite(RF_SWITCH_LINE1, LOW);
   digitalWrite(Radio_CSN, HIGH); //Disable radio
   digitalWrite(SelectSD, LOW);   //Enable sd-card
-  delay(1000);
+  delay(10);
 }
 
 void enableRF(void)
@@ -235,7 +254,7 @@ void disableRF(void)
   //digitalWrite(REALY2, HIGH);
   digitalWrite(RF_SWITCH_LINE1, LOW);
   digitalWrite(Radio_CSN, HIGH); //Disable radio
-  delay(1000);
+  delay(10);
 }
 
 void disableSD(void)
@@ -254,21 +273,20 @@ void disableAllSpiDevices(void)
   digitalWrite(SelectSD, HIGH);  //Disable sd-card
 }
 
-
 char fileName[8];
-void commandToFileName(char* f, char* c)
+void commandToFileName(char *f, char *c)
 {
-    strncpy(f, c, 3);
-    //memcpy( fileName,cmd , 3*sizeof(char) );
-    // fileName[0] = cmd[0];
-    // fileName[1] = cmd[1];
-    // fileName[2] = cmd[2];
-    f[3] = '.';
-    f[4] = 't';
-    f[5] = 'x';
-    f[6] = 't';
-    f[7] = 0; 
-    Serial.println(f);
+  strncpy(f, c, 3);
+  //memcpy( fileName,cmd , 3*sizeof(char) );
+  // fileName[0] = cmd[0];
+  // fileName[1] = cmd[1];
+  // fileName[2] = cmd[2];
+  f[3] = '.';
+  f[4] = 't';
+  f[5] = 'x';
+  f[6] = 't';
+  f[7] = 0;
+  Serial.println(f);
 }
 
 /*********
@@ -283,6 +301,7 @@ void commandToFileName(char* f, char* c)
 void setup(void)
 {
 
+  watchdogReset();
   configureEEPROMAddressForRFAndOTA("004");
 
   pinMode(RF_SWITCH_LINE1, OUTPUT);
@@ -294,6 +313,7 @@ void setup(void)
   pinMode(RecLedPin, OUTPUT);
   pinMode(SendLedPin, OUTPUT);
 
+  watchdogReset();
   Serial.begin(9600);
 
   //setup SPI devices
@@ -302,6 +322,7 @@ void setup(void)
   //SPI - rf24 radio
   Serial.println(F("RF INIT"));
 
+  watchdogReset();
   enableRF();
   set_Radio_CSN(Radio_CSN);
   startRF();
@@ -314,7 +335,7 @@ void setup(void)
 
   Serial.println(F("Done RF INIT"));
   disableRF();
-
+  watchdogReset();
   //SPI SDCARD
   Serial.println("SD INIT");
 
@@ -323,12 +344,7 @@ void setup(void)
   if (!SD.begin(SelectSD))
   {
     Serial.println(F("initialization failed!"));
-    while (1)
-    {
-      digitalWrite(SendLedPin, HIGH);
-      delay(500);
-      digitalWrite(SendLedPin, LOW);
-    }
+    reportLedCriticalError();
   }
   else
   {
@@ -341,6 +357,7 @@ void setup(void)
   // }
 
   coderecorded = true;
+  watchdogReset();
   if (coderecorded)
   {
     Serial.println(F("Play mode."));
@@ -350,12 +367,15 @@ void setup(void)
     Serial.println(F("Record mode."));
   }
 
+  watchdogReset();
   updateRecLed();
   disableSD();
 
   //Init completed
+  watchdogReset();
   disableAllSpiDevices();
 
+  watchdogReset();
   digitalWrite(SendLedPin, HIGH);
   delay(1000);
   digitalWrite(SendLedPin, LOW);
@@ -363,7 +383,7 @@ void setup(void)
   digitalWrite(SendLedPin, HIGH);
   delay(1000);
   digitalWrite(SendLedPin, LOW);
-
+  watchdogReset();
   Serial.println(F("Ready to decode IR!"));
 }
 
@@ -389,29 +409,28 @@ void setup(void)
 void loop(void)
 {
   if (!coderecorded)
-  {   
+  {
+    //Serial.println(F("Recording IR Signal..."));
     recordircode();
     return;
   }
-
-  watchdogReset();
 
   enableRF();
   Serial.println(F("Waiting for remote command..."));
   while (!Mirf.dataReady())
   {
-    watchdogReset();
-    delay(100);
+    //delay(100);
+    blinkReady();
   };
 
   checkIfOtaRequestOrLoadCommand(cmd);
-  Serial.print(F("New command "));
-  Serial.println(cmd);
+  //Serial.print(F("Got New command: "));
+  //Serial.println(cmd);
 
   if (strcmp(cmd, "000") == 0) //000 is record
   {
-    Serial.print(F("waiting for record file name"));
-    while(!Mirf.dataReady())
+    Serial.print(F("Record cmd: waiting for record file name"));
+    while (!Mirf.dataReady())
     {
       Serial.print(F("."));
       watchdogReset();
@@ -419,10 +438,10 @@ void loop(void)
     }
     char cmd[Mirf.payload + 1];
     Mirf.getData(cmd);
-    cmd[3]=0;
+    cmd[3] = 0;
     Serial.print(F("cmd: "));
     Serial.println(cmd);
-    commandToFileName(fileName,cmd);
+    commandToFileName(fileName, cmd);
     Serial.print(F("File Name: "));
     Serial.println(fileName);
     Serial.println(F("Starting record sequence."));
@@ -433,15 +452,16 @@ void loop(void)
   }
   else if (strcmp(cmd, "001") == 0)
   {
+    Serial.println(F("Restarting..."));
     soft_restart();
     return;
   }
   else
   {
     disableRF();
-    watchdogReset();
 
-    //Serial.println("Got  command - " + cmd);
+    //Serial.print("Got IR cmd: ");
+    //Serial.println(cmd);
 
     enableSD();
 
@@ -449,16 +469,17 @@ void loop(void)
     {
       //Serial.println(F("move to SD ERROR")); //dbg
     }
-    commandToFileName(fileName,cmd);
+    commandToFileName(fileName, cmd);
     myFile = SD.open(fileName);
     if (myFile)
     {
-      Serial.println(F("File open ok \r\n"));
+      //Serial.println(F("File open ok \r\n"));
       sendcode();
     }
     else
     {
       Serial.println(F("File open Error file \n\r\n"));
+      reportLedCriticalError();
     }
   }
 
@@ -646,6 +667,7 @@ void printpulses(void)
 
   //Serial.println("1 \n\r\n");//dbg
   //TODO: Which command to save to which file
+  disableRF();
   enableSD();
 
   if (!SD.begin(SelectSD))
@@ -667,6 +689,7 @@ void printpulses(void)
   else
   {
     Serial.println(F("Error open file \n\r\n"));
+    reportLedCriticalError();
   }
 
   //Serial.println("\n\r\n\rReceived: \n\rOFF \tON");//dbg
@@ -733,14 +756,11 @@ void printpulses(void)
 //   return;
 // }
 
-
-
-  // byte data[Mirf.payload] = {0};
-  // while (!Mirf.dataReady())
-  // {
-  // };                  // wait for data to arrive
-  // Mirf.getData(data); // read to buffer
-  // Serial.println(F("Network data"));
-  // Serial.println(data[0]);
-  // Serial.println(data[1]);
-
+// byte data[Mirf.payload] = {0};
+// while (!Mirf.dataReady())
+// {
+// };                  // wait for data to arrive
+// Mirf.getData(data); // read to buffer
+// Serial.println(F("Network data"));
+// Serial.println(data[0]);
+// Serial.println(data[1]);

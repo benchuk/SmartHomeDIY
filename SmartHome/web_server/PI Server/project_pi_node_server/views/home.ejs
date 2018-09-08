@@ -82,79 +82,78 @@
 			<div class="content">
 				<div>Debug</div>
 				<% remotes.forEach(function(c) { %>
-					<div>
-						<%= c.groupName %>
+				<div>
+					<%= c.groupName %>
+				</div>
+				<% }); %>
+
+				<div class="tab-content text-center">
+					<div class="tab-pane active" id="ac">
+						<p>
+
+							<form method="post" action="/newcommand" style="display:none" id="recordForm">
+								<input type="text" class="form-control" placeholder="Name" name="name">
+								<input type="text" class="form-control" placeholder="Address" name="address" value="004">
+								<input type="text" class="form-control" placeholder="Command" name="command" value="002">
+								<input type="text" class="form-control" placeholder="Remote Group" name="group" value="AC living room">
+
+								<input type="submit" id="close">
+							</form>
+
+							<button class="btn btn-primary btn-large" id="004:001">Reset Station</button>
+							<button class="btn btn-primary btn-large showrecord" id="004:000">Record</button>
+
+
+
+							<%if (remotes && remotes.length > 0 ) { %>
+
+							<% remotes[0].commands.forEach(function(c) { %>
+							<button class="btn btn-primary btn-large" id="<%=c.address %>:<%=c.commandFile %>">
+								<%= c.commandName %>
+							</button>
+							<% }); %>
+							<% } %>
+												
+
+						</p>
 					</div>
-					<% }); %>
+					<div class="tab-pane" id="sahdes">
+						<p>
 
-						<div class="tab-content text-center">
-							<div class="tab-pane active" id="ac">
-								<p>
-
-									<form method="post" action="/newcommand" style="display:none" id="recordForm">
-										<input type="text" class="form-control" placeholder="Name" name="name">
-										<input type="text" class="form-control" placeholder="Address" name="address" value="004">
-										<input type="text" class="form-control" placeholder="Command" name="command" value="001">
-										<input type="text" class="form-control" placeholder="Remote Group" name="group" value="AC living room">
-
-										<input type="submit" id="close">
-									</form>
-
-									<button class="btn btn-primary btn-large showrecord" id="004:000">Record</button>
+							<button class="btn btn-block  btn-primary " data-toggle="modal" data-target="#myModal">
+								<i class="material-icons">library_books</i> Classic
+								<div class="ripple-container"></div>
+							</button>
 
 
-
-									<%if (remotes && remotes.length > 0 ) { %>
-									
-										<% remotes[0].commands.forEach(function(c) { %>
-											<button class="btn btn-primary btn-large" id="<%=c.address %>:<%=c.commandFile %>">
-												<%= c.commandName %>
-											</button>
-											<% }); %>
-									<% } %>
-
-													<button class="btn btn-primary btn-large" id="004:002">Off</button>
-													<button class="btn btn-primary btn-large" id="004:001">Reset Station</button>
-
-								</p>
+							<button class="btn btn-primary btn-large" id="003:000">Stop</button>
+							<button class="btn btn-primary btn-large" id="003:001">Move Up</button>
+							<button class="btn btn-primary btn-large" id="003:002">Move Down</button>
+							<button class="btn btn-primary btn-large" id="003:003">Reset</button>
+						</p>
+					</div>
+					<div class="tab-pane" id="lights">
+						<p>
+							<div class="togglebutton">
+								<label>
+									<input type="checkbox" checked="">
+									<span class="toggle"></span>
+									Center Living Room
+								</label>
 							</div>
-							<div class="tab-pane" id="sahdes">
-								<p>
+						</p>
+					</div>
+					<div class="tab-pane" id="settings">
+						<p>
+							<button class="btn btn-primary btn-large" id="002:000">Stop 3</button>
+							<button class="btn btn-primary btn-large" id="002:001">Move Up 3</button>
+							<button class="btn btn-primary btn-large" id="002:002">Move Down 3</button>
+							<button class="btn btn-primary btn-large" id="002:003">Reset 3</button>
 
-									<button class="btn btn-block  btn-primary " data-toggle="modal" data-target="#myModal">
-										<i class="material-icons">library_books</i> Classic
-										<div class="ripple-container"></div>
-									</button>
-
-
-									<button class="btn btn-primary btn-large" id="003:000">Stop</button>
-									<button class="btn btn-primary btn-large" id="003:001">Move Up</button>
-									<button class="btn btn-primary btn-large" id="003:002">Move Down</button>
-									<button class="btn btn-primary btn-large" id="003:003">Reset</button>
-								</p>
-							</div>
-							<div class="tab-pane" id="lights">
-								<p>
-									<div class="togglebutton">
-										<label>
-											<input type="checkbox" checked="">
-											<span class="toggle"></span>
-											Center Living Room
-										</label>
-									</div>
-								</p>
-							</div>
-							<div class="tab-pane" id="settings">
-								<p>
-									<button class="btn btn-primary btn-large" id="002:000">Stop 3</button>
-									<button class="btn btn-primary btn-large" id="002:001">Move Up 3</button>
-									<button class="btn btn-primary btn-large" id="002:002">Move Down 3</button>
-									<button class="btn btn-primary btn-large" id="002:003">Reset 3</button>
-
-									<button class="btn btn-primary btn-large" id="005:004">S1 toogle</button>
-								</p>
-							</div>
-						</div>
+							<button class="btn btn-primary btn-large" id="005:004">S1 toogle</button>
+						</p>
+					</div>
+				</div>
 			</div>
 		</div>
 

@@ -50,7 +50,26 @@
             "windows": {
                 "command": ".\\flash_bootloader.bat"
             },
-            "args": ["${workspaceFolder}"],
+            "args": ["${workspaceFolder}","optiboot_atmega328.hex"],
+            "options": {
+                "cwd": "${workspaceRoot}/"
+            },
+            "group": "test",
+            "presentation": {
+                "reveal": "always",
+                "panel": "new",
+                "focus": false,
+                "echo": true
+            }
+        },
+        {
+            "label": "flash-bootloader-without-timeout",
+            "type": "shell",
+            "command": "./flash_bootloader.sh",
+            "windows": {
+                "command": ".\\flash_bootloader.bat"
+            },
+            "args": ["${workspaceFolder}","optiboot_atmega328_without_watchdog.hex"],
             "options": {
                 "cwd": "${workspaceRoot}/"
             },
