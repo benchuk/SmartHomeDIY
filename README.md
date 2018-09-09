@@ -26,7 +26,11 @@ The Arduino stations should be flashed with the attached custom bootloader to en
 
 
 ### IR UNIVERSIAL STATION ###
-![IR_STATION_MODEL1.PNG](https://bitbucket.org/repo/86Rb8B/images/2365154433-IR_STATION_MODEL1.PNG)# Smart Home Arduino #
+![
+      SmartHomeDIY/SmartHome/Other/Models_Images/IR_STATION/IR_STATION_MODEL1.PNG
+    ](
+      /SmartHome/Other/Models_Images/IR_STATION/IR_STATION_MODEL1.PNG
+    )# Smart Home Arduino #
 
 ### PI SERVER WITH NODE AND SERIAL COMMANDS SENT USING BT TO BT TO ANT DISPATCH STATION ###
 ![PI_STATION_MODEL1.PNG](https://bitbucket.org/repo/86Rb8B/images/3356847782-PI_STATION_MODEL1.PNG)
