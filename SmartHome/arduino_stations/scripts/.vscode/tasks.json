@@ -80,6 +80,25 @@
                 "focus": false,
                 "echo": true
             }
+        },
+        {
+            "label": "flash-bootloader222",
+            "type": "shell",
+            "command": "./flash_bootloader.sh",
+            "windows": {
+                "command": ".\\flash_bootloader.bat"
+            },
+            "args": ["${workspaceFolder}","optiboot_atmega328_with_watchdog_auto_reset_every_4_sec.hex"],
+            "options": {
+                "cwd": "${workspaceRoot}/"
+            },
+            "group": "test",
+            "presentation": {
+                "reveal": "always",
+                "panel": "new",
+                "focus": false,
+                "echo": true
+            }
         }
     ]
 }
