@@ -174,7 +174,7 @@ const int SelectSD = 4; // pinnenummer brukt for CS til SD-kortet
 //char fileName[8];
 // we will store up to 100 pulse pairs (this is -a lot-)
 //uint8_t pulses[120][2];  // pair is high and low pulse - need to optimize
-uint8_t pulses[120][2];    // pair is high and low pulse - need to optimize
+uint8_t pulses[120][2];   // pair is high and low pulse - need to optimize
 uint8_t currentpulse = 0; // index for pulses we're storing
 // int IRledPin =  13;    // LED connected to digital pin 13
 #define IRledPin 7 // OUT LED connected to digital pin 7 - OUT PIN
@@ -470,6 +470,7 @@ void loop(void)
       //Serial.println(F("move to SD ERROR")); //dbg
     }
     commandToFileName(fileName, cmd);
+
     myFile = SD.open(fileName);
     if (myFile)
     {
@@ -478,8 +479,18 @@ void loop(void)
     }
     else
     {
-      Serial.println(F("File open Error file \n\r\n"));
-      reportLedCriticalError();
+      //wait and try again
+      delay(100);
+      myFile = SD.open(fileName);
+      if (myFile)
+      {
+        sendcode();
+      }
+      else
+      {
+        Serial.println(F("File open Error file \n\r\n"));
+        reportLedCriticalError();
+      }
     }
   }
 
@@ -678,7 +689,14 @@ void printpulses(void)
   Serial.print(F("Saving data to file name: "));
   Serial.println(fileName);
 
-  SD.remove(fileName);
+  if (SD.exists(fileName))
+  {
+    Serial.print(F("found file deleting first"));
+    SD.remove(fileName);
+  }
+
+  delay(100);
+
   myFile = SD.open(fileName, FILE_WRITE);
   //Serial.println("sd open ok \r\n"); //dbg
   if (myFile)
