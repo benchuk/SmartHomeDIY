@@ -100,8 +100,9 @@
 								<input type="submit" id="close">
 							</form>
 
-							<button class="btn btn-primary btn-large" id="004:001">Reset Station</button>
-							<button class="btn btn-primary btn-large showrecord" id="004:000">Record</button>
+							<button class="btn btn-danger btn-large showrecord" id="004:000">Record</button>
+							<button class="btn btn-warning btn-large" id="004:001">Reset Station</button>
+							
 
 
 
@@ -109,8 +110,10 @@
 
 							<% remotes[0].commands.forEach(function(c) { %>
 							<button class="btn btn-primary btn-large" id="<%=c.address %>:<%=c.commandFile %>">
-								<%= c.commandName %>
+								<%= c.commandName %> 
+								<span class="badge badge-pill badge-primary"><%= c.commandFile %></span>
 							</button>
+							<span class="badge badge-pill badge-primary deletecmd" id="<%=remotes[0].groupName%>:<%=c.address %>:<%=c.commandFile %>">x</span>
 							<% }); %>
 							<% } %>
 												

@@ -39,6 +39,16 @@ $('#close').click(function() {
 	$('#recordForm').css({"display":"none"});
 });
 
+$('.deletecmd').click(function(e) {
+	$.ajax({
+		url: "/deletecmd/?value=" + e.currentTarget.id,
+		context: document.body
+	  }).done(function() {
+		  console.log("delete done: " + e.currentTarget.id);
+		  location.reload();
+	  });
+});
+
 
 
 })(jQuery);
