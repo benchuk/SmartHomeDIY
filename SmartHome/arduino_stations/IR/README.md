@@ -1,2 +1,5 @@
 ![led_transmit.png](led_transmit.png)
-![SmartHomeDIY/SmartHome/Other/Models_Images/IR_STATION/IR_STATION_MODEL1.PNG](SmartHomeDIY/SmartHome/Other/Models_Images/IR_STATION/IR_STATION_MODEL1.PNG)
+![https://github.com/benchuk/SmartHomeDIY/blob/master/SmartHome/Other/Models_Images/IR_STATION/IR_STATION_MODEL1.PNG?raw=true
+    ](
+      https://github.com/benchuk/SmartHomeDIY/blob/master/SmartHome/Other/Models_Images/IR_STATION/IR_STATION_MODEL1.PNG?raw=true
+    )
