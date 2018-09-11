@@ -23,9 +23,9 @@ try {
 }
 
 var locals = {
-    title: 'Node | Express | EJS | Boostrap',
-    description: 'A Node.js applicaton bootstrap using Express 3.x, EJS, Twitter Bootstrap 2, and CSS3',
-    author: 'Jalal Hejazi',
+    title: 'Smart Home DIY',
+    description: 'Control your home',
+    author: 'bechuknii',
     _layoutFile: true,
     remotes: remotesCollection.items
 };

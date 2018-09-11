@@ -31,10 +31,9 @@
 
 	<!-- Main hero unit for a primary marketing message or call to action -->
 	<div class="hero-unit">
-		<h1>SmartHome</h1>
-		<hr>
-
-
+		
+		<button class="btn btn-danger btn-large showrecord" id="004:000">Record</button>
+		<button class="btn btn-warning btn-large" id="004:001">Reset Station</button>
 		<!-- <button class="btn btn-primary">Default<div class="ripple-container"></div></button> -->
 		<!-- *********************************************************	 -->
 		<div class="card card-nav-tabs">
@@ -47,15 +46,15 @@
 
 							<li class="active">
 								<a href="#ac" data-toggle="tab" aria-expanded="true">
-									<i class="material-icons">face</i>
-									AC Living Room
+									<i class="material-icons">important_devices</i>
+									General
 									<div class="ripple-container"></div>
 								</a>
 							</li>
 
 							<li class="">
 								<a href="#sahdes" data-toggle="tab" aria-expanded="true">
-									<i class="material-icons">face</i>
+									<i class="material-icons">important_devices</i>
 									Shades Living Rooom
 									<div class="ripple-container"></div>
 								</a>
@@ -80,12 +79,12 @@
 				</div>
 			</div>
 			<div class="content">
-				<div>Debug</div>
+				<!-- <div>Debug</div>
 				<% remotes.forEach(function(c) { %>
 				<div>
 					<%= c.groupName %>
 				</div>
-				<% }); %>
+				<% }); %> -->
 
 				<div class="tab-content text-center">
 					<div class="tab-pane active" id="ac">
@@ -100,8 +99,7 @@
 								<input type="submit" id="close">
 							</form>
 
-							<button class="btn btn-danger btn-large showrecord" id="004:000">Record</button>
-							<button class="btn btn-warning btn-large" id="004:001">Reset Station</button>
+						
 							
 
 

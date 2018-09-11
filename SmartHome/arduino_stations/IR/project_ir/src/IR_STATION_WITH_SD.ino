@@ -112,7 +112,7 @@ const int SelectSD = 4; // pinnenummer brukt for CS til SD-kortet
 #include <nRF24L01.h>
 #include <MirfHardwareSpiDriver.h>
 
-//CE-9/CSN-10 - Currently usin 8 PIN instead on 9 which is the default CE - no config needed
+//CE-9/CSN-10 - Currently usin 8 PIN instead off 9 which is the default CE - no config needed
 #define Radio_CSN 6
 
 /** JUNK  *****

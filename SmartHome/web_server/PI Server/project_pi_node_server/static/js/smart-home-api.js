@@ -17,15 +17,21 @@
 //	});
 //});
 
+var toogle
 var btnClassClick = function(e){
-    //alert("Button clicked from class: "+e.currentTarget.id);
+	//alert("Button clicked from class: "+e.currentTarget.id);
 	$.ajax({
 	  url: "/harq/?value=" + e.currentTarget.id,
 	  context: document.body
 	}).done(function() {
 		console.log(e.currentTarget.id);
 	});
-
+	$(this).removeClass("btn-primary");	
+	$(this).addClass("btn-info");	
+	setTimeout(() => {
+		$(this).removeClass("btn-info");	
+		$(this).addClass("btn-primary");	
+	}, 700);
 }
 
 $('.btn').on('click', btnClassClick);
