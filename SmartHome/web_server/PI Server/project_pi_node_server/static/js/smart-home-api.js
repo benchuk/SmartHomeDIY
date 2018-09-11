@@ -17,7 +17,7 @@
 //	});
 //});
 
-var toogle
+
 var btnClassClick = function(e){
 	//alert("Button clicked from class: "+e.currentTarget.id);
 	$.ajax({
@@ -33,6 +33,20 @@ var btnClassClick = function(e){
 		$(this).addClass("btn-primary");	
 	}, 700);
 }
+
+
+var btnTimeClassClick = function(e){
+	var time = window.prompt("enter time in min for action","1");
+	$.ajax({
+		url: "/req-with-at-time/?value=" + e.currentTarget.id + "&time="+time,
+		context: document.body
+	  }).done(function() {
+		  //console.log(e.currentTarget.id);
+	  });
+}
+
+$('.time').on('click', btnTimeClassClick);
+
 
 $('.btn').on('click', btnClassClick);
 

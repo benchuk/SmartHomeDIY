@@ -84,6 +84,59 @@ exports.init = function (port) {
     });
 
 
+    function handleTimeoutRequest(value, time)
+    {
+        var handle = setTimeout(function() {
+            try
+            {
+                console.log("Performing now! -> req for time: " + time + " with value: " + value);
+                serialPort.write(value, function (err, res) {
+                });
+           
+            }
+            catch(err)
+            {
+                console.log(err);
+            }
+        }, time);
+
+        return handle;
+    }
+
+    var schedualer = {}
+    var requestIdCounter = 0;
+    app.get('/req-with-at-time', function (req, res) {
+      
+        var value = req.query.value;
+        var time = req.query.time*1000*60;
+        console.log("req for time: " + time + " with value:" + value);
+        var handle = handleTimeoutRequest(value,time)
+       
+        schedualer[requestIdCounter] = {handle: handle, timestamp: new Date().getTime()};
+        //res.send(schedualer[value]);
+        res.send(requestIdCounter);
+        requestIdCounter++;
+    });
+
+    app.get('/cancel-req-with-at-time', function (req, res) {
+      
+        var reqId = req.query.reqId;
+        var time = req.query.time*1000*60;
+        
+        var result = "";
+        try
+        {
+            result = clearTimeout(schedualer[reqId].handle);
+        }
+        catch(err)
+        {
+            result = err;
+        }
+
+        res.send(result);
+       
+    });
+
     server = app.listen(3001);
 
     console.log("Listening on port %d in %s mode", 3001, app.settings.env);

@@ -29,9 +29,36 @@
 
 <div class="container">
 
+
 	<!-- Main hero unit for a primary marketing message or call to action -->
-	<div class="hero-unit">
-		
+
+
+
+		<!-- <div class="modal" tabindex="-1" role="dialog">
+			<div class="modal-dialog" role="document">
+			  <div class="modal-content">
+				<div class="modal-header">
+				  <h5 class="modal-title">Modal title</h5>
+				  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+					<span aria-hidden="true">&times;</span>
+				  </button>
+				</div>
+				<div class="modal-body">
+				  <p>Modal body text goes here.</p>
+				</div>
+				<div class="modal-footer">
+				  <button type="button" class="btn btn-primary">Save changes</button>
+				  <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+				</div>
+			  </div>
+			</div>
+		  </div>
+
+		<button type="button" data-toggle="modal" data-target="#exampleModal">
+			Launch demo modal
+		</button> -->
+
+
 		<button class="btn btn-danger btn-large showrecord" id="004:000">Record</button>
 		<button class="btn btn-warning btn-large" id="004:001">Reset Station</button>
 		<!-- <button class="btn btn-primary">Default<div class="ripple-container"></div></button> -->
@@ -99,22 +126,26 @@
 								<input type="submit" id="close">
 							</form>
 
-						
-							
+
+
 
 
 
 							<%if (remotes && remotes.length > 0 ) { %>
 
 							<% remotes[0].commands.forEach(function(c) { %>
-							<button class="btn btn-primary btn-large" id="<%=c.address %>:<%=c.commandFile %>">
-								<%= c.commandName %> 
-								<span class="badge badge-pill badge-primary"><%= c.commandFile %></span>
-							</button>
-							<span class="badge badge-pill badge-primary deletecmd" id="<%=remotes[0].groupName%>:<%=c.address %>:<%=c.commandFile %>">x</span>
+							<div class="myline">
+								<span class="badge badge-pill badge-default time" id="<%=c.address %>:<%=c.commandFile %>">...</span>
+								<button class="btn btn-primary btn-large" id="<%=c.address %>:<%=c.commandFile %>">
+									<%= c.commandName %>
+									<span class="badge badge-pill badge-primary">
+										<%= c.commandFile %></span>
+								</button>
+								<span class="badge badge-pill badge-primary deletecmd" id="<%=remotes[0].groupName%>:<%=c.address %>:<%=c.commandFile %>">x</span>
+							</div>
 							<% }); %>
 							<% } %>
-												
+
 
 						</p>
 					</div>
@@ -162,7 +193,6 @@
 
 
 
-	</div>
 
 </div>
 

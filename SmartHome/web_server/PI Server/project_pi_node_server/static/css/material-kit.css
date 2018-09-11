@@ -17,6 +17,9 @@
 /* ANIMATION */
 /* SHADOWS */
 /* Shadows (from mdl http://www.getmdl.io/) */
+.myline {
+  display: block;
+}
 body {
   background-color: #CCCCCC;
 }
