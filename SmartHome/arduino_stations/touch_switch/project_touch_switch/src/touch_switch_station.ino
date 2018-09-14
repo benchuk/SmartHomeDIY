@@ -1,4 +1,5 @@
 #include <Arduino.h>
+#include <PinChangeInt.h>
 #include <common.h>
 
 /*********************
@@ -16,10 +17,10 @@
 #include <nRF24L01.h>
 #include <MirfHardwareSpiDriver.h>
 
-
-#define rfCLK = 13;
-#define rfMISO = 12;
-#define rfMOSI = 11;
+#define rfCLK 13
+#define rfMISO 12
+#define rfMOSI 11
+#define D3_PIN_CAHNGE_INTERRUPT 7
 
 const int rfCS = 10;
 const int rfCE = 9;
@@ -28,7 +29,6 @@ const int rfCE = 9;
 const byte light1Pin = 5;
 const byte light2Pin = 6;
 
-
 //interrupts from touch button
 const byte interruptTouch1Pin = 2;
 const byte interruptTouch2Pin = 3;
@@ -36,6 +36,20 @@ const byte interruptTouch2Pin = 3;
 //swithc state for lights
 volatile byte s1 = HIGH;
 volatile byte s2 = HIGH;
+volatile byte s3 = HIGH;
+volatile int s3Counter = 0;
+
+void touch3()
+{
+  s3Counter++;
+  if (s3Counter == 2)
+  {
+    s3 = !s3;
+    //digitalWrite(light2Pin, s2);
+    Serial.print("TOUCH3");
+    s3Counter = 0;
+  }
+}
 
 void setup()
 {
@@ -54,30 +68,31 @@ void setup()
 
   attachInterrupt(digitalPinToInterrupt(interruptTouch1Pin), touch1, RISING);
   attachInterrupt(digitalPinToInterrupt(interruptTouch2Pin), touch2, RISING);
+  pinMode(D3_PIN_CAHNGE_INTERRUPT, INPUT);
+  attachPinChangeInterrupt(D3_PIN_CAHNGE_INTERRUPT, touch3, CHANGE);
 
+  digitalWrite(light1Pin, s1);
+  digitalWrite(light2Pin, s2);
 
- digitalWrite(light1Pin, s1); 
- digitalWrite(light2Pin, s2); 
- 
- startRF();
+  startRF();
 
   Serial.println("INIT OK");
 }
 
-
 void loop()
 {
   //  watchdogReset();
-  //  //Serial.print("TICK");
+  Serial.print("TICK");
   //  delay(100);
   // return;
   while (!Mirf.dataReady())
   {
+    Serial.print(".");
     watchdogReset();
     delay(100);
   };
 
-Serial.print("TICK");
+  Serial.print("TICK");
   checkIfOtaRequestOrLoadCommand(cmd);
   Serial.print(F("New command "));
   Serial.println(cmd);
@@ -104,7 +119,7 @@ Serial.print("TICK");
   {
     Serial.print("toogle s1");
     s1 = !s1;
-    digitalWrite(light1Pin, s1); 
+    digitalWrite(light1Pin, s1);
     return;
   }
   //s2
@@ -122,7 +137,7 @@ Serial.print("TICK");
   }
   else if (strcmp(cmd, "007") == 0)
   {
-     Serial.print("toogle s2");
+    Serial.print("toogle s2");
     s2 = !s2;
     return;
   }
@@ -131,13 +146,13 @@ Serial.print("TICK");
 void touch1()
 {
   s1 = !s1;
-  digitalWrite(light1Pin, s1); 
+  digitalWrite(light1Pin, s1);
   Serial.print("TOUCH1");
 }
 
 void touch2()
 {
   s2 = !s2;
-  digitalWrite(light2Pin, s2); 
+  digitalWrite(light2Pin, s2);
   Serial.print("TOUCH2");
 }
