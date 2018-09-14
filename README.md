@@ -5,6 +5,10 @@ This project is a DIY home automation, you can have multuple arduino stations co
 The Arduino stations should be flashed with the attached custom bootloader to enable remote upload of sketches from your development computer via RF24 (instead of tearing the wall apart each time)
 -------- TBD DOCS LAYOUT EXAMPLES STATIONS---------
 
+For mote info read here:
+
+https://www.2bitornot2bit.com/blog/smart-your-home-up-with-raspberry-pi-nodejs-bluetooth-serial-and-rf24
+
 ### Code layout ###
 
 ### Flashing remote station from VSCODE script (task) TBD ###
