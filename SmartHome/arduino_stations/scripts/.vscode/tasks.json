@@ -44,6 +44,25 @@
             }
         },
         {
+            "label": "compile_bootloader_debug",
+            "type": "shell",
+            "command": "./compile_bootloader_debug.sh",
+            "windows": {
+                "command": ".\\compile_bootloader_debug.bat"
+            },
+            "args": ["${workspaceFolder}"],
+            "options": {
+                "cwd": "${workspaceRoot}/"
+            },
+            "group": "test",
+            "presentation": {
+                "reveal": "always",
+                "panel": "new",
+                "focus": false,
+                "echo": false
+            }
+        },
+        {
             "label": "flash-bootloader",
             "type": "shell",
             "command": "./flash_bootloader.sh",

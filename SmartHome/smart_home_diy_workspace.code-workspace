@@ -29,6 +29,9 @@
 		},
 		{
 			"path": "arduino_stations\\OTA\\remote_station_for_ota_tests\\ota_remote-station_working_with_mirf_lib\\remote_station_for_ota_tests"
+		},
+		{
+			"path": "arduino_stations/OTA/bootloader_with_ota_support/for_debug/bootloader_with_debug_leds/optiboot-nrf24l01-master-debug"
 		}
 	],
 	"settings": {
