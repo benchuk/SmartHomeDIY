@@ -147,11 +147,13 @@ static int nrf24_init(void) {
 	/* 2ms interval, 15 retries (16 total) */
 	nrf24_write_reg(SETUP_RETR, 0x7f);
 	if (nrf24_read_reg(SETUP_RETR) != 0x7f)
+	{
+		//TBD - make led blink!
 		return 1; /* There may be no nRF24 connected */
+	}
 
 	/* Maximum Tx power, 250kbps data rate */
-	nrf24_write_reg(RF_SETUP, (1 << RF_PWR_LOW) | (1 << RF_PWR_HIGH) |
-			(1 << RF_DR_LOW));
+	nrf24_write_reg(RF_SETUP, (1 << RF_PWR_LOW) | (1 << RF_PWR_HIGH) | (1 << RF_DR_LOW));
 	/* Dynamic payload length for TX & RX (pipes 0 and 1) */
 	nrf24_write_reg(DYNPD, 0x03);
 	nrf24_write_reg(FEATURE, 1 << EN_DPL);

@@ -65,10 +65,10 @@ static void handle_input(char ch) {
   tx_fifo.data[(tx_fifo.start + tx_fifo.len ++) & FIFO_MASK] = ch;
 }
 
-#define min(a, b) \
-  ({ __typeof__ (a) _a = (a); \
-    __typeof__ (b) _b = (b); \
-    _a < _b ? _a : _b; })
+// #define min(a, b) \
+//   ({ __typeof__ (a) _a = (a); \
+//     __typeof__ (b) _b = (b); \
+//     _a < _b ? _a : _b; })
 
 static uint8_t eeprom_read(uint16_t addr) {
   while (EECR & (1 << EEPE));
@@ -84,19 +84,16 @@ void programShadeLivingRoom(void)
   //station 002
   EEPROM.write(3, 48);//0
   EEPROM.write(4, 48);//0
-  EEPROM.write(5, 51);//3
+  EEPROM.write(5, 54);//6
 }
 
 void setup(void) {
-
-
-  //local flasher is 48 48 48
-  //remote is 48 48 49
-  //000 - 001
+  //local flasher is 48 48 48 => '000'
   EEPROM.write(0, 48);
   EEPROM.write(1, 48);
   EEPROM.write(2, 48);
 
+  //set remote address: for example: 48 48 49 => '001'
   programShadeLivingRoom();
 
   uint8_t s = SREG;
