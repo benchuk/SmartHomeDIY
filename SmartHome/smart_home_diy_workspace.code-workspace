@@ -1,6 +1,9 @@
 {
 	"folders": [
 		{
+			"path": "web_server\\PI Server\\project_pi_node_server"
+		},
+		{
 			"path": "arduino_stations\\BT_To_Ant_Dispatch_Station\\project_BT_To_Ant_Dispatch_Station"
 		},
 		{
@@ -13,25 +16,22 @@
 			"path": "arduino_stations\\touch_switch\\project_touch_switch"
 		},
 		{
-			"path": "arduino_stations\\OTA\\flasher station\\optiboot-nrf24l01-flasher"
-		},
-		{
 			"path": "arduino_stations\\OTA\\bootloader_with_ota_support\\optiboot-nrf24l01-master"
 		},
 		{
-			"path": "web_server\\PI Server\\project_pi_node_server"
+			"path": "arduino_stations/OTA/bootloader_with_ota_support/for_debug/bootloader_with_debug_leds/optiboot-nrf24l01-master-debug"
+		},
+		{
+			"path": "arduino_stations\\OTA\\flasher station\\optiboot-nrf24l01-flasher"
+		},
+		{
+			"path": "arduino_stations\\OTA\\remote_station_for_ota_tests\\ota_remote-station_working_with_mirf_lib\\remote_station_for_ota_tests"
 		},
 		{
 			"path": "arduino_stations\\libraries"
 		},
 		{
 			"path": "arduino_stations\\scripts"
-		},
-		{
-			"path": "arduino_stations\\OTA\\remote_station_for_ota_tests\\ota_remote-station_working_with_mirf_lib\\remote_station_for_ota_tests"
-		},
-		{
-			"path": "arduino_stations/OTA/bootloader_with_ota_support/for_debug/bootloader_with_debug_leds/optiboot-nrf24l01-master-debug"
 		}
 	],
 	"settings": {
