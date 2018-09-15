@@ -15,7 +15,6 @@
 		{
 			"path": "arduino_stations\\OTA\\flasher station\\optiboot-nrf24l01-flasher"
 		},
-		
 		{
 			"path": "arduino_stations\\OTA\\bootloader_with_ota_support\\optiboot-nrf24l01-master"
 		},
@@ -27,6 +26,9 @@
 		},
 		{
 			"path": "arduino_stations\\scripts"
+		},
+		{
+			"path": "arduino_stations/OTA/bootloader_with_ota_support/for_debug/bootloader with debug leds/optiboot-nrf24l01-master-debug"
 		}
 	],
 	"settings": {
