@@ -1,6 +1,5 @@
+#include <Arduino.h>
 #include <EEPROM.h>
-
-
 
 /* Memory Map */
 #define CONFIG      0x00
@@ -105,8 +104,6 @@
 #define RF_PWR_HIGH 2
 
 
-
-
 #define CE_DDR    DDRB
 #define CE_PORT   PORTB
 #define CSN_DDR   DDRB
@@ -118,7 +115,7 @@
 //#include "nrf24.h"
 
 
-#include <SPI.h>
+// #include <SPI.h>
 #include <Mirf.h>
 #include <nRF24L01.h>
 #include <MirfHardwareSpiDriver.h>
@@ -203,7 +200,7 @@ void enableRF(void)
      Configure reciving address.
   */
   //Mirf.setRADDR(add);
-  Mirf.setRADDR((byte *)"001");
+  Mirf.setRADDR((byte *)"006");
   Mirf.setTADDR((byte *)"000");
   /*
      Set the payload length to sizeof(unsigned long) the
@@ -239,10 +236,10 @@ void setup()
   //local flasher is 48 48 48
   //remote is 48 48 49
 
-  //001 - 000
+  //006 - 000
   EEPROM.write(0, 48);
   EEPROM.write(1, 48);
-  EEPROM.write(2, 49);
+  EEPROM.write(2, 54);
   EEPROM.write(3, 48);
   EEPROM.write(4, 48);
   EEPROM.write(5, 48);
@@ -284,7 +281,7 @@ void setup()
 void loop()
 {
    
-   Serial.println("Listening...");
+   Serial.println("Listening...2");
    while(!Mirf.dataReady())
   {
     watchdogReset();
