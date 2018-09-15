@@ -10,15 +10,18 @@ ECHO %AVB_BIN%
 ECHO %CONF%
 
 cd ..
-cd OTA\bootloader_with_ota_support\optiboot-nrf24l01-master\avr\bootloaders\optiboot-nrf24l01\
+REM cd OTA\bootloader_with_ota_support\optiboot-nrf24l01-master\avr\bootloaders\optiboot-nrf24l01\
+
+cd scripts\hex\
+
 copy %HEX_FILE% %AVB_BIN%
 
 cd %AVB_BIN%
 
-echo -----------------------------------                                                                                                                                                                                                                                                          
+echo -----------------------------------                                                                                                                                                                                                                                                        
 echo flashing  %HEX_FILE%
 echo -----------------------------------
-
+dir
 avrdude -C %CONF% -b 19200 -c usbtiny -p m328p -v -e -U efuse:w:0xFD:m -U hfuse:w:0xDA:m -U lfuse:w:0xFF:m -F
 avrdude -C %CONF% -b 19200 -c usbtiny -p m328p -v -e -U flash:w:%HEX_FILE% -U lock:w:0x0F:m
 
