@@ -604,9 +604,7 @@ int main(void)
       verifySpace();
       if (which == 0x82)
       {
-        /*
-	 * Send optiboot version as "minor SW version"
-	 */
+        /*Send optiboot version as "minor SW version"*/
         putch(OPTIBOOT_MINVER);
       }
       else if (which == 0x81)
@@ -615,10 +613,7 @@ int main(void)
       }
       else
       {
-        /*
-	 * GET PARAMETER returns a generic 0x03 reply for
-         * other parameters - enough to keep Avrdude happy
-	 */
+        /* GET PARAMETER returns a generic 0x03 reply for other parameters - enough to keep Avrdude happy */
         putch(0x03);
       }
     }
@@ -865,24 +860,6 @@ static uint8_t pkt_max_len = 32;
 
 static void radio_init(void)
 {
-
-  /* BLINK # TIMES FOR DEBUG*/
-  /***************************************************/
-  DDRD = DDRD | 0B10000000; //set up pin 7 as output without touching other pins FOR DEBUG
-
-  PORTD = PORTD | 0B10000000; // sets digital pin 7 HIGH without touching other pins
-  my_delay(100);
-  PORTD = PORTD & 0B01111111; // sets digital pin 7 LOW without touching other pins
-  my_delay(100);
-  PORTD = PORTD | 0B10000000; // sets digital pin 7 HIGH without touching other pins
-  my_delay(100);
-  PORTD = PORTD & 0B01111111; // sets digital pin 7 LOW without touching other pins
-  my_delay(100);
-  PORTD = PORTD | 0B10000000; // sets digital pin 7 HIGH without touching other pins
-  my_delay(100);
-  PORTD = PORTD & 0B01111111; // sets digital pin 7 LOW without touching other pins
-  /***************************************************/
-
   uint8_t addr[3];
 
   spi_init();
@@ -891,15 +868,43 @@ static void radio_init(void)
     return;
 
   radio_present = 1;
+  /* BLINK # TIMES FOR DEBUG*/
+  /***************************************************/
+  // DDRD = DDRD | 0B10000000; //set up pin 7 as output without touching other pins FOR DEBUG
+
+  // PORTD = PORTD | 0B10000000; // sets digital pin 7 HIGH without touching other pins
+  // my_delay(100);
+  // PORTD = PORTD & 0B01111111; // sets digital pin 7 LOW without touching other pins
+  // my_delay(100);
+  // PORTD = PORTD | 0B10000000; // sets digital pin 7 HIGH without touching other pins
+  // my_delay(100);
+  // PORTD = PORTD & 0B01111111; // sets digital pin 7 LOW without touching other pins
+  // my_delay(100);
+  // PORTD = PORTD | 0B10000000; // sets digital pin 7 HIGH without touching other pins
+  // my_delay(100);
+  // PORTD = PORTD & 0B01111111; // sets digital pin 7 LOW without touching other pins
+  // my_delay(100);
+  // PORTD = PORTD | 0B10000000; // sets digital pin 7 HIGH without touching other pins
+  // my_delay(100);
+  // PORTD = PORTD & 0B01111111; // sets digital pin 7 LOW without touching other pins
+  // my_delay(100);
+  // PORTD = PORTD | 0B10000000; // sets digital pin 7 HIGH without touching other pins
+  // my_delay(100);
+  // PORTD = PORTD & 0B01111111; // sets digital pin 7 LOW without touching other pins
+  // my_delay(100);
+  // PORTD = PORTD | 0B10000000; // sets digital pin 7 HIGH without touching other pins
+  // my_delay(100);
+  // PORTD = PORTD & 0B01111111; // sets digital pin 7 LOW without touching other pins
+  /***************************************************/
   /*
    * Set our own address.
    *
    * The remote end's address will be set according to the contents
    * of the first packet we receive from the master.
    */
-  addr[0] = eeprom_read(0);
-  addr[1] = eeprom_read(1);
-  addr[2] = eeprom_read(2);
+  addr[0] = 48;//eeprom_read(0);
+  addr[1] = 48;//eeprom_read(1);
+  addr[2] = 54;//eeprom_read(2);
   nrf24_set_rx_addr(addr);
 
   nrf24_rx_mode();
@@ -986,22 +991,6 @@ void putch(char ch)
 
 uint8_t getch(void)
 {
-  /* BLINK # TIMES FOR DEBUG*/
-  /***************************************************/
-  DDRD = DDRD | 0B10000000; //set up pin 7 as output without touching other pins FOR DEBUG
-
-  PORTD = PORTD | 0B10000000; // sets digital pin 7 HIGH without touching other pins
-  my_delay(500);
-  PORTD = PORTD & 0B01111111; // sets digital pin 7 LOW without touching other pins
-  my_delay(500);
-  PORTD = PORTD | 0B10000000; // sets digital pin 7 HIGH without touching other pins
-  my_delay(500);
-  PORTD = PORTD & 0B01111111; // sets digital pin 7 LOW without touching other pins
-  my_delay(500);
-  PORTD = PORTD | 0B10000000; // sets digital pin 7 HIGH without touching other pins
-  my_delay(500);
-  PORTD = PORTD & 0B01111111; // sets digital pin 7 LOW without touching other pins
-  /***************************************************/
   uint8_t ch;
 #ifdef RADIO_UART
   static uint8_t pkt_len = 0, pkt_start = 0;
@@ -1066,9 +1055,9 @@ uint8_t getch(void)
       watchdogReset();
       //BLINK ONE TIME FOR DEBUG
       /**************************************************/
-      PORTD = PORTD | 0B10000000; // sets digital pin 7 HIGH without touching other pins
-      my_delay(100);
-      PORTD = PORTD & 0B01111111; // sets digital pin 7 LOW without touching other pins
+      // PORTD = PORTD | 0B10000000; // sets digital pin 7 HIGH without touching other pins
+      // my_delay(100);
+      // PORTD = PORTD & 0B01111111; // sets digital pin 7 LOW without touching other pins
       /**************************************************/
 
       if (!pkt_len)
@@ -1084,6 +1073,22 @@ uint8_t getch(void)
 
         if (!radio_mode && pkt_len >= 4)
         {
+          /* BLINK # TIMES FOR DEBUG*/
+          /***************************************************/
+          // DDRD = DDRD | 0B10000000; //set up pin 7 as output without touching other pins FOR DEBUG
+
+          // PORTD = PORTD | 0B10000000; // sets digital pin 7 HIGH without touching other pins
+          // my_delay(500);
+          // PORTD = PORTD & 0B01111111; // sets digital pin 7 LOW without touching other pins
+          // my_delay(500);
+          // PORTD = PORTD | 0B10000000; // sets digital pin 7 HIGH without touching other pins
+          // my_delay(500);
+          // PORTD = PORTD & 0B01111111; // sets digital pin 7 LOW without touching other pins
+          // my_delay(500);
+          // PORTD = PORTD | 0B10000000; // sets digital pin 7 HIGH without touching other pins
+          // my_delay(500);
+          // PORTD = PORTD & 0B01111111; // sets digital pin 7 LOW without touching other pins
+                                      /***************************************************/
           /*
            * If this is the first packet we receive, the first three bytes
            * should contain the sender's address.
@@ -1231,4 +1236,4 @@ void appStart(uint8_t rstFlags)
       "clr r31\n"
 #endif
       "ijmp\n");
- }
+}
