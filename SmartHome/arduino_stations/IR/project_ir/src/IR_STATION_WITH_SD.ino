@@ -174,8 +174,8 @@ const int SelectSD = 4; // pinnenummer brukt for CS til SD-kortet
 //char fileName[8];
 // we will store up to 100 pulse pairs (this is -a lot-)
 //uint8_t pulses[120][2];  // pair is high and low pulse - need to optimize
-uint8_t pulses[120][2];   // pair is high and low pulse - need to optimize
-uint8_t currentpulse = 0; // index for pulses we're storing
+uint16_t pulses[120][2];   // pair is high and low pulse - need to optimize
+uint16_t currentpulse = 0; // index for pulses we're storing
 // int IRledPin =  13;    // LED connected to digital pin 13
 #define IRledPin 7 // OUT LED connected to digital pin 7 - OUT PIN
 #define RecLedPin 5
@@ -286,7 +286,7 @@ void commandToFileName(char *f, char *c)
   f[5] = 'x';
   f[6] = 't';
   f[7] = 0;
-  Serial.println(f);
+  //Serial.println(f);
 }
 
 /*********
@@ -360,11 +360,11 @@ void setup(void)
   watchdogReset();
   if (coderecorded)
   {
-    Serial.println(F("Play mode."));
+    //Serial.println(F("Play mode."));
   }
   else
   {
-    Serial.println(F("Record mode."));
+    //Serial.println(F("Record mode."));
   }
 
   watchdogReset();
@@ -384,7 +384,7 @@ void setup(void)
   delay(1000);
   digitalWrite(SendLedPin, LOW);
   watchdogReset();
-  Serial.println(F("Ready to decode IR!"));
+  //Serial.println(F("Ready to decode IR!"));
 }
 
 //Test code for 38Khz send signal
@@ -416,7 +416,7 @@ void loop(void)
   }
 
   enableRF();
-  Serial.println(F("Waiting for remote command..."));
+  //Serial.println(F("Waiting for remote command..."));
   while (!Mirf.dataReady())
   {
     //delay(100);
@@ -547,7 +547,7 @@ void sendcode()
   //Serial.println("done loading command from file");//dbg
 
   updateSendLed(false);
-  delay(1000);
+  delay(50);
   updateSendLed(true);
 
   pulseIR(9000);
@@ -634,8 +634,8 @@ void recordircode()
     **************************/
     if ((highpulse >= MAXPULSE) && (currentpulse != 0))
     {
-      Serial.println(F("break highpulse....")); //dbg
-      Serial.println(highpulse);                //dbg
+      //Serial.println(F("break highpulse....")); //dbg
+      //Serial.println(highpulse);                //dbg
       printpulses();
       currentpulse = 0;
       return;
@@ -654,8 +654,8 @@ void recordircode()
     delayMicroseconds(RESOLUTION);
     if ((lowpulse >= MAXPULSE) && (currentpulse != 0))
     {
-      Serial.println(F("break lowpulse....")); //dbg
-      Serial.println(lowpulse);                //dbg
+      //Serial.println(F("break lowpulse....")); //dbg
+      //Serial.println(lowpulse);                //dbg
       printpulses();
       currentpulse = 0;
       return;
