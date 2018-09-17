@@ -231,6 +231,7 @@ void startRF(void)
 
     NB: payload on client and server must be the same.
   */
+  //Mirf.payload = sizeof(uint8_t); - bootloader uses one byte
   Mirf.payload = 3; //sizeof(unsigned long);//3;//sizeof(cmd); //8;//sizeof(uint8_t);
   Serial.print("payload size: ");
   Serial.println(Mirf.payload);
