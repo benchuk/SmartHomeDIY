@@ -113,7 +113,7 @@ const int SelectSD = 4; // pinnenummer brukt for CS til SD-kortet
 #include <MirfHardwareSpiDriver.h>
 
 //CE-9/CSN-10 - Currently usin 8 PIN instead off 9 which is the default CE - no config needed
-#define Radio_CSN 6
+#define Radio_CSN 10
 
 /** JUNK  *****
   // Structure of our payload
@@ -179,13 +179,13 @@ uint16_t currentpulse = 0; // index for pulses we're storing
 // int IRledPin =  13;    // LED connected to digital pin 13
 #define IRledPin 7 // OUT LED connected to digital pin 7 - OUT PIN
 #define RecLedPin 5
-#define SendLedPin 10
+#define SendLedPin 6
 
 bool coderecorded = true;
 int counter = 0; //used for logic
 
-#define RF_SWITCH_LINE1 3
-#define SD_SWITCH_LINE1 9
+#define RF_SWITCH_LINE1 8 
+#define SD_SWITCH_LINE1 A5 //due to collistion with bootloader
 
 void updateRecLed(void)
 {
@@ -333,7 +333,7 @@ void setup(void)
   // Mirf.payload = sizeof(unsigned long);
   // Mirf.config();
 
-  Serial.println(F("Done RF INIT"));
+  Serial.println(F("Done RF INIT ok ok"));
   disableRF();
   watchdogReset();
   //SPI SDCARD
