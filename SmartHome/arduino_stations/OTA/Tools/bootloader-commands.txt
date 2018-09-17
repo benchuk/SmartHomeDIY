@@ -163,6 +163,7 @@ avrdude -C "C:\Users\Ben\Downloads\avrdude\etc\avrdude.conf" -v -patmega328p -c 
 
 avrdude -C "C:\Users\Ben\Downloads\avrdude\etc\avrdude.conf" -v -patmega328p -c arduino -PCOM3 -b115200 -D -U flash:w:shade_station.ino.hex
 
+avrdude -C "C:\Users\Ben\Downloads\avrdude\etc\avrdude.conf" -v -patmega328p -c arduino -PCOM5 -b115200 -D -U flash:w:firmware.hex
 -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 ============================================================================================================================================================
@@ -227,3 +228,12 @@ avrdude -C "C:\Users\Ben\Downloads\avrdude\etc\avrdude.conf" -V -F -p atmega328p
 
 avrdude -C "C:\Users\Ben\Downloads\avrdude\etc\avrdude.conf" -P COM7 -b 19200 -c avrisp -p m328p -v -e -U flash:w:optiboot_atmega328.hex -U lock:w:0x0F:m -F
 -c stk500v1 -P COM2 -b 57600 -U flash:w:Blink.cpp.hex -vvvv
+
+
+avrdude -F -C "C:\Users\Ben\Downloads\avrdude\etc\avrdude.conf" -b 19200 -c usbtiny -p m328p -U eeprom:w:0x30,0x30,0x34,0x30,0x30,0x30:m 
+avrdude -F -p atmega328p -P /dev/ttyUSB0 -c arduino -b 115200 
+    
+	
+	-----------------------------
+	working burn address!!!!!! me is 004 and flashing station is always 000 change 34 (4) to the address of station
+	avrdude -F -C "C:\Users\Ben\Downloads\avrdude\etc\avrdude.conf" -b 19200 -c usbtiny -p m328p -U eeprom:w:0x30,0x30,0x34,0x30,0x30,0x30:m  
