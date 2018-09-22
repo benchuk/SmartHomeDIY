@@ -85,6 +85,7 @@ to one of the boards, and 001 (ascii) to the other one:
 
     $ avrdude -F -p atmega328p -P /dev/ttyUSB0 -c arduino -b 115200 -U eeprom:w:0x30,0x30,0x31,0x30,0x30,0x30:m
     $ avrdude -F -p atmega328p -P /dev/ttyUSB1 -c arduino -b 115200 -U eeprom:w:0x30,0x30,0x30,0x30,0x30,0x31:m
+	#BEN avrdude -F -C "C:\Users\Ben\Downloads\avrdude\etc\avrdude.conf" -b 19200 -c usbtiny -p m328p -U eeprom:w:0x30,0x30,0x34,0x30,0x30,0x30:m
 
 Performance
 ===========

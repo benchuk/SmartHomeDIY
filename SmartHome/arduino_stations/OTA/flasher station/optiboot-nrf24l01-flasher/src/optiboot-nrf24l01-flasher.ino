@@ -84,7 +84,7 @@ void programShadeLivingRoom(void)
   //station 002
   EEPROM.write(3, 48);//0
   EEPROM.write(4, 48);//0
-  EEPROM.write(5, 54);//6
+  EEPROM.write(5, 52);//4
 }
 
 void setup(void) {

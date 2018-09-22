@@ -122,8 +122,9 @@
 #include <MirfHardwareSpiDriver.h>
 #include <EEPROM.h>
 
-int Radio_CSN = 10; // pinnenummer brukt for CSN på radio (ikke endre denne)
-int Radio_CE = 9;   //
+#define Radio_CSN 10 // MUST NOT BE CHANGED TO SUPPORT BOOTLOADER OTA
+#define Radio_CE 9   // MUST NOT BE CHANGED TO SUPPORT BOOTLOADER OTA
+#define RESET_PIN A0
 
 void configureEEPROMAddressForRFAndOTA(char *myAdd)
 {
@@ -163,18 +164,11 @@ void watchdogReset()
 //void(* resetFunc) (void) = 0; //declare reset function @ address 0 // only restart the code does not go into bootloader
 char cmd[4];
 
-void set_Radio_CSN(int pinNumber)
-{
-  Radio_CSN = pinNumber;
-}
-
-void set_Radio_CE(int pinNumber)
-{
-  Radio_CE = pinNumber;
-}
 
 void startRF(void)
 {
+  digitalWrite(RESET_PIN, HIGH);
+  pinMode(RESET_PIN, OUTPUT);  
   cmd[3] = 0;//STRING NULL TERMINATION
   cmd[0] = 'x';
   cmd[1] = 'x';
@@ -251,18 +245,25 @@ void checkIfOtaRequestOrLoadCommand(char *data)
   if (Mirf.dataReady())
   {
     Mirf.getData(data);
-    if (data[0] == 0xff)
+    if (data[0] == 0xFFFFFFFF)
     {
       while (1)
       {
-        soft_restart();
+        Serial.println("Restarting...");//if console gets to see this then pin connection is wrong and we are stuck here
+        digitalWrite(RESET_PIN, LOW);
+        digitalWrite(LED_BUILTIN, HIGH);   
+        delay(100);                       
+        digitalWrite(LED_BUILTIN, LOW);   
+        delay(100);
+        //delay(2000);
+        //soft_restart();
       }
     }
     //Serial.print(F("Data content: "));
-    for (int i = 0; i < Mirf.payload; i++)
-    {
-      //Serial.print(data[i]);
-    }
+    // for (int i = 0; i < Mirf.payload; i++)
+    // {
+    //   Serial.println(data[i],HEX);
+    // }
   }
   //Serial.println("");
   //Serial.println(F("=============="));
