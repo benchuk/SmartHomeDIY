@@ -22,7 +22,11 @@ echo -----------------------------------
 echo flashing  %HEX_FILE%
 echo -----------------------------------
 dir
-avrdude -C %CONF% -b 19200 -c usbtiny -p m328p -v -e -U efuse:w:0xFD:m -U hfuse:w:0xDA:m -U lfuse:w:0xFF:m -F
-avrdude -C %CONF% -b 19200 -c usbtiny -p m328p -v -e -U flash:w:%HEX_FILE% -U lock:w:0x0F:m
+avrdude -C %CONF% -b 19200 -c usbtiny -p atmega32 -v -e -U efuse:w:0xFD:m -U hfuse:w:0xDA:m -U lfuse:w:0xFF:m -F
+REM avrdude -C %CONF% -b 19200 -c usbtiny -p m328p  -e -Ulock:w:0x3F:m -Uefuse:w:0xF8:m -Uhfuse:w:0xdd:m -Ulfuse:w:0xff:m -F
+REM avrdude -C %CONF% -b 19200 -c usbtiny -p m328p -e -v -u -U efuse:w:0xFD:m -U hfuse:w:0xD6:m -U lfuse:w:0xFF:m
+REM avrdude -C %CONF% -b 19200 -c usbtiny -p m328p -e -v -U flash:w:%HEX_FILE% -U lock:w:0x0F:m -F -V
+REM avrdude -C %CONF% -v -v -v -v -patmega8 -c usbtiny -p m328 -b19200 -B8 -e -Ulock:w:0x3F:m -Uhfuse:w:0xc4:m -Ulfuse:w:0xe4:m 
+avrdude -F -C %CONF% -b 19200 -c usbtiny -p m328p -v -e -U flash:w:%HEX_FILE% -U lock:w:0x0F:m
 
 echo "GAME OVER!"

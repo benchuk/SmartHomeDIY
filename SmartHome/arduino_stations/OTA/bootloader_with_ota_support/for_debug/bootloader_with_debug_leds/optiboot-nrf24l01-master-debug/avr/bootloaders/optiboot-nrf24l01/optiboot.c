@@ -557,6 +557,7 @@ int main(void)
    */
   DDRD |= 3;
   PORTD &= ~3;
+ 
 #ifndef SOFT_UART
 #if defined(__AVR_ATmega8__) || defined(__AVR_ATmega32__)
   UCSRA = _BV(U2X);                             //Double speed mode USART
@@ -579,7 +580,7 @@ int main(void)
 
 #if (LED_START_FLASHES > 0) || defined(LED_DATA_FLASH)
   /* Set LED pin as output */
-  LED_DDR |= _BV(LED);
+  //LED_DDR |= _BV(LED);
 #endif
 
 #ifdef SOFT_UART
@@ -595,6 +596,8 @@ int main(void)
   /* Forever loop */
   for (;;)
   {
+    DDRB  = DDRB  | 0B00000001 ; //set up pin 8 as output without touching other pins To allow IR station OTA
+    PORTB = PORTB | 0B00000001; // set pin 8 HIGH without touching other pins
     /* get character from UART */
     ch = getch();
 
@@ -860,6 +863,11 @@ static uint8_t pkt_max_len = 32;
 
 static void radio_init(void)
 {
+  DDRB  = DDRB  | 0B00000001 ; //set up pin 8 as output without touching other pins To allow IR station OTA
+  PORTB = PORTB | 0B00000001; // set pin 8 HIGH without touching other pins
+  DDRC = DDRC | 0B00100000 ; //set up pin A5 as output without touching other pins To allow IR station OTA
+  PORTC = PORTC  & 0B11011111; //set pin A5 LOW without touching other pins
+
   uint8_t addr[3];
 
   spi_init();
@@ -868,6 +876,7 @@ static void radio_init(void)
     return;
 
   radio_present = 1;
+  
   /* BLINK # TIMES FOR DEBUG*/
   /***************************************************/
   // DDRD = DDRD | 0B10000000; //set up pin 7 as output without touching other pins FOR DEBUG
@@ -991,6 +1000,8 @@ void putch(char ch)
 
 uint8_t getch(void)
 {
+  DDRB  = DDRB  | 0B00000001 ; //set up pin 8 as output without touching other pins To allow IR station OTA
+  PORTB = PORTB | 0B00000001; // set pin 8 HIGH without touching other pins
   uint8_t ch;
 #ifdef RADIO_UART
   static uint8_t pkt_len = 0, pkt_start = 0;
@@ -999,12 +1010,13 @@ uint8_t getch(void)
 
 #ifdef LED_DATA_FLASH
 #if defined(__AVR_ATmega8__) || defined(__AVR_ATmega32__)
-  LED_PORT ^= _BV(LED);
+  //LED_PORT ^= _BV(LED);
 #else
-  LED_PIN |= _BV(LED);
+  //LED_PIN |= _BV(LED);
 #endif
 #endif
-
+DDRB  = DDRB  | 0B00000001 ; //set up pin 8 as output without touching other pins To allow IR station OTA
+PORTB = PORTB | 0B00000001; // set pin 8 HIGH without touching other pins
 #ifdef SOFT_UART
   __asm__ __volatile__(
       "1: sbic  %[uartPin],%[uartBit]\n" // Wait for start edge
@@ -1030,6 +1042,8 @@ uint8_t getch(void)
 #else
   while (1)
   {
+    DDRB  = DDRB  | 0B00000001 ; //set up pin 8 as output without touching other pins To allow IR station OTA
+    PORTB = PORTB | 0B00000001; // set pin 8 HIGH without touching other pins
     if (UART_SRA & _BV(RXC0))
     {
       if (!(UART_SRA & _BV(FE0)))
@@ -1050,6 +1064,8 @@ uint8_t getch(void)
     }
 
 #ifdef RADIO_UART
+  DDRB  = DDRB  | 0B00000001 ; //set up pin 8 as output without touching other pins To allow IR station OTA
+  PORTB = PORTB | 0B00000001; // set pin 8 HIGH without touching other pins
     if (radio_present && (pkt_len || nrf24_rx_fifo_data()))
     {
       watchdogReset();
@@ -1071,8 +1087,11 @@ uint8_t getch(void)
         nrf24_rx_read(pkt_buf, &pkt_len);
         pkt_start = START;
 
+        DDRB  = DDRB  | 0B00000001 ; //set up pin 8 as output without touching other pins To allow IR station OTA
+        PORTB = PORTB | 0B00000001; // set pin 8 HIGH without touching other pins
         if (!radio_mode && pkt_len >= 4)
         {
+          
           /* BLINK # TIMES FOR DEBUG*/
           /***************************************************/
           // DDRD = DDRD | 0B10000000; //set up pin 7 as output without touching other pins FOR DEBUG
@@ -1128,12 +1147,14 @@ uint8_t getch(void)
 
 #ifdef LED_DATA_FLASH
 #if defined(__AVR_ATmega8__) || defined(__AVR_ATmega32__)
-  LED_PORT ^= _BV(LED);
+  //LED_PORT ^= _BV(LED);
 #else
-  LED_PIN |= _BV(LED);
+  //LED_PIN |= _BV(LED);
 #endif
 #endif
 
+  DDRB  = DDRB  | 0B00000001 ; //set up pin 8 as output without touching other pins To allow IR station OTA
+  PORTB = PORTB | 0B00000001; // set pin 8 HIGH without touching other pins
   return ch;
 }
 
@@ -1185,14 +1206,14 @@ void flash_led(uint8_t count)
 {
   do
   {
-    TCNT1 = -(F_CPU / (1024 * 16));
-    TIFR1 = _BV(TOV1);
-    while (!(TIFR1 & _BV(TOV1)))
-      ;
+    //TCNT1 = -(F_CPU / (1024 * 16));
+    //TIFR1 = _BV(TOV1);
+    //while (!(TIFR1 & _BV(TOV1)))
+    //  ;
 #if defined(__AVR_ATmega8__) || defined(__AVR_ATmega32__)
-    LED_PORT ^= _BV(LED);
+    //LED_PORT ^= _BV(LED);
 #else
-    LED_PIN |= _BV(LED);
+    //LED_PIN |= _BV(LED);
 #endif
     watchdogReset();
   } while (--count);
