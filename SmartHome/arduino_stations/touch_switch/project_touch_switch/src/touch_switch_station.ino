@@ -57,18 +57,15 @@ volatile int s4Counter = 0;
 
 volatile boolean enabled = false;
 
-unsigned long timestampS1 = 0;
-unsigned long timestampS2 = 0;
-unsigned long timestampS3 = 0;
-unsigned long timestampS4 = 0;
+unsigned long timestamp = 0;
 
 void toogles3()
 {
-  if (millis() - timestampS3 < 500)
+  if (millis() - timestamp < 500)
   {
     return;
   }
-  timestampS3 = millis();
+  timestamp = millis();
   s3 = !s3;
   digitalWrite(light3Pin, s3);
 }
@@ -94,11 +91,11 @@ void touch3()
 
 void toogles4()
 {
-  if (millis() - timestampS4 < 500)
+  if (millis() - timestamp < 500)
   {
     return;
   }
-  timestampS4 = millis();
+  timestamp = millis();
   s4 = !s4;
   digitalWrite(light4Pin, s4);
 }
@@ -293,11 +290,11 @@ void loop()
 
 void toogles1()
 {
-  if (millis() - timestampS1 < 500)
+  if (millis() - timestamp < 500)
   {
     return;
   }
-  timestampS1 = millis();
+  timestamp = millis();
   s1 = !s1;
   digitalWrite(light1Pin, s1);
 }
@@ -314,11 +311,11 @@ void touch1()
 
 void toogles2()
 {
-  if (millis() - timestampS2 < 500)
+  if (millis() - timestamp < 500)
   {
     return;
   }
-  timestampS2 = millis();
+  timestamp = millis();
   s2 = !s2;
   digitalWrite(light2Pin, s2);
 }
