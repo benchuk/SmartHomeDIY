@@ -122,13 +122,22 @@
 #include <MirfHardwareSpiDriver.h>
 #include <EEPROM.h>
 
+
+ //** RF MOSI - pin 11
+ //** RF MISO - pin 12
+ //** RF CLK - pin 13
+ //** RF CS - pin 10
+ //** RF Ce - pin 9
+
 #define Radio_CSN 10 // MUST NOT BE CHANGED TO SUPPORT BOOTLOADER OTA
 #define Radio_CE 9   // MUST NOT BE CHANGED TO SUPPORT BOOTLOADER OTA
-#define RESET_PIN A0
+#define RESET_PIN A0 //RESET BOARD TO BOOTLOADER FOR OTA
+
+
 
 void configureEEPROMAddressForRFAndOTA(char *myAdd)
 {
-  //my address "001"
+  //my address for example "001"
   EEPROM.write(0, (uint8_t)myAdd[0]);
   EEPROM.write(1, (uint8_t)myAdd[1]);
   EEPROM.write(2, (uint8_t)myAdd[2]);
