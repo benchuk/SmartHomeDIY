@@ -32,6 +32,9 @@
 		},
 		{
 			"path": "arduino_stations\\scripts"
+		},
+		{
+			"path": "arduino_stations/lights_indicetor/project_lights_indicator"
 		}
 	],
 	"settings": {
