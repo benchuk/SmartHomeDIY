@@ -1,17 +1,106 @@
 {
-	"configurations": [
-		{
-			"name": "Mac",
-			"includePath": ["${workspaceFolder}/**"],
-			"defines": [],
-			"macFrameworkPath": [
-				"/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.14.sdk/System/Library/Frameworks"
-			],
-			"compilerPath": "/usr/bin/clang",
-			"cStandard": "c11",
-			"cppStandard": "c++17",
-			"intelliSenseMode": "clang-x64"
-		}
-	],
-	"version": 4
+    "!!! WARNING !!!": "PLEASE DO NOT MODIFY THIS FILE! USE https://docs.platformio.org/page/projectconf/section_env_build.html#build-flags",
+    "configurations": [{
+            "name": "Win32",
+            "includePath": [
+                "C:/Users/Ben/.platformio/packages/framework-arduinoavr/cores/arduino",
+                "C:/Users/Ben/.platformio/packages/framework-arduinoavr/variants/eightanaloginputs",
+                "C:/Users/Ben/.platformio/packages/framework-arduinoavr/libraries/__cores__/arduino/EEPROM/src",
+                "C:/Users/Ben/.platformio/packages/framework-arduinoavr/libraries/__cores__/arduino/HID/src",
+                "C:/Users/Ben/.platformio/packages/framework-arduinoavr/libraries/__cores__/arduino/SPI/src",
+                "C:/Users/Ben/.platformio/packages/framework-arduinoavr/libraries/__cores__/arduino/SoftwareSerial/src",
+                "C:/Users/Ben/.platformio/packages/framework-arduinoavr/libraries/__cores__/arduino/Wire/src",
+                "C:/Users/Ben/.platformio/packages/framework-arduinoavr/libraries/Adafruit_CircuitPlayground",
+                "C:/Users/Ben/.platformio/packages/framework-arduinoavr/libraries/Adafruit_CircuitPlayground/utility",
+                "C:/Users/Ben/.platformio/packages/framework-arduinoavr/libraries/Bridge/src",
+                "C:/Users/Ben/.platformio/packages/framework-arduinoavr/libraries/Esplora/src",
+                "C:/Users/Ben/.platformio/packages/framework-arduinoavr/libraries/Ethernet/src",
+                "C:/Users/Ben/.platformio/packages/framework-arduinoavr/libraries/Firmata",
+                "C:/Users/Ben/.platformio/packages/framework-arduinoavr/libraries/Firmata/utility",
+                "C:/Users/Ben/.platformio/packages/framework-arduinoavr/libraries/GSM/src",
+                "C:/Users/Ben/.platformio/packages/framework-arduinoavr/libraries/Keyboard/src",
+                "C:/Users/Ben/.platformio/packages/framework-arduinoavr/libraries/LiquidCrystal/src",
+                "C:/Users/Ben/.platformio/packages/framework-arduinoavr/libraries/Mouse/src",
+                "C:/Users/Ben/.platformio/packages/framework-arduinoavr/libraries/RobotIRremote/src",
+                "C:/Users/Ben/.platformio/packages/framework-arduinoavr/libraries/Robot_Control/src",
+                "C:/Users/Ben/.platformio/packages/framework-arduinoavr/libraries/Robot_Motor/src",
+                "C:/Users/Ben/.platformio/packages/framework-arduinoavr/libraries/SD/src",
+                "C:/Users/Ben/.platformio/packages/framework-arduinoavr/libraries/Servo/src",
+                "C:/Users/Ben/.platformio/packages/framework-arduinoavr/libraries/SpacebrewYun/src",
+                "C:/Users/Ben/.platformio/packages/framework-arduinoavr/libraries/Stepper/src",
+                "C:/Users/Ben/.platformio/packages/framework-arduinoavr/libraries/TFT/src",
+                "C:/Users/Ben/.platformio/packages/framework-arduinoavr/libraries/Temboo/src",
+                "C:/Users/Ben/.platformio/packages/framework-arduinoavr/libraries/WiFi/src",
+                "C:/Users/Ben/.platformio/packages/tool-unity",
+                "${workspaceRoot}/**",
+                "${workspaceFolder}/**",
+                "${relativeFolder}/**",
+                ""
+            ],
+            "browse": {
+                "limitSymbolsToIncludedHeaders": true,
+                "databaseFilename": "${workspaceRoot}/.vscode/.browse.c_cpp.db",
+                "path": [
+                    "C:/Users/Ben/.platformio/packages/framework-arduinoavr/cores/arduino",
+                    "C:/Users/Ben/.platformio/packages/framework-arduinoavr/variants/eightanaloginputs",
+                    "C:/Users/Ben/.platformio/packages/framework-arduinoavr/libraries/__cores__/arduino/EEPROM/src",
+                    "C:/Users/Ben/.platformio/packages/framework-arduinoavr/libraries/__cores__/arduino/HID/src",
+                    "C:/Users/Ben/.platformio/packages/framework-arduinoavr/libraries/__cores__/arduino/SPI/src",
+                    "C:/Users/Ben/.platformio/packages/framework-arduinoavr/libraries/__cores__/arduino/SoftwareSerial/src",
+                    "C:/Users/Ben/.platformio/packages/framework-arduinoavr/libraries/__cores__/arduino/Wire/src",
+                    "C:/Users/Ben/.platformio/packages/framework-arduinoavr/libraries/Adafruit_CircuitPlayground",
+                    "C:/Users/Ben/.platformio/packages/framework-arduinoavr/libraries/Adafruit_CircuitPlayground/utility",
+                    "C:/Users/Ben/.platformio/packages/framework-arduinoavr/libraries/Bridge/src",
+                    "C:/Users/Ben/.platformio/packages/framework-arduinoavr/libraries/Esplora/src",
+                    "C:/Users/Ben/.platformio/packages/framework-arduinoavr/libraries/Ethernet/src",
+                    "C:/Users/Ben/.platformio/packages/framework-arduinoavr/libraries/Firmata",
+                    "C:/Users/Ben/.platformio/packages/framework-arduinoavr/libraries/Firmata/utility",
+                    "C:/Users/Ben/.platformio/packages/framework-arduinoavr/libraries/GSM/src",
+                    "C:/Users/Ben/.platformio/packages/framework-arduinoavr/libraries/Keyboard/src",
+                    "C:/Users/Ben/.platformio/packages/framework-arduinoavr/libraries/LiquidCrystal/src",
+                    "C:/Users/Ben/.platformio/packages/framework-arduinoavr/libraries/Mouse/src",
+                    "C:/Users/Ben/.platformio/packages/framework-arduinoavr/libraries/RobotIRremote/src",
+                    "C:/Users/Ben/.platformio/packages/framework-arduinoavr/libraries/Robot_Control/src",
+                    "C:/Users/Ben/.platformio/packages/framework-arduinoavr/libraries/Robot_Motor/src",
+                    "C:/Users/Ben/.platformio/packages/framework-arduinoavr/libraries/SD/src",
+                    "C:/Users/Ben/.platformio/packages/framework-arduinoavr/libraries/Servo/src",
+                    "C:/Users/Ben/.platformio/packages/framework-arduinoavr/libraries/SpacebrewYun/src",
+                    "C:/Users/Ben/.platformio/packages/framework-arduinoavr/libraries/Stepper/src",
+                    "C:/Users/Ben/.platformio/packages/framework-arduinoavr/libraries/TFT/src",
+                    "C:/Users/Ben/.platformio/packages/framework-arduinoavr/libraries/Temboo/src",
+                    "C:/Users/Ben/.platformio/packages/framework-arduinoavr/libraries/WiFi/src",
+                    "C:/Users/Ben/.platformio/packages/tool-unity",
+                    ""
+                ]
+            },
+            "defines": [
+                "PLATFORMIO=30601",
+                "ARDUINO_AVR_NANO",
+                "F_CPU=16000000L",
+                "ARDUINO_ARCH_AVR",
+                "ARDUINO=10805",
+                "__AVR_ATmega328P__",
+                ""
+            ],
+            "intelliSenseMode": "clang-x64",
+            "cStandard": "c11",
+            "cppStandard": "c++11",
+            "compilerPath": "C:/Users/Ben/.platformio/packages/toolchain-atmelavr/bin/avr-gcc.exe"
+        },
+        {
+            "name": "Mac",
+            "includePath": [
+                "${workspaceFolder}/**"
+            ],
+            "defines": [],
+            "macFrameworkPath": [
+                "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.14.sdk/System/Library/Frameworks"
+            ],
+            "compilerPath": "/usr/bin/clang",
+            "cStandard": "c11",
+            "cppStandard": "c++17",
+            "intelliSenseMode": "clang-x64"
+        }
+    ],
+    "version": 4
 }
