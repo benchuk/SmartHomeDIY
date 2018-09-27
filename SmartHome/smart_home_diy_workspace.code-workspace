@@ -52,6 +52,12 @@
 			"inttypes.h": "c",
 			"boot.h": "c",
 			"stk500.h": "c"
-		}
+		},
+		"cSpell.words": [
+			"EEPROM",
+			"Mirf",
+			"millis",
+			"println"
+		]
 	}
 }

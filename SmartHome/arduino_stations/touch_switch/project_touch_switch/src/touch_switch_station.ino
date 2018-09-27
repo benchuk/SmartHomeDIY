@@ -29,12 +29,11 @@
 //D8 to D13
 //So using 2 groups pin 7 on one group and pin A3 on the other group
 //This way I do not have to ready pin state to make sure which one was changed.
-#define SWITCH3_PIN_CAHNGE_INTERRUPT 8
-#define SWITCH4_PIN_CAHNGE_INTERRUPT A3
+#define SWITCH3_PIN_CHANGE_INTERRUPT 8
+#define SWITCH4_PIN_CHANGE_INTERRUPT A3
 //interrupts from touch button
 #define interruptTouch1Pin 2
 #define interruptTouch2Pin 3
-
 
 #define STATUS_LED_PIN A2
 //out to switch relay
@@ -43,15 +42,13 @@
 #define light3Pin 6
 #define light4Pin 7
 
-
-
-//swithc state for lights
+//switch state for lights
 //RELAY (mechanical ones) are active low - set high so default is lights off
 volatile byte s1 = HIGH;
 volatile byte s2 = HIGH;
 volatile byte s3 = HIGH;
 volatile byte s4 = HIGH;
-//only needed for pin change swithces - cannot set rais or fall only change
+//only needed for pin change switches - cannot set rais or fall only change
 volatile int s3Counter = 0;
 volatile int s4Counter = 0;
 
@@ -59,7 +56,7 @@ volatile boolean enabled = false;
 
 unsigned long timestamp = 0;
 
-void toogles3()
+void toggles3()
 {
   if (millis() - timestamp < 500)
   {
@@ -80,7 +77,7 @@ void touch3()
   s3Counter++;
   if (s3Counter == 1)
   {
-    toogles3();
+    toggles3();
     Serial.println("TOUCH3");
   }
   if (s3Counter == 2)
@@ -89,7 +86,7 @@ void touch3()
   }
 }
 
-void toogles4()
+void toggles4()
 {
   if (millis() - timestamp < 500)
   {
@@ -109,7 +106,7 @@ void touch4()
   s4Counter++;
   if (s4Counter == 1)
   {
-    toogles4();
+    toggles4();
     Serial.println("TOUCH4");
   }
   if (s4Counter == 2)
@@ -169,13 +166,13 @@ void loop()
 
     pinMode(interruptTouch1Pin, INPUT_PULLUP);
     pinMode(interruptTouch2Pin, INPUT_PULLUP);
-    pinMode(SWITCH3_PIN_CAHNGE_INTERRUPT, INPUT);
-    pinMode(SWITCH4_PIN_CAHNGE_INTERRUPT, INPUT);
+    pinMode(SWITCH3_PIN_CHANGE_INTERRUPT, INPUT);
+    pinMode(SWITCH4_PIN_CHANGE_INTERRUPT, INPUT);
 
     attachInterrupt(digitalPinToInterrupt(interruptTouch1Pin), touch1, RISING);
     attachInterrupt(digitalPinToInterrupt(interruptTouch2Pin), touch2, RISING);
-    attachPinChangeInterrupt(SWITCH3_PIN_CAHNGE_INTERRUPT, touch3, CHANGE);
-    attachPinChangeInterrupt(SWITCH4_PIN_CAHNGE_INTERRUPT, touch4, CHANGE);
+    attachPinChangeInterrupt(SWITCH3_PIN_CHANGE_INTERRUPT, touch3, CHANGE);
+    attachPinChangeInterrupt(SWITCH4_PIN_CHANGE_INTERRUPT, touch4, CHANGE);
     Serial.println("Done init interrupts");
     enabled = true;
     interrupts();
@@ -219,8 +216,8 @@ void loop()
   }
   else if (strcmp(cmd, "004") == 0)
   {
-    Serial.print("toogle s1");
-    toogles1();
+    Serial.print("toggle s1");
+    toggles1();
     return;
   }
   //s2
@@ -240,8 +237,8 @@ void loop()
   }
   else if (strcmp(cmd, "007") == 0)
   {
-    Serial.print("toogle s2");
-    toogles2();
+    Serial.print("toggle s2");
+    toggles2();
     return;
   }
   //s3
@@ -261,8 +258,8 @@ void loop()
   }
   else if (strcmp(cmd, "010") == 0)
   {
-    Serial.print("toogle s3");
-    toogles3();
+    Serial.print("toggle s3");
+    toggles3();
     return;
   }
   //s4
@@ -282,13 +279,13 @@ void loop()
   }
   else if (strcmp(cmd, "013") == 0)
   {
-    Serial.print("toogle s4");
-    toogles4();
+    Serial.print("toggle s4");
+    toggles4();
     return;
   }
 }
 
-void toogles1()
+void toggles1()
 {
   if (millis() - timestamp < 500)
   {
@@ -305,11 +302,11 @@ void touch1()
   {
     return;
   }
-  toogles1();
+  toggles1();
   Serial.println("TOUCH1");
 }
 
-void toogles2()
+void toggles2()
 {
   if (millis() - timestamp < 500)
   {
@@ -326,6 +323,6 @@ void touch2()
   {
     return;
   }
-  toogles2();
+  toggles2();
   Serial.println("TOUCH2");
 }

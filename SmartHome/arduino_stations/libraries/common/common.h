@@ -122,20 +122,17 @@
 #include <MirfHardwareSpiDriver.h>
 #include <EEPROM.h>
 
-
- //** RF MOSI - pin 11
- //** RF MISO - pin 12
- //** RF CLK - pin 13
- //** RF CS - pin 10
- //** RF Ce - pin 9
+//** RF MOSI - pin 11
+//** RF MISO - pin 12
+//** RF CLK - pin 13
+//** RF CS - pin 10
+//** RF Ce - pin 9
 
 #define Radio_CSN 10 // MUST NOT BE CHANGED TO SUPPORT BOOTLOADER OTA
 #define Radio_CE 9   // MUST NOT BE CHANGED TO SUPPORT BOOTLOADER OTA
 #define RESET_PIN A0 //RESET BOARD TO BOOTLOADER FOR OTA
 
-
-
-void configureEEPROMAddressForRFAndOTA(char *myAdd)
+void configureEEPROMAddressForRFAndOTA(const char *myAdd)
 {
   //my address for example "001"
   EEPROM.write(0, (uint8_t)myAdd[0]);
@@ -173,12 +170,11 @@ void watchdogReset()
 //void(* resetFunc) (void) = 0; //declare reset function @ address 0 // only restart the code does not go into bootloader
 char cmd[4];
 
-
 void startRF(void)
 {
   digitalWrite(RESET_PIN, HIGH);
-  pinMode(RESET_PIN, OUTPUT);  
-  cmd[3] = 0;//STRING NULL TERMINATION
+  pinMode(RESET_PIN, OUTPUT);
+  cmd[3] = 0; //STRING NULL TERMINATION
   cmd[0] = 'x';
   cmd[1] = 'x';
   cmd[2] = 'x';
@@ -218,7 +214,6 @@ void startRF(void)
   Mirf.configRegister(SETUP_AW, 0x01);
   /* Enable ACKing on both pipe 0 & 1 for TX & RX ACK support */
   Mirf.configRegister(EN_AA, 0x03);
-
   /*
     Configure reciving address.
   */
@@ -248,21 +243,22 @@ void startRF(void)
   /* Only use data pipe 1 for receiving, pipe 0 is for TX ACKs */
   //Mirf.configRegister(EN_RXADDR, 0x02);
 }
-
-void checkIfOtaRequestOrLoadCommand(char *data)
+//void checkIfOtaRequestOrLoadCommand(char *data)
+void checkIfOtaRequestOrLoadCommand(uint8_t *data)
 {
   if (Mirf.dataReady())
   {
     Mirf.getData(data);
-    if (data[0] == 0xFFFFFFFF)
+    //if (data[0] == 0xFFFFFFFF)
+    if (data[0] == 0xFF)
     {
       while (1)
       {
-        Serial.println("Restarting...");//if console gets to see this then pin connection is wrong and we are stuck here
+        Serial.println("Restarting..."); //if console gets to see this then pin connection is wrong and we are stuck here
         digitalWrite(RESET_PIN, LOW);
-        digitalWrite(LED_BUILTIN, HIGH);   
-        delay(100);                       
-        digitalWrite(LED_BUILTIN, LOW);   
+        digitalWrite(LED_BUILTIN, HIGH);
+        delay(100);
+        digitalWrite(LED_BUILTIN, LOW);
         delay(100);
         //delay(2000);
         //soft_restart();
