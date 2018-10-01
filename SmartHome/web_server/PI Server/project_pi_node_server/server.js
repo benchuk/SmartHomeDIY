@@ -28,18 +28,18 @@ var locals = {
 	remotes: remotesCollection.items
 };
 
-app.post('/newcommand', function(req, res) {
+app.post('/newcommand', function (req, res) {
 	//res.send('Saved: name: ' + req.body.name + ' address: ' + req.body.address + ' command: ' + req.body.command + 'groupName: ' + req.body.group);
 	console.log(
 		'Saving user remote command: ' +
-			' name: ' +
-			req.body.name +
-			' address: ' +
-			req.body.address +
-			' command: ' +
-			req.body.command +
-			' group: ' +
-			req.body.group
+		' name: ' +
+		req.body.name +
+		' address: ' +
+		req.body.address +
+		' command: ' +
+		req.body.command +
+		' group: ' +
+		req.body.group
 	);
 	var dbRes = remotesCollection.where({
 		groupName: req.body.group
@@ -69,18 +69,14 @@ app.post('/newcommand', function(req, res) {
 		remotesCollection.update(dbRes.cid, dbRes);
 		console.log('update ok');
 	} else {
-		remotesCollection.insert([
-			{
-				groupName: req.body.group,
-				commands: [
-					{
-						commandFile: req.body.command,
-						commandName: req.body.name,
-						address: req.body.address
-					}
-				]
-			}
-		]);
+		remotesCollection.insert([{
+			groupName: req.body.group,
+			commands: [{
+				commandFile: req.body.command,
+				commandName: req.body.name,
+				address: req.body.address
+			}]
+		}]);
 		console.log('insert ok');
 	}
 
@@ -90,7 +86,7 @@ app.post('/newcommand', function(req, res) {
 
 	var value = req.body.address + ':' + req.body.command;
 
-	theApp.serialPort.write(value, function(err, res) {
+	theApp.serialPort.write(value, function (err, res) {
 		console.log('serial command sent');
 		console.log('err: ' + err);
 		console.log('res: ' + res);
@@ -99,7 +95,7 @@ app.post('/newcommand', function(req, res) {
 	//res.send("click remote");
 });
 
-app.get('/deletecmd', function(req, res) {
+app.get('/deletecmd', function (req, res) {
 	try {
 		var values = req.query.value.split(':');
 		console.log('deletecmd with values:' + values[0]);
@@ -133,21 +129,21 @@ app.get('/deletecmd', function(req, res) {
 	}
 });
 
-app.get('/dbclear', function(req, res) {
-	remotesCollection.items.forEach(function(r) {
+app.get('/dbclear', function (req, res) {
+	remotesCollection.items.forEach(function (r) {
 		remotesCollection.remove(r.cid);
 	});
 	remotesCollection.save();
 	res.redirect('/');
 });
 
-app.get('/', function(req, res) {
+app.get('/', function (req, res) {
 	locals.date = new Date().toLocaleDateString();
 	locals.remotes = remotesCollection.items;
 	res.render('home.ejs', locals);
 });
 
 /* The 404 Route (ALWAYS Keep this as the last route) */
-app.get('/*', function(req, res) {
+app.get('/*', function (req, res) {
 	res.render('404.ejs', locals);
 });

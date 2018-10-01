@@ -75,26 +75,36 @@
 
 						<li class="active">
 							<a href="#general" data-toggle="tab" aria-expanded="true">
-								<i class="material-icons">important_devices</i>
+								<i class="material-icons">account_balance</i>
 								General
 								<div class="ripple-container"></div>
 							</a>
 						</li>
 
 						<li class="">
+							<a href="#tv" data-toggle="tab" aria-expanded="true">
+								<i class="material-icons">music_video</i>
+								TV
+								<div class="ripple-container"></div>
+							</a>
+						</li>
+
+						<li class="">
 							<a href="#lights" data-toggle="tab" aria-expanded="true">
-								<i class="material-icons">important_devices</i>
+								<i class="material-icons">brightness_6</i>
 								Lights
 								<div class="ripple-container"></div>
 							</a>
 						</li>
+
 						<li class="">
 							<a href="#debug" data-toggle="tab" aria-expanded="false">
-								<i class="material-icons">chat</i>
+								<i class="material-icons">bug_report</i>
 								Test-Debug
 								<div class="ripple-container"></div>
 							</a>
 						</li>
+
 					</ul>
 				</div>
 			</div>
@@ -108,13 +118,30 @@
 				<% }); %> -->
 
 			<div class="tab-content text-center">
+
 				<div class="tab-pane active" id="general">
-					<button class="btn btn-primary btn-large" id="004:003">Tv</button>
-					<button class="btn btn-primary btn-large" id="004:029">Ac On</button>
-					<button class="btn btn-primary btn-large" id="004:030">Ac Off</button>
-					<button class="btn btn-primary btn-large" id="004:031">Clear Ac</button>
-					<button class="btn btn-primary btn-large" id="lightson">Lights on</button>
-					<button class="btn btn-primary btn-large" id="lightsoff">Lights off</button>
+				<p>
+					<span class="badge badge-pill badge-default time" id="004:029"><i class="material-icons">av_timer</i></span><button class="btn btn-primary btn-large" id="004:029"><i class="material-icons">power</i> Ac On</button>
+					<span class="badge badge-pill badge-default time" id="004:030"><i class="material-icons">av_timer</i></span><button class="btn btn-primary btn-large" id="004:030"><i class="material-icons">power_off</i> Ac Off</button>
+					
+					</p>
+					<button class="btn btn-primary btn-large" id="lightson"><i class="material-icons">toggle_on</i> Lights on</button>
+					<button class="btn btn-primary btn-large" id="lightsoff"><i class="material-icons">toggle_off</i> Lights off</button>
+					<p></p><button class="btn btn-primary btn-large" id="004:003"><i class="material-icons">live_tv</i> Tv</button></p>
+					<p><button class="btn btn-primary btn-large" id="004:031">Clear Ac</button></p>
+				</div>
+
+				<div class="tab-pane" id="tv">
+					<p><button class="btn btn-primary btn-large" id="004:003"><i class="material-icons">tv_off</i> On/Off</button></p>
+					<p><button class="btn btn-primary btn-large" id="004:013"><i class="material-icons">expand_less</i> Up</button></p>
+					<p><button class="btn btn-primary btn-large" id="004:010"><i class="material-icons">chevron_left</i> Left</button><button class="btn btn-primary btn-large" id="004:008"><i class="material-icons">subdirectory_arrow_right</i> Enter</button><button class="btn btn-primary btn-large" id="004:011"><i class="material-icons">chevron_right</i> Right</button></p>
+					<p><button class="btn btn-primary btn-large" id="004:012"><i class="material-icons">expand_more</i> Down</button></p>
+					<br>
+					<p><button class="btn btn-primary btn-large" id="004:004"><i class="material-icons">volume_up</i> Vol+</button><button class="btn btn-primary btn-large" id="004:005"><i class="material-icons">volume_down</i> Vol-</button></p>
+					<p><button class="btn btn-primary btn-large" id="004:023"><i class="material-icons">volume_off</i> Mute</button></p>
+					<p><button class="btn btn-primary btn-large" id="004:006"><i class="material-icons">menu</i> Source</button></p>
+					
+					
 				</div>
 				<div class="tab-pane" id="lights">
 					<p>
