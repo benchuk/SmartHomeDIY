@@ -74,7 +74,7 @@
 
 
 						<li class="active">
-							<a href="#ac" data-toggle="tab" aria-expanded="true">
+							<a href="#general" data-toggle="tab" aria-expanded="true">
 								<i class="material-icons">important_devices</i>
 								General
 								<div class="ripple-container"></div>
@@ -82,26 +82,18 @@
 						</li>
 
 						<li class="">
-							<a href="#sahdes" data-toggle="tab" aria-expanded="true">
+							<a href="#lights" data-toggle="tab" aria-expanded="true">
 								<i class="material-icons">important_devices</i>
-								Shades Living Rooom
+								Lights
 								<div class="ripple-container"></div>
 							</a>
 						</li>
 						<li class="">
-							<a href="#lights" data-toggle="tab" aria-expanded="false">
+							<a href="#debug" data-toggle="tab" aria-expanded="false">
 								<i class="material-icons">chat</i>
-								Lights Living Room
-								<div class="ripple-container"></div>
-							</a>
-						</li>
-						<li class="">
-							<a href="#settings" data-toggle="tab" aria-expanded="false">
-								<i class="material-icons">build</i>
 								Test-Debug
 								<div class="ripple-container"></div>
 							</a>
-
 						</li>
 					</ul>
 				</div>
@@ -116,55 +108,13 @@
 				<% }); %> -->
 
 			<div class="tab-content text-center">
-				<div class="tab-pane active" id="ac">
-					<p>
-
-						<form method="post" action="/newcommand" style="display:none" id="recordForm">
-							<input type="text" class="form-control" placeholder="Name" name="name">
-							<input type="text" class="form-control" placeholder="Address" name="address" value="004">
-							<input type="text" class="form-control" placeholder="Command" name="command" value="002">
-							<input type="text" class="form-control" placeholder="Remote Group" name="group" value="AC living room">
-
-							<input type="submit" id="close">
-						</form>
-
-
-
-
-
-
-						<%if (remotes && remotes.length > 0 ) { %>
-
-						<% remotes[0].commands.forEach(function(c) { %>
-						<div class="myline">
-							<span class="badge badge-pill badge-default time" id="<%=c.address %>:<%=c.commandFile %>">...</span>
-							<button class="btn btn-primary btn-large" id="<%=c.address %>:<%=c.commandFile %>">
-								<%= c.commandName %>
-								<span class="badge badge-pill badge-primary">
-									<%= c.commandFile %></span>
-							</button>
-							<span class="badge badge-pill badge-primary deletecmd" id="<%=remotes[0].groupName%>:<%=c.address %>:<%=c.commandFile %>">x</span>
-						</div>
-						<% }); %>
-						<% } %>
-
-
-					</p>
-				</div>
-				<div class="tab-pane" id="sahdes">
-					<p>
-
-						<button class="btn btn-block  btn-primary " data-toggle="modal" data-target="#myModal">
-							<i class="material-icons">library_books</i> Classic
-							<div class="ripple-container"></div>
-						</button>
-
-
-						<button class="btn btn-primary btn-large" id="003:000">Stop</button>
-						<button class="btn btn-primary btn-large" id="003:001">Move Up</button>
-						<button class="btn btn-primary btn-large" id="003:002">Move Down</button>
-						<button class="btn btn-primary btn-large" id="003:003">Reset</button>
-					</p>
+				<div class="tab-pane active" id="general">
+					<button class="btn btn-primary btn-large" id="004:003">Tv</button>
+					<button class="btn btn-primary btn-large" id="004:029">Ac On</button>
+					<button class="btn btn-primary btn-large" id="004:030">Ac Off</button>
+					<button class="btn btn-primary btn-large" id="004:031">Clear Ac</button>
+					<button class="btn btn-primary btn-large" id="lightson">Lights on</button>
+					<button class="btn btn-primary btn-large" id="lightsoff">Lights off</button>
 				</div>
 				<div class="tab-pane" id="lights">
 					<p>
@@ -193,16 +143,40 @@
 					<button class="btn btn-primary btn-large" id="007:012">S3 OFF</button>
 					</p>
 				</div>
-				<div class="tab-pane" id="settings">
-					<p>
-						<button class="btn btn-primary btn-large" id="002:000">Stop 3</button>
-						<button class="btn btn-primary btn-large" id="002:001">Move Up 3</button>
-						<button class="btn btn-primary btn-large" id="002:002">Move Down 3</button>
-						<button class="btn btn-primary btn-large" id="002:003">Reset 3</button>
+				<div class="tab-pane" id="debug">
 
-						<button class="btn btn-primary btn-large" id="005:004">S1 toogle</button>
+				<p>
+
+						<form method="post" action="/newcommand" style="display:none" id="recordForm">
+							<input type="text" class="form-control" placeholder="Name" name="name">
+							<input type="text" class="form-control" placeholder="Address" name="address" value="004">
+							<input type="text" class="form-control" placeholder="Command" name="command" value="002">
+							<input type="text" class="form-control" placeholder="Remote Group" name="group" value="AC living room">
+
+							<input type="submit" id="close">
+						</form>
+
+						<%if (remotes && remotes.length > 0 ) { %>
+
+						<% remotes[0].commands.forEach(function(c) { %>
+						<div class="myline">
+							<span class="badge badge-pill badge-default time" id="<%=c.address %>:<%=c.commandFile %>">...</span>
+							<button class="btn btn-primary btn-large" id="<%=c.address %>:<%=c.commandFile %>">
+								<%= c.commandName %>
+								<span class="badge badge-pill badge-primary">
+									<%= c.commandFile %></span>
+							</button>
+							<span class="badge badge-pill badge-primary deletecmd" id="<%=remotes[0].groupName%>:<%=c.address %>:<%=c.commandFile %>">x</span>
+						</div>
+						<% }); %>
+						<% } %>
+				
+
 					</p>
+				
+					
 				</div>
+				
 			</div>
 		</div>
 	</div>
