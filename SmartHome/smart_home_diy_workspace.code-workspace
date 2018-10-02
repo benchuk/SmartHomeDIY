@@ -1,6 +1,5 @@
 {
-	"folders": [
-		{
+	"folders": [{
 			"path": "web_server\\PI Server\\project_pi_node_server"
 		},
 		{
@@ -28,6 +27,9 @@
 			"path": "arduino_stations\\OTA\\remote_station_for_ota_tests\\ota_remote-station_working_with_mirf_lib\\remote_station_for_ota_tests"
 		},
 		{
+			"path": "arduino_stations/lights_indicetor/project_lights_indicator"
+		},
+		{
 			"path": "arduino_stations\\libraries"
 		},
 		{
@@ -51,6 +53,7 @@
 			"stk500.h": "c"
 		},
 		"cSpell.words": [
+			"Arduino",
 			"EEPROM",
 			"Mirf",
 			"millis",

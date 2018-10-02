@@ -34,7 +34,7 @@
 
 
 
-		<!-- <div class="modal" tabindex="-1" role="dialog">
+	<!-- <div class="modal" tabindex="-1" role="dialog">
 			<div class="modal-dialog" role="document">
 			  <div class="modal-content">
 				<div class="modal-header">
@@ -59,152 +59,157 @@
 		</button> -->
 
 
-		<div style="margin-top: 70px">
+	<div style="margin-top: 70px">
 		<button class="btn btn-danger btn-large showrecord" id="004:000">Record</button>
 		<button class="btn btn-warning btn-large" id="004:001">Reset Station</button>
 	</div>
-		<!-- <button class="btn btn-primary">Default<div class="ripple-container"></div></button> -->
-		<!-- *********************************************************	 -->
-		<div class="card card-nav-tabs">
-			<div class="header header-success">
-				<!-- colors: "header-primary", "header-info", "header-success", "header-warning", "header-danger" -->
-				<div class="nav-tabs-navigation">
-					<div class="nav-tabs-wrapper">
-						<ul class="nav nav-tabs" data-tabs="tabs">
+	<!-- <button class="btn btn-primary">Default<div class="ripple-container"></div></button> -->
+	<!-- *********************************************************	 -->
+	<div class="card card-nav-tabs">
+		<div class="header header-success">
+			<!-- colors: "header-primary", "header-info", "header-success", "header-warning", "header-danger" -->
+			<div class="nav-tabs-navigation">
+				<div class="nav-tabs-wrapper">
+					<ul class="nav nav-tabs" data-tabs="tabs">
 
 
-							<li class="active">
-								<a href="#ac" data-toggle="tab" aria-expanded="true">
-									<i class="material-icons">important_devices</i>
-									General
-									<div class="ripple-container"></div>
-								</a>
-							</li>
+						<li class="active">
+							<a href="#general" data-toggle="tab" aria-expanded="true">
+								<i class="material-icons">account_balance</i>
+								General
+								<div class="ripple-container"></div>
+							</a>
+						</li>
 
-							<li class="">
-								<a href="#sahdes" data-toggle="tab" aria-expanded="true">
-									<i class="material-icons">important_devices</i>
-									Shades Living Rooom
-									<div class="ripple-container"></div>
-								</a>
-							</li>
-							<li class="">
-								<a href="#lights" data-toggle="tab" aria-expanded="false">
-									<i class="material-icons">chat</i>
-									Lights Living Room
-									<div class="ripple-container"></div>
-								</a>
-							</li>
-							<li class="">
-								<a href="#settings" data-toggle="tab" aria-expanded="false">
-									<i class="material-icons">build</i>
-									Test-Debug
-									<div class="ripple-container"></div>
-								</a>
+						<li class="">
+							<a href="#tv" data-toggle="tab" aria-expanded="true">
+								<i class="material-icons">music_video</i>
+								TV
+								<div class="ripple-container"></div>
+							</a>
+						</li>
 
-							</li>
-						</ul>
-					</div>
+						<li class="">
+							<a href="#lights" data-toggle="tab" aria-expanded="true">
+								<i class="material-icons">brightness_6</i>
+								Lights
+								<div class="ripple-container"></div>
+							</a>
+						</li>
+
+						<li class="">
+							<a href="#debug" data-toggle="tab" aria-expanded="false">
+								<i class="material-icons">bug_report</i>
+								Test-Debug
+								<div class="ripple-container"></div>
+							</a>
+						</li>
+
+					</ul>
 				</div>
 			</div>
-			<div class="content">
-				<!-- <div>Debug</div>
+		</div>
+		<div class="content">
+			<!-- <div>Debug</div>
 				<% remotes.forEach(function(c) { %>
 				<div>
 					<%= c.groupName %>
 				</div>
 				<% }); %> -->
 
-				<div class="tab-content text-center">
-					<div class="tab-pane active" id="ac">
-						<p>
+			<div class="tab-content text-center">
 
-							<form method="post" action="/newcommand" style="display:none" id="recordForm">
-								<input type="text" class="form-control" placeholder="Name" name="name">
-								<input type="text" class="form-control" placeholder="Address" name="address" value="004">
-								<input type="text" class="form-control" placeholder="Command" name="command" value="002">
-								<input type="text" class="form-control" placeholder="Remote Group" name="group" value="AC living room">
-
-								<input type="submit" id="close">
-							</form>
-
-
-
-
-
-
-							<%if (remotes && remotes.length > 0 ) { %>
-
-							<% remotes[0].commands.forEach(function(c) { %>
-							<div class="myline">
-								<span class="badge badge-pill badge-default time" id="<%=c.address %>:<%=c.commandFile %>">...</span>
-								<button class="btn btn-primary btn-large" id="<%=c.address %>:<%=c.commandFile %>">
-									<%= c.commandName %>
-									<span class="badge badge-pill badge-primary">
-										<%= c.commandFile %></span>
-								</button>
-								<span class="badge badge-pill badge-primary deletecmd" id="<%=remotes[0].groupName%>:<%=c.address %>:<%=c.commandFile %>">x</span>
-							</div>
-							<% }); %>
-							<% } %>
-
-
-						</p>
-					</div>
-					<div class="tab-pane" id="sahdes">
-						<p>
-
-							<button class="btn btn-block  btn-primary " data-toggle="modal" data-target="#myModal">
-								<i class="material-icons">library_books</i> Classic
-								<div class="ripple-container"></div>
-							</button>
-
-
-							<button class="btn btn-primary btn-large" id="003:000">Stop</button>
-							<button class="btn btn-primary btn-large" id="003:001">Move Up</button>
-							<button class="btn btn-primary btn-large" id="003:002">Move Down</button>
-							<button class="btn btn-primary btn-large" id="003:003">Reset</button>
-						</p>
-					</div>
-					<div class="tab-pane" id="lights">
-						<p>
-							<div class="togglebutton">
-								<label>
-									<input type="checkbox" checked="">
-									<span class="toggle"></span>
-									<button class="btn btn-primary btn-large" id="007:004">S1</button>
-									<button class="btn btn-primary btn-large" id="007:007">S2</button>
-									<button class="btn btn-primary btn-large" id="007:013">S3</button>
-
-									<button class="btn btn-primary btn-large" id="007:002">S1 OFF</button>
-									<button class="btn btn-primary btn-large" id="007:005">S2 OFF</button>
-									<button class="btn btn-primary btn-large" id="007:011">S3 OFF</button>
-
-									<button class="btn btn-primary btn-large" id="007:003">S1 ON</button>
-									<button class="btn btn-primary btn-large" id="007:006">S2 ON</button>
-									<button class="btn btn-primary btn-large" id="007:012">S3 ON</button>
-									<!-- <button class="btn btn-primary btn-large" id="007:010">S4</button> -->
-									
-									Center Living Room
-								</label>
-							</div>
-						</p>
-					</div>
-					<div class="tab-pane" id="settings">
-						<p>
-							<button class="btn btn-primary btn-large" id="002:000">Stop 3</button>
-							<button class="btn btn-primary btn-large" id="002:001">Move Up 3</button>
-							<button class="btn btn-primary btn-large" id="002:002">Move Down 3</button>
-							<button class="btn btn-primary btn-large" id="002:003">Reset 3</button>
-
-							<button class="btn btn-primary btn-large" id="005:004">S1 toogle</button>
-						</p>
-					</div>
+				<div class="tab-pane active" id="general">
+				<p>
+					<span class="badge badge-pill badge-default time" id="004:029"><i class="material-icons">av_timer</i></span><button class="btn btn-primary btn-large" id="004:029"><i class="material-icons">power</i> Ac On</button>
+					<span class="badge badge-pill badge-default time" id="004:030"><i class="material-icons">av_timer</i></span><button class="btn btn-primary btn-large" id="004:030"><i class="material-icons">power_off</i> Ac Off</button>
+					
+					</p>
+					<button class="btn btn-primary btn-large" id="lightson"><i class="material-icons">toggle_on</i> Lights on</button>
+					<button class="btn btn-primary btn-large" id="lightsoff"><i class="material-icons">toggle_off</i> Lights off</button>
+					<p></p><button class="btn btn-primary btn-large" id="004:003"><i class="material-icons">live_tv</i> Tv</button></p>
+					<p><button class="btn btn-primary btn-large" id="004:031">Clear Ac</button></p>
 				</div>
+
+				<div class="tab-pane" id="tv">
+					<p><button class="btn btn-primary btn-large" id="004:003"><i class="material-icons">tv_off</i> On/Off</button></p>
+					<p><button class="btn btn-primary btn-large" id="004:013"><i class="material-icons">expand_less</i> Up</button></p>
+					<p><button class="btn btn-primary btn-large" id="004:010"><i class="material-icons">chevron_left</i> Left</button><button class="btn btn-primary btn-large" id="004:008"><i class="material-icons">subdirectory_arrow_right</i> Enter</button><button class="btn btn-primary btn-large" id="004:011"><i class="material-icons">chevron_right</i> Right</button></p>
+					<p><button class="btn btn-primary btn-large" id="004:012"><i class="material-icons">expand_more</i> Down</button></p>
+					<p><button class="btn btn-primary btn-large" id="004:009"><i class="material-icons">keyboard_return</i> Back</button></p>
+					<br>
+					<p><button class="btn btn-primary btn-large" id="004:004"><i class="material-icons">volume_up</i> Vol+</button><button class="btn btn-primary btn-large" id="004:005"><i class="material-icons">volume_down</i> Vol-</button></p>
+					<p><button class="btn btn-primary btn-large" id="004:023"><i class="material-icons">volume_off</i> Mute</button></p>
+					<p><button class="btn btn-primary btn-large" id="004:006"><i class="material-icons">menu</i> Source</button></p>
+					
+					
+				</div>
+				<div class="tab-pane" id="lights">
+					<p>
+						<div class="togglebutton">
+							<label>
+								<br>
+								<input type="checkbox" checked="">
+								<span class="toggle"></span>
+							</label>
+							<p>
+								<!-- <button class="btn btn-primary btn-large" id="007:010">S4</button> -->
+								Center Living Room
+						</div>
+
+						<button class="btn btn-primary btn-large" id="007:004">S1</button>
+						<button class="btn btn-primary btn-large" id="007:007">S2</button>
+						<button class="btn btn-primary btn-large" id="007:013">S3</button>
+					</p>
+					<br>
+					<button class="btn btn-primary btn-large" id="007:002">S1 ON</button>
+					<button class="btn btn-primary btn-large" id="007:005">S2 ON</button>
+					<button class="btn btn-primary btn-large" id="007:011">S3 ON</button>
+					<br>
+					<button class="btn btn-primary btn-large" id="007:003">S1 OFF</button>
+					<button class="btn btn-primary btn-large" id="007:006">S2 OFF</button>
+					<button class="btn btn-primary btn-large" id="007:012">S3 OFF</button>
+					</p>
+				</div>
+				<div class="tab-pane" id="debug">
+
+				<p>
+
+						<form method="post" action="/newcommand" style="display:none" id="recordForm">
+							<input type="text" class="form-control" placeholder="Name" name="name">
+							<input type="text" class="form-control" placeholder="Address" name="address" value="004">
+							<input type="text" class="form-control" placeholder="Command" name="command" value="002">
+							<input type="text" class="form-control" placeholder="Remote Group" name="group" value="AC living room">
+
+							<input type="submit" id="close">
+						</form>
+
+						<%if (remotes && remotes.length > 0 ) { %>
+
+						<% remotes[0].commands.forEach(function(c) { %>
+						<div class="myline">
+							<span class="badge badge-pill badge-default time" id="<%=c.address %>:<%=c.commandFile %>">...</span>
+							<button class="btn btn-primary btn-large" id="<%=c.address %>:<%=c.commandFile %>">
+								<%= c.commandName %>
+								<span class="badge badge-pill badge-primary">
+									<%= c.commandFile %></span>
+							</button>
+							<span class="badge badge-pill badge-primary deletecmd" id="<%=remotes[0].groupName%>:<%=c.address %>:<%=c.commandFile %>">x</span>
+						</div>
+						<% }); %>
+						<% } %>
+				
+
+					</p>
+				
+					
+				</div>
+				
 			</div>
 		</div>
+	</div>
 
-		<!-- *********************************************************	 -->
+	<!-- *********************************************************	 -->
 
 
 

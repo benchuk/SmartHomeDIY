@@ -49,7 +49,7 @@
 
 /* Raw IR decoder sketch!
 
-  This sketch/program uses the Arduno and a PNA4602 to
+  This sketch/program uses the Arduino and a PNA4602 to
   decode IR received. This can be used to make a IR receiver
   (by looking for a particular code)
   or transmitter (by pulsing an IR LED at ~38KHz for the
@@ -95,7 +95,7 @@
 #include <common.h>
 #include <SD.h>
 File myFile;
-const int SelectSD = 4; // pinnenummer brukt for CS til SD-kortet
+#define SelectSD 4 // pinnenummer brukt for CS til SD-kortet
 
 /*********************
       ██████╗ ███████╗██████╗ ██╗  ██╗              ███╗   ███╗███████╗███╗   ███╗██████╗ ███████╗██████╗ ███████╗
@@ -111,7 +111,6 @@ const int SelectSD = 4; // pinnenummer brukt for CS til SD-kortet
 #include <Mirf.h>
 #include <nRF24L01.h>
 #include <MirfHardwareSpiDriver.h>
-
 
 /** JUNK  *****
   // Structure of our payload
@@ -182,7 +181,7 @@ uint16_t currentpulse = 0; // index for pulses we're storing
 bool coderecorded = true;
 int counter = 0; //used for logic
 
-#define RF_SWITCH_LINE1 8 
+#define RF_SWITCH_LINE1 8
 #define SD_SWITCH_LINE1 A5 //due to collistion with bootloader
 
 void updateRecLed(void)

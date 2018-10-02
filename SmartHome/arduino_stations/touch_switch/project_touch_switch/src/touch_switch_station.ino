@@ -202,6 +202,10 @@ void loop()
   //s1
   else if (strcmp(cmd, "002") == 0)
   {
+    if (millis() - timestamp < 500)
+    {
+      return;
+    }
     Serial.print("s1 off");
     s1 = LOW;
     digitalWrite(light1Pin, s1);
@@ -209,6 +213,10 @@ void loop()
   }
   else if (strcmp(cmd, "003") == 0)
   {
+    if (millis() - timestamp < 500)
+    {
+      return;
+    }
     Serial.print("s1 on");
     s1 = HIGH;
     digitalWrite(light1Pin, s1);
@@ -223,6 +231,10 @@ void loop()
   //s2
   else if (strcmp(cmd, "005") == 0)
   {
+    if (millis() - timestamp < 500)
+    {
+      return;
+    }
     Serial.print("s2 off");
     s2 = LOW;
     digitalWrite(light2Pin, s2);
@@ -230,6 +242,10 @@ void loop()
   }
   else if (strcmp(cmd, "006") == 0)
   {
+    if (millis() - timestamp < 500)
+    {
+      return;
+    }
     Serial.print("s2 on");
     s2 = HIGH;
     digitalWrite(light2Pin, s2);
@@ -244,6 +260,10 @@ void loop()
   //s3
   else if (strcmp(cmd, "008") == 0)
   {
+    if (millis() - timestamp < 500)
+    {
+      return;
+    }
     Serial.print("s3 off");
     s3 = LOW;
     digitalWrite(light3Pin, s3);
@@ -251,6 +271,10 @@ void loop()
   }
   else if (strcmp(cmd, "009") == 0)
   {
+    if (millis() - timestamp < 500)
+    {
+      return;
+    }
     Serial.print("s3 on");
     s3 = HIGH;
     digitalWrite(light3Pin, s3);
@@ -265,6 +289,10 @@ void loop()
   //s4
   else if (strcmp(cmd, "011") == 0)
   {
+    if (millis() - timestamp < 500)
+    {
+      return;
+    }
     Serial.print("s4 off");
     s4 = LOW;
     digitalWrite(light4Pin, s4);
@@ -272,6 +300,10 @@ void loop()
   }
   else if (strcmp(cmd, "012") == 0)
   {
+    if (millis() - timestamp < 500)
+    {
+      return;
+    }
     Serial.print("s4 on");
     s4 = HIGH;
     digitalWrite(light4Pin, s4);
