@@ -1,17 +1,54 @@
 {
-	"configurations": [
-		{
-			"name": "Mac",
-			"includePath": ["${workspaceFolder}/**"],
-			"defines": [],
-			"macFrameworkPath": [
-				"/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.14.sdk/System/Library/Frameworks"
-			],
-			"compilerPath": "/usr/bin/clang",
-			"cStandard": "c11",
-			"cppStandard": "c++17",
-			"intelliSenseMode": "clang-x64"
-		}
-	],
+	"configurations": [{
+		"name": "Mac",
+		"includePath": [
+			"${workspaceFolder}/**",
+			"/Users/ben/.platformio/packages/framework-arduinoavr/cores/arduino/",
+			"${workspaceFolder}/arduino_stations/scripts/avr/windows/avr8-gnu-toolchain/avr/include/avr/wdt.h",
+			"/Users/ben/.platformio/packages/framework-arduinoavr/cores/arduino",
+			"/Users/ben/.platformio/packages/framework-arduinoavr/variants/eightanaloginputs",
+			"/Users/ben/docs/MyGit/SmartHomeDIY/SmartHome/arduino_stations/libraries/Mirf",
+			"/Users/ben/docs/MyGit/SmartHomeDIY/SmartHome/arduino_stations/libraries/PinChangeInt",
+			"/Users/ben/docs/MyGit/SmartHomeDIY/SmartHome/arduino_stations/libraries/common",
+			"/Users/ben/.platformio/packages/framework-arduinoavr/libraries/__cores__/arduino/EEPROM/src",
+			"/Users/ben/.platformio/packages/framework-arduinoavr/libraries/__cores__/arduino/SPI/src",
+			"/Users/ben/docs/MyGit/SmartHomeDIY/SmartHome/arduino_stations/libraries/.vscode",
+			"/Users/ben/.platformio/packages/framework-arduinoavr/libraries/__cores__/arduino/HID/src",
+			"/Users/ben/.platformio/packages/framework-arduinoavr/libraries/__cores__/arduino/SoftwareSerial/src",
+			"/Users/ben/.platformio/packages/framework-arduinoavr/libraries/__cores__/arduino/Wire/src",
+			"/Users/ben/.platformio/packages/framework-arduinoavr/libraries/Adafruit_CircuitPlayground",
+			"/Users/ben/.platformio/packages/framework-arduinoavr/libraries/Adafruit_CircuitPlayground/utility",
+			"/Users/ben/.platformio/packages/framework-arduinoavr/libraries/Bridge/src",
+			"/Users/ben/.platformio/packages/framework-arduinoavr/libraries/Esplora/src",
+			"/Users/ben/.platformio/packages/framework-arduinoavr/libraries/Ethernet/src",
+			"/Users/ben/.platformio/packages/framework-arduinoavr/libraries/Firmata",
+			"/Users/ben/.platformio/packages/framework-arduinoavr/libraries/Firmata/utility",
+			"/Users/ben/.platformio/packages/framework-arduinoavr/libraries/GSM/src",
+			"/Users/ben/.platformio/packages/framework-arduinoavr/libraries/Keyboard/src",
+			"/Users/ben/.platformio/packages/framework-arduinoavr/libraries/LiquidCrystal/src",
+			"/Users/ben/.platformio/packages/framework-arduinoavr/libraries/Mouse/src",
+			"/Users/ben/.platformio/packages/framework-arduinoavr/libraries/RobotIRremote/src",
+			"/Users/ben/.platformio/packages/framework-arduinoavr/libraries/Robot_Control/src",
+			"/Users/ben/.platformio/packages/framework-arduinoavr/libraries/Robot_Motor/src",
+			"/Users/ben/.platformio/packages/framework-arduinoavr/libraries/SD/src",
+			"/Users/ben/.platformio/packages/framework-arduinoavr/libraries/Servo/src",
+			"/Users/ben/.platformio/packages/framework-arduinoavr/libraries/SpacebrewYun/src",
+			"/Users/ben/.platformio/packages/framework-arduinoavr/libraries/Stepper/src",
+			"/Users/ben/.platformio/packages/framework-arduinoavr/libraries/TFT/src",
+			"/Users/ben/.platformio/packages/framework-arduinoavr/libraries/Temboo/src",
+			"/Users/ben/.platformio/packages/framework-arduinoavr/libraries/WiFi/src",
+			"/Users/ben/.platformio/packages/tool-unity",
+			"/Users/ben/.platformio/packages/framework-arduinoavr/cores/arduino",
+			""
+		],
+		"defines": [],
+		"macFrameworkPath": [
+			"/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.14.sdk/System/Library/Frameworks"
+		],
+		"compilerPath": "/usr/bin/clang",
+		"cStandard": "c11",
+		"cppStandard": "c++17",
+		"intelliSenseMode": "clang-x64"
+	}],
 	"version": 4
 }
