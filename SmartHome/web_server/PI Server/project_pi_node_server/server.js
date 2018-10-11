@@ -6,18 +6,22 @@
  */
 
 var theApp = require('./app');
+var whitelistManager = require('./whitelistManager.js');
+var whitelist = whitelistManager.whitelist;
+var logger = require('./homeLogger.js');
 var app = theApp.init(80);
 
 var locallydb = require('locallydb');
 var db = new locallydb('./mydb3');
 var remotesCollection = db.collection('remotes');
+
 // remotesCollection.insert([
 //     {groupName: "AC living room", commands: [{"commandFile": "001", "commandName": "Power"}]}
 // ]);
 // try {
-//     console.log("remotes: " + JSON.stringify(remotesCollection.items));
+//     log("remotes: " + JSON.stringify(remotesCollection.items));
 // } catch (e) {
-//     console.log(e);
+//     log(e);
 // }
 
 var locals = {
@@ -28,9 +32,9 @@ var locals = {
 	remotes: remotesCollection.items
 };
 
-app.post('/newcommand', function (req, res) {
+app.post('/newcommand', whitelist, function (req, res) {
 	//res.send('Saved: name: ' + req.body.name + ' address: ' + req.body.address + ' command: ' + req.body.command + 'groupName: ' + req.body.group);
-	console.log(
+	logger.log(
 		'Saving user remote command: ' +
 		' name: ' +
 		req.body.name +
@@ -44,18 +48,18 @@ app.post('/newcommand', function (req, res) {
 	var dbRes = remotesCollection.where({
 		groupName: req.body.group
 	});
-	console.log('res: ' + JSON.stringify(dbRes));
+	logger.log('res: ' + JSON.stringify(dbRes));
 	if (dbRes && dbRes.items.length > 0) {
 		var isUpdate = false;
 		for (var c in dbRes.items[0].commands) {
 			c = dbRes.items[0].commands[c];
-			console.log('c.address: ' + c.address);
-			console.log('c.commandFile: ' + c.commandFile);
-			console.log('check');
+			logger.log('c.address: ' + c.address);
+			logger.log('c.commandFile: ' + c.commandFile);
+			logger.log('check');
 			if (c.address == req.body.address && c.commandFile == req.body.command) {
 				isUpdate = true;
 				c.commandName = req.body.name;
-				console.log('update existing dataset');
+				logger.log('update existing dataset');
 			}
 		}
 		if (!isUpdate) {
@@ -67,7 +71,7 @@ app.post('/newcommand', function (req, res) {
 		}
 
 		remotesCollection.update(dbRes.cid, dbRes);
-		console.log('update ok');
+		logger.log('update ok');
 	} else {
 		remotesCollection.insert([{
 			groupName: req.body.group,
@@ -77,33 +81,33 @@ app.post('/newcommand', function (req, res) {
 				address: req.body.address
 			}]
 		}]);
-		console.log('insert ok');
+		logger.log('insert ok');
 	}
 
 	remotesCollection.save();
 
-	console.log('remotesCollection: ' + JSON.stringify(remotesCollection));
+	logger.log('remotesCollection: ' + JSON.stringify(remotesCollection));
 
 	var value = req.body.address + ':' + req.body.command;
 
 	theApp.serialPort.write(value, function (err, res) {
-		console.log('serial command sent');
-		console.log('err: ' + err);
-		console.log('res: ' + res);
+		logger.log('serial command sent');
+		logger.log('err: ' + err);
+		logger.log('res: ' + res);
 	});
 	res.redirect('/');
 	//res.send("click remote");
 });
 
-app.get('/deletecmd', function (req, res) {
+app.get('/deletecmd', whitelist, function (req, res) {
 	try {
 		var values = req.query.value.split(':');
-		console.log('deletecmd with values:' + values[0]);
+		logger.log('deletecmd with values:' + values[0]);
 		var dbRes = remotesCollection.where({
 			groupName: values[0]
 		});
 
-		console.log(dbRes);
+		logger.log(dbRes);
 		var shouldRemove = false;
 		var removeObj = false;
 		for (var c in dbRes.items[0].commands) {
@@ -125,11 +129,12 @@ app.get('/deletecmd', function (req, res) {
 		//serialPort.write(value, function (err, res) {});
 		res.redirect('/');
 	} catch (err) {
-		console.log(err);
+		log(err);
 	}
 });
 
-app.get('/dbclear', function (req, res) {
+app.get('/dbclear', whitelist, function (req, res) {
+	logger.log("dbclear request");
 	remotesCollection.items.forEach(function (r) {
 		remotesCollection.remove(r.cid);
 	});
@@ -138,6 +143,7 @@ app.get('/dbclear', function (req, res) {
 });
 
 app.get('/', function (req, res) {
+	logger.log("home request: " + req.headers['user-agent']);
 	locals.date = new Date().toLocaleDateString();
 	locals.remotes = remotesCollection.items;
 	res.render('home.ejs', locals);
@@ -145,5 +151,6 @@ app.get('/', function (req, res) {
 
 /* The 404 Route (ALWAYS Keep this as the last route) */
 app.get('/*', function (req, res) {
+	logger.log('404');
 	res.render('404.ejs', locals);
 });
