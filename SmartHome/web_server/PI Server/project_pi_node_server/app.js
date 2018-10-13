@@ -98,9 +98,9 @@ exports.init = function (port) {
     try {
       logger.log("all lights on");
       handleTimeoutRequest('007:011', 100);
-      handleTimeoutRequest('007:005', 1100);
-      handleTimeoutRequest('007:011', 2100);
-      handleTimeoutRequest('007:005', 3200);
+      handleTimeoutRequest('007:005', 1200);
+      handleTimeoutRequest('007:011', 2300);
+      handleTimeoutRequest('007:005', 3400);
 
       // TBD - add more lighs here
       res.send('all-lights-on - sent...');
@@ -113,9 +113,9 @@ exports.init = function (port) {
     try {
       logger.log("all lights off");
       handleTimeoutRequest('007:012', 100);
-      handleTimeoutRequest('007:006', 1100);
-      handleTimeoutRequest('007:012', 2100);
-      handleTimeoutRequest('007:006', 3200);
+      handleTimeoutRequest('007:006', 1200);
+      handleTimeoutRequest('007:012', 2300);
+      handleTimeoutRequest('007:006', 3400);
       // TBD - add more lighs here
       res.send('all-lighst-off - sent...');
     } catch (err) {
