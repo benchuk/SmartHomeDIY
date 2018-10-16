@@ -78,13 +78,22 @@
 	$('.time').on('click', btnTimeClassClick);
 
 
-
-
-
 	$('.btn').on('click', btnClassClick);
 
-	$('.showrecord').click(function () {
-		$('#recordForm').css({
+	$('.showrecord1').click(function () {
+		$('#recordForm1').css({
+			"display": "inline-block"
+		});
+	});
+
+	$('.showrecord2').click(function () {
+		$('#recordForm2').css({
+			"display": "inline-block"
+		});
+	});
+
+	$('.showrecord3').click(function () {
+		$('#recordForm3').css({
 			"display": "inline-block"
 		});
 	});
