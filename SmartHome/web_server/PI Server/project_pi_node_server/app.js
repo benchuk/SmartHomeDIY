@@ -101,7 +101,6 @@ exports.init = function (port) {
       handleTimeoutRequest('007:005', 1200);
       handleTimeoutRequest('007:011', 2300);
       handleTimeoutRequest('007:005', 3400);
-
       // TBD - add more lighs here
       res.send('all-lights-on - sent...');
     } catch (err) {
@@ -116,6 +115,7 @@ exports.init = function (port) {
       handleTimeoutRequest('007:006', 1200);
       handleTimeoutRequest('007:012', 2300);
       handleTimeoutRequest('007:006', 3400);
+      handleTimeoutRequest('005:005', 102);
       // TBD - add more lighs here
       res.send('all-lighst-off - sent...');
     } catch (err) {
