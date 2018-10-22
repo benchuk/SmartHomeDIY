@@ -95,7 +95,7 @@ app.post('/newcommand', whitelist, function (req, res) {
 		logger.log('err: ' + err);
 		logger.log('res: ' + res);
 	});
-	res.redirect('/');
+	res.redirect('/config-remotes');
 	//res.send("click remote");
 });
 
@@ -147,6 +147,13 @@ app.get('/', whitelist, function (req, res) {
 	locals.date = new Date().toLocaleDateString();
 	locals.remotes = remotesCollection.items;
 	res.render('home.ejs', locals);
+});
+
+app.get('/config-remotes', whitelist, function (req, res) {
+	logger.log("home request: " + req.headers['user-agent']);
+	locals.date = new Date().toLocaleDateString();
+	locals.remotes = remotesCollection.items;
+	res.render('config-remotes.ejs', locals);
 });
 
 /* The 404 Route (ALWAYS Keep this as the last route) */

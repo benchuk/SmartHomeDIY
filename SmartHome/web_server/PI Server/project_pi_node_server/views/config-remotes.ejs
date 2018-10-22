@@ -1,0 +1,236 @@
+<div class="navbar navbar-fixed-top bg-dark">
+	<div class="navbar-inner">
+		<div class="container">
+			<a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+			</a>
+			<a class="brand" href="#">
+				<%= title %>
+			</a>
+			<div class="nav-collapse">
+				<ul class="nav">
+					<li class="active">
+						<a href="/">Home</a>
+					</li>
+					<li>
+						<a href="#">ConfigRemotes</a>
+					</li>
+				</ul>
+			</div>
+			<!--/.nav-collapse -->
+		</div>
+	</div>
+</div>
+
+<div class="container">
+
+
+	<!-- Main hero unit for a primary marketing message or call to action -->
+
+
+
+	<!-- <div class="modal" tabindex="-1" role="dialog">
+			<div class="modal-dialog" role="document">
+			  <div class="modal-content">
+				<div class="modal-header">
+				  <h5 class="modal-title">Modal title</h5>
+				  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+					<span aria-hidden="true">&times;</span>
+				  </button>
+				</div>
+				<div class="modal-body">
+				  <p>Modal body text goes here.</p>
+				</div>
+				<div class="modal-footer">
+				  <button type="button" class="btn btn-default">Save changes</button>
+				  <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+				</div>
+			  </div>
+			</div>
+		  </div>
+
+		<button type="button" data-toggle="modal" data-target="#exampleModal">
+			Launch demo modal
+		</button> -->
+
+
+	<div style="margin-top: 70px">
+		<button class="btn btn-danger btn-large showrecord1" id="004:000">Record</button>
+		<button class="btn btn-warning btn-large" id="004:001">Reset Station</button>
+		<button class="btn btn-danger btn-large showrecord2" id="005:000">Record2</button>
+		<button class="btn btn-danger btn-large showrecord3" id="006:000">Record3</button>
+		
+	</div>
+	<!-- <button class="btn btn-default">Default<div class="ripple-container"></div></button> -->
+	<!-- *********************************************************	 -->
+	<div class="card card-nav-tabs">
+		<div class="header header-info">
+			<!-- colors: "header-primary", "header-info", "header-success", "header-warning", "header-danger" -->
+			<div class="nav-tabs-navigation">
+				<div class="nav-tabs-wrapper">
+					<ul class="nav nav-tabs" data-tabs="tabs">
+
+
+					
+				
+
+						<li class="active">
+							<a href="#debug" data-toggle="tab" aria-expanded="false">
+								<i class="material-icons">bug_report</i>
+								
+								<div class="ripple-container"></div>
+							</a>
+						</li>
+
+						<li class="">
+							<a href="#debug2" data-toggle="tab" aria-expanded="false">
+								<i class="material-icons">bug_report</i>
+								2
+								<div class="ripple-container"></div>
+							</a>
+						</li>
+
+						<li class="">
+							<a href="#debug3" data-toggle="tab" aria-expanded="false">
+								<i class="material-icons">bug_report</i>
+								3
+								<div class="ripple-container"></div>
+							</a>
+						</li>
+
+
+					</ul>
+				</div>
+			</div>
+		</div>
+		<div class="content">
+			<!-- <div>Debug</div>
+				<% remotes.forEach(function(c) { %>
+				<div>
+					<%= c.groupName %>
+				</div>
+				<% }); %> -->
+
+			<div class="tab-content text-center">
+
+			
+				<div class="tab-pane" id="debug">
+
+				<p>
+
+						<form method="post" action="/newcommand" style="display:none" id="recordForm1">
+							<input type="text" class="form-control" placeholder="Name" name="name">
+							<input type="text" class="form-control" placeholder="Address" name="address" value="004">
+							<input type="text" class="form-control" placeholder="Command" name="command" value="002">
+							<input type="text" class="form-control" placeholder="Remote Group" name="group" value="AC living room">
+
+							<input type="submit" id="close">
+						</form>
+
+						<%if (remotes && remotes.length > 0 ) { %>
+
+						<% remotes[0].commands.forEach(function(c) { %>
+						<div class="myline">
+							<span class="badge badge-pill badge-default time" id="<%=c.address %>:<%=c.commandFile %>">...</span>
+							<button class="btn btn-default btn-large" id="<%=c.address %>:<%=c.commandFile %>">
+								<%= c.commandName %>
+								<span class="badge badge-pill badge-primary">
+									<%= c.commandFile %></span>
+							</button>
+							<span class="badge badge-pill badge-primary deletecmd" id="<%=remotes[0].groupName%>:<%=c.address %>:<%=c.commandFile %>">x</span>
+						</div>
+						<% }); %>
+						<% } %>
+				
+
+					</p>
+				
+					
+				</div>
+				
+				<div class="tab-pane" id="debug2">
+
+				<p>
+
+						<form method="post" action="/newcommand" style="display:none" id="recordForm2">
+							<input type="text" class="form-control" placeholder="Name" name="name">
+							<input type="text" class="form-control" placeholder="Address" name="address" value="005">
+							<input type="text" class="form-control" placeholder="Command" name="command" value="002">
+							<input type="text" class="form-control" placeholder="Remote Group" name="group" value="Group2">
+
+							<input type="submit" id="close">
+						</form>
+
+						<%if (remotes && remotes.length > 1 ) { %>
+
+						<% remotes[1].commands.forEach(function(c) { %>
+						<div class="myline">
+							<span class="badge badge-pill badge-default time" id="<%=c.address %>:<%=c.commandFile %>">...</span>
+							<button class="btn btn-default btn-large" id="<%=c.address %>:<%=c.commandFile %>">
+								<%= c.commandName %>
+								<span class="badge badge-pill badge-primary">
+									<%= c.commandFile %></span>
+							</button>
+							<span class="badge badge-pill badge-primary deletecmd" id="<%=remotes[1].groupName%>:<%=c.address %>:<%=c.commandFile %>">x</span>
+						</div>
+						<% }); %>
+						<% } %>
+				
+
+					</p>
+				</div>
+				<div class="tab-pane" id="debug3">
+
+				<p>
+
+						<form method="post" action="/newcommand" style="display:none" id="recordForm3">
+							<input type="text" class="form-control" placeholder="Name" name="name">
+							<input type="text" class="form-control" placeholder="Address" name="address" value="006">
+							<input type="text" class="form-control" placeholder="Command" name="command" value="002">
+							<input type="text" class="form-control" placeholder="Remote Group" name="group" value="Group3">
+
+							<input type="submit" id="close">
+						</form>
+
+						<%if (remotes && remotes.length > 2 ) { %>
+
+						<% remotes[2].commands.forEach(function(c) { %>
+						<div class="myline">
+							<span class="badge badge-pill badge-default time" id="<%=c.address %>:<%=c.commandFile %>">...</span>
+							<button class="btn btn-default btn-large" id="<%=c.address %>:<%=c.commandFile %>">
+								<%= c.commandName %>
+								<span class="badge badge-pill badge-primary">
+									<%= c.commandFile %></span>
+							</button>
+							<span class="badge badge-pill badge-primary deletecmd" id="<%=remotes[2].groupName%>:<%=c.address %>:<%=c.commandFile %>">x</span>
+						</div>
+						<% }); %>
+						<% } %>
+				
+
+					</p>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<!-- *********************************************************	 -->
+
+
+
+
+</div>
+
+<!-- Example row of columns -->
+
+
+<hr>
+
+<footer>
+	<p>&copy; SmartHome</p>
+</footer>
+
+</div>
+<!-- /container -->

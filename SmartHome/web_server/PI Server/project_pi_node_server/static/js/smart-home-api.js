@@ -17,7 +17,6 @@
 	//	});
 	//});
 
-
 	$('#lightson').on('click', function () {
 		$.ajax({
 			url: "/all-lights-on",
@@ -25,11 +24,11 @@
 		}).done(function () {
 			console.log(e.currentTarget.id);
 		});
-		$(this).removeClass("btn-primary");
+		$(this).removeClass("btn-default");
 		$(this).addClass("btn-info");
 		setTimeout(() => {
 			$(this).removeClass("btn-info");
-			$(this).addClass("btn-primary");
+			$(this).addClass("btn-default");
 		}, 700);
 	});
 
@@ -40,11 +39,11 @@
 		}).done(function () {
 			console.log(e.currentTarget.id);
 		});
-		$(this).removeClass("btn-primary");
+		$(this).removeClass("btn-default");
 		$(this).addClass("btn-info");
 		setTimeout(() => {
 			$(this).removeClass("btn-info");
-			$(this).addClass("btn-primary");
+			$(this).addClass("btn-default");
 		}, 700);
 	});
 
@@ -56,11 +55,11 @@
 		}).done(function () {
 			console.log(e.currentTarget.id);
 		});
-		$(this).removeClass("btn-primary");
+		$(this).removeClass("btn-default");
 		$(this).addClass("btn-info");
 		setTimeout(() => {
 			$(this).removeClass("btn-info");
-			$(this).addClass("btn-primary");
+			$(this).addClass("btn-default");
 		}, 700);
 	}
 
