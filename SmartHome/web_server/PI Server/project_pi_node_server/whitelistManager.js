@@ -1,9 +1,11 @@
 var logger = require('./homeLogger');
 var fs = require('fs');
-function whitelist(request, res, next) {
-	var agent = request.headers['user-agent'];
-	if (request.query.appid == 'IFTTT' && agent == undefined) {
-		log('IFTTT OK -> req: ' + request.url);
+
+function whitelist(req, res, next) {
+	logger.log("url: " + req.url);
+	var agent = req.headers['user-agent'];
+	if (req.query.appid == 'IFTTT' && agent == undefined) {
+		logger.log('IFTTT OK -> req: ' + req.url);
 		next();
 		return;
 	}
@@ -11,33 +13,38 @@ function whitelist(request, res, next) {
 	for (var i = 0; i < lines.length; i++) {
 		var line = lines[i];
 		line = line.replace(/(\r\n|\n|\r)/gm, '');
-		console.log('\r\n -> checking permission: ' + line);
+		//logger.log('\r\n -> checking permission: ' + line);
 		if (agent == line) {
-			console.log('\r\n -> permission ok!');
+			logger.log('\r\n -> permission ok! for agent:' + agent);
 			next();
 			return;
 		}
 	}
 
+	logger.log('===========================');
+	logger.log('\r\n -> NO!!! permission');
+	logger.log('===========================');
 	var clientIPaddr = null;
 	var clientProxy = null;
 
-	console.log(request.headers);
-	console.log(request.url);
-
-	if (request.headers['via']) {
+	if (req.headers['via']) {
 		// yes
-		clientIPaddr = request.headers['x-forwarded-for'];
-		clientProxy = request.headers['via'];
+		clientIPaddr = req.headers['x-forwarded-for'];
+		clientProxy = req.headers['via'];
 	} else {
 		// no
-		clientIPaddr = request.connection.remoteAddress;
+		clientIPaddr = req.connection.remoteAddress;
 		clientProxy = 'none';
 	}
 
-	logger.log('rejecting client');
-	logger.log('Client : ' + request.headers['user-agent']);
+	logger.log('Rejecting client!');
+	logger.log('Client Agent : ' + req.headers['user-agent']);
 	logger.log('IP address ' + clientIPaddr + ' via proxy ' + clientProxy);
+	logger.log('Url: ' + req.url);
+	logger.log('============================================');
+	logger.log('--full details--');
+	logger.log(JSON.stringify(req.headers));
+	logger.log(req.url);
 	res.send('404');
 }
 

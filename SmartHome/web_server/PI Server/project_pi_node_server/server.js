@@ -142,7 +142,7 @@ app.get('/dbclear', whitelist, function (req, res) {
 	res.redirect('/');
 });
 
-app.get('/', function (req, res) {
+app.get('/', whitelist, function (req, res) {
 	logger.log("home request: " + req.headers['user-agent']);
 	locals.date = new Date().toLocaleDateString();
 	locals.remotes = remotesCollection.items;
@@ -150,7 +150,7 @@ app.get('/', function (req, res) {
 });
 
 /* The 404 Route (ALWAYS Keep this as the last route) */
-app.get('/*', function (req, res) {
+app.get('/*', whitelist, function (req, res) {
 	logger.log('404 ' + req.url);
 	res.render('404.ejs', locals);
 });
