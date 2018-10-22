@@ -17,7 +17,7 @@
 	//	});
 	//});
 
-	$('#lightson').on('click', function () {
+	$('#lightson').on('click', function (e) {
 		$.ajax({
 			url: "/all-lights-on",
 			context: document.body
@@ -32,7 +32,7 @@
 		}, 700);
 	});
 
-	$('#lightsoff').on('click', function () {
+	$('#lightsoff').on('click', function (e) {
 		$.ajax({
 			url: "/all-lights-off",
 			context: document.body
