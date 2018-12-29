@@ -6,7 +6,6 @@ The Arduino stations should be flashed with the attached custom bootloader to en
 
 This Project is managed in [trello](https://trello.com/b/8ODwVl67/diy-smart-home)
 
-<a href="https://trello.com/b/8ODwVl67/diy-smart-home" target="_blank">trello</a>
 
 -------- TBD DOCS LAYOUT EXAMPLES STATIONS---------
 
