@@ -3,6 +3,8 @@ Project Description
 ### Smart Home DIY ###
 This project is a DIY home automation, you can have multuple arduino stations controlling anything at you home from your phone (webpage currently)
 The Arduino stations should be flashed with the attached custom bootloader to enable remote upload of sketches from your development computer via RF24 (instead of tearing the wall apart each time)
+
+This Project is managed in trello: https://trello.com/b/8ODwVl67/diy-smart-home
 -------- TBD DOCS LAYOUT EXAMPLES STATIONS---------
 
 For mote info read here:
