@@ -8,9 +8,9 @@ For some more info please checkout my [blog](https://www.2bitornot2bit.com/blog/
 
 ## Flashing remote station from 'Visual Studio Code' script (task) TBD
 
-* `Connect Flasher to computer
-* `Ctrl+P and select Set remote Address this will set remote address to the Flasher.
-* `Upload sketch (this will forward the sketch to the remote station with the specified address)
+* Connect Flasher to computer
+* Ctrl+P and select Set remote Address this will set remote address to the Flasher.
+* Upload sketch (this will forward the sketch to the remote station with the specified address)
 * My [Youtube video](https://youtu.be/8xJqVeZkEw8) to get more info.
 * Also read [here](https://www.2bitornot2bit.com/blog/arduino-bootloader-with-ota-over-the-air-support-over-nrf24l01) to get a better understanding
 
