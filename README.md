@@ -1,3 +1,15 @@
+
+# Welcome to SmartHomeDIY
+
+This project is a DIY home automation framework.
+With this system you will be able to control your home lights, Air conditioning, TV, water heater any many more devices (IR, wall sockets, and light switches are only a few).
+The system is Arduino and Raspberry Pi based.
+You will be able to control your house from the internal WiFi network as well as from the Internet.</br>
+For internet access you will have to use a DNS service such as [no-ip](https://www.noip.com/free?gclid=Cj0KCQiAj4biBRC-ARIsAA4WaFiQeMklZ1TYbty1hthazzI8TCtS24gkB4rJyCSRdwulj-RzcK-DRw8aAsyBEALw_wcB&utm_campaign=free-dynamic-dns&utm_medium=cpc&utm_source=adwords&utm_term=free-dynamic-dns)
+
+You can have multiple Arduino stations controlling anything at you home.</br>
+Control is done via your phone, iPad or Desktop(currently using a web page only).
+
 # SmartHomeDIY, Control everything about your automated home
 
 Please see our full documentation [here](https://benchuk.github.io/SmartHomeDIY_Docs/)
