@@ -71,5 +71,20 @@
 			"println"
 		],
 		"workbench.colorTheme": "Popping and Locking",
+	},
+	"extensions": {
+		"recommendations": [
+			"platformio.platformio-ide",
+			"formulahendry.platformio",
+			"ms-vscode.cpptools",
+			"mitaki28.vscode-clang",
+			"austin.code-gnu-global",
+			"reloadedextensions.reloaded-cpp",
+			"waderyan.nodejs-extension-pack",
+			"leizongmin.node-module-intellisense",
+			"eg2.vscode-npm-script",
+			"christian-kohler.npm-intellisense",
+			"liximomo.sftp"
+		]
 	}
 }
