@@ -184,6 +184,12 @@ int counter = 0; //used for logic
 #define RF_SWITCH_LINE1 8
 #define SD_SWITCH_LINE1 A5 //due to collistion with bootloader
 
+void sendcode();
+void pulseIR(long microsecs);
+void recordircode();
+void printpulses(void);
+
+
 void updateRecLed(void)
 {
   if (!coderecorded)
