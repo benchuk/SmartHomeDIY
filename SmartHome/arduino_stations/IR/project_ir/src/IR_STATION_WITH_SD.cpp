@@ -173,10 +173,10 @@ File myFile;
 //uint8_t pulses[120][2];  // pair is high and low pulse - need to optimize
 uint16_t pulses[120][2];   // pair is high and low pulse - need to optimize
 uint16_t currentpulse = 0; // index for pulses we're storing
-// int IRledPin =  13;    // LED connected to digital pin 13
-#define IRledPin 7 // OUT LED connected to digital pin 7 - OUT PIN
-#define RecLedPin 5
-#define SendLedPin 6
+// int IR_LED_PIN =  13;    // LED connected to digital pin 13
+#define IR_LED_PIN 7 // OUT LED connected to digital pin 7 - OUT PIN
+#define REC_LED_PIN 5
+#define SEND_LED_PIN 6
 
 bool coderecorded = true;
 int counter = 0; //used for logic
@@ -194,11 +194,11 @@ void updateRecLed(void)
 {
   if (!coderecorded)
   {
-    digitalWrite(RecLedPin, HIGH);
+    digitalWrite(REC_LED_PIN, HIGH);
   }
   else
   {
-    digitalWrite(RecLedPin, LOW);
+    digitalWrite(REC_LED_PIN, LOW);
   }
 }
 
@@ -206,11 +206,11 @@ void updateSendLed(bool sending)
 {
   if (sending)
   {
-    digitalWrite(SendLedPin, HIGH);
+    digitalWrite(SEND_LED_PIN, HIGH);
   }
   else
   {
-    digitalWrite(SendLedPin, LOW);
+    digitalWrite(SEND_LED_PIN, LOW);
   }
 }
 
@@ -218,18 +218,18 @@ void reportLedCriticalError()
 {
   while (1)
   {
-    digitalWrite(SendLedPin, HIGH);
+    digitalWrite(SEND_LED_PIN, HIGH);
     delay(500);
-    digitalWrite(SendLedPin, LOW);
+    digitalWrite(SEND_LED_PIN, LOW);
     delay(500);
   }
 }
 
 void blinkReady()
 {
-  digitalWrite(RecLedPin, HIGH);
+  digitalWrite(REC_LED_PIN, HIGH);
   delay(50);
-  digitalWrite(RecLedPin, LOW);
+  digitalWrite(REC_LED_PIN, LOW);
   delay(50);
 }
 
@@ -310,11 +310,11 @@ void setup(void)
   pinMode(RF_SWITCH_LINE1, OUTPUT);
   pinMode(SD_SWITCH_LINE1, OUTPUT);
 
-  pinMode(IRledPin, OUTPUT);
+  pinMode(IR_LED_PIN, OUTPUT);
   pinMode(SelectSD, OUTPUT);
   pinMode(Radio_CSN, OUTPUT);
-  pinMode(RecLedPin, OUTPUT);
-  pinMode(SendLedPin, OUTPUT);
+  pinMode(REC_LED_PIN, OUTPUT);
+  pinMode(SEND_LED_PIN, OUTPUT);
 
   watchdogReset();
   Serial.begin(9600);
@@ -379,13 +379,13 @@ void setup(void)
   disableAllSpiDevices();
 
   watchdogReset();
-  digitalWrite(SendLedPin, HIGH);
+  digitalWrite(SEND_LED_PIN, HIGH);
   delay(1000);
-  digitalWrite(SendLedPin, LOW);
+  digitalWrite(SEND_LED_PIN, LOW);
   delay(500);
-  digitalWrite(SendLedPin, HIGH);
+  digitalWrite(SEND_LED_PIN, HIGH);
   delay(1000);
-  digitalWrite(SendLedPin, LOW);
+  digitalWrite(SEND_LED_PIN, LOW);
   watchdogReset();
   //Serial.println(F("Ready to decode IR!"));
 }
@@ -395,12 +395,12 @@ void setup(void)
 // while (1)
 // {
 //   PORTD |= B10000000;
-//   //digitalWrite(IRledPin, HIGH); // this takes about 3 microseconds to happen
+//   //digitalWrite(IR_LED_PIN, HIGH); // this takes about 3 microseconds to happen
 //   //   delayMicroseconds(8);         // hang out for 10 microseconds
 //   delayMicroseconds(14); // hang out for 10 microseconds
-//   //digitalWrite(IRledPin, LOW); // this also takes about 3 microseconds
+//   //digitalWrite(IR_LED_PIN, LOW); // this also takes about 3 microseconds
 //   PORTD ^= B10000000;
-//   //digitalWrite(IRledPin, LOW); // this takes about 3 microseconds to happen
+//   //digitalWrite(IR_LED_PIN, LOW); // this takes about 3 microseconds to happen
 //   //   delayMicroseconds(8);         // hang out for 10 microseconds
 //   delayMicroseconds(14); // hang out for 10 microseconds
 // }
@@ -575,7 +575,7 @@ void sendcode()
 
 /*********
       pulseIR
-      This procedure sends a 38KHz pulse to the IRledPin
+      This procedure sends a 38KHz pulse to the IR_LED_PIN
       for a certain # of microseconds. We'll use this whenever we need to send codes
  ********************/
 void pulseIR(long microsecs)
@@ -591,12 +591,12 @@ void pulseIR(long microsecs)
   {
 
     //   PORTD |= B10000000;
-    //   //digitalWrite(IRledPin, HIGH); // this takes about 3 microseconds to happen
+    //   //digitalWrite(IR_LED_PIN, HIGH); // this takes about 3 microseconds to happen
     //   //   delayMicroseconds(8);         // hang out for 10 microseconds
     //   delayMicroseconds(14); // hang out for 10 microseconds
-    //   //digitalWrite(IRledPin, LOW); // this also takes about 3 microseconds
+    //   //digitalWrite(IR_LED_PIN, LOW); // this also takes about 3 microseconds
     //   PORTD ^= B10000000;
-    //   //digitalWrite(IRledPin, LOW); // this takes about 3 microseconds to happen
+    //   //digitalWrite(IR_LED_PIN, LOW); // this takes about 3 microseconds to happen
     //   //   delayMicroseconds(8);         // hang out for 10 microseconds
     //   delayMicroseconds(14); // hang out for 10 microseconds
     // 38 kHz is about 13 microseconds high and 13 microseconds low
