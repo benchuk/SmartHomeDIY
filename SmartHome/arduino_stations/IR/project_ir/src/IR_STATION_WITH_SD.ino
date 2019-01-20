@@ -322,6 +322,7 @@ void setup(void)
   watchdogReset();
   enableRF();
   startRF();
+
   // Mirf.csnPin = Radio_CSN;
   // Mirf.spi = &MirfHardwareSpi;
   // Mirf.init();
