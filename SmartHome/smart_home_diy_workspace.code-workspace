@@ -84,7 +84,8 @@
 			"leizongmin.node-module-intellisense",
 			"eg2.vscode-npm-script",
 			"christian-kohler.npm-intellisense",
-			"liximomo.sftp"
+			"liximomo.sftp",
+			"qassimfarid.ejs-language-support"
 		]
 	}
 }
