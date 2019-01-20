@@ -1,4 +1,4 @@
-# Project Description
+# SmartHomeDIY, Control everything about your automated home
 
 Please see our full documentation [here](https://benchuk.github.io/SmartHomeDIY_Docs/)
 
