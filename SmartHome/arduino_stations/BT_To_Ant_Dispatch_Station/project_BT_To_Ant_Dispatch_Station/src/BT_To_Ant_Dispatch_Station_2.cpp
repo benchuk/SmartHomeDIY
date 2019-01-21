@@ -30,7 +30,6 @@ void setup()
   add[0] = 'x';
   add[1] = 'x';
   add[2] = 'x';
-  
 
   Serial.begin(115200);
   Serial.println("setup...");
@@ -97,7 +96,8 @@ void loop()
       Serial.println(cmd);
       Mirf.send((uint8_t *)cmd);
       newCommand = false;
-      while (Mirf.isSending());
+      while (Mirf.isSending())
+        ;
     }
   }
 }

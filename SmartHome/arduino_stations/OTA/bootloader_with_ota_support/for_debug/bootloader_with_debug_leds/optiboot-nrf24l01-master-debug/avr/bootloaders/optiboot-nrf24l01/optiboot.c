@@ -6,10 +6,10 @@
 /* Arduino-maintained version : See README.TXT            */
 /* http://code.google.com/p/arduino/                      */
 /*  It is the intent that changes not relevant to the     */
-/*  Arduino production envionment get moved from the      */
+/*  Arduino production enviornment get moved from the      */
 /*  optiboot project to the arduino project in "lumps."   */
 /*                                                        */
-/* Heavily optimised bootloader that is faster and        */
+/* Heavily optimized bootloader that is faster and        */
 /* smaller than the Arduino standard bootloader           */
 /*                                                        */
 /* Enhancements:                                          */
@@ -57,7 +57,7 @@
 /*     UART and Timer 1 are set to their reset state      */
 /*     SP points to RAMEND                                */
 /*                                                        */
-/* Code builds on code, libraries and optimisations from: */
+/* Code builds on code, libraries and optimizations from: */
 /*   stk500boot.c          by Jason P. Kyle               */
 /*   Arduino bootloader    http://arduino.cc              */
 /*   Spiff's 1K bootloader http://spiffie.org/know/arduino_1k_bootloader/bootloader.shtml */
@@ -148,7 +148,7 @@
 /* Version 5 was created at the time of the new Makefile  */
 /*  structure (Mar, 2013), even though no binaries changed*/
 /* It would be good if versions implemented outside the   */
-/*  official repository used an out-of-seqeunce version   */
+/*  official repository used an out-of-sequence version   */
 /*  number (like 104.6 if based on based on 4.5) to       */
 /*  prevent collisions.                                   */
 /*                                                        */
@@ -557,7 +557,7 @@ int main(void)
    */
   DDRD |= 3;
   PORTD &= ~3;
- 
+
 #ifndef SOFT_UART
 #if defined(__AVR_ATmega8__) || defined(__AVR_ATmega32__)
   UCSRA = _BV(U2X);                             //Double speed mode USART
@@ -596,7 +596,7 @@ int main(void)
   /* Forever loop */
   for (;;)
   {
-    DDRB  = DDRB  | 0B00000001 ; //set up pin 8 as output without touching other pins To allow IR station OTA
+    DDRB = DDRB | 0B00000001;   //set up pin 8 as output without touching other pins To allow IR station OTA
     PORTB = PORTB | 0B00000001; // set pin 8 HIGH without touching other pins
     /* get character from UART */
     ch = getch();
@@ -863,10 +863,10 @@ static uint8_t pkt_max_len = 32;
 
 static void radio_init(void)
 {
-  DDRB  = DDRB  | 0B00000001 ; //set up pin 8 as output without touching other pins To allow IR station OTA
+  DDRB = DDRB | 0B00000001;   //set up pin 8 as output without touching other pins To allow IR station OTA
   PORTB = PORTB | 0B00000001; // set pin 8 HIGH without touching other pins
-  DDRC = DDRC | 0B00100000 ; //set up pin A5 as output without touching other pins To allow IR station OTA
-  PORTC = PORTC  & 0B11011111; //set pin A5 LOW without touching other pins
+  DDRC = DDRC | 0B00100000;   //set up pin A5 as output without touching other pins To allow IR station OTA
+  PORTC = PORTC & 0B11011111; //set pin A5 LOW without touching other pins
 
   uint8_t addr[3];
 
@@ -876,7 +876,7 @@ static void radio_init(void)
     return;
 
   radio_present = 1;
-  
+
   /* BLINK # TIMES FOR DEBUG*/
   /***************************************************/
   // DDRD = DDRD | 0B10000000; //set up pin 7 as output without touching other pins FOR DEBUG
@@ -911,9 +911,9 @@ static void radio_init(void)
    * The remote end's address will be set according to the contents
    * of the first packet we receive from the master.
    */
-  addr[0] = eeprom_read(0);//48;//eeprom_read(0);
-  addr[1] = eeprom_read(1);//48;//eeprom_read(1);
-  addr[2] = eeprom_read(2);//54;//eeprom_read(2);
+  addr[0] = eeprom_read(0); //48;//eeprom_read(0);
+  addr[1] = eeprom_read(1); //48;//eeprom_read(1);
+  addr[2] = eeprom_read(2); //54;//eeprom_read(2);
   nrf24_set_rx_addr(addr);
 
   nrf24_rx_mode();
@@ -1000,7 +1000,7 @@ void putch(char ch)
 
 uint8_t getch(void)
 {
-  DDRB  = DDRB  | 0B00000001 ; //set up pin 8 as output without touching other pins To allow IR station OTA
+  DDRB = DDRB | 0B00000001;   //set up pin 8 as output without touching other pins To allow IR station OTA
   PORTB = PORTB | 0B00000001; // set pin 8 HIGH without touching other pins
   uint8_t ch;
 #ifdef RADIO_UART
@@ -1015,8 +1015,8 @@ uint8_t getch(void)
   //LED_PIN |= _BV(LED);
 #endif
 #endif
-DDRB  = DDRB  | 0B00000001 ; //set up pin 8 as output without touching other pins To allow IR station OTA
-PORTB = PORTB | 0B00000001; // set pin 8 HIGH without touching other pins
+  DDRB = DDRB | 0B00000001;   //set up pin 8 as output without touching other pins To allow IR station OTA
+  PORTB = PORTB | 0B00000001; // set pin 8 HIGH without touching other pins
 #ifdef SOFT_UART
   __asm__ __volatile__(
       "1: sbic  %[uartPin],%[uartBit]\n" // Wait for start edge
@@ -1042,7 +1042,7 @@ PORTB = PORTB | 0B00000001; // set pin 8 HIGH without touching other pins
 #else
   while (1)
   {
-    DDRB  = DDRB  | 0B00000001 ; //set up pin 8 as output without touching other pins To allow IR station OTA
+    DDRB = DDRB | 0B00000001;   //set up pin 8 as output without touching other pins To allow IR station OTA
     PORTB = PORTB | 0B00000001; // set pin 8 HIGH without touching other pins
     if (UART_SRA & _BV(RXC0))
     {
@@ -1064,8 +1064,8 @@ PORTB = PORTB | 0B00000001; // set pin 8 HIGH without touching other pins
     }
 
 #ifdef RADIO_UART
-  DDRB  = DDRB  | 0B00000001 ; //set up pin 8 as output without touching other pins To allow IR station OTA
-  PORTB = PORTB | 0B00000001; // set pin 8 HIGH without touching other pins
+    DDRB = DDRB | 0B00000001;   //set up pin 8 as output without touching other pins To allow IR station OTA
+    PORTB = PORTB | 0B00000001; // set pin 8 HIGH without touching other pins
     if (radio_present && (pkt_len || nrf24_rx_fifo_data()))
     {
       watchdogReset();
@@ -1087,11 +1087,11 @@ PORTB = PORTB | 0B00000001; // set pin 8 HIGH without touching other pins
         nrf24_rx_read(pkt_buf, &pkt_len);
         pkt_start = START;
 
-        DDRB  = DDRB  | 0B00000001 ; //set up pin 8 as output without touching other pins To allow IR station OTA
+        DDRB = DDRB | 0B00000001;   //set up pin 8 as output without touching other pins To allow IR station OTA
         PORTB = PORTB | 0B00000001; // set pin 8 HIGH without touching other pins
         if (!radio_mode && pkt_len >= 4)
         {
-          
+
           /* BLINK # TIMES FOR DEBUG*/
           /***************************************************/
           // DDRD = DDRD | 0B10000000; //set up pin 7 as output without touching other pins FOR DEBUG
@@ -1107,7 +1107,7 @@ PORTB = PORTB | 0B00000001; // set pin 8 HIGH without touching other pins
           // PORTD = PORTD | 0B10000000; // sets digital pin 7 HIGH without touching other pins
           // my_delay(500);
           // PORTD = PORTD & 0B01111111; // sets digital pin 7 LOW without touching other pins
-                                      /***************************************************/
+          /***************************************************/
           /*
            * If this is the first packet we receive, the first three bytes
            * should contain the sender's address.
@@ -1153,7 +1153,7 @@ PORTB = PORTB | 0B00000001; // set pin 8 HIGH without touching other pins
 #endif
 #endif
 
-  DDRB  = DDRB  | 0B00000001 ; //set up pin 8 as output without touching other pins To allow IR station OTA
+  DDRB = DDRB | 0B00000001;   //set up pin 8 as output without touching other pins To allow IR station OTA
   PORTB = PORTB | 0B00000001; // set pin 8 HIGH without touching other pins
   return ch;
 }
@@ -1197,7 +1197,7 @@ void wait_timeout(void)
 void verifySpace(void)
 {
   if (getch() != CRC_EOP)
-    wait_timeout();//TBD - try remove?
+    wait_timeout(); //TBD - try remove?
   putch(STK_INSYNC);
 }
 

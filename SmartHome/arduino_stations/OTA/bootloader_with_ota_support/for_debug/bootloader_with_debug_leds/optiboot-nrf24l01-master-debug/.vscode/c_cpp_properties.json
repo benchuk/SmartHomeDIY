@@ -1,0 +1,15 @@
+{
+    "configurations": [{
+        "name": "Mac",
+        "includePath": ["${workspaceFolder}/**", "${workspaceFolder}/arduino_stations/OTA/bootloader_with_ota_support/for_debug/bootloader_with_debug_leds/optiboot-nrf24l01-master-debug/avr/bootloaders/optiboot-nrf24l01/**"],
+        "defines": [],
+        "macFrameworkPath": [
+            "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.14.sdk/System/Library/Frameworks"
+        ],
+        "compilerPath": "/usr/bin/clang",
+        "cStandard": "c11",
+        "cppStandard": "c++17",
+        "intelliSenseMode": "clang-x64"
+    }],
+    "version": 4
+}

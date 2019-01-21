@@ -189,7 +189,6 @@ void pulseIR(long microsecs);
 void recordircode();
 void printpulses(void);
 
-
 void updateRecLed(void)
 {
   if (!coderecorded)

@@ -65,15 +65,18 @@
 		},
 		"cSpell.words": [
 			"Arduino",
+			"Atmel",
 			"Diecimila",
 			"Duemilanove",
 			"EEPROM",
+			"Luminet",
 			"Mirf",
 			"Optiboot",
+			"Ttiny",
 			"millis",
 			"println"
 		],
-		"workbench.colorTheme": "Popping and Locking",
+		"workbench.colorTheme": "Popping and Locking"
 	},
 	"extensions": {
 		"recommendations": [
