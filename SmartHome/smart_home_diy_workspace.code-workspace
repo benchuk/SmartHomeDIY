@@ -65,8 +65,11 @@
 		},
 		"cSpell.words": [
 			"Arduino",
+			"Diecimila",
+			"Duemilanove",
 			"EEPROM",
 			"Mirf",
+			"Optiboot",
 			"millis",
 			"println"
 		],
