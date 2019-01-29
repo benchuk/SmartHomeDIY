@@ -5,16 +5,18 @@
  */
 #include "nRF24L01.h"
 
-static inline void nrf24_csn(uint8_t level) {
+static inline void nrf24_csn(uint8_t level)
+{
 	if (level)
 		CSN_PORT |= CSN_PIN;
 	else
 		CSN_PORT &= ~CSN_PIN;
 }
 
-static void delay8(uint16_t count) {
-	while (count --)
-		__asm__ __volatile__ (
+static void delay8(uint16_t count)
+{
+	while (count--)
+		__asm__ __volatile__(
 			"\tnop\n"
 			"\tnop\n"
 			"\tnop\n"
@@ -22,14 +24,14 @@ static void delay8(uint16_t count) {
 			"\tnop\n"
 			"\tnop\n"
 			"\tnop\n"
-			"\twdr\n"
-		);
+			"\twdr\n");
 }
 #ifndef TIMER
-#define my_delay(msec) delay8((int) (F_CPU / 8000L * (msec)))
+#define my_delay(msec) delay8((int)(F_CPU / 8000L * (msec)))
 #endif
 
-static inline void nrf24_ce(uint8_t level) {
+static inline void nrf24_ce(uint8_t level)
+{
 	/*
 	 * Make sure the minimum time period has passed since the previous
 	 * CE edge for the new edge to be detected.  The spec doesn't say
@@ -49,9 +51,11 @@ static inline void nrf24_ce(uint8_t level) {
 	static uint32_t prev_ce_edge;
 
 	if (level)
-		while (timer_read() - prev_ce_edge <= F_CPU / 100000);
+		while (timer_read() - prev_ce_edge <= F_CPU / 100000)
+			;
 	else
-		while (timer_read() - prev_ce_edge <= F_CPU / 5000);
+		while (timer_read() - prev_ce_edge <= F_CPU / 5000)
+			;
 #else
 	/* This should take at least 10us (rising) or 200us (falling) */
 	if (level)
@@ -70,7 +74,8 @@ static inline void nrf24_ce(uint8_t level) {
 #endif
 }
 
-static uint8_t nrf24_read_reg(uint8_t addr) {
+static uint8_t nrf24_read_reg(uint8_t addr)
+{
 	uint8_t ret;
 
 	nrf24_csn(0);
@@ -83,7 +88,8 @@ static uint8_t nrf24_read_reg(uint8_t addr) {
 	return ret;
 }
 
-static void nrf24_write_reg(uint8_t addr, uint8_t value) {
+static void nrf24_write_reg(uint8_t addr, uint8_t value)
+{
 	nrf24_csn(0);
 
 	spi_transfer(addr | W_REGISTER);
@@ -92,7 +98,8 @@ static void nrf24_write_reg(uint8_t addr, uint8_t value) {
 	nrf24_csn(1);
 }
 
-static uint8_t nrf24_read_status(void) {
+static uint8_t nrf24_read_status(void)
+{
 	uint8_t ret;
 
 	nrf24_csn(0);
@@ -104,7 +111,8 @@ static uint8_t nrf24_read_status(void) {
 	return ret;
 }
 
-static void nrf24_write_addr_reg(uint8_t addr, uint8_t value[3]) {
+static void nrf24_write_addr_reg(uint8_t addr, uint8_t value[3])
+{
 	nrf24_csn(0);
 
 	spi_transfer(addr | W_REGISTER);
@@ -115,7 +123,8 @@ static void nrf24_write_addr_reg(uint8_t addr, uint8_t value[3]) {
 	nrf24_csn(1);
 }
 
-static uint8_t nrf24_tx_flush(void) {
+static uint8_t nrf24_tx_flush(void)
+{
 	uint8_t ret;
 
 	nrf24_csn(0);
@@ -127,15 +136,17 @@ static uint8_t nrf24_tx_flush(void) {
 	return ret;
 }
 
-static void nrf24_delay(void) {
+static void nrf24_delay(void)
+{
 	my_delay(5);
 }
 
 /* Enable 16-bit CRC */
 #define CONFIG_VAL ((1 << MASK_RX_DR) | (1 << MASK_TX_DS) | \
-		(1 << MASK_MAX_RT) | (1 << CRCO) | (1 << EN_CRC))
+					(1 << MASK_MAX_RT) | (1 << CRCO) | (1 << EN_CRC))
 
-static int nrf24_init(void) {
+static int nrf24_init(void)
+{
 	/* CE and CSN are outputs */
 	CE_DDR |= CE_PIN;
 	CSN_DDR |= CSN_PIN;
@@ -169,11 +180,13 @@ static int nrf24_init(void) {
 	return 0;
 }
 
-static void nrf24_set_rx_addr(uint8_t addr[3]) {
+static void nrf24_set_rx_addr(uint8_t addr[3])
+{
 	nrf24_write_addr_reg(RX_ADDR_P1, addr);
 }
 
-static void nrf24_set_tx_addr(uint8_t addr[3]) {
+static void nrf24_set_tx_addr(uint8_t addr[3])
+{
 	nrf24_write_addr_reg(TX_ADDR, addr);
 	/* The pipe 0 address is the address we listen on for ACKs */
 	nrf24_write_addr_reg(RX_ADDR_P0, addr);
@@ -181,7 +194,8 @@ static void nrf24_set_tx_addr(uint8_t addr[3]) {
 
 static uint8_t nrf24_in_rx = 0;
 
-static void nrf24_rx_mode(void) {
+static void nrf24_rx_mode(void)
+{
 	if (nrf24_in_rx)
 		return;
 
@@ -200,13 +214,17 @@ static void nrf24_rx_mode(void) {
  * Otherwise the chip is powered off.  In Standby a new operation will
  * start faster but more current is consumed while waiting.
  */
-static void nrf24_idle_mode(uint8_t standby) {
-	if (nrf24_in_rx) {
+static void nrf24_idle_mode(uint8_t standby)
+{
+	if (nrf24_in_rx)
+	{
 		nrf24_ce(0);
 
 		if (!standby)
 			nrf24_write_reg(CONFIG, CONFIG_VAL);
-	} else {
+	}
+	else
+	{
 		if (standby)
 			nrf24_write_reg(CONFIG, CONFIG_VAL | (1 << PWR_UP));
 		else
@@ -216,15 +234,18 @@ static void nrf24_idle_mode(uint8_t standby) {
 	nrf24_in_rx = 0;
 }
 
-static uint8_t nrf24_rx_new_data(void) {
+static uint8_t nrf24_rx_new_data(void)
+{
 	return (nrf24_read_status() >> RX_DR) & 1;
 }
 
-static uint8_t nrf24_rx_fifo_data(void) {
+static uint8_t nrf24_rx_fifo_data(void)
+{
 	return !(nrf24_read_reg(FIFO_STATUS) & (1 << RX_EMPTY));
 }
 
-static uint8_t nrf24_rx_data_avail(void) {
+static uint8_t nrf24_rx_data_avail(void)
+{
 	uint8_t ret;
 
 	nrf24_csn(0);
@@ -237,7 +258,8 @@ static uint8_t nrf24_rx_data_avail(void) {
 	return ret;
 }
 
-static void nrf24_rx_read(uint8_t *buf, uint8_t *pkt_len) {
+static void nrf24_rx_read(uint8_t *buf, uint8_t *pkt_len)
+{
 	uint8_t len;
 
 	nrf24_write_reg(STATUS, 1 << RX_DR);
@@ -248,19 +270,21 @@ static void nrf24_rx_read(uint8_t *buf, uint8_t *pkt_len) {
 	nrf24_csn(0);
 
 	spi_transfer(R_RX_PAYLOAD);
-	while (len --)
-		*buf ++ = spi_transfer(0);
+	while (len--)
+		*buf++ = spi_transfer(0);
 
 	nrf24_csn(1);
 }
 
-static void nrf24_tx(uint8_t *buf, uint8_t len) {
+static void nrf24_tx(uint8_t *buf, uint8_t len)
+{
 	/*
 	 * The user may have put the chip out of Rx mode to perform a
 	 * few Tx operations in a row, or they may have left the chip
 	 * in Rx which we'll switch back on when this Tx is done.
 	 */
-	if (nrf24_in_rx) {
+	if (nrf24_in_rx)
+	{
 		nrf24_idle_mode(1);
 
 		nrf24_in_rx = 1;
@@ -288,8 +312,8 @@ static void nrf24_tx(uint8_t *buf, uint8_t len) {
 	nrf24_csn(0);
 
 	spi_transfer(W_TX_PAYLOAD);
-	while (len --)
-		spi_transfer(*buf ++);
+	while (len--)
+		spi_transfer(*buf++);
 
 	nrf24_csn(1);
 
@@ -300,7 +324,8 @@ static void nrf24_tx(uint8_t *buf, uint8_t len) {
 	nrf24_ce(1);
 }
 
-static int nrf24_tx_result_wait(void) {
+static int nrf24_tx_result_wait(void)
+{
 	uint8_t status;
 	uint16_t count = 10000; /* ~100ms timeout */
 
@@ -310,15 +335,17 @@ static int nrf24_tx_result_wait(void) {
 	nrf24_ce(0);
 
 	while ((!(status & (1 << TX_DS)) || (status & (1 << TX_FULL))) &&
-			!(status & (1 << MAX_RT)) && --count) {
-		delay8((int) (F_CPU / 8000L * 0.01));
+		   !(status & (1 << MAX_RT)) && --count)
+	{
+		delay8((int)(F_CPU / 8000L * 0.01));
 		status = nrf24_read_status();
 	}
 
 	/* Reset status bits */
 	nrf24_write_reg(STATUS, (1 << MAX_RT) | (1 << TX_DS));
 
-	if (nrf24_in_rx) {
+	if (nrf24_in_rx)
+	{
 		nrf24_in_rx = 0;
 
 		nrf24_rx_mode();
