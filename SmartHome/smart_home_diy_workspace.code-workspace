@@ -76,7 +76,8 @@
 			"millis",
 			"println"
 		],
-		"workbench.colorTheme": "Popping and Locking"
+		"workbench.colorTheme": "Popping and Locking",
+		"editor.formatOnSave": true
 	},
 	"extensions": {
 		"recommendations": [

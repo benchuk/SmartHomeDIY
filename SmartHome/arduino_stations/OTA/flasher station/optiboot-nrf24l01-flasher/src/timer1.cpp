@@ -11,10 +11,11 @@
 #include "timer1.h"
 
 #ifndef NULL
-# define NULL 0
+#define NULL 0
 #endif
 
-void timer_init(void) {
+void timer_init(void)
+{
 	TCCR1A = 0x00;
 	TCCR1B = 0x01;
 	TIMSK1 = 0x01;
@@ -27,27 +28,31 @@ static uint32_t seconds = 0;
 static void update_timeouts(void);
 
 /* Always called with interrupts disabled */
-static void timer_overflow(void) {
+static void timer_overflow(void)
+{
 	uint32_t new_val;
 
-	timer_cycles ++;
+	timer_cycles++;
 
-	new_val = (uint32_t) timer_cycles << 16;
-	if (new_val >= last_sec + F_CPU || unlikely(new_val < last_sec)) {
+	new_val = (uint32_t)timer_cycles << 16;
+	if (new_val >= last_sec + F_CPU || unlikely(new_val < last_sec))
+	{
 		last_sec += F_CPU;
-		seconds ++;
+		seconds++;
 	}
 
 	update_timeouts();
 }
 
 /* Timekeeping */
-ISR(TIMER1_OVF_vect) {
+ISR(TIMER1_OVF_vect)
+{
 	timer_overflow();
 }
 
 /* Read current time in cpu cycles (way more complex than it should be..) */
-uint32_t timer_read(void) {
+uint32_t timer_read(void)
+{
 	/*
 	 * The simple, but not 100% race safe version, not even in interrupt
 	 * context, is:
@@ -61,7 +66,8 @@ uint32_t timer_read(void) {
 	 * ..but for some reason it also happens when they're enabled, is
 	 * that a cpu bug?
 	 */
-	while (unlikely((TIFR1 & 1) && !(SREG & 0x80))) {
+	while (unlikely((TIFR1 & 1) && !(SREG & 0x80)))
+	{
 		TIFR1 |= 1;
 
 		timer_overflow();
@@ -79,16 +85,18 @@ uint32_t timer_read(void) {
 	 * which is the only "interesting" scenario.  Compensate for that.
 	 */
 	if (unlikely((TIFR1 & 1) && lo < 0x8000))
-		hi ++;
+		hi++;
 
 	SREG = sreg;
-	return ((uint32_t) hi << 16) | lo;
+	return ((uint32_t)hi << 16) | lo;
 }
 
 /* Burn some cycles */
-void my_delay(uint16_t msecs) {
-	uint32_t end = timer_read() + (uint32_t) msecs * (F_CPU / 1000);
-	while (timer_read() < end);
+void my_delay(uint16_t msecs)
+{
+	uint32_t end = timer_read() + (uint32_t)msecs * (F_CPU / 1000);
+	while (timer_read() < end)
+		;
 }
 
 /*
@@ -107,9 +115,10 @@ void my_delay(uint16_t msecs) {
  * could be given the comfort of interrupts disabled which would simplify
  * the code here a little.
  */
-#define MAX_TIMEOUTS	16
+#define MAX_TIMEOUTS 16
 
-static struct timeout_s {
+static struct timeout_s
+{
 	uint32_t when;
 	void (*callback)(void);
 	uint8_t next;
@@ -117,16 +126,18 @@ static struct timeout_s {
 static uint8_t next = 0xff;
 static uint8_t k = 0;
 
-void set_timeout(uint32_t when, void (*callback)(void)) {
+void set_timeout(uint32_t when, void (*callback)(void))
+{
 	uint8_t i, *j, sreg;
 
 	sreg = SREG;
 	cli();
 
 	for (i = next, j = &next; i != 0xff; j = &timeouts[i].next, i = *j)
-		if ((uint32_t) (when - timeouts[i].when) >> 31)
+		if ((uint32_t)(when - timeouts[i].when) >> 31)
 			break;
-	for (; timeouts[k].callback; k = (k + 1) & (MAX_TIMEOUTS - 1));
+	for (; timeouts[k].callback; k = (k + 1) & (MAX_TIMEOUTS - 1))
+		;
 	timeouts[k].when = when;
 	timeouts[k].callback = callback;
 	timeouts[k].next = i;
@@ -141,7 +152,8 @@ void set_timeout(uint32_t when, void (*callback)(void)) {
 static volatile uint8_t updating = 0;
 static volatile uint8_t updated;
 
-ISR(TIMER1_COMPA_vect) {
+ISR(TIMER1_COMPA_vect)
+{
 	uint32_t now;
 
 	TIMSK1 = 0x01;
@@ -150,7 +162,8 @@ ISR(TIMER1_COMPA_vect) {
 	updating = 1;
 #endif
 
-	do {
+	do
+	{
 		void (*cb)(void) = timeouts[next].callback;
 		timeouts[next].callback = NULL;
 		next = timeouts[next].next;
@@ -161,7 +174,7 @@ ISR(TIMER1_COMPA_vect) {
 		cli();
 
 		now = timer_read();
-	} while (next != 0xff && (uint32_t) (timeouts[next].when - now) >> 31);
+	} while (next != 0xff && (uint32_t)(timeouts[next].when - now) >> 31);
 
 	updating = 0;
 	if (!updated)
@@ -178,7 +191,8 @@ ISR(TIMER1_COMPA_vect) {
 #define MIN_DELAY 60
 
 /* Interrupts disabled here */
-static void update_timeouts(void) {
+static void update_timeouts(void)
+{
 	int16_t diff;
 	uint16_t ocra, tcnt;
 
@@ -202,7 +216,7 @@ static void update_timeouts(void) {
 	ocra = timeouts[next].when;
 	tcnt = TCNT1;
 	if (unlikely(diff || unlikely(ocra < MIN_DELAY ||
-					ocra - MIN_DELAY < tcnt)))
+								  ocra - MIN_DELAY < tcnt)))
 		ocra = tcnt + MIN_DELAY;
 	OCR1A = ocra;
 	TIFR1 |= 0x02; /* Why is this needed? CPU bug? */
