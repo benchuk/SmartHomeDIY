@@ -96,7 +96,9 @@
 			"eg2.vscode-npm-script",
 			"christian-kohler.npm-intellisense",
 			"liximomo.sftp",
-			"qassimfarid.ejs-language-support"
+			"qassimfarid.ejs-language-support",
+			"vector-of-bool.cmake-tools",
+			"streetsidesoftware.code-spell-checker"
 		]
 	}
 }
