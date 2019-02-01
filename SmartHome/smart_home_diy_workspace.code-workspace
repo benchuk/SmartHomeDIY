@@ -77,12 +77,16 @@
 			"println"
 		],
 		"workbench.colorTheme": "Popping and Locking",
-		"editor.formatOnSave": true
+		"editor.formatOnSave": true,
+		"editor.formatOnPaste": false,
+		"editor.autoClosingBrackets": "never"
 	},
 	"extensions": {
 		"recommendations": [
 			"platformio.platformio-ide",
 			"formulahendry.platformio",
+			"chingson.hycon-assembly",
+			"mateuszchudyk.hexinspector",
 			"ms-vscode.cpptools",
 			"mitaki28.vscode-clang",
 			"austin.code-gnu-global",
