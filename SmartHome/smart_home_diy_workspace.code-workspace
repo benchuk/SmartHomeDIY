@@ -79,7 +79,9 @@
 		"workbench.colorTheme": "Popping and Locking",
 		"editor.formatOnSave": true,
 		"editor.formatOnPaste": false,
-		"editor.autoClosingBrackets": "never"
+		"editor.autoClosingBrackets": "never",
+		"workbench.editor.highlightModifiedTabs": true,
+		"explorer.sortOrder": "type"
 	},
 	"extensions": {
 		"recommendations": [
