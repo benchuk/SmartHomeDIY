@@ -81,7 +81,8 @@
 		"editor.formatOnPaste": false,
 		"editor.autoClosingBrackets": "never",
 		"workbench.editor.highlightModifiedTabs": true,
-		"explorer.sortOrder": "type"
+		"explorer.sortOrder": "type",
+		"workbench.list.keyboardNavigation": "filter",
 	},
 	"extensions": {
 		"recommendations": [
