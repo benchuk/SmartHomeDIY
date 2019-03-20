@@ -1,0 +1,32 @@
+// AUTOMATICALLY GENERATED FILE. PLEASE DO NOT MODIFY IT MANUALLY
+
+// PIO Unified Debugger
+//
+// Documentation: https://docs.platformio.org/page/plus/debugging.html
+// Configuration: https://docs.platformio.org/page/projectconf/section_env_debug.html
+
+{
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "type": "platformio-debug",
+            "request": "launch",
+            "name": "PIO Debug",
+            "executable": "c:/Users/Ben/Documents/git/SmartHomeDIY/SmartHome/arduino_stations/OTA/remote_station_for_ota_tests/ota_remote-station_working_with_mirf_lib/remote_station_for_ota_tests/.pioenvs/nanoatmega328/firmware.elf",
+            "toolchainBinDir": "C:/Users/Ben/.platformio/packages/toolchain-atmelavr/bin",
+            "preLaunchTask": {
+                "type": "PlatformIO",
+                "task": "Pre-Debug"
+            },
+            "internalConsoleOptions": "openOnSessionStart"
+        },
+        {
+            "type": "platformio-debug",
+            "request": "launch",
+            "name": "PIO Debug (skip Pre-Debug)",
+            "executable": "c:/Users/Ben/Documents/git/SmartHomeDIY/SmartHome/arduino_stations/OTA/remote_station_for_ota_tests/ota_remote-station_working_with_mirf_lib/remote_station_for_ota_tests/.pioenvs/nanoatmega328/firmware.elf",
+            "toolchainBinDir": "C:/Users/Ben/.platformio/packages/toolchain-atmelavr/bin",
+            "internalConsoleOptions": "openOnSessionStart"
+        }
+    ]
+}

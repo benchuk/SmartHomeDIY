@@ -1,0 +1,63 @@
+{
+    "!!! WARNING !!!": "PLEASE DO NOT MODIFY THIS FILE! USE https://docs.platformio.org/page/projectconf/section_env_build.html#build-flags",
+    "configurations": [
+        {
+            "name": "Win32",
+            "includePath": [
+                "C:/Users/Ben/.platformio/packages/framework-arduinoavr/cores/arduino",
+                "C:/Users/Ben/.platformio/packages/framework-arduinoavr/variants/eightanaloginputs",
+                "c:/Users/Ben/Documents/git/SmartHomeDIY/SmartHome/arduino_stations/libraries/Mirf",
+                "C:/Users/Ben/.platformio/packages/framework-arduinoavr/libraries/__cores__/arduino/EEPROM/src",
+                "C:/Users/Ben/.platformio/packages/framework-arduinoavr/libraries/__cores__/arduino/SPI/src",
+                "c:/Users/Ben/Documents/git/SmartHomeDIY/SmartHome/arduino_stations/libraries/.vscode",
+                "c:/Users/Ben/Documents/git/SmartHomeDIY/SmartHome/arduino_stations/libraries/FastLED",
+                "c:/Users/Ben/Documents/git/SmartHomeDIY/SmartHome/arduino_stations/libraries/MaxMatrix",
+                "c:/Users/Ben/Documents/git/SmartHomeDIY/SmartHome/arduino_stations/libraries/PinChangeInt",
+                "c:/Users/Ben/Documents/git/SmartHomeDIY/SmartHome/arduino_stations/libraries/common",
+                "C:/Users/Ben/.platformio/packages/framework-arduinoavr/libraries/__cores__/arduino/HID/src",
+                "C:/Users/Ben/.platformio/packages/framework-arduinoavr/libraries/__cores__/arduino/SoftwareSerial/src",
+                "C:/Users/Ben/.platformio/packages/framework-arduinoavr/libraries/__cores__/arduino/Wire/src",
+                "C:/Users/Ben/.platformio/packages/tool-unity",
+                "c:/Users/Ben/Documents/git/SmartHomeDIY/SmartHome/arduino_stations/OTA/remote_station_for_ota_tests/ota_remote-station_working_with_mirf_lib/remote_station_for_ota_tests/include",
+                "c:/Users/Ben/Documents/git/SmartHomeDIY/SmartHome/arduino_stations/OTA/remote_station_for_ota_tests/ota_remote-station_working_with_mirf_lib/remote_station_for_ota_tests/src",
+                ""
+            ],
+            "browse": {
+                "limitSymbolsToIncludedHeaders": true,
+                "databaseFilename": "${workspaceRoot}/.vscode/.browse.c_cpp.db",
+                "path": [
+                    "C:/Users/Ben/.platformio/packages/framework-arduinoavr/cores/arduino",
+                    "C:/Users/Ben/.platformio/packages/framework-arduinoavr/variants/eightanaloginputs",
+                    "c:/Users/Ben/Documents/git/SmartHomeDIY/SmartHome/arduino_stations/libraries/Mirf",
+                    "C:/Users/Ben/.platformio/packages/framework-arduinoavr/libraries/__cores__/arduino/EEPROM/src",
+                    "C:/Users/Ben/.platformio/packages/framework-arduinoavr/libraries/__cores__/arduino/SPI/src",
+                    "c:/Users/Ben/Documents/git/SmartHomeDIY/SmartHome/arduino_stations/libraries/.vscode",
+                    "c:/Users/Ben/Documents/git/SmartHomeDIY/SmartHome/arduino_stations/libraries/FastLED",
+                    "c:/Users/Ben/Documents/git/SmartHomeDIY/SmartHome/arduino_stations/libraries/MaxMatrix",
+                    "c:/Users/Ben/Documents/git/SmartHomeDIY/SmartHome/arduino_stations/libraries/PinChangeInt",
+                    "c:/Users/Ben/Documents/git/SmartHomeDIY/SmartHome/arduino_stations/libraries/common",
+                    "C:/Users/Ben/.platformio/packages/framework-arduinoavr/libraries/__cores__/arduino/HID/src",
+                    "C:/Users/Ben/.platformio/packages/framework-arduinoavr/libraries/__cores__/arduino/SoftwareSerial/src",
+                    "C:/Users/Ben/.platformio/packages/framework-arduinoavr/libraries/__cores__/arduino/Wire/src",
+                    "C:/Users/Ben/.platformio/packages/tool-unity",
+                    "c:/Users/Ben/Documents/git/SmartHomeDIY/SmartHome/arduino_stations/OTA/remote_station_for_ota_tests/ota_remote-station_working_with_mirf_lib/remote_station_for_ota_tests/include",
+                    "c:/Users/Ben/Documents/git/SmartHomeDIY/SmartHome/arduino_stations/OTA/remote_station_for_ota_tests/ota_remote-station_working_with_mirf_lib/remote_station_for_ota_tests/src",
+                    ""
+                ]
+            },
+            "defines": [
+                "PLATFORMIO=30604",
+                "ARDUINO_AVR_NANO",
+                "F_CPU=16000000L",
+                "ARDUINO_ARCH_AVR",
+                "ARDUINO=10805",
+                "__AVR_ATmega328P__",
+                ""
+            ],
+            "intelliSenseMode": "clang-x64",
+            "cStandard": "c11",
+            "cppStandard": "c++11",
+            "compilerPath": "C:/Users/Ben/.platformio/packages/toolchain-atmelavr/bin/avr-gcc.exe -mmcu=atmega328p"
+        }
+    ]
+}
