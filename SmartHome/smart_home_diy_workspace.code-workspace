@@ -53,7 +53,7 @@
 			"PLATFORMIO_CALLER": "vscode"
 		},
 		"terminal.integrated.env.osx": {
-			"PATH": "/Users/ben/.platformio/penv/bin:/Users/ben/.platformio/penv:/Users/ben/perl5/perlbrew/bin:/Users/ben/perl5/perlbrew/perls/perl-5.16.0/bin:/opt/local/bin:/opt/local/sbin:/Users/ben/.jenv/bin:/Library/Frameworks/Python.framework/Versions/2.7/bin:/Library/Frameworks/Python.framework/Versions/2.7/bin:/Library/Frameworks/Python.framework/Versions/3.4/bin:/Library/Frameworks/Python.framework/Versions/3.4/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin:/Users/ben/Documents/everysight/android/tools:/Users/ben/Documents/everysight/android/platform-tools:/opt/X11/bin:/Library/Frameworks/Mono.framework/Versions/Current/Commands:/usr/local/CrossPack-AVR/bin:/Applications/Wireshark.app/Contents/MacOS",
+			"PATH": "/Users/benamsallem/.platformio/penv/bin:/Users/benamsallem/.platformio/penv:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/Library/Frameworks/Mono.framework/Versions/Current/Commands",
 			"PLATFORMIO_CALLER": "vscode"
 		},
 		"git.ignoreLimitWarning": true,
