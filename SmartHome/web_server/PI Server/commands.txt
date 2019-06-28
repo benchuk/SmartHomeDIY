@@ -1,6 +1,7 @@
 connect to process console
 =============================
 sudo strace -p1234 -s9999 -e write
+sudo strace -p2464 -s9999 -e write
 
 
 see running process
