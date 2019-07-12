@@ -1,15 +1,17 @@
 {
-    "version": "2.0.0",
-    "tasks": [{
-        "label": "sshpi",
-        "type": "shell",
-        "command": "ssh pi@10.100.102.11",
-        "windows": {
-            "command": "ssh pi@10.100.102.11"
-        },
-        "presentation": {
-            "reveal": "always",
-            "panel": "new"
-        }
-    }]
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "sshpi",
+      "type": "shell",
+      "command": "ssh pi@10.100.102.21",
+      "windows": {
+        "command": "ssh pi@10.100.102.21"
+      },
+      "presentation": {
+        "reveal": "always",
+        "panel": "new"
+      }
+    }
+  ]
 }

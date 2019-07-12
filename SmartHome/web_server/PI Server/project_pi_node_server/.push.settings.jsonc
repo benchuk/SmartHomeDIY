@@ -1,26 +1,26 @@
 // Push settings file - first generated on Mon Oct 01 2018 00:09:22 GMT+0300 (Jerusalem Daylight Time)
 // Note: Optional items are commented out and can be uncommented if you wish to set them
 {
-	"env": "default",
-	"default": {
-		"service": "SFTP",
-		"options": {
-			// "timeZoneOffset": 0,
-			// "testCollisionTimeDiffs": true,
-			// "collisionUploadAction": null,
-			// "collisionDownloadAction": null,
-			// "followSymlinks": false,
-			"host": "10.100.102.11",
-			// "port": 22,
-			"username": "pi",
-			"password": "ben2028",
-			// "privateKey": "",
-			// "keyPassphrase": "",
-			"root": "/home/pi/serial_site/node-express-twitter-bootstrap",
-			// "keepaliveInterval": 3000,
-			// "debug": false,
-			// "fileMode": "",
-			// "sshGateway": null
-		}
-	}
+  "env": "default",
+  "default": {
+    "service": "SFTP",
+    "options": {
+      // "timeZoneOffset": 0,
+      // "testCollisionTimeDiffs": true,
+      // "collisionUploadAction": null,
+      // "collisionDownloadAction": null,
+      // "followSymlinks": false,
+      "host": "10.100.102.21",
+      // "port": 22,
+      "username": "pi",
+      "password": "ben2028",
+      // "privateKey": "",
+      // "keyPassphrase": "",
+      "root": "/home/pi/serial_site/node-express-twitter-bootstrap"
+      // "keepaliveInterval": 3000,
+      // "debug": false,
+      // "fileMode": "",
+      // "sshGateway": null
+    }
+  }
 }
