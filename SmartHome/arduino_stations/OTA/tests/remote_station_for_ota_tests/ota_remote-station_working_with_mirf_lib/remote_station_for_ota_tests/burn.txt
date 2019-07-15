@@ -1,0 +1,1 @@
+avrdude -v -p atmega328p -C C:\Users\Ben\.platformio\packages\tool-avrdude\avrdude.conf -c usbtiny   -b 9600 -D  -U flash:w:.pio\build\nanoatmega328\firmware.hex:i
