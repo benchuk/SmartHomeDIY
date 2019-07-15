@@ -9,7 +9,7 @@ char add[4];
 int ttt = 0;
 int i = 0;
 bool newCommand = false;
-
+char response[6];
 // void configureEEPROMAddressForRFAndOTA(void)
 // {
 //   //my address "001"
@@ -100,4 +100,14 @@ void loop()
         ;
     }
   }
+  // if(Mirf.dataReady())
+  // {
+  //   checkIfOtaRequestOrLoadCommand((uint8_t *)response);
+  //   BTSerial.write(response);
+  // };
+  if(true)
+  {
+    checkIfOtaRequestOrLoadCommand((uint8_t *)"111");
+    BTSerial.write(response);
+  };
 }
