@@ -10,3 +10,4 @@ SmartHome/arduino_stations/touch_switch/project_touch_switch/.pio/build/structur
 SmartHome/arduino_stations/OTA/tests/remote_station_for_ota_tests/ota_remote-station_working_with_mirf_lib/remote_station_for_ota_tests/.pio/build/structure.hash
 SmartHome/arduino_stations/IR/project_ir/.pio/build/structure.hash
 SmartHome/arduino_stations/lights_indicetor/project_lights_indicator/.pio/build/structure.hash
+build/
