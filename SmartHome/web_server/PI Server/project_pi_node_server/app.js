@@ -7,6 +7,8 @@ var serialPort = new SerialPort('/dev/ttyAMA0', {
   baudRate: 9600
 });
 
+var http = require('http');
+
 var locallydb = require('locallydb');
 
 var whitelistManager = require('./whitelistManager.js');
@@ -167,12 +169,43 @@ exports.init = function(port) {
   return app;
 };
 
+var currentAddressResponse = '';
 serialPort.on('open', function() {
+  console.log('open');
   //logger.log('open');
-  // serialPort.on('data', function(data) {
-  //   //logger.log(data);
-  //   //serialPort.write(data, function(err, res) {})
-  // })
+  //signal the homekit that a device with address is on
+  serialPort.on('data', function(data) {
+    console.log('test: ' + data);
+    currentAddressResponse += data;
+    logger.log('got data - a station with address ' + data + ' is on');
+    var requestData = currentAddressResponse;
+    if (currentAddressResponse.length === 3) {
+      http
+        .get(
+          {
+            host: 'benchuk.no-ip.info',
+            path: '/status?addressOn=' + requestData,
+            port: 81
+          },
+          function(resp) {
+            resp.on('data', function(d) {
+              console.log('******* response from homekit:' + d);
+              console.log('data: ' + d);
+            });
+            resp.on('end', function() {
+              console.log('** done **');
+            });
+          }
+        )
+        .on('error', function(err) {
+          console.log('error ' + err);
+        });
+    }
+    currentAddressResponse = '';
+
+    //logger.log(data);
+    //   //serialPort.write(data, function(err, res) {})
+  });
   // serialPort.write('Server is running and listening on serial port\n', function(
   //   err,
   //   res
