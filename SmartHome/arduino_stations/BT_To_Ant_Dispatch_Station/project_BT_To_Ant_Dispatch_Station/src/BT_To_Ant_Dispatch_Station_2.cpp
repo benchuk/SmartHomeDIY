@@ -1,6 +1,6 @@
 #include <Arduino.h>
-#include <common.h>
 #include <SoftwareSerial.h>
+#include <common.h>
 
 SoftwareSerial BTSerial(6, 7); // RX | TX
 
@@ -23,91 +23,85 @@ char response[6];
 //   EEPROM.write(5, 48);
 // }
 
-void setup()
-{
-  //STRING NULL TERMINATION
-  add[3] = 0;
-  add[0] = 'x';
-  add[1] = 'x';
-  add[2] = 'x';
+void setup() {
+    // STRING NULL TERMINATION
+    add[3] = 0;
+    add[0] = 'x';
+    add[1] = 'x';
+    add[2] = 'x';
 
-  Serial.begin(115200);
-  Serial.println("setup...");
-  configureEEPROMAddressForRFAndOTA("001");
-  startRF();
-  //BTSerial.begin(38400);  // HC-05 default speed in AT command more
-  BTSerial.begin(9600); //custom
-  Serial.println("Dispatch station ready.");
+    Serial.begin(115200);
+    Serial.println("setup...");
+    configureEEPROMAddressForRFAndOTA("001");
+    startRF();
+    // BTSerial.begin(38400);  // HC-05 default speed in AT command more
+    BTSerial.begin(9600); // custom
+    Serial.println("Dispatch station ready.");
 }
 
-void loop()
-{
-  watchdogReset();
-  char otaCmd[Mirf.payload + 1];
-  checkIfOtaRequestOrLoadCommand(otaCmd);
+void loop() {
+    watchdogReset();
+    char otaCmd[Mirf.payload + 1];
+    checkIfOtaRequestOrLoadCommand(otaCmd);
 
-  //digitalWrite(Radio_CSN, LOW); // ENABLE radio
-  // Keep reading from HC-05 and send to Arduino Serial Monitor
-  if (BTSerial.available())
-  {
-    char command = BTSerial.read();
-    //Serial.println(command);
-    if (command == ':')
-    {
-      Serial.println("middle");
-      i = 0;
-      firstPart = false;
-      return;
-    }
-    if (firstPart)
-    {
-      Serial.println("firstPart");
-      Serial.println(command);
-      Serial.println(i);
-      add[i] = command;
-      Serial.println("========");
-      Serial.println(add[i]);
-      Serial.println("========");
-      i++;
-    }
-    else
-    {
-      Serial.println("end");
-      cmd[i] = command;
-      i++;
-      if (i == 3)
-      {
-        firstPart = true;
-        i = 0;
-        newCommand = true;
-      }
-    }
+    // digitalWrite(Radio_CSN, LOW); // ENABLE radio
+    // Keep reading from HC-05 and send to Arduino Serial Monitor
+    if (BTSerial.available()) {
+        char command = BTSerial.read();
+        // Serial.println(command);
+        if (command == ':') {
+            Serial.println("middle");
+            i = 0;
+            firstPart = false;
+            return;
+        }
+        if (firstPart) {
+            Serial.println("firstPart");
+            Serial.println(command);
+            Serial.println(i);
+            add[i] = command;
+            Serial.println("========");
+            Serial.println(add[i]);
+            Serial.println("========");
+            i++;
+        } else {
+            Serial.println("end");
+            cmd[i] = command;
+            i++;
+            if (i == 3) {
+                firstPart = true;
+                i = 0;
+                newCommand = true;
+            }
+        }
 
-    //delay(1000);
-    //add code to check what was requested from serial server (PI station)
+        // delay(1000);
+        // add code to check what was requested from serial server (PI station)
 
-    if (newCommand)
-    {
-      Serial.println("sending: ");
-      Serial.print("address: ");
-      Serial.println(add);
-      Mirf.setTADDR((byte *)add);
-      Serial.print("command: ");
-      Serial.println(cmd);
-      Mirf.send((uint8_t *)cmd);
-      newCommand = false;
-      while (Mirf.isSending())
-        ;
+        if (newCommand) {
+            Serial.println("sending: ");
+            Serial.print("address: ");
+            Serial.println(add);
+            Mirf.setTADDR((byte *)add);
+            Serial.print("command: ");
+            Serial.println(cmd);
+            Mirf.send((uint8_t *)cmd);
+            newCommand = false;
+            while (Mirf.isSending())
+                ;
+        }
     }
-  }
-  // if(Mirf.dataReady())
-  // {
-  //   checkIfOtaRequestOrLoadCommand((uint8_t *)response);
-  //   BTSerial.write(response);
-  // };
-  if(true)
-  {
-    checkIfOtaRequestOrLoadCommand((uint8_t *)"111");
-    BTSerial.write(response);
-  };
+    // NEED TO TEST THIS WITH DATA FROM REAL ENDPOINT LIGHTS STATION
+    if (Mirf.dataReady()) {
+        checkIfOtaRequestOrLoadCommand((uint8_t *)response);
+        BTSerial.write(response);
+    };
+    // THIS TEST WORKS
+    // if (true) {
+    //     // checkIfOtaRequestOrLoadCommand((uint8_t *)"111");
+    //     BTSerial.write("111");
+    //     Serial.print("sent: ");
+    //     delay(1000);
+    //     Serial.print("continue");
+    // };
 }
