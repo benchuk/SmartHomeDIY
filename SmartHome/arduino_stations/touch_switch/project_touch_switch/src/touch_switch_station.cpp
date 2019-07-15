@@ -223,6 +223,7 @@ void loop() {
         if (millis() - timestamp < 500) {
             return;
         }
+        timestamp = millis();
         Serial.print("s1 off");
         s1 = LOW;
         digitalWrite(light1Pin, s1);
@@ -231,6 +232,7 @@ void loop() {
         if (millis() - timestamp < 500) {
             return;
         }
+        timestamp = millis();
         Serial.print("s1 on");
         s1 = HIGH;
         digitalWrite(light1Pin, s1);
@@ -245,6 +247,7 @@ void loop() {
         if (millis() - timestamp < 500) {
             return;
         }
+        timestamp = millis();
         Serial.print("s2 off");
         s2 = LOW;
         digitalWrite(light2Pin, s2);
@@ -253,6 +256,7 @@ void loop() {
         if (millis() - timestamp < 500) {
             return;
         }
+        timestamp = millis();
         Serial.print("s2 on");
         s2 = HIGH;
         digitalWrite(light2Pin, s2);
@@ -267,6 +271,7 @@ void loop() {
         if (millis() - timestamp < 500) {
             return;
         }
+        timestamp = millis();
         Serial.print("s3 off");
         s3 = LOW;
         digitalWrite(light3Pin, s3);
@@ -275,6 +280,7 @@ void loop() {
         if (millis() - timestamp < 500) {
             return;
         }
+        timestamp = millis();
         Serial.print("s3 on");
         s3 = HIGH;
         digitalWrite(light3Pin, s3);
@@ -289,6 +295,7 @@ void loop() {
         if (millis() - timestamp < 500) {
             return;
         }
+        timestamp = millis();
         Serial.print("s4 off");
         s4 = LOW;
         digitalWrite(light4Pin, s4);
@@ -297,6 +304,7 @@ void loop() {
         if (millis() - timestamp < 500) {
             return;
         }
+        timestamp = millis();
         Serial.print("s4 on");
         s4 = HIGH;
         digitalWrite(light4Pin, s4);
