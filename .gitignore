@@ -3,3 +3,10 @@ SmartHome/arduino_stations/scripts/avr/windows/avrdude/bin/firmware.hex
 *.DB-shm
 *.DB-wal
 SmartHome/arduino_stations/IR/project_ir/src/IR_STATION_WITH_SD.ino.cpp
+SmartHome/arduino_stations/shade_station/project_shade_station/.pio/build/structure.hash
+SmartHome/arduino_stations/OTA/flasher station/optiboot-nrf24l01-flasher/.pio/build/structure.hash
+SmartHome/arduino_stations/BT_To_Ant_Dispatch_Station/project_BT_To_Ant_Dispatch_Station/.pio/build/structure.hash
+SmartHome/arduino_stations/touch_switch/project_touch_switch/.pio/build/structure.hash
+SmartHome/arduino_stations/OTA/tests/remote_station_for_ota_tests/ota_remote-station_working_with_mirf_lib/remote_station_for_ota_tests/.pio/build/structure.hash
+SmartHome/arduino_stations/IR/project_ir/.pio/build/structure.hash
+SmartHome/arduino_stations/lights_indicetor/project_lights_indicator/.pio/build/structure.hash
