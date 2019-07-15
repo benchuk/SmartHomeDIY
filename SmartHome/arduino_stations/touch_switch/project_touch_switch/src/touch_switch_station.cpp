@@ -57,6 +57,12 @@ volatile int s4Counter = 0;
 volatile boolean enabled = false;
 
 unsigned long timestamp = 0;
+char* myAddress = "007";
+
+void signalOn()
+{
+    Mirf.send((uint8_t *)myAddress);
+}
 
 void toggles3() {
     if (millis() - timestamp < 500) {
@@ -65,6 +71,10 @@ void toggles3() {
     timestamp = millis();
     s3 = !s3;
     digitalWrite(light3Pin, s3);
+    if(s3 == LOW)//relay are active low
+    {
+        signalOn();
+    }
 }
 
 void touch3() {
@@ -89,6 +99,10 @@ void toggles4() {
     timestamp = millis();
     s4 = !s4;
     digitalWrite(light4Pin, s4);
+    if(s4 == LOW)//relay are active low
+    {
+        signalOn();
+    }
 }
 
 void touch4() {
@@ -112,6 +126,10 @@ void toggles1() {
     timestamp = millis();
     s1 = !s1;
     digitalWrite(light1Pin, s1);
+    if(s1 == LOW)//relay are active low
+    {
+        signalOn();
+    }
 }
 
 void touch1() {
@@ -128,6 +146,10 @@ void toggles2() {
     timestamp = millis();
     s2 = !s2;
     digitalWrite(light2Pin, s2);
+    if(s2 == LOW)//relay are active low
+    {
+        signalOn();
+    }
 }
 
 void touch2() {
@@ -146,7 +168,8 @@ void blinkReady() {
 }
 
 void setup() {
-    configureEEPROMAddressForRFAndOTA("007");
+
+    configureEEPROMAddressForRFAndOTA(myAddress);
 
     Serial.begin(9600);
 
@@ -236,6 +259,7 @@ void loop() {
         Serial.print("s1 on");
         s1 = HIGH;
         digitalWrite(light1Pin, s1);
+        signalOn();
         return;
     } else if (strcmp(cmd, "004") == 0) {
         Serial.print("toggle s1");
@@ -260,6 +284,7 @@ void loop() {
         Serial.print("s2 on");
         s2 = HIGH;
         digitalWrite(light2Pin, s2);
+        signalOn();
         return;
     } else if (strcmp(cmd, "007") == 0) {
         Serial.print("toggle s2");
@@ -284,6 +309,7 @@ void loop() {
         Serial.print("s3 on");
         s3 = HIGH;
         digitalWrite(light3Pin, s3);
+        signalOn();
         return;
     } else if (strcmp(cmd, "010") == 0) {
         Serial.print("toggle s3");
@@ -308,6 +334,7 @@ void loop() {
         Serial.print("s4 on");
         s4 = HIGH;
         digitalWrite(light4Pin, s4);
+        signalOn();
         return;
     } else if (strcmp(cmd, "013") == 0) {
         Serial.print("toggle s4");
