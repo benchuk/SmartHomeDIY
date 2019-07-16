@@ -58,10 +58,26 @@ volatile boolean enabled = false;
 
 unsigned long timestamp = 0;
 char* myAddress = "007";
+char address = 7;
 
-void signalOn()
-{
-    Mirf.send((uint8_t *)myAddress);
+enum Status_Type { Relay_4_Way = 1, Relay_2_Way = 2 };
+
+typedef struct PayloadData {
+    char address;
+    char type;
+    char data;
+} Payload;
+
+void signalState() {
+    return;
+    Serial.println("signalState");
+    Payload p;
+    p.address = address;
+    p.type = Relay_4_Way;
+    p.data = s1 | 1 << s2 | 2 << s3 | 3 << s4;
+    Serial.println("bin state");
+    Serial.println(p.data, BIN);
+    Mirf.send((uint8_t*)(&p));
 }
 
 void toggles3() {
@@ -71,10 +87,7 @@ void toggles3() {
     timestamp = millis();
     s3 = !s3;
     digitalWrite(light3Pin, s3);
-    if(s3 == LOW)//relay are active low
-    {
-        signalOn();
-    }
+    signalState();
 }
 
 void touch3() {
@@ -99,10 +112,7 @@ void toggles4() {
     timestamp = millis();
     s4 = !s4;
     digitalWrite(light4Pin, s4);
-    if(s4 == LOW)//relay are active low
-    {
-        signalOn();
-    }
+    signalState();
 }
 
 void touch4() {
@@ -126,10 +136,7 @@ void toggles1() {
     timestamp = millis();
     s1 = !s1;
     digitalWrite(light1Pin, s1);
-    if(s1 == LOW)//relay are active low
-    {
-        signalOn();
-    }
+    signalState();
 }
 
 void touch1() {
@@ -146,10 +153,7 @@ void toggles2() {
     timestamp = millis();
     s2 = !s2;
     digitalWrite(light2Pin, s2);
-    if(s2 == LOW)//relay are active low
-    {
-        signalOn();
-    }
+    signalState();
 }
 
 void touch2() {
@@ -169,7 +173,7 @@ void blinkReady() {
 
 void setup() {
 
-    configureEEPROMAddressForRFAndOTA(myAddress);
+    configureEEPROMAddressForRFAndOTA("007");
 
     Serial.begin(9600);
 
@@ -224,6 +228,14 @@ void loop() {
     //  watchdogReset();
     // Serial.print("TICK");
 
+     signalState();
+
+    while (millis() - timestamp < 500) {
+        Serial.print(".");
+        return;
+    }
+
+    Serial.println("listen....");
     //  delay(100);
     // return;
     while (!Mirf.dataReady()) {
@@ -232,62 +244,51 @@ void loop() {
         blinkReady();
     };
 
+    Serial.println(F("ok"));
     // Serial.print("TICK");
     checkIfOtaRequestOrLoadCommand(cmd);
-    Serial.print(F("New command "));
+    Serial.print(F("New command: "));
     Serial.println(cmd);
     if (strcmp(cmd, "001") == 0) {
-        Serial.print("remtoe restart");
+        Serial.println("remtoe restart");
+        timestamp = millis();
         soft_restart();
         return;
     }
     // s1
     else if (strcmp(cmd, "002") == 0) {
-        if (millis() - timestamp < 500) {
-            return;
-        }
         timestamp = millis();
-        Serial.print("s1 off");
+        Serial.println("s1 off");
         s1 = LOW;
         digitalWrite(light1Pin, s1);
         return;
     } else if (strcmp(cmd, "003") == 0) {
-        if (millis() - timestamp < 500) {
-            return;
-        }
         timestamp = millis();
-        Serial.print("s1 on");
+        Serial.println("s1 on");
         s1 = HIGH;
         digitalWrite(light1Pin, s1);
-        signalOn();
         return;
     } else if (strcmp(cmd, "004") == 0) {
-        Serial.print("toggle s1");
+        Serial.println("toggle s1");
         toggles1();
         return;
     }
     // s2
     else if (strcmp(cmd, "005") == 0) {
-        if (millis() - timestamp < 500) {
-            return;
-        }
         timestamp = millis();
-        Serial.print("s2 off");
+        Serial.println("s2 off");
         s2 = LOW;
         digitalWrite(light2Pin, s2);
+        signalState();
         return;
     } else if (strcmp(cmd, "006") == 0) {
-        if (millis() - timestamp < 500) {
-            return;
-        }
         timestamp = millis();
-        Serial.print("s2 on");
+        Serial.println("s2 on");
         s2 = HIGH;
         digitalWrite(light2Pin, s2);
-        signalOn();
         return;
     } else if (strcmp(cmd, "007") == 0) {
-        Serial.print("toggle s2");
+        Serial.println("toggle s2");
         toggles2();
         return;
     }
@@ -297,7 +298,7 @@ void loop() {
             return;
         }
         timestamp = millis();
-        Serial.print("s3 off");
+        Serial.println("s3 off");
         s3 = LOW;
         digitalWrite(light3Pin, s3);
         return;
@@ -306,38 +307,30 @@ void loop() {
             return;
         }
         timestamp = millis();
-        Serial.print("s3 on");
+        Serial.println("s3 on");
         s3 = HIGH;
         digitalWrite(light3Pin, s3);
-        signalOn();
         return;
     } else if (strcmp(cmd, "010") == 0) {
-        Serial.print("toggle s3");
+        Serial.println("toggle s3");
         toggles3();
         return;
     }
     // s4
     else if (strcmp(cmd, "011") == 0) {
-        if (millis() - timestamp < 500) {
-            return;
-        }
         timestamp = millis();
-        Serial.print("s4 off");
+        Serial.println("s4 off");
         s4 = LOW;
         digitalWrite(light4Pin, s4);
         return;
     } else if (strcmp(cmd, "012") == 0) {
-        if (millis() - timestamp < 500) {
-            return;
-        }
         timestamp = millis();
-        Serial.print("s4 on");
+        Serial.println("s4 on");
         s4 = HIGH;
         digitalWrite(light4Pin, s4);
-        signalOn();
         return;
     } else if (strcmp(cmd, "013") == 0) {
-        Serial.print("toggle s4");
+        Serial.println("toggle s4");
         toggles4();
         return;
     }
