@@ -58,14 +58,14 @@ volatile boolean enabled = false;
 
 unsigned long timestamp = 0;
 char* myAddress = "007";
-char address = 7;
+uint8_t address = 7;
 
 enum Status_Type { Relay_4_Way = 1, Relay_2_Way = 2 };
 
 typedef struct PayloadData {
-    char address;
-    char type;
-    char data;
+    uint8_t address;
+    uint8_t type;
+    uint8_t data;
 } Payload;
 
 void signalState() {

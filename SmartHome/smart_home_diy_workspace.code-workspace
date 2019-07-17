@@ -1,106 +1,111 @@
 {
-	"folders": [{
-			"name": "PI Server",
-			"path": "web_server/PI Server/project_pi_node_server"
-		},
-		{
-			"name": "Bootloader (Production)",
-			"path": "arduino_stations/OTA/bootloader_with_ota_support/optiboot-nrf24l01-master"
-		}, {
-			"name": "Bootloader (Debugwith LED)",
-			"path": "arduino_stations/OTA/bootloader_with_ota_support/for_debug/bootloader_with_debug_leds/optiboot-nrf24l01-master-debug"
-		},
-		{
-			"name": "Utils",
-			"path": "arduino_stations\\scripts"
-		},
-		{
-			"name": "Flasher Station",
-			"path": "arduino_stations/OTA/flasher station/optiboot-nrf24l01-flasher"
-		},
-		{
-			"name": "Flasher remote test station (Flashed remotly)",
-			"path": "arduino_stations/OTA/tests/remote_station_for_ota_tests/ota_remote-station_working_with_mirf_lib/remote_station_for_ota_tests"
-		},
-		{
-			"name": "Common libs",
-			"path": "arduino_stations/libraries"
-		},
-		{
-			"name": "Gateway",
-			"path": "arduino_stations/BT_To_Ant_Dispatch_Station/project_BT_To_Ant_Dispatch_Station"
-		},
-		{
-			"name": "IR Station",
-			"path": "arduino_stations/IR/project_ir"
-		},
-		{
-			"name": "Shades Station",
-			"path": "arduino_stations/shade_station/project_shade_station"
-		},
-		{
-			"name": "Touch Switch Station",
-			"path": "arduino_stations/touch_switch/project_touch_switch"
-		},
-		{
-			"name": "Lights indicator station",
-			"path": "arduino_stations/lights_indicetor/project_lights_indicator"
-		}
-	],
-	"settings": {
-		"terminal.integrated.env.windows": {
-			"PATH": "C:\\Users\\Ben\\.platformio\\penv\\Scripts;C:\\Users\\Ben\\.platformio\\penv;C:\\Users\\Ben\\AppData\\Local\\Google\\Chrome\\Application;C:\\ProgramData\\Oracle\\Java\\javapath;C:\\Windows\\system32;C:\\Windows;C:\\Windows\\System32\\Wbem;C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\;C:\\adb;C:\\WINDOWS\\system32;C:\\WINDOWS;C:\\WINDOWS\\System32\\Wbem;C:\\WINDOWS\\System32\\WindowsPowerShell\\v1.0\\;C:\\Program Files\\PuTTY\\;C:\\Program Files\\LLVM\\bin;C:\\Program Files (x86)\\Common Files\\Apple\\Internet Services\\;C:\\WINDOWS\\System32\\OpenSSH\\;C:\\Program Files\\Microsoft VS Code Insiders\\bin;C:\\Program Files\\Git\\cmd;C:\\Users\\Ben\\.platformio\\penv\\Scripts;C:\\Users\\Ben\\.platformio\\penv;C:\\Users\\Ben\\AppData\\Local\\Google\\Chrome\\Application;C:\\ProgramData\\Oracle\\Java\\javapath;C:\\Windows\\system32;C:\\Windows;C:\\Windows\\System32\\Wbem;C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\;C:\\adb;C:\\WINDOWS\\system32;C:\\WINDOWS;C:\\WINDOWS\\System32\\Wbem;C:\\WINDOWS\\System32\\WindowsPowerShell\\v1.0\\;C:\\Program Files (x86)\\Skype\\Phone\\;C:\\Program Files\\PuTTY\\;C:\\Program Files\\LLVM\\bin;C:\\Program Files (x86)\\Common Files\\Apple\\Internet Services\\;C:\\WINDOWS\\System32\\OpenSSH\\;C:\\Program Files\\Microsoft VS Code Insiders\\bin;C:\\Program Files\\Git\\cmd;C:\\Users\\Ben\\.platformio\\penv\\Scripts;C:\\Users\\Ben\\.platformio\\penv;C:\\Users\\Ben\\AppData\\Local\\Google\\Chrome\\Application;C:\\ProgramData\\Oracle\\Java\\javapath;C:\\Windows\\system32;C:\\Windows;C:\\Windows\\System32\\Wbem;C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\;C:\\adb;C:\\WINDOWS\\system32;C:\\WINDOWS;C:\\WINDOWS\\System32\\Wbem;C:\\WINDOWS\\System32\\WindowsPowerShell\\v1.0\\;C:\\Program Files (x86)\\Skype\\Phone\\;C:\\Program;C:\\Program Files (x86)\\GnuWin32\\bin;C:\\Users\\Ben\\Documents\\git\\SmartHomeDIY\\SmartHome\\arduino_stations\\scripts\\avr\\windows\\avrdude\\bin;C:\\Program Files\\avr8-gnu-toolchain\\bin;;C:\\Users\\Ben\\AppData\\Local\\Programs\\Microsoft VS Code\\bin;C:\\Users\\Ben\\AppData\\Local\\hyper\\app-2.1.2\\resources\\bin;C:\\Users\\Ben\\AppData\\Local\\Google\\Chrome\\Application;C:\\ProgramData\\Oracle\\Java\\javapath;C:\\Windows\\system32;C:\\Windows;C:\\Windows\\System32\\Wbem;C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\;C:\\adb;C:\\WINDOWS\\system32;C:\\WINDOWS;C:\\WINDOWS\\System32\\Wbem;C:\\WINDOWS\\System32\\WindowsPowerShell\\v1.0\\;C:\\Program Files\\PuTTY\\;C:\\Program Files\\LLVM\\bin;C:\\Program Files (x86)\\Common Files\\Apple\\Internet Services\\;C:\\WINDOWS\\System32\\OpenSSH\\;C:\\Program Files\\Microsoft VS Code Insiders\\bin;C:\\Program Files\\Git\\cmd;C:\\Users\\Ben\\.platformio\\penv\\Scripts;C:\\Users\\Ben\\.platformio\\penv;C:\\Users\\Ben\\AppData\\Local\\Google\\Chrome\\Application;C:\\ProgramData\\Oracle\\Java\\javapath;C:\\Windows\\system32;C:\\Windows;C:\\Windows\\System32\\Wbem;C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\;C:\\adb;C:\\WINDOWS\\system32;C:\\WINDOWS;C:\\WINDOWS\\System32\\Wbem;C:\\WINDOWS\\System32\\WindowsPowerShell\\v1.0\\;C:\\Program Files (x86)\\Skype\\Phone\\;C:\\Program Files\\PuTTY\\;C:\\Program Files\\LLVM\\bin;C:\\Program Files (x86)\\Common Files\\Apple\\Internet Services\\;C:\\WINDOWS\\System32\\OpenSSH\\;C:\\Program Files\\Microsoft VS Code Insiders\\bin;C:\\Program Files\\Git\\cmd;C:\\Users\\Ben\\.platformio\\penv\\Scripts;C:\\Users\\Ben\\.platformio\\penv;C:\\Users\\Ben\\AppData\\Local\\Google\\Chrome\\Application;C:\\ProgramData\\Oracle\\Java\\javapath;C:\\Windows\\system32;C:\\Windows;C:\\Windows\\System32\\Wbem;C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\;C:\\adb;C:\\WINDOWS\\system32;C:\\WINDOWS;C:\\WINDOWS\\System32\\Wbem;C:\\WINDOWS\\System32\\WindowsPowerShell\\v1.0\\;C:\\Program Files (x86)\\Skype\\Phone\\;C:\\Program;C:\\Program Files (x86)\\GnuWin32\\bin;C:\\Users\\Ben\\Documents\\git\\SmartHomeDIY\\SmartHome\\arduino_stations\\scripts\\avr\\windows\\avrdude\\bin;C:\\Program Files\\avr8-gnu-toolchain\\bin;;C:\\Users\\Ben\\AppData\\Local\\Programs\\Microsoft VS Code\\bin;C:\\Users\\Ben\\AppData\\Local\\hyper\\app-2.1.2\\resources\\bin",
-			"PLATFORMIO_CALLER": "vscode"
-		},
-		"terminal.integrated.env.osx": {
-			"PATH": "/Users/benamsallem/.platformio/penv/bin:/Users/benamsallem/.platformio/penv:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/Library/Apple/usr/bin:/Library/Apple/bin:/Library/Frameworks/Mono.framework/Versions/Current/Commands",
-			"PLATFORMIO_CALLER": "vscode"
-		},
-		"git.ignoreLimitWarning": true,
-		"files.associations": {
-			"pin_defs.h": "c",
-			"inttypes.h": "c",
-			"boot.h": "c",
-			"stk500.h": "c"
-		},
-		"cSpell.words": [
-			"Arduino",
-			"Atmel",
-			"Diecimila",
-			"Duemilanove",
-			"EEPROM",
-			"Luminet",
-			"Mirf",
-			"Optiboot",
-			"Ttiny",
-			"millis",
-			"println"
-		],
-		"workbench.colorTheme": "Popping and Locking",
-		"editor.formatOnSave": true,
-		"editor.formatOnPaste": false,
-		"editor.autoClosingBrackets": "never",
-		"workbench.editor.highlightModifiedTabs": true,
-		"explorer.sortOrder": "type",
-		"workbench.list.keyboardNavigation": "filter",
-	},
-	"extensions": {
-		"recommendations": [
-			"platformio.platformio-ide",
-			"formulahendry.platformio",
-			"chingson.hycon-assembly",
-			"mateuszchudyk.hexinspector",
-			"ms-vscode.cpptools",
-			"austin.code-gnu-global",
-			"reloadedextensions.reloaded-cpp",
-			"waderyan.nodejs-extension-pack",
-			"leizongmin.node-module-intellisense",
-			"eg2.vscode-npm-script",
-			"christian-kohler.npm-intellisense",
-			"liximomo.sftp",
-			"qassimfarid.ejs-language-support",
-			"vector-of-bool.cmake-tools",
-			"streetsidesoftware.code-spell-checker"
-		]
-	}
+  "folders": [
+    {
+      "name": "PI Server",
+      "path": "web_server/PI Server/project_pi_node_server"
+    },
+    {
+      "name": "Bootloader (Production)",
+      "path": "arduino_stations/OTA/bootloader_with_ota_support/optiboot-nrf24l01-master"
+    },
+    {
+      "name": "Bootloader (Debugwith LED)",
+      "path": "arduino_stations/OTA/bootloader_with_ota_support/for_debug/bootloader_with_debug_leds/optiboot-nrf24l01-master-debug"
+    },
+    {
+      "name": "Utils",
+      "path": "arduino_stations\\scripts"
+    },
+    {
+      "name": "Flasher Station",
+      "path": "arduino_stations/OTA/flasher station/optiboot-nrf24l01-flasher"
+    },
+    {
+      "name": "Flasher remote test station (Flashed remotly)",
+      "path": "arduino_stations/OTA/tests/remote_station_for_ota_tests/ota_remote-station_working_with_mirf_lib/remote_station_for_ota_tests"
+    },
+    {
+      "name": "Common libs",
+      "path": "arduino_stations/libraries"
+    },
+    {
+      "name": "Gateway",
+      "path": "arduino_stations/BT_To_Ant_Dispatch_Station/project_BT_To_Ant_Dispatch_Station"
+    },
+    {
+      "name": "IR Station",
+      "path": "arduino_stations/IR/project_ir"
+    },
+    {
+      "name": "Shades Station",
+      "path": "arduino_stations/shade_station/project_shade_station"
+    },
+    {
+      "name": "Touch Switch Station",
+      "path": "arduino_stations/touch_switch/project_touch_switch"
+    },
+    {
+      "name": "Lights indicator station",
+      "path": "arduino_stations/lights_indicetor/project_lights_indicator"
+    },
+    {
+      "path": "arduino_stations/playground/project_playground"
+    }
+  ],
+  "settings": {
+    "terminal.integrated.env.windows": {
+      "PATH": "C:\\Users\\Ben\\.platformio\\penv\\Scripts;C:\\Users\\Ben\\.platformio\\penv;C:\\Users\\Ben\\AppData\\Local\\Google\\Chrome\\Application;C:\\ProgramData\\Oracle\\Java\\javapath;C:\\Windows\\system32;C:\\Windows;C:\\Windows\\System32\\Wbem;C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\;C:\\adb;C:\\WINDOWS\\system32;C:\\WINDOWS;C:\\WINDOWS\\System32\\Wbem;C:\\WINDOWS\\System32\\WindowsPowerShell\\v1.0\\;C:\\Program Files\\PuTTY\\;C:\\Program Files\\LLVM\\bin;C:\\Program Files (x86)\\Common Files\\Apple\\Internet Services\\;C:\\WINDOWS\\System32\\OpenSSH\\;C:\\Program Files\\Microsoft VS Code Insiders\\bin;C:\\Program Files\\Git\\cmd;C:\\Users\\Ben\\.platformio\\penv\\Scripts;C:\\Users\\Ben\\.platformio\\penv;C:\\Users\\Ben\\AppData\\Local\\Google\\Chrome\\Application;C:\\ProgramData\\Oracle\\Java\\javapath;C:\\Windows\\system32;C:\\Windows;C:\\Windows\\System32\\Wbem;C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\;C:\\adb;C:\\WINDOWS\\system32;C:\\WINDOWS;C:\\WINDOWS\\System32\\Wbem;C:\\WINDOWS\\System32\\WindowsPowerShell\\v1.0\\;C:\\Program Files (x86)\\Skype\\Phone\\;C:\\Program Files\\PuTTY\\;C:\\Program Files\\LLVM\\bin;C:\\Program Files (x86)\\Common Files\\Apple\\Internet Services\\;C:\\WINDOWS\\System32\\OpenSSH\\;C:\\Program Files\\Microsoft VS Code Insiders\\bin;C:\\Program Files\\Git\\cmd;C:\\Users\\Ben\\.platformio\\penv\\Scripts;C:\\Users\\Ben\\.platformio\\penv;C:\\Users\\Ben\\AppData\\Local\\Google\\Chrome\\Application;C:\\ProgramData\\Oracle\\Java\\javapath;C:\\Windows\\system32;C:\\Windows;C:\\Windows\\System32\\Wbem;C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\;C:\\adb;C:\\WINDOWS\\system32;C:\\WINDOWS;C:\\WINDOWS\\System32\\Wbem;C:\\WINDOWS\\System32\\WindowsPowerShell\\v1.0\\;C:\\Program Files (x86)\\Skype\\Phone\\;C:\\Program;C:\\Program Files (x86)\\GnuWin32\\bin;C:\\Users\\Ben\\Documents\\git\\SmartHomeDIY\\SmartHome\\arduino_stations\\scripts\\avr\\windows\\avrdude\\bin;C:\\Program Files\\avr8-gnu-toolchain\\bin;;C:\\Users\\Ben\\AppData\\Local\\Programs\\Microsoft VS Code\\bin;C:\\Users\\Ben\\AppData\\Local\\hyper\\app-2.1.2\\resources\\bin;C:\\Users\\Ben\\AppData\\Local\\Google\\Chrome\\Application;C:\\ProgramData\\Oracle\\Java\\javapath;C:\\Windows\\system32;C:\\Windows;C:\\Windows\\System32\\Wbem;C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\;C:\\adb;C:\\WINDOWS\\system32;C:\\WINDOWS;C:\\WINDOWS\\System32\\Wbem;C:\\WINDOWS\\System32\\WindowsPowerShell\\v1.0\\;C:\\Program Files\\PuTTY\\;C:\\Program Files\\LLVM\\bin;C:\\Program Files (x86)\\Common Files\\Apple\\Internet Services\\;C:\\WINDOWS\\System32\\OpenSSH\\;C:\\Program Files\\Microsoft VS Code Insiders\\bin;C:\\Program Files\\Git\\cmd;C:\\Users\\Ben\\.platformio\\penv\\Scripts;C:\\Users\\Ben\\.platformio\\penv;C:\\Users\\Ben\\AppData\\Local\\Google\\Chrome\\Application;C:\\ProgramData\\Oracle\\Java\\javapath;C:\\Windows\\system32;C:\\Windows;C:\\Windows\\System32\\Wbem;C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\;C:\\adb;C:\\WINDOWS\\system32;C:\\WINDOWS;C:\\WINDOWS\\System32\\Wbem;C:\\WINDOWS\\System32\\WindowsPowerShell\\v1.0\\;C:\\Program Files (x86)\\Skype\\Phone\\;C:\\Program Files\\PuTTY\\;C:\\Program Files\\LLVM\\bin;C:\\Program Files (x86)\\Common Files\\Apple\\Internet Services\\;C:\\WINDOWS\\System32\\OpenSSH\\;C:\\Program Files\\Microsoft VS Code Insiders\\bin;C:\\Program Files\\Git\\cmd;C:\\Users\\Ben\\.platformio\\penv\\Scripts;C:\\Users\\Ben\\.platformio\\penv;C:\\Users\\Ben\\AppData\\Local\\Google\\Chrome\\Application;C:\\ProgramData\\Oracle\\Java\\javapath;C:\\Windows\\system32;C:\\Windows;C:\\Windows\\System32\\Wbem;C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\;C:\\adb;C:\\WINDOWS\\system32;C:\\WINDOWS;C:\\WINDOWS\\System32\\Wbem;C:\\WINDOWS\\System32\\WindowsPowerShell\\v1.0\\;C:\\Program Files (x86)\\Skype\\Phone\\;C:\\Program;C:\\Program Files (x86)\\GnuWin32\\bin;C:\\Users\\Ben\\Documents\\git\\SmartHomeDIY\\SmartHome\\arduino_stations\\scripts\\avr\\windows\\avrdude\\bin;C:\\Program Files\\avr8-gnu-toolchain\\bin;;C:\\Users\\Ben\\AppData\\Local\\Programs\\Microsoft VS Code\\bin;C:\\Users\\Ben\\AppData\\Local\\hyper\\app-2.1.2\\resources\\bin",
+      "PLATFORMIO_CALLER": "vscode"
+    },
+    "terminal.integrated.env.osx": {
+      "PATH": "/Users/benamsallem/.platformio/penv/bin:/Users/benamsallem/.platformio/penv:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/Library/Apple/usr/bin:/Library/Apple/bin:/Library/Frameworks/Mono.framework/Versions/Current/Commands",
+      "PLATFORMIO_CALLER": "vscode"
+    },
+    "git.ignoreLimitWarning": true,
+    "files.associations": {
+      "pin_defs.h": "c",
+      "inttypes.h": "c",
+      "boot.h": "c",
+      "stk500.h": "c"
+    },
+    "cSpell.words": [
+      "Arduino",
+      "Atmel",
+      "Diecimila",
+      "Duemilanove",
+      "EEPROM",
+      "Luminet",
+      "Mirf",
+      "Optiboot",
+      "Ttiny",
+      "millis",
+      "println"
+    ],
+    "workbench.colorTheme": "Popping and Locking",
+    "editor.formatOnSave": true,
+    "editor.formatOnPaste": false,
+    "editor.autoClosingBrackets": "never",
+    "workbench.editor.highlightModifiedTabs": true,
+    "explorer.sortOrder": "type",
+    "workbench.list.keyboardNavigation": "filter"
+  },
+  "extensions": {
+    "recommendations": [
+      "platformio.platformio-ide",
+      "formulahendry.platformio",
+      "chingson.hycon-assembly",
+      "mateuszchudyk.hexinspector",
+      "ms-vscode.cpptools",
+      "austin.code-gnu-global",
+      "reloadedextensions.reloaded-cpp",
+      "waderyan.nodejs-extension-pack",
+      "leizongmin.node-module-intellisense",
+      "eg2.vscode-npm-script",
+      "christian-kohler.npm-intellisense",
+      "liximomo.sftp",
+      "qassimfarid.ejs-language-support",
+      "vector-of-bool.cmake-tools",
+      "streetsidesoftware.code-spell-checker"
+    ]
+  }
 }
