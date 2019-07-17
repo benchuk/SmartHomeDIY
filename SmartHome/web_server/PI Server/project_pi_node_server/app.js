@@ -180,6 +180,14 @@ serialPort.on('open', function() {
     logger.log('got data - a station with address ' + data + ' is on');
     var requestData = currentAddressResponse;
     if (currentAddressResponse.length === 3) {
+      var buf = new Buffer(requestData);
+      var address = parseInt(buf[0]);
+      var type = parseInt(buf[1]);
+      var state = parseInt(buf[2]);
+      console.log('address: ' + address);
+      console.log('type: ' + type);
+      console.log('state: ' + state);
+      return;
       http
         .get(
           {
