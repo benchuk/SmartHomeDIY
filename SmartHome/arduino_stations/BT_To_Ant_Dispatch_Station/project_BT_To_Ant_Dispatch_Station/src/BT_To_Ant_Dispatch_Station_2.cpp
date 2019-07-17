@@ -38,12 +38,30 @@ void setup() {
     BTSerial.begin(9600); // custom
     Serial.println("Dispatch station ready.");
 }
-
+//char otaCmd[Mirf.payload + 1];
+char otaCmd[4];
 void loop() {
     watchdogReset();
-    char otaCmd[Mirf.payload + 1];
-    checkIfOtaRequestOrLoadCommand(otaCmd);
-
+   
+    if(checkIfOtaRequestOrLoadCommand(otaCmd))
+    {
+        // NEED TO TEST THIS WITH DATA FROM REAL ENDPOINT LIGHTS STATION
+        Serial.print("got state signel - parsing");
+        BTSerial.write(otaCmd);
+    }
+    // else
+    // {
+    //    Serial.print("NO DATA");
+    // }
+    
+    // THIS TEST WORKS
+    // if (true) {
+    //     // checkIfOtaRequestOrLoadCommand((uint8_t *)"111");
+    //     BTSerial.write("111");
+    //     Serial.print("sent: ");
+    //     delay(1000);
+    //     Serial.print("continue");
+    // };
     // digitalWrite(Radio_CSN, LOW); // ENABLE radio
     // Keep reading from HC-05 and send to Arduino Serial Monitor
     if (BTSerial.available()) {
@@ -91,18 +109,5 @@ void loop() {
                 ;
         }
     }
-    // NEED TO TEST THIS WITH DATA FROM REAL ENDPOINT LIGHTS STATION
-    if (Mirf.dataReady()) {
-        Serial.print("got state signel - parsing");
-        checkIfOtaRequestOrLoadCommand((uint8_t *)response);
-        BTSerial.write(response);
-    };
-    // THIS TEST WORKS
-    // if (true) {
-    //     // checkIfOtaRequestOrLoadCommand((uint8_t *)"111");
-    //     BTSerial.write("111");
-    //     Serial.print("sent: ");
-    //     delay(1000);
-    //     Serial.print("continue");
-    // };
+ 
 }
