@@ -93,6 +93,7 @@ void loop() {
     }
     // NEED TO TEST THIS WITH DATA FROM REAL ENDPOINT LIGHTS STATION
     if (Mirf.dataReady()) {
+        Serial.print("got state signel - parsing");
         checkIfOtaRequestOrLoadCommand((uint8_t *)response);
         BTSerial.write(response);
     };
