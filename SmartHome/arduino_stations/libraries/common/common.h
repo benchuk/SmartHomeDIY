@@ -244,7 +244,7 @@ void startRF(void)
   //Mirf.configRegister(EN_RXADDR, 0x02);
 }
 //void checkIfOtaRequestOrLoadCommand(char *data)
-void checkIfOtaRequestOrLoadCommand(uint8_t *data)
+bool checkIfOtaRequestOrLoadCommand(uint8_t *data)
 {
   if (Mirf.dataReady())
   {
@@ -264,6 +264,7 @@ void checkIfOtaRequestOrLoadCommand(uint8_t *data)
         //soft_restart();
       }
     }
+    return true;
     //Serial.print(F("Data content: "));
     // for (int i = 0; i < Mirf.payload; i++)
     // {
@@ -273,4 +274,5 @@ void checkIfOtaRequestOrLoadCommand(uint8_t *data)
   //Serial.println("");
   //Serial.println(F("=============="));
   data[Mirf.payload] = 0;
+  return false;
 }
