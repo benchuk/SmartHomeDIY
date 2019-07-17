@@ -53,7 +53,7 @@
 			"PLATFORMIO_CALLER": "vscode"
 		},
 		"terminal.integrated.env.osx": {
-			"PATH": "/Users/benamsallem/.platformio/penv/bin:/Users/benamsallem/.platformio/penv:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/Library/Apple/usr/bin:/Library/Apple/bin:/Library/Frameworks/Mono.framework/Versions/Current/Commands",
+			"PATH": "/Users/benamsallem/.platformio/penv/bin:/Users/benamsallem/.platformio/penv:/Users/benamsallem/.platformio/packages/tool-avrdude/bin/:/Users/benamsallem/.platformio/penv/bin/platformio:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/Library/Apple/usr/bin:/Library/Apple/bin:/Library/Frameworks/Mono.framework/Versions/Current/Commands",
 			"PLATFORMIO_CALLER": "vscode"
 		},
 		"git.ignoreLimitWarning": true,
@@ -83,6 +83,7 @@
 		"workbench.editor.highlightModifiedTabs": true,
 		"explorer.sortOrder": "type",
 		"workbench.list.keyboardNavigation": "filter",
+		"vsicons.presets.angular": true,
 	},
 	"extensions": {
 		"recommendations": [
