@@ -236,7 +236,6 @@ void loop() {
 
     while (millis() - timestamp < 500) {
         Serial.print(".");
-        return;
     }
 
     Serial.println("listen....");
