@@ -169,17 +169,25 @@ exports.init = function(port) {
   return app;
 };
 
-var currentAddressResponse = '';
+var currentResponse = [];
+var total = 0;
 serialPort.on('open', function() {
   console.log('open');
   //logger.log('open');
   //signal the homekit that a device with address is on
   serialPort.on('data', function(data) {
-    console.log('test: ' + data);
-    currentAddressResponse += data;
-    logger.log('got data - a station with address ' + data + ' is on');
-    var requestData = currentAddressResponse;
-    if (currentAddressResponse.length === 3) {
+    console.log('--------------------------');
+    console.log('data size: ' + data.length);
+    total += data.length;
+    console.log('total size: ' + total);
+    currentResponse.push(data);
+
+    //logger.log('got data - a station with address ' + data + ' is on');
+
+    if (total === 3) {
+      var requestData = Buffer.concat(currentResponse);
+      total = 0;
+      currentResponse = [];
       var buf = new Buffer(requestData);
       var address = parseInt(buf[0]);
       var type = parseInt(buf[1]);

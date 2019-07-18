@@ -75,8 +75,12 @@ void signalState() {
     p.data = s1 | (s2 << 1) | (s3 << 2) | (s4 << 3);
     Serial.println("bin state");
     Serial.println(p.data, BIN);
+
     Mirf.send((byte*)&p);
     // Mirf.send((byte*)"111");
+    Mirf.send((uint8_t*)(&p));
+    while (Mirf.isSending())
+        ;
     Serial.println("Done");
 }
 
