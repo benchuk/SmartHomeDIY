@@ -78,6 +78,8 @@ void signalState() {
     Serial.println("bin state");
     Serial.println(p.data, BIN);
     Mirf.send((uint8_t*)(&p));
+    while (Mirf.isSending())
+        ;
 }
 
 void toggles3() {
@@ -228,7 +230,7 @@ void loop() {
     //  watchdogReset();
     // Serial.print("TICK");
 
-     signalState();
+    signalState();
 
     while (millis() - timestamp < 500) {
         Serial.print(".");
