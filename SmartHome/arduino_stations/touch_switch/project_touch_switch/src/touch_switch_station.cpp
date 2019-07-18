@@ -57,8 +57,6 @@ volatile int s4Counter = 0;
 volatile boolean enabled = false;
 
 unsigned long timestamp = 0;
-char* myAddress = "007";
-uint8_t address = 7;
 
 enum Status_Type { Relay_4_Way = 1, Relay_2_Way = 2 };
 
@@ -68,16 +66,18 @@ typedef struct PayloadData {
     uint8_t data;
 } Payload;
 
+Payload p;
+
 void signalState() {
-    return;
     Serial.println("signalState");
-    Payload p;
-    p.address = address;
-    p.type = Relay_4_Way;
-    p.data = s1 | 1 << s2 | 2 << s3 | 3 << s4;
+    p.address = 7;
+    p.type = Relay_2_Way;
+    p.data = s1 | (s2 << 1) | (s3 << 2) | (s4 << 3);
     Serial.println("bin state");
     Serial.println(p.data, BIN);
-    Mirf.send((uint8_t*)(&p));
+    Mirf.send((byte*)&p);
+    // Mirf.send((byte*)"111");
+    Serial.println("Done");
 }
 
 void toggles3() {
@@ -228,7 +228,7 @@ void loop() {
     //  watchdogReset();
     // Serial.print("TICK");
 
-     signalState();
+    signalState();
 
     while (millis() - timestamp < 500) {
         Serial.print(".");

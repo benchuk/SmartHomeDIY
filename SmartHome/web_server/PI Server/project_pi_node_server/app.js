@@ -187,12 +187,17 @@ serialPort.on('open', function() {
       console.log('address: ' + address);
       console.log('type: ' + type);
       console.log('state: ' + state);
-      return;
       http
         .get(
           {
             host: 'benchuk.no-ip.info',
-            path: '/status?addressOn=' + requestData,
+            path:
+              '/status?address=' +
+              address +
+              '&type=' +
+              type +
+              '&state=' +
+              state,
             port: 81
           },
           function(resp) {
