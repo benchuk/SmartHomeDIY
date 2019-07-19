@@ -46,8 +46,14 @@ void loop() {
     if(checkIfOtaRequestOrLoadCommand(otaCmd))
     {
         // NEED TO TEST THIS WITH DATA FROM REAL ENDPOINT LIGHTS STATION
-        Serial.println("got state signel - parsing");
-        BTSerial.write(otaCmd);
+        Serial.println("got state ");
+        Serial.println((uint8_t)otaCmd[0]);
+        Serial.println((uint8_t)otaCmd[1]);
+        Serial.println((uint8_t)otaCmd[2]);
+        BTSerial.write(otaCmd[0]);
+        BTSerial.write(otaCmd[1]);
+        BTSerial.write(otaCmd[2]);
+        delay(50);
     }
     // else
     // {

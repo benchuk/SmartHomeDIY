@@ -185,6 +185,11 @@ serialPort.on('open', function() {
 
     console.log('data value : ' + JSON.stringify(currentResponse));
 
+    if (total == 3) {
+      currentResponse = [];
+      total = 0;
+    }
+    return;
     //logger.log('got data - a station with address ' + data + ' is on');
 
     if (total >= 3) {
