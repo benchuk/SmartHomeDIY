@@ -185,20 +185,22 @@ serialPort.on('open', function() {
 
     console.log('data value : ' + JSON.stringify(currentResponse));
 
-    if (total == 3) {
+    if (total > 3) {
       currentResponse = [];
       total = 0;
+      console.log('RESET');
+      return;
     }
-    return;
+
     //logger.log('got data - a station with address ' + data + ' is on');
 
-    if (total >= 3) {
-      if (total > 3) {
-        total = 0;
-        currentResponse = [];
-        console.log('RESET');
-        return;
-      }
+    if (total == 3) {
+      // if (total > 3) {
+      //   total = 0;
+      //   currentResponse = [];
+      //   console.log('RESET');
+      //   return;
+      // }
       var requestData = Buffer.concat(currentResponse);
       total = 0;
       currentResponse = [];
@@ -236,8 +238,6 @@ serialPort.on('open', function() {
           console.log('error ' + err);
         });
     }
-    currentAddressResponse = '';
-
     //logger.log(data);
     //   //serialPort.write(data, function(err, res) {})
   });

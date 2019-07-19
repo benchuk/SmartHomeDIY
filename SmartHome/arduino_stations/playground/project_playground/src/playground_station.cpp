@@ -33,10 +33,13 @@ void signalState() {
   
     p.address = 9;
     p.type = Relay_2_Way;
-    p.data =  counter;//s1 | (s2 << 1)  |  (s3 <<2)  |   (s4<<3);
+    p.data =  (uint8_t)counter;//s1 | (s2 << 1)  |  (s3 <<2)  |   (s4<<3);
+    //p.data =  s1 | (s2 << 1)  |  (s3 <<2)  |   (s4<<3);
     Serial.println("bin state");
     Serial.println(p.data, BIN);
     Mirf.send((byte*)&p);
+    while (Mirf.isSending())
+                ;
     //Mirf.send((byte*)"111");
     Serial.println("Done");
     counter++;
