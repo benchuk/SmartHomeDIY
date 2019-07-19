@@ -180,11 +180,20 @@ serialPort.on('open', function() {
     console.log('data size: ' + data.length);
     total += data.length;
     console.log('total size: ' + total);
+
     currentResponse.push(data);
+
+    console.log('data value : ' + JSON.stringify(currentResponse));
 
     //logger.log('got data - a station with address ' + data + ' is on');
 
-    if (total === 3) {
+    if (total >= 3) {
+      if (total > 3) {
+        total = 0;
+        currentResponse = [];
+        console.log('RESET');
+        return;
+      }
       var requestData = Buffer.concat(currentResponse);
       total = 0;
       currentResponse = [];

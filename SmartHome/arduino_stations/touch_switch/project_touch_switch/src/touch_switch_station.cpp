@@ -55,7 +55,7 @@ volatile int s3Counter = 0;
 volatile int s4Counter = 0;
 
 volatile boolean enabled = false;
-
+boolean once = true;
 unsigned long timestamp = 0;
 
 enum Status_Type { Relay_4_Way = 1, Relay_2_Way = 2 };
@@ -76,7 +76,7 @@ void signalState() {
     Serial.println("bin state");
     Serial.println(p.data, BIN);
 
-    Mirf.send((byte*)&p);
+    //Mirf.send((byte*)&p);
     // Mirf.send((byte*)"111");
     Mirf.send((uint8_t*)(&p));
     while (Mirf.isSending())
@@ -91,7 +91,6 @@ void toggles3() {
     timestamp = millis();
     s3 = !s3;
     digitalWrite(light3Pin, s3);
-    signalState();
 }
 
 void touch3() {
@@ -99,9 +98,13 @@ void touch3() {
     if (!enabled) {
         return;
     }
+    if (millis() - timestamp < 500) {
+        return;
+    }
     s3Counter++;
     if (s3Counter == 1) {
         toggles3();
+        signalState();
         Serial.println("TOUCH3");
     }
     if (s3Counter == 2) {
@@ -116,16 +119,19 @@ void toggles4() {
     timestamp = millis();
     s4 = !s4;
     digitalWrite(light4Pin, s4);
-    signalState();
 }
 
 void touch4() {
     if (!enabled) {
         return;
     }
+    if (millis() - timestamp < 500) {
+        return;
+    }
     s4Counter++;
     if (s4Counter == 1) {
         toggles4();
+        signalState();
         Serial.println("TOUCH4");
     }
     if (s4Counter == 2) {
@@ -140,14 +146,17 @@ void toggles1() {
     timestamp = millis();
     s1 = !s1;
     digitalWrite(light1Pin, s1);
-    signalState();
 }
 
 void touch1() {
     if (!enabled) {
         return;
     }
+    if (millis() - timestamp < 500) {
+        return;
+    }
     toggles1();
+    signalState();
     Serial.println("TOUCH1");
 }
 void toggles2() {
@@ -157,14 +166,17 @@ void toggles2() {
     timestamp = millis();
     s2 = !s2;
     digitalWrite(light2Pin, s2);
-    signalState();
 }
 
 void touch2() {
     if (!enabled) {
         return;
     }
+    if (millis() - timestamp < 500) {
+        return;
+    }
     toggles2();
+    signalState();
     Serial.println("TOUCH2");
 }
 
@@ -232,7 +244,11 @@ void loop() {
     //  watchdogReset();
     // Serial.print("TICK");
 
-    signalState();
+    if(once)
+    {
+        once = false;
+        signalState();
+    }
 
     while (millis() - timestamp < 500) {
         Serial.print(".");
@@ -282,7 +298,6 @@ void loop() {
         Serial.println("s2 off");
         s2 = LOW;
         digitalWrite(light2Pin, s2);
-        signalState();
         return;
     } else if (strcmp(cmd, "006") == 0) {
         timestamp = millis();
