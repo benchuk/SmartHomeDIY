@@ -50,6 +50,9 @@
     },
     {
       "path": "arduino_stations/playground/project_playground"
+    },
+    {
+      "path": "arduino_stations/temperature_station/project_temperature_station"
     }
   ],
   "settings": {

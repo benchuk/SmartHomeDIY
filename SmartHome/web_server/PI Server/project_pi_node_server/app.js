@@ -226,8 +226,8 @@ serialPort.on('open', function() {
           },
           function(resp) {
             resp.on('data', function(d) {
-              console.log('******* response from homekit:' + d);
-              console.log('data: ' + d);
+              console.log('******* response from homekit ok *******');
+              //console.log('data: ' + d);
             });
             resp.on('end', function() {
               console.log('** done **');
