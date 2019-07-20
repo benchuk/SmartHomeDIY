@@ -84,6 +84,10 @@ void signalState() {
     Mirf.send((uint8_t*)(&p));
     while (Mirf.isSending())
         ;
+    delay(150);
+    Mirf.send((uint8_t*)(&p));
+    while (Mirf.isSending())
+        ;
     Serial.println("Done");
 }
 
