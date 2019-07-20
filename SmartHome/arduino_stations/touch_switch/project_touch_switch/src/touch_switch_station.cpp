@@ -71,13 +71,16 @@ Payload p;
 void signalState() {
     Serial.println("signalState");
     p.address = 7;
-    p.type = Relay_2_Way;
+    p.type = Relay_4_Way;
     p.data = s1 | (s2 << 1) | (s3 << 2) | (s4 << 3);
     Serial.println("bin state");
     Serial.println(p.data, BIN);
 
-    //Mirf.send((byte*)&p);
+    // Mirf.send((byte*)&p);
     // Mirf.send((byte*)"111");
+    // wait for prev send to finish
+    while (Mirf.isSending())
+        ;
     Mirf.send((uint8_t*)(&p));
     while (Mirf.isSending())
         ;
@@ -104,6 +107,7 @@ void touch3() {
     s3Counter++;
     if (s3Counter == 1) {
         toggles3();
+        delay(50);
         signalState();
         Serial.println("TOUCH3");
     }
@@ -131,6 +135,7 @@ void touch4() {
     s4Counter++;
     if (s4Counter == 1) {
         toggles4();
+        delay(50);
         signalState();
         Serial.println("TOUCH4");
     }
@@ -156,6 +161,7 @@ void touch1() {
         return;
     }
     toggles1();
+    delay(50);
     signalState();
     Serial.println("TOUCH1");
 }
@@ -176,6 +182,7 @@ void touch2() {
         return;
     }
     toggles2();
+    delay(50);
     signalState();
     Serial.println("TOUCH2");
 }
@@ -244,8 +251,7 @@ void loop() {
     //  watchdogReset();
     // Serial.print("TICK");
 
-    if(once)
-    {
+    if (once) {
         once = false;
         signalState();
     }
