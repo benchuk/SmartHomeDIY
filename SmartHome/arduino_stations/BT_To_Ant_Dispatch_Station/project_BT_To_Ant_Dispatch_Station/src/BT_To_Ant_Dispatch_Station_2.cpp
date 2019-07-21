@@ -38,13 +38,12 @@ void setup() {
     BTSerial.begin(9600); // custom
     Serial.println("Dispatch station ready.");
 }
-//char otaCmd[Mirf.payload + 1];
+// char otaCmd[Mirf.payload + 1];
 char otaCmd[4];
 void loop() {
     watchdogReset();
-   
-    if(checkIfOtaRequestOrLoadCommand(otaCmd))
-    {
+
+    if (checkIfOtaRequestOrLoadCommand(otaCmd)) {
         // NEED TO TEST THIS WITH DATA FROM REAL ENDPOINT LIGHTS STATION
         Serial.println("got state ");
         Serial.println((uint8_t)otaCmd[0]);
@@ -53,13 +52,14 @@ void loop() {
         BTSerial.write(otaCmd[0]);
         BTSerial.write(otaCmd[1]);
         BTSerial.write(otaCmd[2]);
+        BTSerial.flush();
         delay(50);
     }
     // else
     // {
     //    Serial.print("NO DATA");
     // }
-    
+
     // THIS TEST WORKS
     // if (true) {
     //     // checkIfOtaRequestOrLoadCommand((uint8_t *)"111");
@@ -115,5 +115,4 @@ void loop() {
                 ;
         }
     }
- 
 }
