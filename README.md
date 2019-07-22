@@ -1,7 +1,7 @@
 
 # Welcome to SmartHomeDIY
 
-This project is a DIY home automation framework.
+This project is a DIY  **REST API** Home Automation Framework with **LOW Power** and a **LOW Radiation**
 With this system you will be able to control your home lights, Air conditioning, TV, water heater any many more devices (IR, wall sockets, and light switches are only a few).
 The system is Arduino and Raspberry Pi based.
 You will be able to control your house from the internal WiFi network as well as from the Internet.</br>

@@ -170,7 +170,9 @@ exports.init = function(port) {
 };
 
 var currentResponse = [];
+var currentCommand = [];
 var total = 0;
+var shouldHandleMessage = false;
 serialPort.on('open', function() {
   console.log('open');
   //logger.log('open');
@@ -185,58 +187,69 @@ serialPort.on('open', function() {
 
     console.log('data value : ' + JSON.stringify(currentResponse));
 
-    if (total > 3) {
-      currentResponse = [];
-      total = 0;
-      console.log('RESET');
-      return;
-    }
+    if (total % 3 == 0) {
+      console.log('got a batch of ' + total / 3 + ' messages');
+      while (total != 0) {
+        //get first 3 items (the current command)
+        currentCommand = [];
+        currentCommand = currentResponse.slice(0, 3);
+        //remove first 3 items
+        currentResponse.splice(0, 3);
+        //currentResponse = [];
+        //total = 0;
+        total = total - 3;
+        shouldHandleMessage = true;
+        //console.log('RESET');
+        //return;
 
-    //logger.log('got data - a station with address ' + data + ' is on');
+        //logger.log('got data - a station with address ' + data + ' is on');
 
-    if (total == 3) {
-      // if (total > 3) {
-      //   total = 0;
-      //   currentResponse = [];
-      //   console.log('RESET');
-      //   return;
-      // }
-      var requestData = Buffer.concat(currentResponse);
-      total = 0;
-      currentResponse = [];
-      var buf = new Buffer(requestData);
-      var address = parseInt(buf[0]);
-      var type = parseInt(buf[1]);
-      var state = parseInt(buf[2]);
-      console.log('address: ' + address);
-      console.log('type: ' + type);
-      console.log('state: ' + state);
-      http
-        .get(
-          {
-            host: 'benchuk.no-ip.info',
-            path:
-              '/status?address=' +
-              address +
-              '&type=' +
-              type +
-              '&state=' +
-              state,
-            port: 81
-          },
-          function(resp) {
-            resp.on('data', function(d) {
-              console.log('******* response from homekit ok *******');
-              //console.log('data: ' + d);
+        if (/*total == 3*/ shouldHandleMessage) {
+          // if (total > 3) {
+          //   total = 0;
+          //   currentResponse = [];
+          //   console.log('RESET');
+          //   return;
+          // }
+          shouldHandleMessage = false;
+          var requestData = Buffer.concat(currentCommand);
+          total = 0;
+          currentResponse = [];
+          var buf = new Buffer(requestData);
+          var address = parseInt(buf[0]);
+          var type = parseInt(buf[1]);
+          var state = parseInt(buf[2]);
+          console.log('address: ' + address);
+          console.log('type: ' + type);
+          console.log('state: ' + state);
+          http
+            .get(
+              {
+                host: 'benchuk.no-ip.info',
+                path:
+                  '/status?address=' +
+                  address +
+                  '&type=' +
+                  type +
+                  '&state=' +
+                  state,
+                port: 81
+              },
+              function(resp) {
+                resp.on('data', function(d) {
+                  console.log('******* response from homekit ok *******');
+                  //console.log('data: ' + d);
+                });
+                resp.on('end', function() {
+                  console.log('** done **');
+                });
+              }
+            )
+            .on('error', function(err) {
+              console.log('error ' + err);
             });
-            resp.on('end', function() {
-              console.log('** done **');
-            });
-          }
-        )
-        .on('error', function(err) {
-          console.log('error ' + err);
-        });
+        }
+      }
     }
     //logger.log(data);
     //   //serialPort.write(data, function(err, res) {})
