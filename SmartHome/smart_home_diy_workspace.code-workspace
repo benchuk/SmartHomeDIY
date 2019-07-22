@@ -49,10 +49,15 @@
       "path": "arduino_stations/lights_indicetor/project_lights_indicator"
     },
     {
-      "path": "arduino_stations/playground/project_playground"
+      "name": "Temperature And Humidity Station",
+      "path": "arduino_stations/temperature_station/project_temperature_station"
     },
     {
-      "path": "arduino_stations/temperature_station/project_temperature_station"
+      "name": "Motion Detection Station",
+      "path": "arduino_stations/pir_station/project_pir_station"
+    }
+    {
+      "path": "arduino_stations/playground/project_playground"
     },
     {
       "path": "/System/Volumes/Data/Users/benamsallem/docs/mystuff/git/SmartHomeDIY/SmartHome"

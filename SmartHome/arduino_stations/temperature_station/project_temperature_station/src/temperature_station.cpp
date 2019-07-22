@@ -11,7 +11,7 @@
 #define dht_apin A0
 dht DHT;
 
-enum Status_Type { Relay_4_Way = 1, Relay_2_Way = 2, TEMP_STATION = 3, HUMIDITY_STATION = 4 };
+enum Status_Type { Relay_4_Way = 1, Relay_2_Way = 2, TEMP_STATION = 3, HUMIDITY_STATION = 4, PIR_STATION = 5 };
 
 typedef struct PayloadData {
     uint8_t address;
