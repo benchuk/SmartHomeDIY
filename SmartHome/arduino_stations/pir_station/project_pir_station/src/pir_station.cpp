@@ -65,7 +65,7 @@ void loop() {
     int sensorValue = digitalRead(pirSensor);
     if(prevPirState != sensorValue)
     {
-        if (sensorValue == 1) {
+        if (sensorValue == HIGH) {
         isMotionDetected = 1;
         signalState();
         }
