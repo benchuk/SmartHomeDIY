@@ -30,9 +30,9 @@
  * **********************
    http://www.instructables.com/id/Clone-a-Remote-with-Arduino/
    https://www.arduino.cc/en/Tutorial/ReadWrite
-   check this for sd adn rf on the same spi
+   check this for sd and rf on the same spi
    https://forum.arduino.cc/index.php?topic=360718.0
-   ohter sd card interesting stuff: https://www.arduino.cc/en/Tutorial/DumpFile
+   other sd card interesting stuff: https://www.arduino.cc/en/Tutorial/DumpFile
    http://forum.arduino.cc/index.php?topic=104109.0
 
 **********************/
