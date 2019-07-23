@@ -1,0 +1,20 @@
+[
+    {
+        "type": "File",
+        "name": "c:\\Users\\Ben\\Documents\\git\\SmartHomeDIY\\SmartHome\\web_server\\PI Server\\project_pi_node_server\\whitelist.db",
+        "parent_id": null,
+        "fsPath": "c:\\Users\\Ben\\Documents\\git\\SmartHomeDIY\\SmartHome\\web_server\\PI Server\\project_pi_node_server\\whitelist.db",
+        "workspaceRoot": null,
+        "workspacePath": null,
+        "id": "Ca8Mtfb7dR5LcwG6"
+    },
+    {
+        "type": "File",
+        "name": "c:\\Users\\Ben\\Documents\\git\\SmartHomeDIY\\SmartHome\\web_server\\PI Server\\project_pi_node_server\\commands.txt",
+        "parent_id": null,
+        "fsPath": "c:\\Users\\Ben\\Documents\\git\\SmartHomeDIY\\SmartHome\\web_server\\PI Server\\project_pi_node_server\\commands.txt",
+        "workspaceRoot": null,
+        "workspacePath": null,
+        "id": "xWe7la56EQ9wYFJX"
+    }
+]
