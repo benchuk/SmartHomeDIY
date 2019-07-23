@@ -225,7 +225,7 @@ serialPort.on('open', function() {
           http
             .get(
               {
-                host: 'benchuk.no-ip.info',
+                host: '10.100.102.21',
                 path:
                   '/status?address=' +
                   address +
@@ -233,7 +233,7 @@ serialPort.on('open', function() {
                   type +
                   '&state=' +
                   state,
-                port: 81
+                port: 1880
               },
               function(resp) {
                 resp.on('data', function(d) {

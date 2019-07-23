@@ -149,6 +149,17 @@ typedef struct PayloadData
   uint8_t data;
 } Payload;
 
+void sleepMinutes(int minutes)
+{
+
+  int sec = minutes * 60;
+  while (sec > 0)
+  {
+    delay(1000);
+    sec--;
+  }
+}
+
 void configureEEPROMAddressForRFAndOTA(const char *myAdd)
 {
   //my address for example "001"

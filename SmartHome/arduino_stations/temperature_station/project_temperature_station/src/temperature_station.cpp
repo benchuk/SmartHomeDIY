@@ -11,13 +11,6 @@
 #define dht_apin A0
 dht DHT;
 
-enum Status_Type { Relay_4_Way = 1, Relay_2_Way = 2, TEMP_STATION = 3, HUMIDITY_STATION = 4, PIR_STATION = 5 };
-
-typedef struct PayloadData {
-    uint8_t address;
-    uint8_t type;
-    uint8_t data;
-} Payload;
 
 Payload p;
 
@@ -47,14 +40,6 @@ void setup() {
     Serial.println("INIT OK Temp sensor station");
 }
 
-void sleepMinutes(int minutes) {
-
-    int sec = minutes * 60;
-    while (sec > 0) {
-        delay(1000);
-        sec--;
-    }
-}
 void loop() {
 
     

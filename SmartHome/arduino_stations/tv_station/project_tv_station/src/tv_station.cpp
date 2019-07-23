@@ -7,19 +7,14 @@
 #include <SPI.h>
 #include <nRF24L01.h>
 
-int pirSensor = 5;
-int pirState = LOW;
-int val = 0;
-
 Payload p;
+uint8_t isTVOn = 1;
 
-uint8_t isMotionDetected = 0;
-int prevPirState = 0;
 void signalState() {
     Serial.println("signalState");
-    p.address = 102;
-    p.type = PIR_STATION;
-    p.data = isMotionDetected;
+    p.address = 104;
+    p.type = TV_STATION;
+    p.data = isTVOn;
     Serial.println("bin state");
     Serial.println(p.data, BIN);
     // wait for prev send to finish
@@ -37,7 +32,7 @@ void signalState() {
 
 void setup() {
 
-    configureEEPROMAddressForRFAndOTA("102");
+    configureEEPROMAddressForRFAndOTA("104");
 
     Serial.begin(9600);
 
@@ -45,29 +40,14 @@ void setup() {
 
     startRF();
 
-    pinMode(pirSensor, INPUT);
-
-    Serial.println("INIT OK PIR Station");
+    Serial.println("INIT OK TV Station");
 }
 
 void loop() {
 
-    // signalState();
+   signalState();
 
-    Serial.println("listen....");
+ Serial.println("listen....");
 
-    int sensorValue = digitalRead(pirSensor);
-    if (prevPirState != sensorValue) {
-        if (sensorValue == HIGH) {
-            isMotionDetected = 1;
-            Serial.println("High");
-            signalState();
-        } else {
-            isMotionDetected = 0;
-            Serial.println("Low");
-            signalState();
-        }
-    }
-    prevPirState = sensorValue;
-    delay(500);
+  sleepMinutes(20);
 }
