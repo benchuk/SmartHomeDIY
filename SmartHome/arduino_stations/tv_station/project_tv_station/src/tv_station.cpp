@@ -7,6 +7,9 @@
 #include <SPI.h>
 #include <nRF24L01.h>
 
+//REFERENCE for voltage read.
+//https://forum.arduino.cc/index.php?topic=120693.0
+
 Payload p;
 uint8_t isTVOn = 1;
 
