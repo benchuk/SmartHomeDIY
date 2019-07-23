@@ -132,6 +132,23 @@
 #define Radio_CE 9   // MUST NOT BE CHANGED TO SUPPORT BOOTLOADER OTA
 #define RESET_PIN A0 //RESET BOARD TO BOOTLOADER FOR OTA
 
+enum Status_Type
+{
+  Relay_4_Way = 1,
+  Relay_2_Way = 2,
+  TEMP_STATION = 3,
+  HUMIDITY_STATION = 4,
+  PIR_STATION = 5,
+  TV_STATION = 6
+};
+
+typedef struct PayloadData
+{
+  uint8_t address;
+  uint8_t type;
+  uint8_t data;
+} Payload;
+
 void configureEEPROMAddressForRFAndOTA(const char *myAdd)
 {
   //my address for example "001"
