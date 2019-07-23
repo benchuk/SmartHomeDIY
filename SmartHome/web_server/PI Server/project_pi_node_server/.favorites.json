@@ -16,5 +16,14 @@
         "workspaceRoot": null,
         "workspacePath": null,
         "id": "xWe7la56EQ9wYFJX"
+    },
+    {
+        "type": "File",
+        "name": "c:\\Users\\Ben\\Documents\\git\\SmartHomeDIY\\SmartHome\\arduino_stations\\libraries\\common\\common.h",
+        "parent_id": null,
+        "fsPath": "c:\\Users\\Ben\\Documents\\git\\SmartHomeDIY\\SmartHome\\arduino_stations\\libraries\\common\\common.h",
+        "workspaceRoot": null,
+        "workspacePath": null,
+        "id": "L36rnduaeYTwlj4p"
     }
 ]
