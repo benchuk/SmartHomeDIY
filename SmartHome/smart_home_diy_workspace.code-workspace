@@ -9,7 +9,7 @@
       "path": "arduino_stations/OTA/bootloader_with_ota_support/optiboot-nrf24l01-master"
     },
     {
-      "name": "Bootloader (Debugwith LED)",
+      "name": "Bootloader (Debug with LED)",
       "path": "arduino_stations/OTA/bootloader_with_ota_support/for_debug/bootloader_with_debug_leds/optiboot-nrf24l01-master-debug"
     },
     {
@@ -21,7 +21,7 @@
       "path": "arduino_stations/OTA/flasher station/optiboot-nrf24l01-flasher"
     },
     {
-      "name": "Flasher remote test station (Flashed remotly)",
+      "name": "Flasher remote test station (Flashed remotely)",
       "path": "arduino_stations/OTA/tests/remote_station_for_ota_tests/ota_remote-station_working_with_mirf_lib/remote_station_for_ota_tests"
     },
     {
@@ -56,7 +56,7 @@
       "name": "Motion Detection Station",
       "path": "arduino_stations/pir_station/project_pir_station"
     },
-	{
+    {
       "name": "TV Station",
       "path": "arduino_stations/tv_station/project_tv_station"
     },
@@ -66,7 +66,7 @@
   ],
   "settings": {
     "files.insertFinalNewline": false,
-    "files.eol": "\r\n",
+    "explorer.autoReveal": true,
     "terminal.integrated.env.windows": {
       "PATH": "C:\\Users\\Ben\\.platformio\\penv\\Scripts;C:\\Users\\Ben\\.platformio\\penv;C:\\Users\\Ben\\AppData\\Local\\Google\\Chrome\\Application;C:\\ProgramData\\Oracle\\Java\\javapath;C:\\Windows\\system32;C:\\Windows;C:\\Windows\\System32\\Wbem;C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\;C:\\adb;C:\\WINDOWS\\system32;C:\\WINDOWS;C:\\WINDOWS\\System32\\Wbem;C:\\WINDOWS\\System32\\WindowsPowerShell\\v1.0\\;C:\\Program Files\\PuTTY\\;C:\\Program Files\\LLVM\\bin;C:\\Program Files (x86)\\Common Files\\Apple\\Internet Services\\;C:\\WINDOWS\\System32\\OpenSSH\\;C:\\Program Files\\Microsoft VS Code Insiders\\bin;C:\\Program Files\\Git\\cmd;C:\\Users\\Ben\\.platformio\\penv\\Scripts;C:\\Users\\Ben\\.platformio\\penv;C:\\Users\\Ben\\AppData\\Local\\Google\\Chrome\\Application;C:\\ProgramData\\Oracle\\Java\\javapath;C:\\Windows\\system32;C:\\Windows;C:\\Windows\\System32\\Wbem;C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\;C:\\adb;C:\\WINDOWS\\system32;C:\\WINDOWS;C:\\WINDOWS\\System32\\Wbem;C:\\WINDOWS\\System32\\WindowsPowerShell\\v1.0\\;C:\\Program Files (x86)\\Skype\\Phone\\;C:\\Program Files\\PuTTY\\;C:\\Program Files\\LLVM\\bin;C:\\Program Files (x86)\\Common Files\\Apple\\Internet Services\\;C:\\WINDOWS\\System32\\OpenSSH\\;C:\\Program Files\\Microsoft VS Code Insiders\\bin;C:\\Program Files\\Git\\cmd;C:\\Users\\Ben\\.platformio\\penv\\Scripts;C:\\Users\\Ben\\.platformio\\penv;C:\\Users\\Ben\\AppData\\Local\\Google\\Chrome\\Application;C:\\ProgramData\\Oracle\\Java\\javapath;C:\\Windows\\system32;C:\\Windows;C:\\Windows\\System32\\Wbem;C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\;C:\\adb;C:\\WINDOWS\\system32;C:\\WINDOWS;C:\\WINDOWS\\System32\\Wbem;C:\\WINDOWS\\System32\\WindowsPowerShell\\v1.0\\;C:\\Program Files (x86)\\Skype\\Phone\\;C:\\Program;C:\\Program Files (x86)\\GnuWin32\\bin;C:\\Users\\Ben\\Documents\\git\\SmartHomeDIY\\SmartHome\\arduino_stations\\scripts\\avr\\windows\\avrdude\\bin;C:\\Program Files\\avr8-gnu-toolchain\\bin;;C:\\Users\\Ben\\AppData\\Local\\Programs\\Microsoft VS Code\\bin;C:\\Users\\Ben\\AppData\\Local\\hyper\\app-2.1.2\\resources\\bin;C:\\Users\\Ben\\AppData\\Local\\Google\\Chrome\\Application;C:\\ProgramData\\Oracle\\Java\\javapath;C:\\Windows\\system32;C:\\Windows;C:\\Windows\\System32\\Wbem;C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\;C:\\adb;C:\\WINDOWS\\system32;C:\\WINDOWS;C:\\WINDOWS\\System32\\Wbem;C:\\WINDOWS\\System32\\WindowsPowerShell\\v1.0\\;C:\\Program Files\\PuTTY\\;C:\\Program Files\\LLVM\\bin;C:\\Program Files (x86)\\Common Files\\Apple\\Internet Services\\;C:\\WINDOWS\\System32\\OpenSSH\\;C:\\Program Files\\Microsoft VS Code Insiders\\bin;C:\\Program Files\\Git\\cmd;C:\\Users\\Ben\\.platformio\\penv\\Scripts;C:\\Users\\Ben\\.platformio\\penv;C:\\Users\\Ben\\AppData\\Local\\Google\\Chrome\\Application;C:\\ProgramData\\Oracle\\Java\\javapath;C:\\Windows\\system32;C:\\Windows;C:\\Windows\\System32\\Wbem;C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\;C:\\adb;C:\\WINDOWS\\system32;C:\\WINDOWS;C:\\WINDOWS\\System32\\Wbem;C:\\WINDOWS\\System32\\WindowsPowerShell\\v1.0\\;C:\\Program Files (x86)\\Skype\\Phone\\;C:\\Program Files\\PuTTY\\;C:\\Program Files\\LLVM\\bin;C:\\Program Files (x86)\\Common Files\\Apple\\Internet Services\\;C:\\WINDOWS\\System32\\OpenSSH\\;C:\\Program Files\\Microsoft VS Code Insiders\\bin;C:\\Program Files\\Git\\cmd;C:\\Users\\Ben\\.platformio\\penv\\Scripts;C:\\Users\\Ben\\.platformio\\penv;C:\\Users\\Ben\\AppData\\Local\\Google\\Chrome\\Application;C:\\ProgramData\\Oracle\\Java\\javapath;C:\\Windows\\system32;C:\\Windows;C:\\Windows\\System32\\Wbem;C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\;C:\\adb;C:\\WINDOWS\\system32;C:\\WINDOWS;C:\\WINDOWS\\System32\\Wbem;C:\\WINDOWS\\System32\\WindowsPowerShell\\v1.0\\;C:\\Program Files (x86)\\Skype\\Phone\\;C:\\Program;C:\\Program Files (x86)\\GnuWin32\\bin;C:\\Users\\Ben\\Documents\\git\\SmartHomeDIY\\SmartHome\\arduino_stations\\scripts\\avr\\windows\\avrdude\\bin;C:\\Program Files\\avr8-gnu-toolchain\\bin;;C:\\Users\\Ben\\AppData\\Local\\Programs\\Microsoft VS Code\\bin;C:\\Users\\Ben\\AppData\\Local\\hyper\\app-2.1.2\\resources\\bin",
       "PLATFORMIO_CALLER": "vscode"
