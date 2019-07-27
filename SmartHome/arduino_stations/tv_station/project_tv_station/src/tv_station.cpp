@@ -15,7 +15,7 @@ uint8_t isTVOn = 1;
 
 void signalState() {
   //  Serial.println("signalState");
-    p.address = 104;
+    p.address = 106;
     p.type = TV_STATION;
     p.data = isTVOn;
    // Serial.println("bin state");
@@ -49,7 +49,7 @@ long readVcc()
 
 void setup() {
 
-    configureEEPROMAddressForRFAndOTA("104");
+    configureEEPROMAddressForRFAndOTA("106");
 
     Serial.begin(9600);
 
@@ -57,7 +57,7 @@ void setup() {
 
     startRF();
 
-    Serial.println("INIT OK TV Station");
+    Serial.println("INIT OK TV Station 2");
      signalState();
 }
 
