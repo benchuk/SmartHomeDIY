@@ -1,5 +1,3 @@
 {
-	"recommendations": [
-		"liximomo.sftp"
-	]
+  "recommendations": ["liximomo.sftp"]
 }
