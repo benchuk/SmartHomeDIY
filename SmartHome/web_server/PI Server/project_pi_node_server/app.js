@@ -225,7 +225,7 @@ serialPort.on('open', function() {
           http
             .get(
               {
-                host: '10.100.102.21',
+                host: '10.100.102.14',
                 path:
                   '/status?address=' +
                   address +
