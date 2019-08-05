@@ -76,8 +76,10 @@ exports.init = function(port) {
     try {
       var value = req.query.value;
       logger.log('harq with value:' + value);
-      serialPort.write(value, function(err, res) {});
-      res.send(value + ' sent...');
+      setTimeout(() => {
+        serialPort.write(value, function(err, res) {});
+        res.send(value + ' sent...');
+      }, 50);
     } catch (err) {
       err;
     }
@@ -225,7 +227,7 @@ serialPort.on('open', function() {
           http
             .get(
               {
-                host: '10.100.102.14',
+                host: '10.100.102.10',
                 path:
                   '/status?address=' +
                   address +
