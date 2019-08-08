@@ -67,6 +67,13 @@
   "settings": {
     "workbench.colorTheme": "Popping and Locking",
     "workbench.editor.highlightModifiedTabs": true,
+    "workbench.colorCustomizations": {
+      //"activityBar.foreground": "#00b11d",
+      "titleBar.activeBackground": "#366600",
+      "titleBar.activeForeground": "#eee",
+      "titleBar.inactiveBackground": "#1a1818",
+      "titleBar.inactiveForeground": "#eee"
+    },
     "files.trimTrailingWhitespace": true,
     "explorer.autoReveal": true,
     "explorer.sortOrder": "type",
