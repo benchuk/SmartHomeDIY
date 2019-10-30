@@ -5,7 +5,7 @@
   "main": "server.js",
   "dependencies": {
     "ejs-locals": "~1.0.2",
-    "express": "~3.1.0",
+    "express": "~4.17.1",
     "locallydb": "0.0.9",
     "serialport": "^7.1.5"
   },
