@@ -481,9 +481,9 @@ else if(time1 < time2)
     return;
 }
 else {
-    Serial.println("equal");
-     Serial.println(time1);
-      Serial.println(time2);
+    // Serial.println("equal");
+    //  Serial.println(time1);
+    //   Serial.println(time2);
 }
 
 }
