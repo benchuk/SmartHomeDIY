@@ -107,8 +107,9 @@ void playTone() {
         }
     }
 }
-
+int playingMusic = 0;
 void playMusic() {
+    playingMusic = 1;
     for (int i = 0; i < MAX_COUNT; i++) {
         tone_ = melody[i];
         beat = beats[i];
@@ -119,6 +120,7 @@ void playMusic() {
         // A pause between notes...
         delayMicroseconds(pause);
     }
+    playingMusic = 0;
 }
 // #define rfCE 9
 // #define rfCS 10
@@ -281,9 +283,27 @@ const TProgmemPalette16 myRedWhiteBluePalette_p PROGMEM = {
 // char A[] = {
 //     4, 8, B01111110, B00010001, B00010001, B01111110,
 // };
+int first = 1;
+int s1 = 0;
+void onS1() {
+    if(first)
+    {
+        first = 0;
+        return;
+    }
+    s1=1;
+}
 
-void onS1() { Serial.println("onS1"); }
-void onS2() { Serial.println("onS2"); }
+int first2 = 1;
+int s2 = 0;
+void onS2() {
+    if(first2)
+    {
+        first2 = 0;
+        return;
+    }
+    s2=1;
+}
 void onS3() { Serial.println("onS3"); }
 void onS4() { Serial.println("onS4"); }
 
@@ -302,6 +322,19 @@ void initInterrupts() {
     interrupts();
 }
 
+void animate()
+{
+     ChangePalettePeriodically();
+
+    static uint8_t startIndex = 0;
+    startIndex = startIndex + 1; /* motion speed */
+
+    FillLEDsFromPaletteColors(startIndex);
+
+    FastLED.show();
+    FastLED.delay(1000 / UPDATES_PER_SECOND);
+}
+int gameEnded = 0;
 void setup() {
       Serial.begin(9600);
       pinMode(speakerOut, OUTPUT);
@@ -316,49 +349,74 @@ void setup() {
 
     currentPalette = RainbowColors_p;
     currentBlending = LINEARBLEND;
+     setAllColor(CRGB::White);
+     m.clear();
+     m.writeSprite(2, 0, ONE);
+     s1=0;
+}
+int counter = 1;
+void loop() {
+    if(playingMusic)
+{
+    return;
+}
+    if(gameEnded)
+    {
+        animate();
+        return;
+    }
+if(counter<=3)
+{
+    if(counter ==1)
+    {
+         m.clear();
+        m.writeSprite(2, 0, ONE);
+    }
+      if(counter ==2)
+    {
+         m.clear();
+        m.writeSprite(2, 0, TWO);
+    }
+     if(counter ==3)
+    {
+         m.clear();
+        m.writeSprite(2, 0, THREE);
+         setAllColor(CRGB::Green);
+    }
+    delay(1000);
+    counter++;
+    return;
 }
 
-void loop() {
+if(s1)
+{
+    s1=0;
+
+   // Serial.println("onS1");
+     setAllColor(CRGB::Red);
+        m.clear();
     playMusic();
-    m.clear();
-    // Displaying the character at x,y (upper left corner of the character)
-    m.writeSprite(2, 0, ONE);
-    for (int i = 0; i < 8; i++) {
-        m.shiftLeft(false, false);
-        delay(100);
-    }
+    gameEnded = 1;
+}
 
-    ChangePalettePeriodically();
-
-    static uint8_t startIndex = 0;
-    startIndex = startIndex + 1; /* motion speed */
-
-    FillLEDsFromPaletteColors(startIndex);
-
-    FastLED.show();
-    FastLED.delay(1000 / UPDATES_PER_SECOND);
-    //  delay(100);
-    // return;
-    // while (!Mirf.dataReady())
-    // {
-    //   //Serial.print(".");
-    //   watchdogReset();
-    //   blinkReady();
-    // };
-
-    // //Serial.print("TICK");
-    // checkIfOtaRequestOrLoadCommand(cmd);
-    // Serial.print(F("New command "));
-    // Serial.println(cmd);
-    // if (strcmp(cmd, "001") == 0)
-    // {
-    //   Serial.print("remtoe restart");
-    //   soft_restart();
-    //   return;
+if(s2)
+{
+    s2=0;
+   // Serial.println("onS1");
+     setAllColor(CRGB::Blue);
+        m.clear();
+    playMusic();
+    gameEnded = 1;
+}
+    // m.clear();
+    // // Displaying the character at x,y (upper left corner of the character)
+    // m.writeSprite(2, 0, ONE);
+    // for (int i = 0; i < 8; i++) {
+    //     m.shiftLeft(false, false);
+    //     delay(100);
     // }
-    // //s1
-    // else if (strcmp(cmd, "002") == 0)
-    // {
-    //   return;
-    // }
+
+
+
+
 }
