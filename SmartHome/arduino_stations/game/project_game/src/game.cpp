@@ -338,13 +338,16 @@ void onS2() {
 int first4 = 1;
 int s4 = 0;
 void onS4() {
-    Serial.println("onS4");
     if(first4)
     {
         first4 = 0;
         return;
     }
-    s4=1;
+    if(gameEnded)
+    {
+        Serial.println("onS4");
+        s4=1;
+    }
 }
 void onS3() { Serial.println("onS3"); }
 
@@ -379,6 +382,7 @@ void animate()
 
 void initState()
 {
+
     s1=0;
     s2=0;
     time1 =0;
@@ -386,7 +390,7 @@ void initState()
     //s3=0;
     s4=0;
     counter = 1;
-    gameEnded = 0;
+     gameEnded = 0;
 }
 void setup() {
       Serial.begin(9600);
@@ -418,8 +422,9 @@ void loop() {
     {
         if(s4)
         {
-            s4 = 0;
+
             initState();
+              s4 = 0;
             return;
         }
         animate();
