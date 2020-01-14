@@ -11,6 +11,19 @@
 #include <MaxMatrix.h>
 #include <PinChangeInt.h>
 
+// TONES  ==========================================
+// Start by defining the relationship between
+//       note, period, &  frequency.
+#define c 3830 // 261 Hz
+#define d 3400 // 294 Hz
+#define e 3038 // 329 Hz
+#define f 2864 // 349 Hz
+#define g 2550 // 392 Hz
+#define a 2272 // 440 Hz
+#define b 2028 // 493 Hz
+#define C 1912 // 523 Hz
+// Define a special note, 'R', to represent a rest
+#define R 0
 // pin change interrupts groups are:
 // A0 to A5
 // D0 to D7
@@ -269,17 +282,17 @@ const TProgmemPalette16 myRedWhiteBluePalette_p PROGMEM = {
 //     4, 8, B01111110, B00010001, B00010001, B01111110,
 // };
 
-void onS1() {}
-void onS2() {}
-void onS3() {}
-void onS4() {}
+void onS1() { Serial.println("onS1"); }
+void onS2() { Serial.println("onS2"); }
+void onS3() { Serial.println("onS3"); }
+void onS4() { Serial.println("onS4"); }
 
 void initInterrupts() {
     noInterrupts();
     pinMode(interruptTouch1Pin, INPUT_PULLUP);
     pinMode(interruptTouch2Pin, INPUT_PULLUP);
-    pinMode(SWITCH3_PIN_CHANGE_INTERRUPT, INPUT);
-    pinMode(SWITCH4_PIN_CHANGE_INTERRUPT, INPUT);
+    pinMode(SWITCH3_PIN_CHANGE_INTERRUPT, INPUT_PULLUP);
+    pinMode(SWITCH4_PIN_CHANGE_INTERRUPT, INPUT_PULLUP);
     attachInterrupt(digitalPinToInterrupt(interruptTouch1Pin), onS1, RISING);
     attachInterrupt(digitalPinToInterrupt(interruptTouch2Pin), onS2, RISING);
     // attachPinChangeInterrupt(SWITCH3_PIN_CHANGE_INTERRUPT, onS3, CHANGE);
@@ -290,6 +303,8 @@ void initInterrupts() {
 }
 
 void setup() {
+      Serial.begin(9600);
+      pinMode(speakerOut, OUTPUT);
     initInterrupts();
     m.init();          // MAX7219 initialization
     m.setIntensity(8); // initial led matrix intensity, 0-15
@@ -304,7 +319,7 @@ void setup() {
 }
 
 void loop() {
-
+    playMusic();
     m.clear();
     // Displaying the character at x,y (upper left corner of the character)
     m.writeSprite(2, 0, ONE);
