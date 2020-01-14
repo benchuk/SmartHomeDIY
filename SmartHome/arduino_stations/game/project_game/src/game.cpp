@@ -443,7 +443,8 @@ if(s1)
         m.clear();
     playMusic();
     gameEnded = 1;
-    delay(3000);
+    delay(1000);
+     return;
 }
 
 if(s2)
@@ -454,7 +455,8 @@ if(s2)
         m.clear();
     playMusic();
     gameEnded = 1;
-    delay(3000);
+    delay(1000);
+    return;
 }
     // m.clear();
     // // Displaying the character at x,y (upper left corner of the character)
