@@ -360,17 +360,22 @@ void loop() {
 {
     return;
 }
-    if(gameEnded)
+    if(gameEnded > 100)
     {
         animate();
         return;
     }
+     if(gameEnded > 0)
+     {
+         gameEnded++;
+         return;
+     }
 if(counter<=3)
 {
     if(counter ==1)
     {
          m.clear();
-        m.writeSprite(2, 0, ONE);
+        m.writeSprite(2, 0, THREE);
     }
       if(counter ==2)
     {
@@ -380,7 +385,7 @@ if(counter<=3)
      if(counter ==3)
     {
          m.clear();
-        m.writeSprite(2, 0, THREE);
+        m.writeSprite(2, 0, ONE);
          setAllColor(CRGB::Green);
     }
     delay(1000);
@@ -397,6 +402,7 @@ if(s1)
         m.clear();
     playMusic();
     gameEnded = 1;
+    delay(3000)
 }
 
 if(s2)
@@ -407,6 +413,7 @@ if(s2)
         m.clear();
     playMusic();
     gameEnded = 1;
+    delay(3000)
 }
     // m.clear();
     // // Displaying the character at x,y (upper left corner of the character)
