@@ -131,18 +131,18 @@ void beep(int note, int duration)
 void ninja()
 {
 
-  beep(cH, 200);
-  beep(cH, 200);
-  beep(cH, 200);
-  beep(cH, 200);
+  beep(cH, 150);
+  beep(cH, 150);
+  beep(cH, 150);
+  beep(cH, 150);
   //delay(100);
-  beep(aS, 200);
-  delay(270);
-  beep(cH, 200);
-  delay(600);
- beep(cH, 200);
-  beep(cH, 200);
-  beep(cH, 200);
+  beep(aS, 150);
+  delay(220);
+  beep(cH, 150);
+  delay(550);
+ beep(cH, 150);
+  beep(cH, 150);
+  beep(cH, 150);
 
   delay(500);
 }
