@@ -102,6 +102,10 @@
 
 // }
 
+//***************** 8x8 -> pins 567 **********************//
+//***************** Color strip -> pin 8 **********************//
+//***************** speaker pin 9 **********************//
+
 #include <Arduino.h>
 #include <FastLED.h>
 #include <MaxMatrix.h>
@@ -111,6 +115,18 @@ int CLK = 6; // CLK pin of MAX7219 module
 int CS = 5;  // CS pin of MAX7219 module
 int maxInUse = 1;
 MaxMatrix m(DIN, CS, CLK, maxInUse);
+
+char ONE[] = {
+    3, 8, B01000010, B01111111, B01000000, B00000000, B00000000, // 1
+};
+
+char TWO[] = {
+    4, 8, B01100010, B01010001, B01001001, B01000110, B00000000, // 2
+};
+
+char THREE[] = {
+    4, 8, B00100010, B01000001, B01001001, B00110110, B00000000, // 3
+};
 
 #define LED_PIN 8
 #define NUM_LEDS 12
@@ -339,18 +355,6 @@ const TProgmemPalette16 myRedWhiteBluePalette_p PROGMEM = {
 // char A[] = {
 //     4, 8, B01111110, B00010001, B00010001, B01111110,
 // };
-
-char ONE[] = {
-    3, 8, B01000010, B01111111, B01000000, B00000000, B00000000, // 1
-};
-
-char TWO[] = {
-    4, 8, B01100010, B01010001, B01001001, B01000110, B00000000, // 2
-};
-
-char THREE[] = {
-    4, 8, B00100010, B01000001, B01001001, B00110110, B00000000, // 3
-};
 
 void setup() {
     m.init();          // MAX7219 initialization
