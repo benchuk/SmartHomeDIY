@@ -42,6 +42,10 @@ int CS = 5;  // CS pin of MAX7219 module
 int maxInUse = 1;
 MaxMatrix m(DIN, CS, CLK, maxInUse);
 
+
+ char smile02[] = { 4, 8, B00000010, B01011001, B00001001, B00000110, B00000000, // ?
+};
+
 char ONE[] = {
     3, 8, B01000010, B01111111, B01000000, B00000000, B00000000, // 1
 };
@@ -53,6 +57,8 @@ char TWO[] = {
 char THREE[] = {
     4, 8, B00100010, B01000001, B01001001, B00110110, B00000000, // 3
 };
+
+
 
 #define LED_PIN 8
 #define NUM_LEDS 12
@@ -304,8 +310,20 @@ void onS2() {
     }
     s2=1;
 }
+
+int first4 = 1;
+int s4 = 0;
+void onS4() {
+    Serial.println("onS4");
+    if(first4)
+    {
+        first4 = 0;
+        return;
+    }
+    s4=1;
+}
 void onS3() { Serial.println("onS3"); }
-void onS4() { Serial.println("onS4"); }
+
 
 void initInterrupts() {
     noInterrupts();
@@ -335,6 +353,16 @@ void animate()
     FastLED.delay(1000 / UPDATES_PER_SECOND);
 }
 int gameEnded = 0;
+int counter = 1;
+void initState()
+{
+    s1=0;
+    s2=0;
+    //s3=0;
+    s4=0;
+    counter = 1;
+    gameEnded = 0;
+}
 void setup() {
       Serial.begin(9600);
       pinMode(speakerOut, OUTPUT);
@@ -342,7 +370,7 @@ void setup() {
     m.init();          // MAX7219 initialization
     m.setIntensity(8); // initial led matrix intensity, 0-15
 
-    delay(3000); // power-up safety delay
+    //delay(3000); // power-up safety delay
     FastLED.addLeds<LED_TYPE, LED_PIN, COLOR_ORDER>(leds, NUM_LEDS)
         .setCorrection(TypicalLEDStrip);
     FastLED.setBrightness(BRIGHTNESS);
@@ -352,9 +380,10 @@ void setup() {
      setAllColor(CRGB::White);
      m.clear();
      m.writeSprite(2, 0, ONE);
-     s1=0;
+
+     initState();
 }
-int counter = 1;
+
 void loop() {
     if(playingMusic)
 {
@@ -362,6 +391,12 @@ void loop() {
 }
     if(gameEnded > 100)
     {
+        if(s4)
+        {
+            s4 = 0;
+            initState();
+            return;
+        }
         animate();
         return;
     }
@@ -370,12 +405,13 @@ void loop() {
          gameEnded++;
          return;
      }
-if(counter<=3)
+if(counter<=4)
 {
     if(counter ==1)
     {
          m.clear();
         m.writeSprite(2, 0, THREE);
+        setAllColor(CRGB::White);
     }
       if(counter ==2)
     {
@@ -386,6 +422,11 @@ if(counter<=3)
     {
          m.clear();
         m.writeSprite(2, 0, ONE);
+    }
+     if(counter ==4)
+    {
+         m.clear();
+        m.writeSprite(2, 0, smile02);
          setAllColor(CRGB::Green);
     }
     delay(1000);
