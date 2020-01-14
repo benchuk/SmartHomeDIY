@@ -49,6 +49,10 @@
       "path": "arduino_stations/lights_indicetor/project_lights_indicator"
     },
     {
+      "name": "Game",
+      "path": "arduino_stations/game/project_game"
+    },
+    {
       "name": "Temperature And Humidity Station",
       "path": "arduino_stations/temperature_station/project_temperature_station"
     },
