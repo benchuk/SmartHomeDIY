@@ -282,8 +282,10 @@ void initInterrupts() {
     pinMode(SWITCH4_PIN_CHANGE_INTERRUPT, INPUT);
     attachInterrupt(digitalPinToInterrupt(interruptTouch1Pin), onS1, RISING);
     attachInterrupt(digitalPinToInterrupt(interruptTouch2Pin), onS2, RISING);
-    attachPinChangeInterrupt(SWITCH3_PIN_CHANGE_INTERRUPT, onS3, CHANGE);
-    attachPinChangeInterrupt(SWITCH4_PIN_CHANGE_INTERRUPT, onS4, CHANGE);
+    // attachPinChangeInterrupt(SWITCH3_PIN_CHANGE_INTERRUPT, onS3, CHANGE);
+    // attachPinChangeInterrupt(SWITCH4_PIN_CHANGE_INTERRUPT, onS4, CHANGE);
+    attachPinChangeInterrupt(SWITCH3_PIN_CHANGE_INTERRUPT, onS3, RISING);
+    attachPinChangeInterrupt(SWITCH4_PIN_CHANGE_INTERRUPT, onS4, RISING);
     interrupts();
 }
 
