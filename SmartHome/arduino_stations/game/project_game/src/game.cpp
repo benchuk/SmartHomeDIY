@@ -59,6 +59,8 @@ char THREE[] = {
 };
 
 
+int gameEnded = 0;
+int counter = 1;
 
 #define LED_PIN 8
 #define NUM_LEDS 12
@@ -291,24 +293,46 @@ const TProgmemPalette16 myRedWhiteBluePalette_p PROGMEM = {
 // };
 int first = 1;
 int s1 = 0;
+unsigned long time1 = 0;
 void onS1() {
     if(first)
     {
         first = 0;
         return;
     }
+    if(counter<4)
+    {
+        return;
+    }
+      if(s1 == 1)
+    {
+        return;
+    }
+   time1 = millis();
     s1=1;
 }
 
+
 int first2 = 1;
 int s2 = 0;
+unsigned long time2 = 0;
 void onS2() {
     if(first2)
     {
         first2 = 0;
         return;
     }
+    if(counter<4)
+    {
+        return;
+    }
+    if(s2 == 1)
+    {
+        return;
+    }
+    time2 = millis();
     s2=1;
+
 }
 
 int first4 = 1;
@@ -352,12 +376,13 @@ void animate()
     FastLED.show();
     FastLED.delay(1000 / UPDATES_PER_SECOND);
 }
-int gameEnded = 0;
-int counter = 1;
+
 void initState()
 {
     s1=0;
     s2=0;
+    time1 =0;
+    time2= 0;
     //s3=0;
     s4=0;
     counter = 1;
@@ -434,11 +459,10 @@ if(counter<=4)
     return;
 }
 
-if(s1)
-{
-    s1=0;
 
-   // Serial.println("onS1");
+if(time1 > time2)
+{
+     //Serial.println("onS1");
      setAllColor(CRGB::Red);
         m.clear();
     playMusic();
@@ -446,11 +470,9 @@ if(s1)
     delay(1000);
      return;
 }
-
-if(s2)
+else if(time1 < time2)
 {
-    s2=0;
-   // Serial.println("onS1");
+     // Serial.println("onS1");
      setAllColor(CRGB::Blue);
         m.clear();
     playMusic();
@@ -458,15 +480,10 @@ if(s2)
     delay(1000);
     return;
 }
-    // m.clear();
-    // // Displaying the character at x,y (upper left corner of the character)
-    // m.writeSprite(2, 0, ONE);
-    // for (int i = 0; i < 8; i++) {
-    //     m.shiftLeft(false, false);
-    //     delay(100);
-    // }
-
-
-
+else {
+    Serial.println("equal");
+     Serial.println(time1);
+      Serial.println(time2);
+}
 
 }
