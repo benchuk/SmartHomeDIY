@@ -528,8 +528,8 @@ void sendcode()
   buffer = myFile.readStringUntil('\n');
   //to int reference: https://www.arduino.cc/en/Tutorial/StringToIntExample
   counter = buffer.toInt();
-  Serial.print(counter);//dbg
-  Serial.println(" number of line in file header");//dbg
+  Serial.print(counter);                            //dbg
+  Serial.println(" number of line in file header"); //dbg
   for (uint8_t i = 0; i < counter; i++)
   {
     buffer = myFile.readStringUntil('\n');
