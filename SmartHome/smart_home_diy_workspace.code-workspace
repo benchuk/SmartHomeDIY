@@ -13,10 +13,6 @@
       "path": "arduino_stations/OTA/bootloader_with_ota_support/for_debug/bootloader_with_debug_leds/optiboot-nrf24l01-master-debug"
     },
     {
-      "name": "Utils",
-      "path": "arduino_stations\\scripts"
-    },
-    {
       "name": "Flasher Station",
       "path": "arduino_stations/OTA/flasher station/optiboot-nrf24l01-flasher"
     },
@@ -66,6 +62,10 @@
     },
     {
       "path": "arduino_stations/playground/project_playground"
+    },
+    {
+      "name": "Utils",
+      "path": "arduino_stations/scripts"
     }
   ],
   "settings": {
@@ -106,7 +106,6 @@
     "prettier.semi": true,
     "prettier.singleQuote": true,
     "prettier.useTabs": false,
-    "prettier.eslintIntegration": true,
     "terminal.integrated.env.windows": {
       "PATH": "C:\\Users\\Ben\\.platformio\\penv\\Scripts;C:\\Users\\Ben\\.platformio\\penv;C:\\Program Files (x86)\\Common Files\\Oracle\\Java\\javapath;C:\\Users\\Ben\\AppData\\Local\\Google\\Chrome\\Application;C:\\ProgramData\\Oracle\\Java\\javapath;C:\\Windows\\system32;C:\\Windows;C:\\Windows\\System32\\Wbem;C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\;C:\\adb;C:\\WINDOWS\\system32;C:\\WINDOWS;C:\\WINDOWS\\System32\\Wbem;C:\\WINDOWS\\System32\\WindowsPowerShell\\v1.0\\;C:\\Program Files\\PuTTY\\;C:\\Program Files\\LLVM\\bin;C:\\Program Files (x86)\\Common Files\\Apple\\Internet Services\\;C:\\WINDOWS\\System32\\OpenSSH\\;C:\\Program Files\\Microsoft VS Code Insiders\\bin;C:\\Program Files\\Git\\cmd;C:\\Program Files\\NVIDIA Corporation\\NVIDIA NvDLISR;C:\\Program Files (x86)\\NVIDIA Corporation\\PhysX\\Common;C:\\Users\\Ben\\.platformio\\penv\\Scripts;C:\\Users\\Ben\\.platformio\\penv;C:\\Users\\Ben\\AppData\\Local\\Google\\Chrome\\Application;C:\\ProgramData\\Oracle\\Java\\javapath;C:\\Windows\\system32;C:\\Windows;C:\\Windows\\System32\\Wbem;C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\;C:\\adb;C:\\WINDOWS\\system32;C:\\WINDOWS;C:\\WINDOWS\\System32\\Wbem;C:\\WINDOWS\\System32\\WindowsPowerShell\\v1.0\\;C:\\Program Files (x86)\\Skype\\Phone\\;C:\\Program Files\\PuTTY\\;C:\\Program Files\\LLVM\\bin;C:\\Program Files (x86)\\Common Files\\Apple\\Internet Services\\;C:\\WINDOWS\\System32\\OpenSSH\\;C:\\Program Files\\Microsoft VS Code Insiders\\bin;C:\\Program Files\\Git\\cmd;C:\\Program;C:\\Program Files (x86)\\GnuWin32\\bin;C:\\Users\\Ben\\Documents\\git\\SmartHomeDIY\\SmartHome\\arduino_stations\\scripts\\avr\\windows\\avrdude\\bin;C:\\Program Files\\avr8-gnu-toolchain\\bin;;C:\\Users\\Ben\\AppData\\Local\\Programs\\Microsoft VS Code\\bin;C:\\Users\\Ben\\AppData\\Local\\hyper\\app-2.1.2\\resources\\bin;%USERPROFILE%\\AppData\\Local\\Microsoft\\WindowsApps;C:\\Program Files (x86)\\Common Files\\Oracle\\Java\\javapath;C:\\Users\\Ben\\AppData\\Local\\Google\\Chrome\\Application;C:\\ProgramData\\Oracle\\Java\\javapath;C:\\Windows\\system32;C:\\Windows;C:\\Windows\\System32\\Wbem;C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\;C:\\adb;C:\\WINDOWS\\system32;C:\\WINDOWS;C:\\WINDOWS\\System32\\Wbem;C:\\WINDOWS\\System32\\WindowsPowerShell\\v1.0\\;C:\\Program Files\\PuTTY\\;C:\\Program Files\\LLVM\\bin;C:\\Program Files (x86)\\Common Files\\Apple\\Internet Services\\;C:\\WINDOWS\\System32\\OpenSSH\\;C:\\Program Files\\Microsoft VS Code Insiders\\bin;C:\\Program Files\\Git\\cmd;C:\\Program Files\\NVIDIA Corporation\\NVIDIA NvDLISR;C:\\Program Files (x86)\\NVIDIA Corporation\\PhysX\\Common;C:\\Users\\Ben\\.platformio\\penv\\Scripts;C:\\Users\\Ben\\.platformio\\penv;C:\\Users\\Ben\\AppData\\Local\\Google\\Chrome\\Application;C:\\ProgramData\\Oracle\\Java\\javapath;C:\\Windows\\system32;C:\\Windows;C:\\Windows\\System32\\Wbem;C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\;C:\\adb;C:\\WINDOWS\\system32;C:\\WINDOWS;C:\\WINDOWS\\System32\\Wbem;C:\\WINDOWS\\System32\\WindowsPowerShell\\v1.0\\;C:\\Program Files (x86)\\Skype\\Phone\\;C:\\Program Files\\PuTTY\\;C:\\Program Files\\LLVM\\bin;C:\\Program Files (x86)\\Common Files\\Apple\\Internet Services\\;C:\\WINDOWS\\System32\\OpenSSH\\;C:\\Program Files\\Microsoft VS Code Insiders\\bin;C:\\Program Files\\Git\\cmd;C:\\Program;C:\\Program Files (x86)\\GnuWin32\\bin;C:\\Users\\Ben\\Documents\\git\\SmartHomeDIY\\SmartHome\\arduino_stations\\scripts\\avr\\windows\\avrdude\\bin;C:\\Program Files\\avr8-gnu-toolchain\\bin;;C:\\Users\\Ben\\AppData\\Local\\Programs\\Microsoft VS Code\\bin;C:\\Users\\Ben\\AppData\\Local\\hyper\\app-2.1.2\\resources\\bin;%USERPROFILE%\\AppData\\Local\\Microsoft\\WindowsApps",
       "PLATFORMIO_CALLER": "vscode"

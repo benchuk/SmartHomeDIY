@@ -11,7 +11,6 @@
 #define dht_apin A0
 dht DHT;
 
-
 Payload p;
 
 void signalState(Status_Type type, uint8_t data) {
@@ -20,7 +19,7 @@ void signalState(Status_Type type, uint8_t data) {
     p.address = 101;
     p.type = type;
     p.data = data;
-    //Serial.println(p.data, BIN);
+    // Serial.println(p.data, BIN);
     Mirf.send((byte*)&p);
     while (Mirf.isSending())
         ;
@@ -28,21 +27,15 @@ void signalState(Status_Type type, uint8_t data) {
 }
 
 void setup() {
-
     configureEEPROMAddressForRFAndOTA("101");
-
     Serial.begin(9600);
-
     Serial.println("Init RF");
-
     startRF();
-
     Serial.println("INIT OK Temp sensor station");
 }
 
 void loop() {
 
-    
     Serial.println("listen....");
     //  delay(100);
     // return;
@@ -54,14 +47,14 @@ void loop() {
     DHT.read11(dht_apin);
 
     Serial.print("Current humidity = ");
-    Serial.print((uint8_t) DHT.humidity);
+    Serial.print((uint8_t)DHT.humidity);
     Serial.print("%  ");
     Serial.print("temperature = ");
-    Serial.print((uint8_t) DHT.temperature);
+    Serial.print((uint8_t)DHT.temperature);
     Serial.println("C  ");
 
-    signalState(TEMP_STATION, (uint8_t) DHT.temperature);
+    signalState(TEMP_STATION, (uint8_t)DHT.temperature);
     delay(5000);
-    signalState(HUMIDITY_STATION, (uint8_t) DHT.humidity);
+    signalState(HUMIDITY_STATION, (uint8_t)DHT.humidity);
     sleepMinutes(10);
 }
