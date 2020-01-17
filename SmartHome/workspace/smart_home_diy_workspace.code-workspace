@@ -2,70 +2,73 @@
   "folders": [
     {
       "name": "PI Server",
-      "path": "web_server/PI Server/project_pi_node_server"
+      "path": "../web_server/PI Server/project_pi_node_server"
     },
     {
       "name": "Bootloader (Production)",
-      "path": "arduino_stations/OTA/bootloader_with_ota_support/optiboot-nrf24l01-master"
+      "path": "../arduino_stations/OTA/bootloader_with_ota_support/optiboot-nrf24l01-master"
     },
     {
       "name": "Bootloader (Debug with LED)",
-      "path": "arduino_stations/OTA/bootloader_with_ota_support/for_debug/bootloader_with_debug_leds/optiboot-nrf24l01-master-debug"
+      "path": "../arduino_stations/OTA/bootloader_with_ota_support/for_debug/bootloader_with_debug_leds/optiboot-nrf24l01-master-debug"
     },
     {
       "name": "Flasher Station",
-      "path": "arduino_stations/OTA/flasher station/optiboot-nrf24l01-flasher"
+      "path": "../arduino_stations/OTA/flasher station/optiboot-nrf24l01-flasher"
     },
     {
       "name": "Flasher remote test station (Flashed remotely)",
-      "path": "arduino_stations/OTA/tests/remote_station_for_ota_tests/ota_remote-station_working_with_mirf_lib/remote_station_for_ota_tests"
+      "path": "../arduino_stations/OTA/tests/remote_station_for_ota_tests/ota_remote-station_working_with_mirf_lib/remote_station_for_ota_tests"
     },
     {
       "name": "Common libs",
-      "path": "arduino_stations/libraries"
+      "path": "../arduino_stations/libraries"
     },
     {
       "name": "Gateway",
-      "path": "arduino_stations/BT_To_Ant_Dispatch_Station/project_BT_To_Ant_Dispatch_Station"
+      "path": "../arduino_stations/BT_To_Ant_Dispatch_Station/project_BT_To_Ant_Dispatch_Station"
     },
     {
       "name": "IR Station",
-      "path": "arduino_stations/IR/project_ir"
+      "path": "../arduino_stations/IR/project_ir"
     },
     {
       "name": "Shades Station",
-      "path": "arduino_stations/shade_station/project_shade_station"
+      "path": "../arduino_stations/shade_station/project_shade_station"
     },
     {
       "name": "Touch Switch Station",
-      "path": "arduino_stations/touch_switch/project_touch_switch"
+      "path": "../arduino_stations/touch_switch/project_touch_switch"
     },
     {
       "name": "Lights indicator station",
-      "path": "arduino_stations/lights_indicetor/project_lights_indicator"
+      "path": "../arduino_stations/lights_indicetor/project_lights_indicator"
     },
     {
       "name": "Game",
-      "path": "arduino_stations/game/project_game"
+      "path": "../arduino_stations/game/project_game"
     },
     {
       "name": "Temperature And Humidity Station",
-      "path": "arduino_stations/temperature_station/project_temperature_station"
+      "path": "../arduino_stations/temperature_station/project_temperature_station"
     },
     {
       "name": "Motion Detection Station",
-      "path": "arduino_stations/pir_station/project_pir_station"
+      "path": "../arduino_stations/pir_station/project_pir_station"
     },
     {
       "name": "TV Station",
-      "path": "arduino_stations/tv_station/project_tv_station"
+      "path": "../arduino_stations/tv_station/project_tv_station"
     },
     {
-      "path": "arduino_stations/playground/project_playground"
+      "path": "../arduino_stations/playground/project_playground"
     },
     {
       "name": "Utils",
-      "path": "arduino_stations/scripts"
+      "path": "../arduino_stations/scripts"
+    },
+    {
+      "path": "."
     }
   ],
   "settings": {
