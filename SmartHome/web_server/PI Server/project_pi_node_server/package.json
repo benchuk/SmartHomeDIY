@@ -19,9 +19,6 @@
     "express",
     "bootstrap"
   ],
-  "author": {
-    "name": "Jalal Hejazi"
-  },
   "license": "BSD",
   "readmeFilename": "README.md",
   "readme": "#  Node.js Boostrap \n+ using Express 3.x \n+ EJS \n+ Twitter Bootstrap v2\n+ Responsive CSS3\n\n\n# Getting Started\n\n\n- cd node-express-twitter-bootstrap\n- npm install express ejs ejs-locals\n- node server.js\n\n ",
