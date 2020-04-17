@@ -304,7 +304,7 @@ void setup(void)
 {
 
   watchdogReset();
-  configureEEPROMAddressForRFAndOTA("005");
+  configureEEPROMAddressForRFAndOTA("006");
 
   pinMode(RF_SWITCH_LINE1, OUTPUT);
   pinMode(SD_SWITCH_LINE1, OUTPUT);
