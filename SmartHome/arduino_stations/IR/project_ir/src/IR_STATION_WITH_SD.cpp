@@ -159,7 +159,8 @@ File myFile;
 #define IRpin 2
 
 // the maximum pulse we'll listen for - 65 milliseconds is a long time
-#define MAXPULSE 5000
+//#define MAXPULSE 50000
+uint16_t MAXPULSE = 9000;
 
 /*********
    what our timing resolution should be, larger is better
@@ -304,7 +305,7 @@ void setup(void)
 {
 
   watchdogReset();
-  configureEEPROMAddressForRFAndOTA("006");
+  configureEEPROMAddressForRFAndOTA("004");
 
   pinMode(RF_SWITCH_LINE1, OUTPUT);
   pinMode(SD_SWITCH_LINE1, OUTPUT);
@@ -538,11 +539,11 @@ void sendcode()
     buffer = myFile.readStringUntil('\n');
     pulses[i][1] = buffer.toInt();
 
-    // Serial.print("  0  -  ");//dbg
-    // Serial.print(pulses[i][0]* RESOLUTION, DEC);//dbg
-    // Serial.print("  1  -  ");//dbg
-    // Serial.print(pulses[i][1]* RESOLUTION, DEC);//dbg
-    // Serial.println("");//dbg
+    //Serial.print("  0  -  ");                     //dbg
+    //Serial.print(pulses[i][0] * RESOLUTION, DEC); //dbg
+    //Serial.print("  1  -  ");                     //dbg
+    //Serial.print(pulses[i][1] * RESOLUTION, DEC); //dbg
+    //Serial.println("");                           //dbg
   }
   //Serial.println("will close file");//dbg
   myFile.close();
@@ -552,15 +553,33 @@ void sendcode()
   delay(50);
   updateSendLed(true);
 
-  pulseIR(9000);
-  delayMicroseconds(4500);
+  //pulseIR(9000);
+  //delayMicroseconds(4500);
   cli(); //Disable interrupts
   for (uint8_t i = 0; i < counter; i++)
   {
     unsigned long t = (unsigned long)(pulses[i][0]) * RESOLUTION;
-    if (t > 32000)
+    //Serial.print("down time: ");
+    //Serial.println(t, DEC); //dbg
+    //unsigned long time = millis();
+    //delayMicroseconds(t - RESOLUTION);
+    //Serial.print("dt (ms)  is: ");
+    //Serial.println(millis()); //prints time since program started
+    if (t > 16383)
     {
-      delay(t / 1000);
+      long loopremaining = t;
+      //Serial.print("loopremaining  is: ");
+      //Serial.println(loopremaining, DEC);
+      while (loopremaining > 0)
+      {
+        unsigned long d = min(16383, loopremaining);
+        //Serial.print("d  is: ");
+        // Serial.println(d, DEC);
+        delayMicroseconds(d - RESOLUTION);
+        loopremaining -= d;
+        //Serial.print("loopremaining  is: ");
+        //Serial.println(loopremaining, DEC);
+      }
     }
     else
     {
@@ -570,6 +589,7 @@ void sendcode()
   }
   sei(); //Enables interrupts
   updateSendLed(false);
+  //Serial.println("DONE");
 } //end of load and send command
 
 /*********
@@ -643,6 +663,8 @@ void recordircode()
       return;
     }
   }
+  //Serial.print(F("done highpulse with count: ")); //dbg
+  //Serial.println(highpulse);                      //dbg
   /********************************
     // we didn't time out so lets stash the reading
   *********************************/
@@ -715,7 +737,8 @@ void printpulses(void)
   //Serial.println("\n\r\n\rReceived: \n\rOFF \tON");//dbg
   for (uint8_t i = 0; i < currentpulse; i++)
   {
-    Serial.print(pulses[i][0] * RESOLUTION, DEC); //dbg
+    Serial.print(pulses[i][0], DEC); //dbg
+    Serial.print(" usec, ");         //dbg
     // if the file opened okay, write to it:
     if (myFile)
     {
@@ -725,13 +748,13 @@ void printpulses(void)
     {
       Serial.println(F("File not open \r\n")); //dbg
     }
-    Serial.print(" usec, ");                      //dbg
-    Serial.print(pulses[i][1] * RESOLUTION, DEC); //dbg
+
+    Serial.print(pulses[i][1], DEC); //dbg
+    Serial.println(F(" usec"));      //dbg
     if (myFile)
     {
       myFile.println(pulses[i][1]);
     }
-    Serial.println(F(" usec")); //dbg
   }
   myFile.close();
   Serial.println(F("Close file ok \r\n")); //dbg

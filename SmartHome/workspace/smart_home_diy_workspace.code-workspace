@@ -93,7 +93,7 @@
     "editor.renderControlCharacters": true,
     "editor.formatOnType": false,
     "editor.fontSize": 16,
-    "editor.fontFamily": "FiraCode-Retina",
+    "editor.fontFamily": "",
     "editor.fontLigatures": true,
     "editor.fontWeight": "500",
     "editor.snippetSuggestions": "top",
