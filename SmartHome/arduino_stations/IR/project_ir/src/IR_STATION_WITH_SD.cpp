@@ -1,3 +1,5 @@
+//https://learn.adafruit.com/trinket-gemma-ir-remote-control/using-ir-codes-1
+//https://www.instructables.com/id/Clone-a-Remote-with-Arduino/
 
 /*********************
  * Using  "ANSI Shadow" art font.
