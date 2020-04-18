@@ -565,6 +565,12 @@ void sendcode()
     //delayMicroseconds(t - RESOLUTION);
     //Serial.print("dt (ms)  is: ");
     //Serial.println(millis()); //prints time since program started
+
+    //why split delayMicroseconds to chuncks of  16383? - this is why...
+    //https://www.arduino.cc/reference/en/language/functions/time/delaymicroseconds/
+    //Currently, the largest value that will produce an accurate delay is 16383.
+    //This could change in future Arduino releases. For delays longer than a few thousand microseconds, you should use delay() instead.
+
     if (t > 16383)
     {
       long loopremaining = t;
