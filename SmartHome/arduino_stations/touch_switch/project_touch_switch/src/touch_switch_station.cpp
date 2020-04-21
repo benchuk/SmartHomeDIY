@@ -3,15 +3,7 @@
 #include <common.h>
 
 /*********************
-      ██████╗ ███████╗██████╗ ██╗  ██╗              ███╗   ███╗███████╗███╗
-███╗██████╗ ███████╗██████╗ ███████╗ ██╔══██╗██╔════╝╚════██╗██║  ██║ ████╗
-████║██╔════╝████╗ ████║██╔══██╗██╔════╝██╔══██╗██╔════╝ ██████╔╝█████╗
-█████╔╝███████║    █████╗    ██╔████╔██║█████╗  ██╔████╔██║██████╔╝█████╗
-██████╔╝███████╗ ██╔══██╗██╔══╝  ██╔═══╝ ╚════██║    ╚════╝    ██║╚██╔╝██║██╔══╝
-██║╚██╔╝██║██╔══██╗██╔══╝  ██╔══██╗╚════██║ ██║  ██║██║     ███████╗     ██║ ██║
-╚═╝ ██║███████╗██║ ╚═╝ ██║██████╔╝███████╗██║  ██║███████║ ╚═╝  ╚═╝╚═╝ ╚══════╝
-╚═╝              ╚═╝     ╚═╝╚══════╝╚═╝     ╚═╝╚═════╝ ╚══════╝╚═╝  ╚═╝╚══════╝
-
+  RF24
 **********************/
 
 #include <Mirf.h>
@@ -58,148 +50,20 @@ volatile boolean enabled = false;
 boolean once = true;
 unsigned long timestamp = 0;
 
-enum Status_Type { Relay_4_Way = 1, Relay_2_Way = 2 };
+PayloadData p;
 
-typedef struct PayloadData {
-    uint8_t address;
-    uint8_t type;
-    uint8_t data;
-} Payload;
-
-Payload p;
-
-void signalState() {
-    Serial.println("signalState");
-    p.address = 7;
-    p.type = Relay_4_Way;
-    p.data = s1 | (s2 << 1) | (s3 << 2) | (s4 << 3);
-    Serial.println("bin state");
-    Serial.println(p.data, BIN);
-
-    // Mirf.send((byte*)&p);
-    // Mirf.send((byte*)"111");
-    // wait for prev send to finish
-    while (Mirf.isSending())
-        ;
-    Mirf.send((uint8_t*)(&p));
-    while (Mirf.isSending())
-        ;
-    delay(150);
-    Mirf.send((uint8_t*)(&p));
-    while (Mirf.isSending())
-        ;
-    Serial.println("Done");
-}
-
-void toggles3() {
-    if (millis() - timestamp < 500) {
-        return;
-    }
-    timestamp = millis();
-    s3 = !s3;
-    digitalWrite(light3Pin, s3);
-}
-
-void touch3() {
-    // Serial.println("TOUCH3 ?");
-    if (!enabled) {
-        return;
-    }
-    if (millis() - timestamp < 500) {
-        return;
-    }
-    s3Counter++;
-    if (s3Counter == 1) {
-        toggles3();
-        delay(50);
-        signalState();
-        Serial.println("TOUCH3");
-    }
-    if (s3Counter == 2) {
-        s3Counter = 0;
-    }
-}
-
-void toggles4() {
-    if (millis() - timestamp < 500) {
-        return;
-    }
-    timestamp = millis();
-    s4 = !s4;
-    digitalWrite(light4Pin, s4);
-}
-
-void touch4() {
-    if (!enabled) {
-        return;
-    }
-    if (millis() - timestamp < 500) {
-        return;
-    }
-    s4Counter++;
-    if (s4Counter == 1) {
-        toggles4();
-        delay(50);
-        signalState();
-        Serial.println("TOUCH4");
-    }
-    if (s4Counter == 2) {
-        s4Counter = 0;
-    }
-}
-
-void toggles1() {
-    if (millis() - timestamp < 500) {
-        return;
-    }
-    timestamp = millis();
-    s1 = !s1;
-    digitalWrite(light1Pin, s1);
-}
-
-void touch1() {
-    if (!enabled) {
-        return;
-    }
-    if (millis() - timestamp < 500) {
-        return;
-    }
-    toggles1();
-    delay(50);
-    signalState();
-    Serial.println("TOUCH1");
-}
-void toggles2() {
-    if (millis() - timestamp < 500) {
-        return;
-    }
-    timestamp = millis();
-    s2 = !s2;
-    digitalWrite(light2Pin, s2);
-}
-
-void touch2() {
-    if (!enabled) {
-        return;
-    }
-    if (millis() - timestamp < 500) {
-        return;
-    }
-    toggles2();
-    delay(50);
-    signalState();
-    Serial.println("TOUCH2");
-}
-
-void blinkReady() {
-    digitalWrite(STATUS_LED_PIN, HIGH);
-    delay(50);
-    digitalWrite(STATUS_LED_PIN, LOW);
-    delay(50);
-}
+void blinkReady();
+void touch2();
+void toggles2();
+void touch1();
+void toggles1();
+void touch4();
+void toggles4();
+void touch3();
+void toggles3();
+void signalState();
 
 void setup() {
-
     configureEEPROMAddressForRFAndOTA("007");
 
     Serial.begin(9600);
@@ -362,4 +226,135 @@ void loop() {
         toggles4();
         return;
     }
+}
+
+void signalState() {
+    Serial.println("signalState");
+    p.address = 7;
+    p.type = Relay_4_Way;
+    p.data = s1 | (s2 << 1) | (s3 << 2) | (s4 << 3);
+    Serial.println("bin state");
+    Serial.println(p.data, BIN);
+
+    // Mirf.send((byte*)&p);
+    // Mirf.send((byte*)"111");
+    // wait for prev send to finish
+    while (Mirf.isSending())
+        ;
+    Mirf.send((uint8_t*)(&p));
+    while (Mirf.isSending())
+        ;
+    delay(150);
+    Mirf.send((uint8_t*)(&p));
+    while (Mirf.isSending())
+        ;
+    Serial.println("Done");
+}
+
+void toggles3() {
+    if (millis() - timestamp < 500) {
+        return;
+    }
+    timestamp = millis();
+    s3 = !s3;
+    digitalWrite(light3Pin, s3);
+}
+
+void touch3() {
+    // Serial.println("TOUCH3 ?");
+    if (!enabled) {
+        return;
+    }
+    if (millis() - timestamp < 500) {
+        return;
+    }
+    s3Counter++;
+    if (s3Counter == 1) {
+        toggles3();
+        delay(50);
+        signalState();
+        Serial.println("TOUCH3");
+    }
+    if (s3Counter == 2) {
+        s3Counter = 0;
+    }
+}
+
+void toggles4() {
+    if (millis() - timestamp < 500) {
+        return;
+    }
+    timestamp = millis();
+    s4 = !s4;
+    digitalWrite(light4Pin, s4);
+}
+
+void touch4() {
+    if (!enabled) {
+        return;
+    }
+    if (millis() - timestamp < 500) {
+        return;
+    }
+    s4Counter++;
+    if (s4Counter == 1) {
+        toggles4();
+        delay(50);
+        signalState();
+        Serial.println("TOUCH4");
+    }
+    if (s4Counter == 2) {
+        s4Counter = 0;
+    }
+}
+
+void toggles1() {
+    if (millis() - timestamp < 500) {
+        return;
+    }
+    timestamp = millis();
+    s1 = !s1;
+    digitalWrite(light1Pin, s1);
+}
+
+void touch1() {
+    if (!enabled) {
+        return;
+    }
+    if (millis() - timestamp < 500) {
+        return;
+    }
+    toggles1();
+    delay(50);
+    signalState();
+    Serial.println("TOUCH1");
+}
+
+void toggles2() {
+    if (millis() - timestamp < 500) {
+        return;
+    }
+    timestamp = millis();
+    s2 = !s2;
+    digitalWrite(light2Pin, s2);
+}
+
+void touch2() {
+    if (!enabled) {
+        return;
+    }
+    if (millis() - timestamp < 500) {
+        return;
+    }
+    toggles2();
+    delay(50);
+    signalState();
+    Serial.println("TOUCH2");
+}
+
+void blinkReady() {
+    digitalWrite(STATUS_LED_PIN, HIGH);
+    delay(50);
+    digitalWrite(STATUS_LED_PIN, LOW);
+    delay(50);
 }

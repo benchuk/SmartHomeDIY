@@ -245,13 +245,13 @@ void ChangePalettePeriodically() {
 // takes up 64 bytes of flash.
 const TProgmemPalette16 myRedWhiteBluePalette_p PROGMEM = {
     CRGB::Red,
-    CRGB::Gray, // 'white' is too bright compared to red and blue
+    CRGB::Gray,  // 'white' is too bright compared to red and blue
     CRGB::Blue, CRGB::Black,
 
-    CRGB::Red,  CRGB::Gray,  CRGB::Blue,  CRGB::Black,
+    CRGB::Red, CRGB::Gray, CRGB::Blue, CRGB::Black,
 
-    CRGB::Red,  CRGB::Red,   CRGB::Gray,  CRGB::Gray,
-    CRGB::Blue, CRGB::Blue,  CRGB::Black, CRGB::Black};
+    CRGB::Red, CRGB::Red, CRGB::Gray, CRGB::Gray,
+    CRGB::Blue, CRGB::Blue, CRGB::Black, CRGB::Black};
 
 // Additionl notes on FastLED compact palettes:
 //
@@ -276,7 +276,7 @@ const TProgmemPalette16 myRedWhiteBluePalette_p PROGMEM = {
 // Green, followed by a smooth gradient from green-to-blue, and then Blue.
 
 void setup() {
-    delay(3000); // power-up safety delay
+    delay(3000);  // power-up safety delay
     FastLED.addLeds<LED_TYPE, LED_PIN, COLOR_ORDER>(leds, NUM_LEDS)
         .setCorrection(TypicalLEDStrip);
     FastLED.setBrightness(BRIGHTNESS);
@@ -295,7 +295,6 @@ void setup() {
 }
 
 void loop() {
-
     ChangePalettePeriodically();
 
     static uint8_t startIndex = 0;

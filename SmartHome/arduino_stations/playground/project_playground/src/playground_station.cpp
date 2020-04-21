@@ -1,10 +1,9 @@
 #include <Arduino.h>
-#include <PinChangeInt.h>
-#include <common.h>
-
 #include <Mirf.h>
 #include <MirfHardwareSpiDriver.h>
+#include <PinChangeInt.h>
 #include <SPI.h>
+#include <common.h>
 #include <nRF24L01.h>
 
 // switch state for lights
@@ -14,10 +13,11 @@ volatile byte s2 = HIGH;
 volatile byte s3 = HIGH;
 volatile byte s4 = HIGH;
 
-//char* myAddress = "999";
-//uint8_t address = 9;
+// char* myAddress = "999";
+// uint8_t address = 9;
 
-enum Status_Type { Relay_4_Way = 1, Relay_2_Way = 2 };
+enum Status_Type { Relay_4_Way = 1,
+                   Relay_2_Way = 2 };
 
 typedef struct PayloadData {
     uint8_t address;
@@ -30,28 +30,25 @@ Payload p;
 uint8_t counter = 0;
 void signalState() {
     Serial.println("signalState");
-  
+
     p.address = 9;
     p.type = Relay_2_Way;
-    p.data =  (uint8_t)counter;//s1 | (s2 << 1)  |  (s3 <<2)  |   (s4<<3);
-    //p.data =  s1 | (s2 << 1)  |  (s3 <<2)  |   (s4<<3);
+    p.data = (uint8_t)counter;  // s1 | (s2 << 1)  |  (s3 <<2)  |   (s4<<3);
+    // p.data =  s1 | (s2 << 1)  |  (s3 <<2)  |   (s4<<3);
     Serial.println("bin state");
     Serial.println(p.data, BIN);
     Mirf.send((byte*)&p);
     while (Mirf.isSending())
-                ;
-    //Mirf.send((byte*)"111");
+        ;
+    // Mirf.send((byte*)"111");
     Serial.println("Done");
     counter++;
-    if(counter == 16)
-    {
+    if (counter == 16) {
         counter = 0;
     }
 }
 
-
 void setup() {
-
     configureEEPROMAddressForRFAndOTA("555");
 
     Serial.begin(9600);
@@ -64,7 +61,6 @@ void setup() {
 }
 
 void loop() {
-
     signalState();
 
     Serial.println("listen....");

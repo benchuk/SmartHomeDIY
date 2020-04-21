@@ -124,7 +124,7 @@
 /*
 Uses a FOR loop for data and prints a number in various formats.
 */
-int x = 0; // variable
+int x = 0;  // variable
 
 const int Radio_CSN = 10;
 const int Radio_CE = 9;
@@ -138,11 +138,11 @@ void watchdogReset() { __asm__ __volatile__("wdr\n"); }
 
 #include <avr/wdt.h>
 
-#define soft_restart()                                                         \
-    do {                                                                       \
-        wdt_enable(WDTO_15MS);                                                 \
-        for (;;) {                                                             \
-        }                                                                      \
+#define soft_restart()         \
+    do {                       \
+        wdt_enable(WDTO_15MS); \
+        for (;;) {             \
+        }                      \
     } while (0)
 
 #endif
@@ -157,8 +157,8 @@ void watchdogReset() { __asm__ __volatile__("wdr\n"); }
 //     nrf24_rx_mode();
 //}
 
-#define CONFIG_VAL                                                             \
-    ((1 << MASK_RX_DR) | (1 << MASK_TX_DS) | (1 << MASK_MAX_RT) |              \
+#define CONFIG_VAL                                                \
+    ((1 << MASK_RX_DR) | (1 << MASK_TX_DS) | (1 << MASK_MAX_RT) | \
      (1 << CRCO) | (1 << EN_CRC))
 
 void enableRF(void) {
@@ -205,7 +205,7 @@ void enableRF(void) {
 
        NB: payload on client and server must be the same.
     */
-    Mirf.payload = sizeof(uint8_t); // 8;//sizeof(uint8_t);
+    Mirf.payload = sizeof(uint8_t);  // 8;//sizeof(uint8_t);
     Mirf.channel = 42;
     /*
        Write channel and payload config then power up reciver.
@@ -225,8 +225,7 @@ void enableRF(void) {
 // restart the code does not go into bootloader
 
 void setup() {
-
-    Serial.begin(115200); // open the serial port at 9600 bps:
+    Serial.begin(115200);  // open the serial port at 9600 bps:
     // pinMode(5, OUTPUT);
     // digitalWrite(5, HIGH);
 
@@ -276,7 +275,6 @@ void setup() {
 }
 
 void loop() {
-
     Serial.println("Listening...2");
     while (!Mirf.dataReady()) {
         watchdogReset();

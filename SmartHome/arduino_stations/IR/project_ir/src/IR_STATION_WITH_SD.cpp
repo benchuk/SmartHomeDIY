@@ -59,6 +59,12 @@ RF24
 #include <MirfHardwareSpiDriver.h>
 #include <SPI.h>
 #include <nRF24L01.h>
+// See common.h for pins
+//** RF MOSI - pin 11
+//** RF MISO - pin 12
+//** RF CLK - pin 13
+//** RF CS - pin 10
+//** RF Ce - pin 9
 
 /*********************
 IR

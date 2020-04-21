@@ -1,10 +1,9 @@
 #include <Arduino.h>
-#include <PinChangeInt.h>
-#include <common.h>
-
 #include <Mirf.h>
 #include <MirfHardwareSpiDriver.h>
+#include <PinChangeInt.h>
 #include <SPI.h>
+#include <common.h>
 #include <dht.h>
 #include <nRF24L01.h>
 
@@ -35,7 +34,6 @@ void setup() {
 }
 
 void loop() {
-
     Serial.println("listen....");
     //  delay(100);
     // return;

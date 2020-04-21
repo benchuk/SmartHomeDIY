@@ -116,11 +116,11 @@
                     (1 << EN_CRC))
 
 #include <Arduino.h>
-#include <avr/wdt.h>
-#include <Mirf.h>
-#include <nRF24L01.h>
-#include <MirfHardwareSpiDriver.h>
 #include <EEPROM.h>
+#include <Mirf.h>
+#include <MirfHardwareSpiDriver.h>
+#include <avr/wdt.h>
+#include <nRF24L01.h>
 
 //** RF MOSI - pin 11
 //** RF MISO - pin 12
@@ -128,179 +128,166 @@
 //** RF CS - pin 10
 //** RF Ce - pin 9
 
-#define Radio_CSN 10 // MUST NOT BE CHANGED TO SUPPORT BOOTLOADER OTA
-#define Radio_CE 9   // MUST NOT BE CHANGED TO SUPPORT BOOTLOADER OTA
-#define RESET_PIN A0 //RESET BOARD TO BOOTLOADER FOR OTA
+#define Radio_CSN 10  // MUST NOT BE CHANGED TO SUPPORT BOOTLOADER OTA
+#define Radio_CE 9    // MUST NOT BE CHANGED TO SUPPORT BOOTLOADER OTA
+#define RESET_PIN A0  //RESET BOARD TO BOOTLOADER FOR OTA
 
-enum Status_Type
-{
-  Relay_4_Way = 1,
-  Relay_2_Way = 2,
-  TEMP_STATION = 3,
-  HUMIDITY_STATION = 4,
-  PIR_STATION = 5,
-  TV_STATION = 6
+enum Status_Type {
+    Relay_4_Way = 1,
+    Relay_2_Way = 2,
+    TEMP_STATION = 3,
+    HUMIDITY_STATION = 4,
+    PIR_STATION = 5,
+    TV_STATION = 6
 };
 
-typedef struct PayloadData
-{
-  uint8_t address;
-  uint8_t type;
-  uint8_t data;
+typedef struct PayloadData {
+    uint8_t address;
+    uint8_t type;
+    uint8_t data;
 } Payload;
 
-void sleepMinutes(int minutes)
-{
-
-  int sec = minutes * 60;
-  while (sec > 0)
-  {
-    delay(1000);
-    sec--;
-  }
+void sleepMinutes(int minutes) {
+    int sec = minutes * 60;
+    while (sec > 0) {
+        delay(1000);
+        sec--;
+    }
 }
 
-void configureEEPROMAddressForRFAndOTA(const char *myAdd)
-{
-  //my address for example "001"
-  EEPROM.write(0, (uint8_t)myAdd[0]);
-  EEPROM.write(1, (uint8_t)myAdd[1]);
-  EEPROM.write(2, (uint8_t)myAdd[2]);
+void configureEEPROMAddressForRFAndOTA(const char *myAdd) {
+    //my address for example "001"
+    EEPROM.write(0, (uint8_t)myAdd[0]);
+    EEPROM.write(1, (uint8_t)myAdd[1]);
+    EEPROM.write(2, (uint8_t)myAdd[2]);
 
-  //OTA station address (always "000")
-  EEPROM.write(3, 48);
-  EEPROM.write(4, 48);
-  EEPROM.write(5, 48);
+    //OTA station address (always "000")
+    EEPROM.write(3, 48);
+    EEPROM.write(4, 48);
+    EEPROM.write(5, 48);
 }
 
 // Watchdog functions. These are only safe with interrupts turned off.
-void watchdogReset()
-{
-  __asm__ __volatile__(
-      "wdr\n");
+void watchdogReset() {
+    __asm__ __volatile__(
+        "wdr\n");
 }
 
 //Enter to bootloader state for OTA
-#define soft_restart()     \
-                           \
-  do                       \
-                           \
-  {                        \
-    wdt_enable(WDTO_15MS); \
-    for (;;)               \
-    {                      \
-    }                      \
-                           \
-  } while (0)
+#define soft_restart()         \
+                               \
+    do                         \
+                               \
+    {                          \
+        wdt_enable(WDTO_15MS); \
+        for (;;) {             \
+        }                      \
+                               \
+    } while (0)
 
 #endif
 
 //void(* resetFunc) (void) = 0; //declare reset function @ address 0 // only restart the code does not go into bootloader
 char cmd[4];
 
-void startRF(void)
-{
-  digitalWrite(RESET_PIN, HIGH);
-  pinMode(RESET_PIN, OUTPUT);
-  cmd[3] = 0; //STRING NULL TERMINATION
-  cmd[0] = 'x';
-  cmd[1] = 'x';
-  cmd[2] = 'x';
-  uint8_t address[6];
-  Serial.println("our address:");
-  address[0] = EEPROM.read(0);
-  Serial.print(address[0]);
-  address[1] = EEPROM.read(1);
-  Serial.print(address[1]);
-  address[2] = EEPROM.read(2);
-  Serial.println(address[2]);
+void startRF(void) {
+    digitalWrite(RESET_PIN, HIGH);
+    pinMode(RESET_PIN, OUTPUT);
+    cmd[3] = 0;  //STRING NULL TERMINATION
+    cmd[0] = 'x';
+    cmd[1] = 'x';
+    cmd[2] = 'x';
+    uint8_t address[6];
+    Serial.println("our address:");
+    address[0] = EEPROM.read(0);
+    Serial.print(address[0]);
+    address[1] = EEPROM.read(1);
+    Serial.print(address[1]);
+    address[2] = EEPROM.read(2);
+    Serial.println(address[2]);
 
-  Serial.println("burner address:");
-  address[3] = EEPROM.read(3);
-  Serial.print(address[3]);
-  address[4] = EEPROM.read(4);
-  Serial.print(address[4]);
-  address[5] = EEPROM.read(5);
-  Serial.println(address[5]);
+    Serial.println("burner address:");
+    address[3] = EEPROM.read(3);
+    Serial.print(address[3]);
+    address[4] = EEPROM.read(4);
+    Serial.print(address[4]);
+    address[5] = EEPROM.read(5);
+    Serial.println(address[5]);
 
-  Mirf.csnPin = Radio_CSN;
-  Mirf.cePin = Radio_CE;
-  Mirf.spi = &MirfHardwareSpi;
-  Mirf.init();
-  Mirf.configRegister(SETUP_RETR, 0x7f);
+    Mirf.csnPin = Radio_CSN;
+    Mirf.cePin = Radio_CE;
+    Mirf.spi = &MirfHardwareSpi;
+    Mirf.init();
+    Mirf.configRegister(SETUP_RETR, 0x7f);
 
-  /* Maximum Tx power, 250kbps data rate */
-  Mirf.configRegister(RF_SETUP, (1 << RF_PWR_LOW) | (1 << RF_PWR_HIGH) | (1 << RF_DR_LOW));
-  /* Dynamic payload length for TX & RX (pipes 0 and 1) */
-  Mirf.configRegister(DYNPD, 0x03);
-  Mirf.configRegister(FEATURE, 1 << EN_DPL);
-  /* Reset status bits */
-  Mirf.configRegister(STATUS, (1 << RX_DR) | (1 << TX_DS) | (1 << MAX_RT));
-  /* Set some RF channel number */
-  Mirf.configRegister(RF_CH, 42);
-  /* 3-byte addresses */
-  Mirf.configRegister(SETUP_AW, 0x01);
-  /* Enable ACKing on both pipe 0 & 1 for TX & RX ACK support */
-  Mirf.configRegister(EN_AA, 0x03);
-  /*
+    /* Maximum Tx power, 250kbps data rate */
+    Mirf.configRegister(RF_SETUP, (1 << RF_PWR_LOW) | (1 << RF_PWR_HIGH) | (1 << RF_DR_LOW));
+    /* Dynamic payload length for TX & RX (pipes 0 and 1) */
+    Mirf.configRegister(DYNPD, 0x03);
+    Mirf.configRegister(FEATURE, 1 << EN_DPL);
+    /* Reset status bits */
+    Mirf.configRegister(STATUS, (1 << RX_DR) | (1 << TX_DS) | (1 << MAX_RT));
+    /* Set some RF channel number */
+    Mirf.configRegister(RF_CH, 42);
+    /* 3-byte addresses */
+    Mirf.configRegister(SETUP_AW, 0x01);
+    /* Enable ACKing on both pipe 0 & 1 for TX & RX ACK support */
+    Mirf.configRegister(EN_AA, 0x03);
+    /*
     Configure reciving address.
   */
-  Serial.print("address size: ");
-  Serial.println(Mirf.adderSize);
-  //Mirf.setRADDR("002"/*(byte *)address*/);
-  Mirf.setRADDR((byte *)address);
-  //Mirf.setTADDR((byte *)"000");//answer to ota station in bootloader mode? TBD
-  Mirf.setTADDR((byte *)"001"); //answer to dispatch station on command? TBD
-  /*
+    Serial.print("address size: ");
+    Serial.println(Mirf.adderSize);
+    //Mirf.setRADDR("002"/*(byte *)address*/);
+    Mirf.setRADDR((byte *)address);
+    //Mirf.setTADDR((byte *)"000");//answer to ota station in bootloader mode? TBD
+    Mirf.setTADDR((byte *)"001");  //answer to dispatch station on command? TBD
+    /*
     Set the payload length to sizeof(unsigned long) the
     return type of millis().
 
     NB: payload on client and server must be the same.
   */
-  //Mirf.payload = sizeof(uint8_t); - bootloader uses one byte
-  Mirf.payload = 3; //sizeof(unsigned long);//3;//sizeof(cmd); //8;//sizeof(uint8_t);
-  Serial.print("payload size: ");
-  Serial.println(Mirf.payload);
-  Mirf.channel = 42;
-  Serial.print("channel: ");
-  Serial.println(Mirf.channel);
-  /* Write channel and payload config then power up reciver. */
-  Mirf.config();
-  /* Enable 16-bit CRC */
-  //Mirf.configRegister(CONFIG, CONFIG_VAL | (1 << PWR_UP) | (1 << PRIM_RX));
-  /* Only use data pipe 1 for receiving, pipe 0 is for TX ACKs */
-  //Mirf.configRegister(EN_RXADDR, 0x02);
+    //Mirf.payload = sizeof(uint8_t); - bootloader uses one byte
+    Mirf.payload = 3;  //sizeof(unsigned long);//3;//sizeof(cmd); //8;//sizeof(uint8_t);
+    Serial.print("payload size: ");
+    Serial.println(Mirf.payload);
+    Mirf.channel = 42;
+    Serial.print("channel: ");
+    Serial.println(Mirf.channel);
+    /* Write channel and payload config then power up reciver. */
+    Mirf.config();
+    /* Enable 16-bit CRC */
+    //Mirf.configRegister(CONFIG, CONFIG_VAL | (1 << PWR_UP) | (1 << PRIM_RX));
+    /* Only use data pipe 1 for receiving, pipe 0 is for TX ACKs */
+    //Mirf.configRegister(EN_RXADDR, 0x02);
 }
 //void checkIfOtaRequestOrLoadCommand(char *data)
-bool checkIfOtaRequestOrLoadCommand(uint8_t *data)
-{
-  if (Mirf.dataReady())
-  {
-    Mirf.getData(data);
-    //if (data[0] == 0xFFFFFFFF)
-    if (data[0] == 0xFF)
-    {
-      while (1)
-      {
-        Serial.println("Restarting..."); //if console gets to see this then pin connection is wrong and we are stuck here
-        digitalWrite(RESET_PIN, LOW);
-        digitalWrite(LED_BUILTIN, HIGH);
-        delay(100);
-        digitalWrite(LED_BUILTIN, LOW);
-        delay(100);
-        //delay(2000);
-        //soft_restart();
-      }
+bool checkIfOtaRequestOrLoadCommand(uint8_t *data) {
+    if (Mirf.dataReady()) {
+        Mirf.getData(data);
+        //if (data[0] == 0xFFFFFFFF)
+        if (data[0] == 0xFF) {
+            while (1) {
+                Serial.println("Restarting...");  //if console gets to see this then pin connection is wrong and we are stuck here
+                digitalWrite(RESET_PIN, LOW);
+                digitalWrite(LED_BUILTIN, HIGH);
+                delay(100);
+                digitalWrite(LED_BUILTIN, LOW);
+                delay(100);
+                //delay(2000);
+                //soft_restart();
+            }
+        }
+        return true;
+        //Serial.print(F("Data content: "));
+        // for (int i = 0; i < Mirf.payload; i++)
+        // {
+        //   Serial.println(data[i],HEX);
+        // }
     }
-    return true;
-    //Serial.print(F("Data content: "));
-    // for (int i = 0; i < Mirf.payload; i++)
-    // {
-    //   Serial.println(data[i],HEX);
-    // }
-  }
-  //Serial.println("");
-  //Serial.println(F("=============="));
-  data[Mirf.payload] = 0;
-  return false;
+    //Serial.println("");
+    //Serial.println(F("=============="));
+    data[Mirf.payload] = 0;
+    return false;
 }

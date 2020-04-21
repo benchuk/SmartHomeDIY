@@ -1,10 +1,9 @@
 #include <Arduino.h>
-#include <PinChangeInt.h>
-#include <common.h>
-
 #include <Mirf.h>
 #include <MirfHardwareSpiDriver.h>
+#include <PinChangeInt.h>
 #include <SPI.h>
+#include <common.h>
 #include <nRF24L01.h>
 
 int pirSensor = 5;
@@ -50,7 +49,6 @@ void signalState() {
 }
 
 void setup() {
-
     configureEEPROMAddressForRFAndOTA("102");
 
     Serial.begin(9600);
@@ -65,7 +63,6 @@ void setup() {
 }
 
 void loop() {
-
     // signalState();
 
     Serial.println("listen....");

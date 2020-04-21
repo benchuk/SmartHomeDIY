@@ -2,7 +2,7 @@
 #include <SoftwareSerial.h>
 #include <common.h>
 
-SoftwareSerial BTSerial(6, 7); // RX | TX
+SoftwareSerial BTSerial(6, 7);  // RX | TX
 
 bool firstPart = true;
 char add[4];
@@ -35,7 +35,7 @@ void setup() {
     configureEEPROMAddressForRFAndOTA("001");
     startRF();
     // BTSerial.begin(38400);  // HC-05 default speed in AT command more
-    BTSerial.begin(9600); // custom
+    BTSerial.begin(9600);  // custom
     Serial.println("Dispatch station ready.");
 }
 // char otaCmd[Mirf.payload + 1];

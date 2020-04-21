@@ -26,119 +26,98 @@ bool inAction = false;
 //   EEPROM.write(5, 48);
 // }
 
-void stop(void)
-{
-  inAction = false;
-  digitalWrite(SHADE_UP, MY_HIGH);
-  digitalWrite(SHADE_DOWN, MY_HIGH);
-  Serial.println("Stop...");
-  delay(1000);
+void stop(void) {
+    inAction = false;
+    digitalWrite(SHADE_UP, MY_HIGH);
+    digitalWrite(SHADE_DOWN, MY_HIGH);
+    Serial.println("Stop...");
+    delay(1000);
 }
 
-
-
-void down(void)
-{
-  stop();
-  startTime = millis();
-  inAction = true;
-  digitalWrite(SHADE_DOWN, MY_LOW);
-  Serial.println("Down...");
-}
-
-void up(void)
-{
-  stop();
-  startTime = millis();
-  inAction = true;
-  digitalWrite(SHADE_UP, MY_LOW);
-  Serial.println("Up...");
-}
-
-void stopIfNeeded(void)
-{
-  if (!inAction)
-  {
-    return;
-  }
-  currentTime = millis();
-  unsigned long elapsedTime = currentTime - startTime;
-  Serial.print("elapsedTime: ");
-  Serial.println(elapsedTime);
-  if (elapsedTime > 38000)
-  {
-    Serial.println("timeup stopping..");
+void down(void) {
     stop();
-  }
+    startTime = millis();
+    inAction = true;
+    digitalWrite(SHADE_DOWN, MY_LOW);
+    Serial.println("Down...");
 }
 
-void blink(int d)
-{
-  digitalWrite(LED_PIN, HIGH);
-  delay(d/2);
-  digitalWrite(LED_PIN, LOW);
-  delay(d/2);
-}
-
-void blink2(int d)
-{
-  digitalWrite(LED2_PIN, HIGH);
-  delay(d);
-  digitalWrite(LED2_PIN, LOW);
-}
-
-void setup()
-{
-
-  Serial.begin(115200);
-  Serial.println("setup...");
-  configureEEPROMAddressForRFAndOTA("003");
-  pinMode(SHADE_UP, OUTPUT);
-  pinMode(SHADE_DOWN, OUTPUT);
-  pinMode(LED_PIN, OUTPUT);
-  stop();
-  startRF();
-}
-
-void loop()
-{
-  blink(500);
-  blink(500);
-  stopIfNeeded();
-  Serial.println("Listening...");
-
-  while (!Mirf.dataReady())
-  {
-    stopIfNeeded();
-    watchdogReset();
-    blink(100);
-  };
-
-  Serial.println("Data...");
-
-  blink2(500);
-  char cmd[Mirf.payload + 1];
-  checkIfOtaRequestOrLoadCommand(cmd);
-  Serial.print("Return data: ");
-  Serial.println(cmd);
-  if (strcmp(cmd, "000") == 0)
-  {
+void up(void) {
     stop();
-  }
-  else if (strcmp(cmd, "001") == 0)
-  {
-    up();
-  }
-  else if (strcmp(cmd, "002") == 0)
-  {
-    down();
-  }
-  else if (strcmp(cmd, "003") == 0)
-  {
-    while (1)
-    {
-      soft_restart();
+    startTime = millis();
+    inAction = true;
+    digitalWrite(SHADE_UP, MY_LOW);
+    Serial.println("Up...");
+}
+
+void stopIfNeeded(void) {
+    if (!inAction) {
+        return;
     }
-  }
-  while( Mirf.isSending() ) ; 
+    currentTime = millis();
+    unsigned long elapsedTime = currentTime - startTime;
+    Serial.print("elapsedTime: ");
+    Serial.println(elapsedTime);
+    if (elapsedTime > 38000) {
+        Serial.println("timeup stopping..");
+        stop();
+    }
+}
+
+void blink(int d) {
+    digitalWrite(LED_PIN, HIGH);
+    delay(d / 2);
+    digitalWrite(LED_PIN, LOW);
+    delay(d / 2);
+}
+
+void blink2(int d) {
+    digitalWrite(LED2_PIN, HIGH);
+    delay(d);
+    digitalWrite(LED2_PIN, LOW);
+}
+
+void setup() {
+    Serial.begin(115200);
+    Serial.println("setup...");
+    configureEEPROMAddressForRFAndOTA("003");
+    pinMode(SHADE_UP, OUTPUT);
+    pinMode(SHADE_DOWN, OUTPUT);
+    pinMode(LED_PIN, OUTPUT);
+    stop();
+    startRF();
+}
+
+void loop() {
+    blink(500);
+    blink(500);
+    stopIfNeeded();
+    Serial.println("Listening...");
+
+    while (!Mirf.dataReady()) {
+        stopIfNeeded();
+        watchdogReset();
+        blink(100);
+    };
+
+    Serial.println("Data...");
+
+    blink2(500);
+    char cmd[Mirf.payload + 1];
+    checkIfOtaRequestOrLoadCommand(cmd);
+    Serial.print("Return data: ");
+    Serial.println(cmd);
+    if (strcmp(cmd, "000") == 0) {
+        stop();
+    } else if (strcmp(cmd, "001") == 0) {
+        up();
+    } else if (strcmp(cmd, "002") == 0) {
+        down();
+    } else if (strcmp(cmd, "003") == 0) {
+        while (1) {
+            soft_restart();
+        }
+    }
+    while (Mirf.isSending())
+        ;
 }
