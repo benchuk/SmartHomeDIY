@@ -72,6 +72,7 @@
     }
   ],
   "settings": {
+    "C_Cpp.clang_format_fallbackStyle": "{ BasedOnStyle: Google, IndentWidth: 4, ColumnLimit: 0}",
     "workbench.colorTheme": "Popping and Locking",
     "workbench.editor.highlightModifiedTabs": true,
     "workbench.colorCustomizations": {
