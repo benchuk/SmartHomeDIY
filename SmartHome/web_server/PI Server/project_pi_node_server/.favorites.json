@@ -25,5 +25,69 @@
         "workspaceRoot": null,
         "workspacePath": null,
         "id": "L36rnduaeYTwlj4p"
+    },
+    {
+        "type": "File",
+        "name": "/Users/benamsallem/docs/mystuff/git/SmartHomeDIY/SmartHome/arduino_stations/libraries/common/common.h",
+        "parent_id": null,
+        "workspaceRoot": "/Users/benamsallem/docs/mystuff/git/SmartHomeDIY/SmartHome/arduino_stations/libraries",
+        "workspacePath": "common/common.h",
+        "id": "87aqZxYLcsfWABjw"
+    },
+    {
+        "type": "File",
+        "name": "/Users/benamsallem/docs/mystuff/git/SmartHomeDIY/SmartHome/arduino_stations/IR/project_ir/src/IR_STATION_WITH_SD.cpp",
+        "parent_id": null,
+        "workspaceRoot": "/Users/benamsallem/docs/mystuff/git/SmartHomeDIY/SmartHome/arduino_stations/IR/project_ir",
+        "workspacePath": "src/IR_STATION_WITH_SD.cpp",
+        "id": "Mt1py27ZsdFfnqrQ"
+    },
+    {
+        "type": "File",
+        "name": "/Users/benamsallem/docs/mystuff/git/SmartHomeDIY/SmartHome/web_server/PI Server/project_pi_node_server/app.js",
+        "parent_id": null,
+        "workspaceRoot": "/Users/benamsallem/docs/mystuff/git/SmartHomeDIY/SmartHome/web_server/PI Server/project_pi_node_server",
+        "workspacePath": "app.js",
+        "id": "OBCHpGj45hLfJcUu"
+    },
+    {
+        "type": "File",
+        "name": "/Users/benamsallem/docs/mystuff/git/SmartHomeDIY/SmartHome/web_server/PI Server/project_pi_node_server/server.js",
+        "parent_id": null,
+        "workspaceRoot": "/Users/benamsallem/docs/mystuff/git/SmartHomeDIY/SmartHome/web_server/PI Server/project_pi_node_server",
+        "workspacePath": "server.js",
+        "id": "4nOga06TsPhAod8e"
+    },
+    {
+        "type": "File",
+        "name": "/Users/benamsallem/docs/mystuff/git/SmartHomeDIY/SmartHome/web_server/PI Server/project_pi_node_server/commands.txt",
+        "parent_id": null,
+        "workspaceRoot": "/Users/benamsallem/docs/mystuff/git/SmartHomeDIY/SmartHome/web_server/PI Server/project_pi_node_server",
+        "workspacePath": "commands.txt",
+        "id": "MSvGuDYotcmpwVFZ"
+    },
+    {
+        "type": "File",
+        "name": "/Users/benamsallem/docs/mystuff/git/SmartHomeDIY/SmartHome/web_server/PI Server/project_pi_node_server/whitelist.db",
+        "parent_id": null,
+        "workspaceRoot": "/Users/benamsallem/docs/mystuff/git/SmartHomeDIY/SmartHome/web_server/PI Server/project_pi_node_server",
+        "workspacePath": "whitelist.db",
+        "id": "FrBHDJSCVpywNiPo"
+    },
+    {
+        "type": "File",
+        "name": "/Users/benamsallem/docs/mystuff/git/SmartHomeDIY/SmartHome/arduino_stations/OTA/bootloader_with_ota_support/optiboot-nrf24l01-master/avr/bootloaders/optiboot-nrf24l01/optiboot.c",
+        "parent_id": null,
+        "workspaceRoot": "/Users/benamsallem/docs/mystuff/git/SmartHomeDIY/SmartHome/arduino_stations/OTA/bootloader_with_ota_support/optiboot-nrf24l01-master",
+        "workspacePath": "avr/bootloaders/optiboot-nrf24l01/optiboot.c",
+        "id": "inFdTAgz0hDYWyxB"
+    },
+    {
+        "type": "File",
+        "name": "/Users/benamsallem/docs/mystuff/git/SmartHomeDIY/SmartHome/arduino_stations/BT_To_Ant_Dispatch_Station/project_BT_To_Ant_Dispatch_Station/src/BT_To_Ant_Dispatch_Station_2.cpp",
+        "parent_id": null,
+        "workspaceRoot": "/Users/benamsallem/docs/mystuff/git/SmartHomeDIY/SmartHome/arduino_stations/BT_To_Ant_Dispatch_Station/project_BT_To_Ant_Dispatch_Station",
+        "workspacePath": "src/BT_To_Ant_Dispatch_Station_2.cpp",
+        "id": "abWuDJ0AfPnEYCmp"
     }
 ]
