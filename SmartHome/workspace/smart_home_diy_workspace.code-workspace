@@ -73,7 +73,7 @@
   ],
   "settings": {
     "C_Cpp.clang_format_fallbackStyle": "{ BasedOnStyle: Google, IndentWidth: 4, ColumnLimit: 0, DerivePointerAlignment: true, PointerAlignment: Left}",
-    "workbench.colorTheme": "Popping and Locking",
+    "workbench.colorTheme": "IntelliJ-ish Darcula",
     "workbench.editor.highlightModifiedTabs": true,
     "workbench.colorCustomizations": {
       //"activityBar.foreground": "#00b11d",
