@@ -57,6 +57,11 @@
       "path": "../arduino_stations/pir_station/project_pir_station"
     },
     {
+      "name": "Led Hue",
+      "path": "../arduino_stations/led_hue/project_led_hue"
+    },
+
+    {
       "name": "TV Station",
       "path": "../arduino_stations/tv_station/project_tv_station"
     },

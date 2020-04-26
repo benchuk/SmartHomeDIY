@@ -110,6 +110,11 @@ int counter = 0;  //used for logic
 char fileName[8];
 String buffer;
 
+/****
+ * PWM Light
+ * **/
+int pwm_led_pin = 3;
+
 void sendIRCode();
 void pulseIR(long microsecs);
 void recordircode();
@@ -186,6 +191,9 @@ void setup(void) {
     delay(1000);
     digitalWrite(SEND_LED_PIN, LOW);
     watchdogReset();
+
+    pinMode(pwm_led_pin, OUTPUT);
+    analogWrite(pwm_led_pin, 0);  //off
     //Serial.println(F("Ready to decode IR!"));
 }
 
@@ -234,6 +242,31 @@ void loop(void) {
     } else if (strcmp(cmd, "001") == 0) {
         Serial.println(F("Restarting..."));
         soft_restart();
+        return;
+    } else if (strcmp(cmd, "999") == 0) {
+        Serial.println(F("Hue1"));
+        //PWM high
+        analogWrite(pwm_led_pin, 255);
+        return;
+    } else if (strcmp(cmd, "998") == 0) {
+        Serial.println(F("Hue2"));
+        //PWM mid
+        analogWrite(pwm_led_pin, 80);
+        return;
+    } else if (strcmp(cmd, "997") == 0) {
+        Serial.println(F("Hue3"));
+        //PWM low
+        analogWrite(pwm_led_pin, 50);
+        return;
+    } else if (strcmp(cmd, "996") == 0) {
+        Serial.println(F("Hue4"));
+        //PWM very low
+        analogWrite(pwm_led_pin, 10);
+        return;
+    } else if (strcmp(cmd, "995") == 0) {
+        Serial.println(F("Hue5"));
+        //PWM off
+        analogWrite(pwm_led_pin, 0);
         return;
     } else {
         disableRF();
