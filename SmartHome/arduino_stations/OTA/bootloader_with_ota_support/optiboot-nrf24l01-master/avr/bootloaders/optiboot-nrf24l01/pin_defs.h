@@ -3,7 +3,7 @@
 /*------------------------------------------------------------------------ */
 
 /* Onboard LED is connected to pin PB5 in Arduino NG, Diecimila, and Duemilanove
- */ 
+ */
 #if !defined(LED)
 #define LED B5
 #endif
@@ -36,7 +36,7 @@
 /*------------------------------------------------------------------------ */
 #if defined(__AVR_ATtiny84__)
 /*------------------------------------------------------------------------ */
-/* Red LED is connected to pin PA4 */ 
+/* Red LED is connected to pin PA4 */
 #if !defined(LED)
 #define LED         A4
 #endif
@@ -55,7 +55,7 @@
 /* Sanguino support (and other 40pin DIP cpus) */
 #if defined(__AVR_ATmega644P__) || defined(__AVR_ATmega1284P__) || defined(__AVR_ATmega32__)
 /*------------------------------------------------------------------------ */
-/* Onboard LED is connected to pin PB0 on Sanguino */ 
+/* Onboard LED is connected to pin PB0 on Sanguino */
 #if !defined(LED)
 #define LED         B0
 #endif
@@ -74,7 +74,7 @@
 /* Mega support */
 #if defined(__AVR_ATmega1280__)
 /*------------------------------------------------------------------------ */
-/* Onboard LED is connected to pin PB7 on Arduino Mega */ 
+/* Onboard LED is connected to pin PB7 on Arduino Mega */
 #if !defined(LED)
 #define LED         B7
 #endif
@@ -91,7 +91,7 @@
 
 /*
  * ------------------------------------------------------------------------
- * A bunch of macros to enable the LED to be specifed as "B5" for bit 5 
+ * A bunch of macros to enable the LED to be specifed as "B5" for bit 5
  * of port B, and similar.
  */
 

@@ -17,34 +17,29 @@
  * First strip any trailing "L" from the defined constants.  To do this
  * we need to make the constants into shell variables first.
  */
-bpsx=BAUD_RATE
-bps=${bpsx/L/}
-fcpux=F_CPU
-fcpu=${fcpux/L/}
+bpsx = BAUD_RATE
+    bps = ${bpsx / L / } fcpux = F_CPU
+        fcpu = ${fcpux / L / }
 
 // echo f_cpu = $fcpu, baud = $bps
 /*
  * Compute the divisor
  */
-BAUD_SETTING=$(( ( ($fcpu + $bps * 4) / (($bps * 8))) - 1 ))
-// echo baud setting = $BAUD_SETTING
+BAUD_SETTING = $(((($fcpu + $bps * 4) / (($bps * 8))) - 1))
+    // echo baud setting = $BAUD_SETTING
 
-/*
+    /*
  * Based on the computer divisor, calculate the actual bitrate,
  * And the error.  Since we're all integers, we have to calculate
  * the tenths part of the error separately.
  */
-BAUD_ACTUAL=$(( ($fcpu/(8 * (($BAUD_SETTING)+1))) ))
-BAUD_ERROR=$(( (( 100*($bps - $BAUD_ACTUAL) ) / $bps) ))
-ERR_TS=$(( ((( 1000*($bps - $BAUD_ACTUAL) ) / $bps) - $BAUD_ERROR * 10) ))
-ERR_TENTHS=$(( ERR_TS > 0 ? ERR_TS: -ERR_TS ))
+    BAUD_ACTUAL = $((($fcpu / (8 * (($BAUD_SETTING) + 1)))))
+        BAUD_ERROR = $((((100 * ($bps - $BAUD_ACTUAL)) / $bps)))
+            ERR_TS = $(((((1000 * ($bps - $BAUD_ACTUAL)) / $bps) - $BAUD_ERROR * 10)))
+                ERR_TENTHS = $((ERR_TS > 0 ? ERR_TS : -ERR_TS))
 
-/*
+    /*
  * Print a nice message containing the info we've calculated
  */
-echo BAUD RATE CHECK: Desired: $bps,  Real: $BAUD_ACTUAL, UBRRL = $BAUD_SETTING, Error=$BAUD_ERROR.$ERR_TENTHS\%
-
-
-
-
-
+    echo BAUD RATE CHECK : Desired : $bps,
+    Real : $BAUD_ACTUAL, UBRRL = $BAUD_SETTING, Error = $BAUD_ERROR.$ERR_TENTHS\%

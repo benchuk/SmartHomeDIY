@@ -13,10 +13,10 @@ static void flasher_tx_handle(void);
 */
 #include <Arduino.h>
 #include <EEPROM.h>
-#include <avr/io.h>
 #include <avr/interrupt.h>
-#include <string.h>
+#include <avr/io.h>
 #include <avr/wdt.h>
+#include <string.h>
 
 #include "timer1.h"
 #include "uart.h"
@@ -32,24 +32,22 @@ static void flasher_tx_handle(void);
 #define CE_PIN (1 << 1)
 #define CSN_PIN (1 << 2)
 
-#include "spi.h"
 #include "nrf24.h"
+#include "spi.h"
 
 #ifndef MAX_PKT_SIZE
 #define MAX_PKT_SIZE 32
 #endif
 
 #define FIFO_MASK 255
-static struct ring_buffer_s
-{
+static struct ring_buffer_s {
     uint8_t data[FIFO_MASK + 1];
     uint8_t start, len;
 } tx_fifo;
 
 #define BLINK_LED_PIN 7
 
-void blink(void)
-{
+void blink(void) {
     digitalWrite(BLINK_LED_PIN, HIGH);
     my_delay(300);
     digitalWrite(BLINK_LED_PIN, LOW);
@@ -60,8 +58,7 @@ void blink(void)
     //    my_delay(300);
 }
 
-static void handle_input(char ch)
-{
+static void handle_input(char ch) {
     //serial_write1(ch);
     //blink();
     tx_fifo.data[(tx_fifo.start + tx_fifo.len++) & FIFO_MASK] = ch;
@@ -72,8 +69,7 @@ static void handle_input(char ch)
 //     __typeof__ (b) _b = (b); \
 //     _a < _b ? _a : _b; })
 
-static uint8_t eeprom_read(uint16_t addr)
-{
+static uint8_t eeprom_read(uint16_t addr) {
     while (EECR & (1 << EEPE))
         ;
 
@@ -83,17 +79,15 @@ static uint8_t eeprom_read(uint16_t addr)
     return EEDR;
 }
 
-void programShadeLivingRoom(void)
-{
+void programShadeLivingRoom(void) {
     //station 002
-    EEPROM.write(3, 48); //0
-    EEPROM.write(4, 48); //0
+    EEPROM.write(3, 48);  //0
+    EEPROM.write(4, 48);  //0
     //EEPROM.write(5, 52); //4
-    EEPROM.write(5, 55); //7
+    EEPROM.write(5, 55);  //7
 }
 
-void setup(void)
-{
+void setup(void) {
     //local flasher is 48 48 48 => '000'
     EEPROM.write(0, 48);
     EEPROM.write(1, 48);
@@ -144,8 +138,7 @@ void setup(void)
     serial_set_handler(handle_input);
 }
 
-void loop(void)
-{
+void loop(void) {
     static uint8_t tx_cnt; /* Consecutive Tx packets counter */
 
     /*
@@ -153,8 +146,7 @@ void loop(void)
      to avoid any concurrency issues.
   */
 
-    if (nrf24_rx_fifo_data())
-    {
+    if (nrf24_rx_fifo_data()) {
         uint8_t pkt_len, pkt_buf[32], i;
 #ifdef SEQN
         static uint8_t seqn = 0xff;
@@ -167,8 +159,7 @@ void loop(void)
         nrf24_rx_read(pkt_buf, &pkt_len);
 
 #ifdef SEQN
-        if (pkt_buf[0] != seqn)
-        {
+        if (pkt_buf[0] != seqn) {
             seqn = pkt_buf[0];
             for (i = 1; i < pkt_len; i++)
                 serial_write1(pkt_buf[i]);
@@ -181,8 +172,7 @@ void loop(void)
         tx_cnt = 0;
     }
 
-    if (tx_fifo.len)
-    { /* .len access should be atomic */
+    if (tx_fifo.len) { /* .len access should be atomic */
         uint8_t pkt_len, pkt_buf[MAX_PKT_SIZE], split;
 #ifdef SEQN
         static uint8_t seqn = 0x00;
@@ -227,8 +217,7 @@ void loop(void)
         tx_fifo.start += pkt_len;
         sei();
 
-        while (--count)
-        {
+        while (--count) {
             /* Don't flood the remote end with the comms */
             my_delay(4);
 
@@ -240,8 +229,7 @@ void loop(void)
     }
 }
 
-int main(void)
-{
+int main(void) {
     setup();
 
 #ifdef FLASH_TOOL_MODE
@@ -254,19 +242,16 @@ int main(void)
     return 0;
 }
 
-static void flasher_setup(void)
-{
+static void flasher_setup(void) {
 }
 
 static uint32_t prev_txrx_ts = 0;
 
-static void flasher_rx_handle(void)
-{
+static void flasher_rx_handle(void) {
     prev_txrx_ts = timer_read();
 }
 
-static void flasher_tx_handle(void)
-{
+static void flasher_tx_handle(void) {
     //serial_write1('t');
     static uint8_t first_tx = 1;
 
@@ -283,8 +268,7 @@ static void flasher_tx_handle(void)
      attempt to reset the board to start the bootloader, and send it
      our radio address to return the ACK packets to.
   */
-    if (first_tx)
-    {
+    if (first_tx) {
         uint8_t ch, pkt[4];
 
         /*

@@ -2,7 +2,7 @@ var logger = require('./homeLogger');
 var fs = require('fs');
 
 function whitelist(req, res, next) {
-	logger.log("url: " + req.url);
+	logger.log('url: ' + req.url);
 	var agent = req.headers['user-agent'];
 	if (req.query.appid == 'IFTTT' && agent == undefined) {
 		logger.log('IFTTT OK -> req: ' + req.url);

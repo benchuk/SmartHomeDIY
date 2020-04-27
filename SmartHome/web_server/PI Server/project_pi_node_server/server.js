@@ -1,7 +1,7 @@
-/* 
+/*
  * server.js
- * 
- * The main file, to be invoked at the command line. Calls app.js to get 
+ *
+ * The main file, to be invoked at the command line. Calls app.js to get
  * the Express app object.
  */
 
@@ -32,18 +32,18 @@ var locals = {
 	remotes: remotesCollection.items
 };
 
-app.post('/newcommand', whitelist, function (req, res) {
+app.post('/newcommand', whitelist, function(req, res) {
 	//res.send('Saved: name: ' + req.body.name + ' address: ' + req.body.address + ' command: ' + req.body.command + 'groupName: ' + req.body.group);
 	logger.log(
 		'Saving user remote command: ' +
-		' name: ' +
-		req.body.name +
-		' address: ' +
-		req.body.address +
-		' command: ' +
-		req.body.command +
-		' group: ' +
-		req.body.group
+			' name: ' +
+			req.body.name +
+			' address: ' +
+			req.body.address +
+			' command: ' +
+			req.body.command +
+			' group: ' +
+			req.body.group
 	);
 	var dbRes = remotesCollection.where({
 		groupName: req.body.group
@@ -73,14 +73,18 @@ app.post('/newcommand', whitelist, function (req, res) {
 		remotesCollection.update(dbRes.cid, dbRes);
 		logger.log('update ok');
 	} else {
-		remotesCollection.insert([{
-			groupName: req.body.group,
-			commands: [{
-				commandFile: req.body.command,
-				commandName: req.body.name,
-				address: req.body.address
-			}]
-		}]);
+		remotesCollection.insert([
+			{
+				groupName: req.body.group,
+				commands: [
+					{
+						commandFile: req.body.command,
+						commandName: req.body.name,
+						address: req.body.address
+					}
+				]
+			}
+		]);
 		logger.log('insert ok');
 	}
 
@@ -90,7 +94,7 @@ app.post('/newcommand', whitelist, function (req, res) {
 
 	var value = req.body.address + ':' + req.body.command;
 
-	theApp.serialPort.write(value, function (err, res) {
+	theApp.serialPort.write(value, function(err, res) {
 		logger.log('serial command sent');
 		logger.log('err: ' + err);
 		logger.log('res: ' + res);
@@ -99,7 +103,7 @@ app.post('/newcommand', whitelist, function (req, res) {
 	//res.send("click remote");
 });
 
-app.get('/deletecmd', whitelist, function (req, res) {
+app.get('/deletecmd', whitelist, function(req, res) {
 	try {
 		var values = req.query.value.split(':');
 		logger.log('deletecmd with values:' + values[0]);
@@ -133,31 +137,31 @@ app.get('/deletecmd', whitelist, function (req, res) {
 	}
 });
 
-app.get('/dbclear', whitelist, function (req, res) {
-	logger.log("dbclear request");
-	remotesCollection.items.forEach(function (r) {
+app.get('/dbclear', whitelist, function(req, res) {
+	logger.log('dbclear request');
+	remotesCollection.items.forEach(function(r) {
 		remotesCollection.remove(r.cid);
 	});
 	remotesCollection.save();
 	res.redirect('/');
 });
 
-app.get('/', whitelist, function (req, res) {
-	logger.log("home request: " + req.headers['user-agent']);
+app.get('/', whitelist, function(req, res) {
+	logger.log('home request: ' + req.headers['user-agent']);
 	locals.date = new Date().toLocaleDateString();
 	locals.remotes = remotesCollection.items;
 	res.render('home.ejs', locals);
 });
 
-app.get('/config-remotes', whitelist, function (req, res) {
-	logger.log("home request: " + req.headers['user-agent']);
+app.get('/config-remotes', whitelist, function(req, res) {
+	logger.log('home request: ' + req.headers['user-agent']);
 	locals.date = new Date().toLocaleDateString();
 	locals.remotes = remotesCollection.items;
 	res.render('config-remotes.ejs', locals);
 });
 
 /* The 404 Route (ALWAYS Keep this as the last route) */
-app.get('/*', whitelist, function (req, res) {
+app.get('/*', whitelist, function(req, res) {
 	logger.log('404 ' + req.url);
 	res.render('404.ejs', locals);
 });

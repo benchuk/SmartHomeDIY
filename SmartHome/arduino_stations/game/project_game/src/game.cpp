@@ -14,14 +14,14 @@
 // TONES  ==========================================
 // Start by defining the relationship between
 //       note, period, &  frequency.
-#define c 3830 // 261 Hz
-#define d 3400 // 294 Hz
-#define e 3038 // 329 Hz
-#define f 2864 // 349 Hz
-#define g 2550 // 392 Hz
-#define a 2272 // 440 Hz
-#define b 2028 // 493 Hz
-#define C 1912 // 523 Hz
+#define c 3830  // 261 Hz
+#define d 3400  // 294 Hz
+#define e 3038  // 329 Hz
+#define f 2864  // 349 Hz
+#define g 2550  // 392 Hz
+#define a 2272  // 440 Hz
+#define b 2028  // 493 Hz
+#define C 1912  // 523 Hz
 // Define a special note, 'R', to represent a rest
 #define R 0
 // pin change interrupts groups are:
@@ -36,26 +36,26 @@
 #define interruptTouch1Pin 2
 #define interruptTouch2Pin 3
 
-int DIN = 7; // DIN pin of MAX7219 module
-int CLK = 6; // CLK pin of MAX7219 module
-int CS = 5;  // CS pin of MAX7219 module
+int DIN = 7;  // DIN pin of MAX7219 module
+int CLK = 6;  // CLK pin of MAX7219 module
+int CS = 5;   // CS pin of MAX7219 module
 int maxInUse = 1;
 MaxMatrix m(DIN, CS, CLK, maxInUse);
 
 char smile02[] = {
-    4, 8, B00000010, B01011001, B00001001, B00000110, B00000000, // ?
+    4, 8, B00000010, B01011001, B00001001, B00000110, B00000000,  // ?
 };
 
 char ONE[] = {
-    3, 8, B01000010, B01111111, B01000000, B00000000, B00000000, // 1
+    3, 8, B01000010, B01111111, B01000000, B00000000, B00000000,  // 1
 };
 
 char TWO[] = {
-    4, 8, B01100010, B01010001, B01001001, B01000110, B00000000, // 2
+    4, 8, B01100010, B01010001, B01001001, B01000110, B00000000,  // 2
 };
 
 char THREE[] = {
-    4, 8, B00100010, B01000001, B01001001, B00110110, B00000000, // 3
+    4, 8, B00100010, B01000001, B01001001, B00110110, B00000000,  // 3
 };
 
 int gameEnded = 0;
@@ -77,7 +77,7 @@ int speakerOut = 9;
 int melody1[] = {C, b, g, C, b, e, R, C, c, g, a, C};
 int melody2[] = {a, b, C, g, b, R, e, g, C, e, f, a};
 int beats[] = {16, 16, 16, 8, 8, 16, 32, 16, 16, 16, 8, 8};
-int MAX_COUNT = sizeof(melody1) / 2; // Melody length, for looping.
+int MAX_COUNT = sizeof(melody1) / 2;  // Melody length, for looping.
 
 #define c 261
 #define d 294
@@ -124,7 +124,6 @@ void beep(int note, int duration) {
 }
 // C C C C A#  C  C C C
 void ninja() {
-
     beep(cH, 150);
     beep(cH, 150);
     beep(cH, 150);
@@ -211,7 +210,7 @@ int tempo = 108;
 // Set length of pause between notes
 int pause = 1000;
 // Loop variable to increase Rest length
-int rest_count = 100; //<-BLETCHEROUS HACK; See NOTES
+int rest_count = 100;  //<-BLETCHEROUS HACK; See NOTES
 
 // Initialize core variables
 int tone_ = 0;
@@ -222,10 +221,9 @@ long duration = 0;
 // Pulse the speaker to play a tone for a particular duration
 void playTone() {
     long elapsed_time = 0;
-    if (tone_ > 0) { // if this isn't a Rest beat, while the tone has
+    if (tone_ > 0) {  // if this isn't a Rest beat, while the tone has
         //  played less long than 'duration', pulse speaker HIGH and LOW
         while (elapsed_time < duration) {
-
             digitalWrite(speakerOut, HIGH);
             delayMicroseconds(tone_ / 2);
 
@@ -236,8 +234,8 @@ void playTone() {
             // Keep track of how long we pulsed
             elapsed_time += (tone_);
         }
-    } else {                                   // Rest beat; loop times delay
-        for (int j = 0; j < rest_count; j++) { // See NOTE on rest_count
+    } else {                                    // Rest beat; loop times delay
+        for (int j = 0; j < rest_count; j++) {  // See NOTE on rest_count
             delayMicroseconds(duration);
         }
     }
@@ -249,7 +247,7 @@ void playMusic1() {
         tone_ = melody1[i];
         beat = beats[i];
 
-        duration = beat * tempo; // Set up timing
+        duration = beat * tempo;  // Set up timing
 
         playTone();
         // A pause between notes...
@@ -263,7 +261,7 @@ void playMusic2() {
         tone_ = melody2[i];
         beat = beats[i];
 
-        duration = beat * tempo; // Set up timing
+        duration = beat * tempo;  // Set up timing
 
         playTone();
         // A pause between notes...
@@ -399,13 +397,13 @@ void ChangePalettePeriodically() {
 // takes up 64 bytes of flash.
 const TProgmemPalette16 myRedWhiteBluePalette_p PROGMEM = {
     CRGB::Red,
-    CRGB::Gray, // 'white' is too bright compared to red and blue
+    CRGB::Gray,  // 'white' is too bright compared to red and blue
     CRGB::Blue, CRGB::Black,
 
-    CRGB::Red,  CRGB::Gray,  CRGB::Blue,  CRGB::Black,
+    CRGB::Red, CRGB::Gray, CRGB::Blue, CRGB::Black,
 
-    CRGB::Red,  CRGB::Red,   CRGB::Gray,  CRGB::Gray,
-    CRGB::Blue, CRGB::Blue,  CRGB::Black, CRGB::Black};
+    CRGB::Red, CRGB::Red, CRGB::Gray, CRGB::Gray,
+    CRGB::Blue, CRGB::Blue, CRGB::Black, CRGB::Black};
 
 // Additionl notes on FastLED compact palettes:
 //
@@ -510,7 +508,6 @@ void animate() {
 }
 
 void initState() {
-
     s1 = 0;
     s2 = 0;
     time1 = 0;
@@ -636,28 +633,28 @@ int melody[] = {
     // Score available at https://musescore.com/user/202909/scores/1141521
     // The tenor saxophone part was used
 
-    NOTE_AS4, 8,  NOTE_AS4, 8,  NOTE_AS4, 8, // 1
-    NOTE_F5,  2,  NOTE_C6,  2,  NOTE_AS5, 8,  NOTE_A5,  8,  NOTE_G5,  8,
-    NOTE_F6,  2,  NOTE_C6,  4,  NOTE_AS5, 8,  NOTE_A5,  8,  NOTE_G5,  8,
-    NOTE_F6,  2,  NOTE_C6,  4,  NOTE_AS5, 8,  NOTE_A5,  8,  NOTE_AS5, 8,
-    NOTE_G5,  2,  NOTE_C5,  8,  NOTE_C5,  8,  NOTE_C5,  8,  NOTE_F5,  2,
-    NOTE_C6,  2,  NOTE_AS5, 8,  NOTE_A5,  8,  NOTE_G5,  8,  NOTE_F6,  2,
-    NOTE_C6,  4,
+    NOTE_AS4, 8, NOTE_AS4, 8, NOTE_AS4, 8,  // 1
+    NOTE_F5, 2, NOTE_C6, 2, NOTE_AS5, 8, NOTE_A5, 8, NOTE_G5, 8,
+    NOTE_F6, 2, NOTE_C6, 4, NOTE_AS5, 8, NOTE_A5, 8, NOTE_G5, 8,
+    NOTE_F6, 2, NOTE_C6, 4, NOTE_AS5, 8, NOTE_A5, 8, NOTE_AS5, 8,
+    NOTE_G5, 2, NOTE_C5, 8, NOTE_C5, 8, NOTE_C5, 8, NOTE_F5, 2,
+    NOTE_C6, 2, NOTE_AS5, 8, NOTE_A5, 8, NOTE_G5, 8, NOTE_F6, 2,
+    NOTE_C6, 4,
 
-    NOTE_AS5, 8,  NOTE_A5,  8,  NOTE_G5,  8,  NOTE_F6,  2,  NOTE_C6,  4, // 8
-    NOTE_AS5, 8,  NOTE_A5,  8,  NOTE_AS5, 8,  NOTE_G5,  2,  NOTE_C5,  -8,
-    NOTE_C5,  16, NOTE_D5,  -4, NOTE_D5,  8,  NOTE_AS5, 8,  NOTE_A5,  8,
-    NOTE_G5,  8,  NOTE_F5,  8,  NOTE_F5,  8,  NOTE_G5,  8,  NOTE_A5,  8,
-    NOTE_G5,  4,  NOTE_D5,  8,  NOTE_E5,  4,  NOTE_C5,  -8, NOTE_C5,  16,
-    NOTE_D5,  -4, NOTE_D5,  8,  NOTE_AS5, 8,  NOTE_A5,  8,  NOTE_G5,  8,
-    NOTE_F5,  8,
+    NOTE_AS5, 8, NOTE_A5, 8, NOTE_G5, 8, NOTE_F6, 2, NOTE_C6, 4,  // 8
+    NOTE_AS5, 8, NOTE_A5, 8, NOTE_AS5, 8, NOTE_G5, 2, NOTE_C5, -8,
+    NOTE_C5, 16, NOTE_D5, -4, NOTE_D5, 8, NOTE_AS5, 8, NOTE_A5, 8,
+    NOTE_G5, 8, NOTE_F5, 8, NOTE_F5, 8, NOTE_G5, 8, NOTE_A5, 8,
+    NOTE_G5, 4, NOTE_D5, 8, NOTE_E5, 4, NOTE_C5, -8, NOTE_C5, 16,
+    NOTE_D5, -4, NOTE_D5, 8, NOTE_AS5, 8, NOTE_A5, 8, NOTE_G5, 8,
+    NOTE_F5, 8,
 
-    NOTE_C6,  -8, NOTE_G5,  16, NOTE_G5,  2,  REST,     8,  NOTE_C5,  8, // 13
-    NOTE_D5,  -4, NOTE_D5,  8,  NOTE_AS5, 8,  NOTE_A5,  8,  NOTE_G5,  8,
-    NOTE_F5,  8,  NOTE_F5,  8,  NOTE_G5,  8,  NOTE_A5,  8,  NOTE_G5,  4,
-    NOTE_D5,  8,  NOTE_E5,  4,  NOTE_C6,  -8, NOTE_C6,  16, NOTE_F6,  4,
-    NOTE_DS6, 8,  NOTE_CS6, 4,  NOTE_C6,  8,  NOTE_AS5, 4,  NOTE_GS5, 8,
-    NOTE_G5,  4,  NOTE_F5,  8,  NOTE_C6,  1
+    NOTE_C6, -8, NOTE_G5, 16, NOTE_G5, 2, REST, 8, NOTE_C5, 8,  // 13
+    NOTE_D5, -4, NOTE_D5, 8, NOTE_AS5, 8, NOTE_A5, 8, NOTE_G5, 8,
+    NOTE_F5, 8, NOTE_F5, 8, NOTE_G5, 8, NOTE_A5, 8, NOTE_G5, 4,
+    NOTE_D5, 8, NOTE_E5, 4, NOTE_C6, -8, NOTE_C6, 16, NOTE_F6, 4,
+    NOTE_DS6, 8, NOTE_CS6, 4, NOTE_C6, 8, NOTE_AS5, 4, NOTE_GS5, 8,
+    NOTE_G5, 4, NOTE_F5, 8, NOTE_C6, 1
 
 };
 
@@ -673,7 +670,6 @@ int divider = 0, noteDuration = 0;
 
 void play3() {
     for (int thisNote = 0; thisNote < notes * 2; thisNote = thisNote + 2) {
-
         // calculates the duration of each note
         divider = melody[thisNote + 1];
         if (divider > 0) {
@@ -683,7 +679,7 @@ void play3() {
             // dotted notes are represented with negative durations!!
             noteDuration = (wholenote) / abs(divider);
             noteDuration *=
-                1.5; // increases the duration in half for dotted notes
+                1.5;  // increases the duration in half for dotted notes
         }
 
         // we only play the note for 90% of the duration, leaving 10% as a pause
@@ -700,8 +696,8 @@ void setup() {
     Serial.begin(9600);
     pinMode(speakerOut, OUTPUT);
     initInterrupts();
-    m.init();          // MAX7219 initialization
-    m.setIntensity(8); // initial led matrix intensity, 0-15
+    m.init();           // MAX7219 initialization
+    m.setIntensity(8);  // initial led matrix intensity, 0-15
 
     // delay(3000); // power-up safety delay
     FastLED.addLeds<LED_TYPE, LED_PIN, COLOR_ORDER>(leds, NUM_LEDS)
@@ -726,7 +722,6 @@ void loop() {
     }
     if (gameEnded > 100) {
         if (s4) {
-
             initState();
             s4 = 0;
             return;
