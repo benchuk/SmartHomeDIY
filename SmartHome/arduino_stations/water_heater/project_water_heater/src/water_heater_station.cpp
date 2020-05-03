@@ -1,6 +1,9 @@
+#define USE_RF_NANO_BOARD
+
 #include <Arduino.h>
 #include <PinChangeInt.h>
-#include <common.h>
+
+#include "common.h"
 
 /*********************
   RF24
@@ -11,6 +14,13 @@
 #include <SPI.h>
 #include <nRF24L01.h>
 
+// Where USE_RF_NANO_BOARD is defined the pin for RF are:
+// #define rfCE 10
+// #define rfCS 9
+// #define rfMISO 12
+// #define rfMOSI 11
+// #define rfCLK 13
+// if USE_RF_NANO_BOARD not defined than the pins  are:
 // #define rfCE 9
 // #define rfCS 10
 // #define rfMISO 12
@@ -31,10 +41,10 @@
 
 #define STATUS_LED_PIN A2
 // out to switch relay
-#define light1Pin 4
-#define light2Pin 5
-#define light3Pin 6
-#define light4Pin 7
+#define Water1Pin 4
+#define Water2Pin 5
+#define Water3Pin 6
+#define Water4Pin 7
 
 // switch state for lights
 // RELAY (mechanical ones) are active low - set high so default is lights off
@@ -51,6 +61,9 @@ boolean once = true;
 unsigned long timestamp = 0;
 
 PayloadData p;
+bool timerOn = false;
+unsigned long startTime = 0;
+unsigned long TURN_OFF_TIMER_MS = 10000;  //10 seconds (final should be 30 min  => 30*60000)
 
 void blinkReady();
 void touch2();
@@ -62,6 +75,10 @@ void toggles4();
 void touch3();
 void toggles3();
 void signalState();
+void startTimer();
+void stopTimer();
+bool isTimerOn();
+void checkTurnOffTimer(int pinToToggleOff, volatile byte &oldState);
 
 void setup() {
     configureEEPROMAddressForRFAndOTA("007");
@@ -70,12 +87,12 @@ void setup() {
 
     pinMode(Water1Pin, OUTPUT);
     pinMode(Water2Pin, OUTPUT);
-    pinMode(Qater3Pin, OUTPUT);
+    pinMode(Water3Pin, OUTPUT);
     pinMode(Water4Pin, OUTPUT);
 
     digitalWrite(Water1Pin, s1);
     digitalWrite(Water2Pin, s2);
-    digitalWrite(Qater3Pin, s3);
+    digitalWrite(Water3Pin, s3);
     digitalWrite(Water4Pin, s4);
 
     Serial.println("Init RF");
@@ -99,17 +116,15 @@ void loop() {
         digitalWrite(STATUS_LED_PIN, LOW);
 
         Serial.println("INIT PINS and INTERRUPTS");
-        noInterrupts();
 
+        noInterrupts();
         pinMode(interruptTouch1Pin, INPUT_PULLUP);
         pinMode(interruptTouch2Pin, INPUT_PULLUP);
         pinMode(SWITCH3_PIN_CHANGE_INTERRUPT, INPUT);
         pinMode(SWITCH4_PIN_CHANGE_INTERRUPT, INPUT);
 
-        attachInterrupt(digitalPinToInterrupt(interruptTouch1Pin), touch1,
-                        RISING);
-        attachInterrupt(digitalPinToInterrupt(interruptTouch2Pin), touch2,
-                        RISING);
+        attachInterrupt(digitalPinToInterrupt(interruptTouch1Pin), touch1, RISING);
+        attachInterrupt(digitalPinToInterrupt(interruptTouch2Pin), touch2, RISING);
         attachPinChangeInterrupt(SWITCH3_PIN_CHANGE_INTERRUPT, touch3, CHANGE);
         attachPinChangeInterrupt(SWITCH4_PIN_CHANGE_INTERRUPT, touch4, CHANGE);
         Serial.println("Done init interrupts");
@@ -131,10 +146,12 @@ void loop() {
     Serial.println("listen....");
     //  delay(100);
     // return;
+    checkTurnOffTimer(Water2Pin, s2);
     while (!Mirf.dataReady()) {
         // Serial.print(".");
         watchdogReset();
         blinkReady();
+        checkTurnOffTimer(Water2Pin, s2);
     };
 
     Serial.println(F("ok"));
@@ -175,13 +192,18 @@ void loop() {
         return;
     } else if (strcmp(cmd, "006") == 0) {
         timestamp = millis();
+        startTime = millis();
         Serial.println("s2 on");
         s2 = HIGH;
         digitalWrite(Water2Pin, s2);
+        startTimer();
         return;
     } else if (strcmp(cmd, "007") == 0) {
         Serial.println("toggle s2");
         toggles2();
+        if (s2 == HIGH) {
+            startTimer();
+        }
         return;
     }
     // s3
@@ -231,7 +253,7 @@ void loop() {
 void signalState() {
     Serial.println("signalState");
     p.address = 7;
-    p.type = Relay_4_Way;
+    p.type = Relay_2_Way;
     p.data = s1 | (s2 << 1) | (s3 << 2) | (s4 << 3);
     Serial.println("bin state");
     Serial.println(p.data, BIN);
@@ -241,11 +263,11 @@ void signalState() {
     // wait for prev send to finish
     while (Mirf.isSending())
         ;
-    Mirf.send((uint8_t*)(&p));
+    Mirf.send((uint8_t *)(&p));
     while (Mirf.isSending())
         ;
     delay(150);
-    Mirf.send((uint8_t*)(&p));
+    Mirf.send((uint8_t *)(&p));
     while (Mirf.isSending())
         ;
     Serial.println("Done");
@@ -336,6 +358,9 @@ void toggles2() {
     }
     timestamp = millis();
     s2 = !s2;
+    if (s2 == HIGH) {
+        startTime = millis();
+    }
     digitalWrite(Water2Pin, s2);
 }
 
@@ -357,4 +382,31 @@ void blinkReady() {
     delay(50);
     digitalWrite(STATUS_LED_PIN, LOW);
     delay(50);
+}
+
+void checkTurnOffTimer(int pinToToggleOff, volatile byte &oldState) {
+    if (!timerOn) {
+        return;
+    }
+    unsigned long dt = millis() - startTime;
+    if (dt > TURN_OFF_TIMER_MS) {
+        stopTimer();
+        oldState = LOW;
+        digitalWrite(pinToToggleOff, oldState);
+        signalState();
+    }
+}
+
+void startTimer() {
+    startTime = millis();
+    timerOn = true;
+}
+
+void stopTimer() {
+    startTime = -1;
+    timerOn = false;
+}
+
+bool isTimerOn() {
+    return timerOn;
 }

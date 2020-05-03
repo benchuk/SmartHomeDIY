@@ -49,11 +49,17 @@ void loop() {
         Serial.println((uint8_t)otaCmd[0]);
         Serial.println((uint8_t)otaCmd[1]);
         Serial.println((uint8_t)otaCmd[2]);
-        BTSerial.write(otaCmd[0]);
-        BTSerial.write(otaCmd[1]);
-        BTSerial.write(otaCmd[2]);
+        // while (BTSerial.availableForWrite()) {
+        //     delay(5);
+        // }
+        BTSerial.write(otaCmd, 3);
+        // BTSerial.write(otaCmd[0]);
+        // BTSerial.write(otaCmd[1]);
+        // BTSerial.write(otaCmd[2]);
         BTSerial.flush();
-        delay(50);
+        // while (BTSerial.availableForWrite()) {
+        //     delay(5);
+        // }
     }
     // else
     // {
