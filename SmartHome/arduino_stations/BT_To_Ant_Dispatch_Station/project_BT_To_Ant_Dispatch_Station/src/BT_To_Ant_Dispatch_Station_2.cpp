@@ -1,3 +1,4 @@
+//#define USE_RF_NANO_BOARD
 #include <Arduino.h>
 #include <SoftwareSerial.h>
 #include <common.h>
@@ -78,7 +79,10 @@ void loop() {
     // Keep reading from HC-05 and send to Arduino Serial Monitor
     if (BTSerial.available()) {
         char command = BTSerial.read();
-        // Serial.println(command);
+        Serial.print("new command char: ");
+        Serial.println(command);
+
+        //TBD: Handle none number or ':' chars and restart
         if (command == ':') {
             Serial.println("middle");
             i = 0;
@@ -117,8 +121,10 @@ void loop() {
             Serial.println(cmd);
             Mirf.send((uint8_t *)cmd);
             newCommand = false;
-            while (Mirf.isSending())
-                ;
+            while (Mirf.isSending()) {
+                Serial.print(".-");
+            }
+            // ;
         }
     }
 }

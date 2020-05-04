@@ -153,13 +153,13 @@ void loop() {
         timestamp = millis();
         Serial.println("s1 off");
         s1 = LOW;
-        digitalWrite(Water1Pin, s1);
+        digitalWrite(light1Pin, s1);
         return;
     } else if (strcmp(cmd, "003") == 0) {
         timestamp = millis();
         Serial.println("s1 on");
         s1 = HIGH;
-        digitalWrite(Water1Pin, s1);
+        digitalWrite(light1Pin, s1);
         return;
     } else if (strcmp(cmd, "004") == 0) {
         Serial.println("toggle s1");
@@ -171,13 +171,13 @@ void loop() {
         timestamp = millis();
         Serial.println("s2 off");
         s2 = LOW;
-        digitalWrite(Water2Pin, s2);
+        digitalWrite(light2Pin, s2);
         return;
     } else if (strcmp(cmd, "006") == 0) {
         timestamp = millis();
         Serial.println("s2 on");
         s2 = HIGH;
-        digitalWrite(Water2Pin, s2);
+        digitalWrite(light2Pin, s2);
         return;
     } else if (strcmp(cmd, "007") == 0) {
         Serial.println("toggle s2");
@@ -192,7 +192,7 @@ void loop() {
         timestamp = millis();
         Serial.println("s3 off");
         s3 = LOW;
-        digitalWrite(Qater3Pin, s3);
+        digitalWrite(light3Pin, s3);
         return;
     } else if (strcmp(cmd, "009") == 0) {
         if (millis() - timestamp < 500) {
@@ -201,7 +201,7 @@ void loop() {
         timestamp = millis();
         Serial.println("s3 on");
         s3 = HIGH;
-        digitalWrite(Qater3Pin, s3);
+        digitalWrite(light3Pin, s3);
         return;
     } else if (strcmp(cmd, "010") == 0) {
         Serial.println("toggle s3");
@@ -213,13 +213,13 @@ void loop() {
         timestamp = millis();
         Serial.println("s4 off");
         s4 = LOW;
-        digitalWrite(Water4Pin, s4);
+        digitalWrite(light4Pin, s4);
         return;
     } else if (strcmp(cmd, "012") == 0) {
         timestamp = millis();
         Serial.println("s4 on");
         s4 = HIGH;
-        digitalWrite(Water4Pin, s4);
+        digitalWrite(light4Pin, s4);
         return;
     } else if (strcmp(cmd, "013") == 0) {
         Serial.println("toggle s4");
@@ -257,7 +257,7 @@ void toggles3() {
     }
     timestamp = millis();
     s3 = !s3;
-    digitalWrite(Qater3Pin, s3);
+    digitalWrite(light3Pin, s3);
 }
 
 void touch3() {
@@ -286,7 +286,7 @@ void toggles4() {
     }
     timestamp = millis();
     s4 = !s4;
-    digitalWrite(Water4Pin, s4);
+    digitalWrite(light4Pin, s4);
 }
 
 void touch4() {
@@ -314,7 +314,7 @@ void toggles1() {
     }
     timestamp = millis();
     s1 = !s1;
-    digitalWrite(Water1Pin, s1);
+    digitalWrite(light1Pin, s1);
 }
 
 void touch1() {
@@ -336,7 +336,7 @@ void toggles2() {
     }
     timestamp = millis();
     s2 = !s2;
-    digitalWrite(Water2Pin, s2);
+    digitalWrite(light2Pin, s2);
 }
 
 void touch2() {

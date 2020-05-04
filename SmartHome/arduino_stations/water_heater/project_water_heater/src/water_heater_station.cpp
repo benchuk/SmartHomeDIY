@@ -40,6 +40,8 @@
 #define interruptTouch2Pin 3
 
 #define STATUS_LED_PIN A2
+#define S1_LED_PIN A4
+#define S2_LED_PIN A5
 // out to switch relay
 #define Water1Pin 4
 #define Water2Pin 5
@@ -81,7 +83,7 @@ bool isTimerOn();
 void checkTurnOffTimer(int pinToToggleOff, volatile byte &oldState);
 
 void setup() {
-    configureEEPROMAddressForRFAndOTA("007");
+    configureEEPROMAddressForRFAndOTA("010");
 
     Serial.begin(9600);
 
@@ -89,6 +91,11 @@ void setup() {
     pinMode(Water2Pin, OUTPUT);
     pinMode(Water3Pin, OUTPUT);
     pinMode(Water4Pin, OUTPUT);
+
+    pinMode(S1_LED_PIN, OUTPUT);
+    pinMode(S2_LED_PIN, OUTPUT);
+    digitalWrite(S1_LED_PIN, LOW);
+    digitalWrite(S2_LED_PIN, LOW);
 
     digitalWrite(Water1Pin, s1);
     digitalWrite(Water2Pin, s2);
@@ -189,19 +196,22 @@ void loop() {
         Serial.println("s2 off");
         s2 = LOW;
         digitalWrite(Water2Pin, s2);
+        digitalWrite(S2_LED_PIN, LOW);
         return;
     } else if (strcmp(cmd, "006") == 0) {
         timestamp = millis();
         startTime = millis();
+        startTimer();
         Serial.println("s2 on");
         s2 = HIGH;
         digitalWrite(Water2Pin, s2);
-        startTimer();
+        digitalWrite(S2_LED_PIN, HIGH);
         return;
     } else if (strcmp(cmd, "007") == 0) {
         Serial.println("toggle s2");
         toggles2();
         if (s2 == HIGH) {
+            digitalWrite(S2_LED_PIN, HIGH);
             startTimer();
         }
         return;
@@ -214,7 +224,7 @@ void loop() {
         timestamp = millis();
         Serial.println("s3 off");
         s3 = LOW;
-        digitalWrite(Qater3Pin, s3);
+        digitalWrite(Water3Pin, s3);
         return;
     } else if (strcmp(cmd, "009") == 0) {
         if (millis() - timestamp < 500) {
@@ -223,7 +233,7 @@ void loop() {
         timestamp = millis();
         Serial.println("s3 on");
         s3 = HIGH;
-        digitalWrite(Qater3Pin, s3);
+        digitalWrite(Water3Pin, s3);
         return;
     } else if (strcmp(cmd, "010") == 0) {
         Serial.println("toggle s3");
@@ -279,7 +289,7 @@ void toggles3() {
     }
     timestamp = millis();
     s3 = !s3;
-    digitalWrite(Qater3Pin, s3);
+    digitalWrite(Water3Pin, s3);
 }
 
 void touch3() {
@@ -384,6 +394,7 @@ void blinkReady() {
     delay(50);
 }
 
+//https://www.microchip.com/forums/m633052.aspx
 void checkTurnOffTimer(int pinToToggleOff, volatile byte &oldState) {
     if (!timerOn) {
         return;
@@ -392,17 +403,20 @@ void checkTurnOffTimer(int pinToToggleOff, volatile byte &oldState) {
     if (dt > TURN_OFF_TIMER_MS) {
         stopTimer();
         oldState = LOW;
+        digitalWrite(S2_LED_PIN, LOW);
         digitalWrite(pinToToggleOff, oldState);
         signalState();
     }
 }
 
 void startTimer() {
+    Serial.println("startTimer");
     startTime = millis();
     timerOn = true;
 }
 
 void stopTimer() {
+    Serial.println("stopTimer");
     startTime = -1;
     timerOn = false;
 }
