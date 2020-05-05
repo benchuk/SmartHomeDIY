@@ -53,11 +53,33 @@ void loop() {
         // while (BTSerial.availableForWrite()) {
         //     delay(5);
         // }
-        BTSerial.write(otaCmd, 3);
-        // BTSerial.write(otaCmd[0]);
-        // BTSerial.write(otaCmd[1]);
-        // BTSerial.write(otaCmd[2]);
+        //BTSerial.write(otaCmd, 3);
+        BTSerial.write(otaCmd[0]);
+        delay(5);
+        BTSerial.write(otaCmd[1]);
+        delay(5);
+        BTSerial.write(otaCmd[2]);
+        delay(5);
         BTSerial.flush();
+        delay(15);
+
+        BTSerial.write(otaCmd[0]);
+        delay(5);
+        BTSerial.write(otaCmd[1]);
+        delay(5);
+        BTSerial.write(otaCmd[2]);
+        delay(5);
+        BTSerial.flush();
+        delay(15);
+
+        BTSerial.write(otaCmd[0]);
+        delay(5);
+        BTSerial.write(otaCmd[1]);
+        delay(5);
+        BTSerial.write(otaCmd[2]);
+        delay(5);
+        BTSerial.flush();
+        delay(15);
         // while (BTSerial.availableForWrite()) {
         //     delay(5);
         // }
