@@ -68,15 +68,15 @@ void setup() {
 
     Serial.begin(9600);
 
-    pinMode(Water1Pin, OUTPUT);
-    pinMode(Water2Pin, OUTPUT);
-    pinMode(Qater3Pin, OUTPUT);
-    pinMode(Water4Pin, OUTPUT);
+    pinMode(light1Pin, OUTPUT);
+    pinMode(light2Pin, OUTPUT);
+    pinMode(light3Pin, OUTPUT);
+    pinMode(light4Pin, OUTPUT);
 
-    digitalWrite(Water1Pin, s1);
-    digitalWrite(Water2Pin, s2);
-    digitalWrite(Qater3Pin, s3);
-    digitalWrite(Water4Pin, s4);
+    digitalWrite(light1Pin, s1);
+    digitalWrite(light2Pin, s2);
+    digitalWrite(light3Pin, s3);
+    digitalWrite(light4Pin, s4);
 
     Serial.println("Init RF");
     startRF();
