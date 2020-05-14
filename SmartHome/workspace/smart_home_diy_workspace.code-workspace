@@ -1,165 +1,175 @@
 {
-  "folders": [
-    {
-      "name": "PI Server",
-      "path": "../web_server/PI Server/project_pi_node_server"
-    },
-    {
-      "name": "Bootloader (Production)",
-      "path": "../arduino_stations/OTA/bootloader_with_ota_support/optiboot-nrf24l01-master"
-    },
-    {
-      "name": "Bootloader (Debug with LED)",
-      "path": "../arduino_stations/OTA/bootloader_with_ota_support/for_debug/bootloader_with_debug_leds/optiboot-nrf24l01-master-debug"
-    },
-    {
-      "name": "Flasher Station",
-      "path": "../arduino_stations/OTA/flasher station/optiboot-nrf24l01-flasher"
-    },
-    {
-      "name": "Flasher remote test station (Flashed remotely)",
-      "path": "../arduino_stations/OTA/tests/remote_station_for_ota_tests/ota_remote-station_working_with_mirf_lib/remote_station_for_ota_tests"
-    },
-    {
-      "name": "Common libs",
-      "path": "../arduino_stations/libraries"
-    },
-    {
-      "name": "Gateway",
-      "path": "../arduino_stations/BT_To_Ant_Dispatch_Station/project_BT_To_Ant_Dispatch_Station"
-    },
-    {
-      "name": "IR Station",
-      "path": "../arduino_stations/IR/project_ir"
-    },
-    {
-      "name": "Shades Station",
-      "path": "../arduino_stations/shade_station/project_shade_station"
-    },
-    {
-      "name": "Touch Switch Station",
-      "path": "../arduino_stations/touch_switch/project_touch_switch"
-    },
-    {
-      "name": "Lights indicator station",
-      "path": "../arduino_stations/lights_indicetor/project_lights_indicator"
-    },
-    {
-      "name": "Game",
-      "path": "../arduino_stations/game/project_game"
-    },
-    {
-      "name": "Temperature And Humidity Station",
-      "path": "../arduino_stations/temperature_station/project_temperature_station"
-    },
-    {
-      "name": "Motion Detection Station",
-      "path": "../arduino_stations/pir_station/project_pir_station"
-    },
-    {
-      "name": "Led Hue",
-      "path": "../arduino_stations/led_hue/project_led_hue"
-    },
+	"folders": [
+		{
+			"name": "PI Server",
+			"path": "../web_server/PI Server/project_pi_node_server"
+		},
+		{
+			"name": "Bootloader (Production)",
+			"path": "../arduino_stations/OTA/bootloader_with_ota_support/optiboot-nrf24l01-master"
+		},
+		{
+			"name": "Bootloader (Debug with LED)",
+			"path": "../arduino_stations/OTA/bootloader_with_ota_support/for_debug/bootloader_with_debug_leds/optiboot-nrf24l01-master-debug"
+		},
+		{
+			"name": "Flasher Station",
+			"path": "../arduino_stations/OTA/flasher station/optiboot-nrf24l01-flasher"
+		},
+		{
+			"name": "Flasher remote test station (Flashed remotely)",
+			"path": "../arduino_stations/OTA/tests/remote_station_for_ota_tests/ota_remote-station_working_with_mirf_lib/remote_station_for_ota_tests"
+		},
+		{
+			"name": "Common libs",
+			"path": "../arduino_stations/libraries"
+		},
+		{
+			"name": "Gateway",
+			"path": "../arduino_stations/BT_To_Ant_Dispatch_Station/project_BT_To_Ant_Dispatch_Station"
+		},
+		{
+			"name": "IR Station",
+			"path": "../arduino_stations/IR/project_ir"
+		},
+		{
+			"name": "Shades Station",
+			"path": "../arduino_stations/shade_station/project_shade_station"
+		},
+		{
+			"name": "Touch Switch Station",
+			"path": "../arduino_stations/touch_switch/project_touch_switch"
+		},
+		{
+			"name": "Water Heater Station",
+			"path": "../arduino_stations/water_heater/project_water_heater"
+		},
+		{
+			"name": "Lights indicator station",
+			"path": "../arduino_stations/lights_indicetor/project_lights_indicator"
+		},
+		{
+			"name": "Game",
+			"path": "../arduino_stations/game/project_game"
+		},
+		{
+			"name": "Temperature And Humidity Station",
+			"path": "../arduino_stations/temperature_station/project_temperature_station"
+		},
+		{
+			"name": "Motion Detection Station",
+			"path": "../arduino_stations/pir_station/project_pir_station"
+		},
+		{
+			"name": "Led Hue",
+			"path": "../arduino_stations/led_hue/project_led_hue"
+		},
 
-    {
-      "name": "TV Station",
-      "path": "../arduino_stations/tv_station/project_tv_station"
-    },
-    {
-      "path": "../arduino_stations/playground/project_playground"
-    },
-    {
-      "name": "Utils",
-      "path": "../arduino_stations/scripts"
-    },
-    {
-      "path": "."
-    }
-  ],
-  "settings": {
-    "C_Cpp.clang_format_fallbackStyle": "{ BasedOnStyle: Google, IndentWidth: 4, ColumnLimit: 0, DerivePointerAlignment: true, PointerAlignment: Left}",
-    "workbench.colorTheme": "IntelliJ-ish Darcula",
-    "workbench.editor.highlightModifiedTabs": true,
-    "workbench.colorCustomizations": {
-      //"activityBar.foreground": "#00b11d",
-      "titleBar.activeBackground": "#366600",
-      "titleBar.activeForeground": "#eee",
-      "titleBar.inactiveBackground": "#1a1818",
-      "titleBar.inactiveForeground": "#eee"
-    },
-    "files.trimTrailingWhitespace": true,
-    "files.insertFinalNewline": true,
-    "explorer.autoReveal": true,
-    "explorer.sortOrder": "type",
-    "workbench.list.keyboardNavigation": "filter",
-    "editor.gotoLocation.multiple": "goto",
-    "editor.multiCursorModifier": "ctrlCmd",
-    "editor.minimap.enabled": false,
-    "editor.renderWhitespace": "all",
-    "editor.renderControlCharacters": true,
-    "editor.formatOnType": false,
-    "editor.fontSize": 16,
-    "editor.fontFamily": "",
-    "editor.fontLigatures": true,
-    "editor.fontWeight": "500",
-    "editor.snippetSuggestions": "top",
-    "editor.suggestSelection": "first",
-    "editor.formatOnSave": true,
-    "editor.formatOnPaste": false,
-    "editor.autoClosingBrackets": "never",
-    "eslint.autoFixOnSave": false,
-    "eslint.trace.server": "messages",
-    "[json]": {
-      "editor.formatOnSave": false
-    },
-    "prettier.semi": true,
-    "prettier.singleQuote": true,
-    "prettier.useTabs": true,
-    "terminal.integrated.env.windows": {
-      "PATH": "C:\\Users\\Ben\\.platformio\\penv\\Scripts;C:\\Users\\Ben\\.platformio\\penv;C:\\Program Files (x86)\\Common Files\\Oracle\\Java\\javapath;C:\\Users\\Ben\\AppData\\Local\\Google\\Chrome\\Application;C:\\ProgramData\\Oracle\\Java\\javapath;C:\\Windows\\system32;C:\\Windows;C:\\Windows\\System32\\Wbem;C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\;C:\\adb;C:\\WINDOWS\\system32;C:\\WINDOWS;C:\\WINDOWS\\System32\\Wbem;C:\\WINDOWS\\System32\\WindowsPowerShell\\v1.0\\;C:\\Program Files\\PuTTY\\;C:\\Program Files\\LLVM\\bin;C:\\Program Files (x86)\\Common Files\\Apple\\Internet Services\\;C:\\WINDOWS\\System32\\OpenSSH\\;C:\\Program Files\\Microsoft VS Code Insiders\\bin;C:\\Program Files\\Git\\cmd;C:\\Program Files\\NVIDIA Corporation\\NVIDIA NvDLISR;C:\\Program Files (x86)\\NVIDIA Corporation\\PhysX\\Common;C:\\Users\\Ben\\.platformio\\penv\\Scripts;C:\\Users\\Ben\\.platformio\\penv;C:\\Users\\Ben\\AppData\\Local\\Google\\Chrome\\Application;C:\\ProgramData\\Oracle\\Java\\javapath;C:\\Windows\\system32;C:\\Windows;C:\\Windows\\System32\\Wbem;C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\;C:\\adb;C:\\WINDOWS\\system32;C:\\WINDOWS;C:\\WINDOWS\\System32\\Wbem;C:\\WINDOWS\\System32\\WindowsPowerShell\\v1.0\\;C:\\Program Files (x86)\\Skype\\Phone\\;C:\\Program Files\\PuTTY\\;C:\\Program Files\\LLVM\\bin;C:\\Program Files (x86)\\Common Files\\Apple\\Internet Services\\;C:\\WINDOWS\\System32\\OpenSSH\\;C:\\Program Files\\Microsoft VS Code Insiders\\bin;C:\\Program Files\\Git\\cmd;C:\\Program;C:\\Program Files (x86)\\GnuWin32\\bin;C:\\Users\\Ben\\Documents\\git\\SmartHomeDIY\\SmartHome\\arduino_stations\\scripts\\avr\\windows\\avrdude\\bin;C:\\Program Files\\avr8-gnu-toolchain\\bin;;C:\\Users\\Ben\\AppData\\Local\\Programs\\Microsoft VS Code\\bin;C:\\Users\\Ben\\AppData\\Local\\hyper\\app-2.1.2\\resources\\bin;%USERPROFILE%\\AppData\\Local\\Microsoft\\WindowsApps;C:\\Program Files (x86)\\Common Files\\Oracle\\Java\\javapath;C:\\Users\\Ben\\AppData\\Local\\Google\\Chrome\\Application;C:\\ProgramData\\Oracle\\Java\\javapath;C:\\Windows\\system32;C:\\Windows;C:\\Windows\\System32\\Wbem;C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\;C:\\adb;C:\\WINDOWS\\system32;C:\\WINDOWS;C:\\WINDOWS\\System32\\Wbem;C:\\WINDOWS\\System32\\WindowsPowerShell\\v1.0\\;C:\\Program Files\\PuTTY\\;C:\\Program Files\\LLVM\\bin;C:\\Program Files (x86)\\Common Files\\Apple\\Internet Services\\;C:\\WINDOWS\\System32\\OpenSSH\\;C:\\Program Files\\Microsoft VS Code Insiders\\bin;C:\\Program Files\\Git\\cmd;C:\\Program Files\\NVIDIA Corporation\\NVIDIA NvDLISR;C:\\Program Files (x86)\\NVIDIA Corporation\\PhysX\\Common;C:\\Users\\Ben\\.platformio\\penv\\Scripts;C:\\Users\\Ben\\.platformio\\penv;C:\\Users\\Ben\\AppData\\Local\\Google\\Chrome\\Application;C:\\ProgramData\\Oracle\\Java\\javapath;C:\\Windows\\system32;C:\\Windows;C:\\Windows\\System32\\Wbem;C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\;C:\\adb;C:\\WINDOWS\\system32;C:\\WINDOWS;C:\\WINDOWS\\System32\\Wbem;C:\\WINDOWS\\System32\\WindowsPowerShell\\v1.0\\;C:\\Program Files (x86)\\Skype\\Phone\\;C:\\Program Files\\PuTTY\\;C:\\Program Files\\LLVM\\bin;C:\\Program Files (x86)\\Common Files\\Apple\\Internet Services\\;C:\\WINDOWS\\System32\\OpenSSH\\;C:\\Program Files\\Microsoft VS Code Insiders\\bin;C:\\Program Files\\Git\\cmd;C:\\Program;C:\\Program Files (x86)\\GnuWin32\\bin;C:\\Users\\Ben\\Documents\\git\\SmartHomeDIY\\SmartHome\\arduino_stations\\scripts\\avr\\windows\\avrdude\\bin;C:\\Program Files\\avr8-gnu-toolchain\\bin;;C:\\Users\\Ben\\AppData\\Local\\Programs\\Microsoft VS Code\\bin;C:\\Users\\Ben\\AppData\\Local\\hyper\\app-2.1.2\\resources\\bin;%USERPROFILE%\\AppData\\Local\\Microsoft\\WindowsApps",
-      "PLATFORMIO_CALLER": "vscode"
-    },
-    "terminal.integrated.env.osx": {
-      "PATH": "/Users/benamsallem/.platformio/penv/bin:/Users/benamsallem/.platformio/penv:/Users/benamsallem/.platformio/packages/tool-avrdude/bin/:/Users/benamsallem/.platformio/penv/bin/platformio:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/Library/Apple/usr/bin:/Library/Apple/bin:/Library/Frameworks/Mono.framework/Versions/Current/Commands",
-      "PLATFORMIO_CALLER": "vscode"
-    },
-    "git.ignoreLimitWarning": true,
-    "files.associations": {
-      "pin_defs.h": "c",
-      "inttypes.h": "c",
-      "boot.h": "c",
-      "stk500.h": "c"
-    },
-    "cSpell.words": [
-      "Arduino",
-      "Atmel",
-      "Diecimila",
-      "Duemilanove",
-      "EEPROM",
-      "Luminet",
-      "Mirf",
-      "Optiboot",
-      "Ttiny",
-      "millis",
-      "println"
-    ]
-  },
-  "extensions": {
-    "recommendations": [
-      "platformio.platformio-ide",
-      "formulahendry.platformio",
-      "chingson.hycon-assembly",
-      "mateuszchudyk.hexinspector",
-      "ms-vscode.cpptools",
-      "austin.code-gnu-global",
-      "reloadedextensions.reloaded-cpp",
-      "waderyan.nodejs-extension-pack",
-      "leizongmin.node-module-intellisense",
-      "eg2.vscode-npm-script",
-      "christian-kohler.npm-intellisense",
-      "liximomo.sftp",
-      "qassimfarid.ejs-language-support",
-      "streetsidesoftware.code-spell-checker"
-    ]
-  }
+		{
+			"name": "TV Station",
+			"path": "../arduino_stations/tv_station/project_tv_station"
+		},
+		{
+			"path": "../arduino_stations/playground/project_playground"
+		},
+		{
+			"name": "Utils",
+			"path": "../arduino_stations/scripts"
+		},
+		{
+			"path": "."
+		}
+	],
+	"settings": {
+		"C_Cpp.clang_format_fallbackStyle": "{ BasedOnStyle: Google, IndentWidth: 4, ColumnLimit: 0, DerivePointerAlignment: true, PointerAlignment: Left}",
+		"workbench.colorTheme": "IntelliJ-ish Darcula",
+		"workbench.editor.highlightModifiedTabs": true,
+		"workbench.colorCustomizations": {
+			//"activityBar.foreground": "#00b11d",
+			"titleBar.activeBackground": "#366600",
+			"titleBar.activeForeground": "#eee",
+			"titleBar.inactiveBackground": "#1a1818",
+			"titleBar.inactiveForeground": "#eee"
+		},
+		"files.trimTrailingWhitespace": true,
+		"files.insertFinalNewline": true,
+		"explorer.autoReveal": true,
+		"explorer.sortOrder": "type",
+		"workbench.list.keyboardNavigation": "filter",
+		"editor.gotoLocation.multiple": "goto",
+		"editor.multiCursorModifier": "ctrlCmd",
+		"editor.minimap.enabled": false,
+		"editor.renderWhitespace": "all",
+		"editor.renderControlCharacters": true,
+		"editor.formatOnType": false,
+		"editor.fontSize": 16,
+		"editor.fontFamily": "Monaco, 'Courier New', monospace,Menlo",
+		"editor.fontLigatures": true,
+		"editor.fontWeight": "500",
+		"editor.snippetSuggestions": "top",
+		"editor.suggestSelection": "first",
+		"editor.formatOnSave": true,
+		"editor.formatOnPaste": false,
+		"editor.autoClosingBrackets": "never",
+		"eslint.autoFixOnSave": false,
+		"eslint.trace.server": "messages",
+		"[json]": {
+			"editor.formatOnSave": false
+		},
+		"prettier.semi": true,
+		"prettier.singleQuote": true,
+		"prettier.useTabs": true,
+		"terminal.integrated.env.windows": {
+			"PATH": "C:\\Users\\Ben\\.platformio\\penv\\Scripts;C:\\Users\\Ben\\.platformio\\penv;C:\\Program Files (x86)\\Common Files\\Oracle\\Java\\javapath;C:\\Users\\Ben\\AppData\\Local\\Google\\Chrome\\Application;C:\\ProgramData\\Oracle\\Java\\javapath;C:\\Windows\\system32;C:\\Windows;C:\\Windows\\System32\\Wbem;C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\;C:\\adb;C:\\WINDOWS\\system32;C:\\WINDOWS;C:\\WINDOWS\\System32\\Wbem;C:\\WINDOWS\\System32\\WindowsPowerShell\\v1.0\\;C:\\Program Files\\PuTTY\\;C:\\Program Files\\LLVM\\bin;C:\\Program Files (x86)\\Common Files\\Apple\\Internet Services\\;C:\\WINDOWS\\System32\\OpenSSH\\;C:\\Program Files\\Microsoft VS Code Insiders\\bin;C:\\Program Files\\Git\\cmd;C:\\Program Files\\NVIDIA Corporation\\NVIDIA NvDLISR;C:\\Program Files (x86)\\NVIDIA Corporation\\PhysX\\Common;C:\\Users\\Ben\\.platformio\\penv\\Scripts;C:\\Users\\Ben\\.platformio\\penv;C:\\Users\\Ben\\AppData\\Local\\Google\\Chrome\\Application;C:\\ProgramData\\Oracle\\Java\\javapath;C:\\Windows\\system32;C:\\Windows;C:\\Windows\\System32\\Wbem;C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\;C:\\adb;C:\\WINDOWS\\system32;C:\\WINDOWS;C:\\WINDOWS\\System32\\Wbem;C:\\WINDOWS\\System32\\WindowsPowerShell\\v1.0\\;C:\\Program Files (x86)\\Skype\\Phone\\;C:\\Program Files\\PuTTY\\;C:\\Program Files\\LLVM\\bin;C:\\Program Files (x86)\\Common Files\\Apple\\Internet Services\\;C:\\WINDOWS\\System32\\OpenSSH\\;C:\\Program Files\\Microsoft VS Code Insiders\\bin;C:\\Program Files\\Git\\cmd;C:\\Program;C:\\Program Files (x86)\\GnuWin32\\bin;C:\\Users\\Ben\\Documents\\git\\SmartHomeDIY\\SmartHome\\arduino_stations\\scripts\\avr\\windows\\avrdude\\bin;C:\\Program Files\\avr8-gnu-toolchain\\bin;;C:\\Users\\Ben\\AppData\\Local\\Programs\\Microsoft VS Code\\bin;C:\\Users\\Ben\\AppData\\Local\\hyper\\app-2.1.2\\resources\\bin;%USERPROFILE%\\AppData\\Local\\Microsoft\\WindowsApps;C:\\Program Files (x86)\\Common Files\\Oracle\\Java\\javapath;C:\\Users\\Ben\\AppData\\Local\\Google\\Chrome\\Application;C:\\ProgramData\\Oracle\\Java\\javapath;C:\\Windows\\system32;C:\\Windows;C:\\Windows\\System32\\Wbem;C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\;C:\\adb;C:\\WINDOWS\\system32;C:\\WINDOWS;C:\\WINDOWS\\System32\\Wbem;C:\\WINDOWS\\System32\\WindowsPowerShell\\v1.0\\;C:\\Program Files\\PuTTY\\;C:\\Program Files\\LLVM\\bin;C:\\Program Files (x86)\\Common Files\\Apple\\Internet Services\\;C:\\WINDOWS\\System32\\OpenSSH\\;C:\\Program Files\\Microsoft VS Code Insiders\\bin;C:\\Program Files\\Git\\cmd;C:\\Program Files\\NVIDIA Corporation\\NVIDIA NvDLISR;C:\\Program Files (x86)\\NVIDIA Corporation\\PhysX\\Common;C:\\Users\\Ben\\.platformio\\penv\\Scripts;C:\\Users\\Ben\\.platformio\\penv;C:\\Users\\Ben\\AppData\\Local\\Google\\Chrome\\Application;C:\\ProgramData\\Oracle\\Java\\javapath;C:\\Windows\\system32;C:\\Windows;C:\\Windows\\System32\\Wbem;C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\;C:\\adb;C:\\WINDOWS\\system32;C:\\WINDOWS;C:\\WINDOWS\\System32\\Wbem;C:\\WINDOWS\\System32\\WindowsPowerShell\\v1.0\\;C:\\Program Files (x86)\\Skype\\Phone\\;C:\\Program Files\\PuTTY\\;C:\\Program Files\\LLVM\\bin;C:\\Program Files (x86)\\Common Files\\Apple\\Internet Services\\;C:\\WINDOWS\\System32\\OpenSSH\\;C:\\Program Files\\Microsoft VS Code Insiders\\bin;C:\\Program Files\\Git\\cmd;C:\\Program;C:\\Program Files (x86)\\GnuWin32\\bin;C:\\Users\\Ben\\Documents\\git\\SmartHomeDIY\\SmartHome\\arduino_stations\\scripts\\avr\\windows\\avrdude\\bin;C:\\Program Files\\avr8-gnu-toolchain\\bin;;C:\\Users\\Ben\\AppData\\Local\\Programs\\Microsoft VS Code\\bin;C:\\Users\\Ben\\AppData\\Local\\hyper\\app-2.1.2\\resources\\bin;%USERPROFILE%\\AppData\\Local\\Microsoft\\WindowsApps",
+			"PLATFORMIO_CALLER": "vscode"
+		},
+		"terminal.integrated.env.osx": {
+			"PATH": "/Users/benamsallem/.platformio/penv/bin:/Users/benamsallem/.platformio/penv:/Users/benamsallem/.platformio/packages/tool-avrdude/bin/:/Users/benamsallem/.platformio/penv/bin/platformio:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/Library/Apple/usr/bin:/Library/Apple/bin:/Library/Frameworks/Mono.framework/Versions/Current/Commands",
+			"PLATFORMIO_CALLER": "vscode"
+		},
+		"git.ignoreLimitWarning": true,
+		"files.associations": {
+			".env": "bat",
+			"pin_defs.h": "c",
+			"inttypes.h": "c",
+			"boot.h": "c",
+			"stk500.h": "c",
+			"__string": "cpp",
+			"cstring": "cpp",
+			"cwchar": "cpp",
+			"locale": "cpp",
+			"string": "cpp"
+		},
+		"cSpell.words": [
+			"Arduino",
+			"Atmel",
+			"Diecimila",
+			"Duemilanove",
+			"EEPROM",
+			"Luminet",
+			"Mirf",
+			"Optiboot",
+			"Ttiny",
+			"millis",
+			"println"
+		]
+	},
+	"extensions": {
+		"recommendations": [
+			"platformio.platformio-ide",
+			"formulahendry.platformio",
+			"chingson.hycon-assembly",
+			"mateuszchudyk.hexinspector",
+			"ms-vscode.cpptools",
+			"austin.code-gnu-global",
+			"reloadedextensions.reloaded-cpp",
+			"waderyan.nodejs-extension-pack",
+			"leizongmin.node-module-intellisense",
+			"eg2.vscode-npm-script",
+			"christian-kohler.npm-intellisense",
+			"liximomo.sftp",
+			"qassimfarid.ejs-language-support",
+			"streetsidesoftware.code-spell-checker"
+		]
+	}
 }

@@ -1,3 +1,4 @@
+//#define USE_RF_NANO_BOARD
 #include <Arduino.h>
 #include <SoftwareSerial.h>
 #include <common.h>
@@ -49,11 +50,39 @@ void loop() {
         Serial.println((uint8_t)otaCmd[0]);
         Serial.println((uint8_t)otaCmd[1]);
         Serial.println((uint8_t)otaCmd[2]);
+        // while (BTSerial.availableForWrite()) {
+        //     delay(5);
+        // }
+        //BTSerial.write(otaCmd, 3);
         BTSerial.write(otaCmd[0]);
+        delay(5);
         BTSerial.write(otaCmd[1]);
+        delay(5);
         BTSerial.write(otaCmd[2]);
+        delay(5);
         BTSerial.flush();
-        delay(50);
+        delay(15);
+
+        BTSerial.write(otaCmd[0]);
+        delay(5);
+        BTSerial.write(otaCmd[1]);
+        delay(5);
+        BTSerial.write(otaCmd[2]);
+        delay(5);
+        BTSerial.flush();
+        delay(15);
+
+        BTSerial.write(otaCmd[0]);
+        delay(5);
+        BTSerial.write(otaCmd[1]);
+        delay(5);
+        BTSerial.write(otaCmd[2]);
+        delay(5);
+        BTSerial.flush();
+        delay(15);
+        // while (BTSerial.availableForWrite()) {
+        //     delay(5);
+        // }
     }
     // else
     // {
@@ -72,7 +101,10 @@ void loop() {
     // Keep reading from HC-05 and send to Arduino Serial Monitor
     if (BTSerial.available()) {
         char command = BTSerial.read();
-        // Serial.println(command);
+        Serial.print("new command char: ");
+        Serial.println(command);
+
+        //TBD: Handle none number or ':' chars and restart
         if (command == ':') {
             Serial.println("middle");
             i = 0;
@@ -111,8 +143,10 @@ void loop() {
             Serial.println(cmd);
             Mirf.send((uint8_t *)cmd);
             newCommand = false;
-            while (Mirf.isSending())
-                ;
+            while (Mirf.isSending()) {
+                Serial.print(".-");
+            }
+            // ;
         }
     }
 }
