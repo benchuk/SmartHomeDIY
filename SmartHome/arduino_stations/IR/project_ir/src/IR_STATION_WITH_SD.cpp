@@ -89,7 +89,7 @@ uint16_t MAXPULSE = 9000;
    as its more 'precise' - but too large and you wont get
    accurate timing minimum is 2 as delayMicroseconds will not work with smaller value
 ************************/
-#define RESOLUTION 18  //20;
+#define RESOLUTION 35  //20;
 
 // we will store up to 120 pulse pairs (this is -a lot-)
 uint16_t pulses[120][2];    // pair is high and low pulse
