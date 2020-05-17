@@ -132,7 +132,7 @@ void blinkReady();
 
 void setup(void) {
     watchdogReset();
-    configureEEPROMAddressForRFAndOTA("006");
+    configureEEPROMAddressForRFAndOTA("004");
 
     pinMode(RF_SWITCH_LINE1, OUTPUT);
     pinMode(SD_SWITCH_LINE1, OUTPUT);
@@ -362,13 +362,15 @@ void sendIRCode() {
                 unsigned long d = min(16383, loopremaining);
                 //Serial.print("d  is: ");
                 // Serial.println(d, DEC);
-                delayMicroseconds(d - RESOLUTION);
+                //delayMicroseconds(d - RESOLUTION);
+                delayMicroseconds(d);
                 loopremaining -= d;
                 //Serial.print("loopremaining  is: ");
                 //Serial.println(loopremaining, DEC);
             }
         } else {
-            delayMicroseconds(t - RESOLUTION);
+            //delayMicroseconds(t - RESOLUTION);
+            delayMicroseconds(t);
         }
         pulseIR((((unsigned long)pulses[i][1]) * RESOLUTION));
     }
