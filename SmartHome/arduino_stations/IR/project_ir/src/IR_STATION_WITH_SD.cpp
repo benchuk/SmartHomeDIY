@@ -89,7 +89,7 @@ uint16_t MAXPULSE = 9000;
    as its more 'precise' - but too large and you wont get
    accurate timing minimum is 2 as delayMicroseconds will not work with smaller value
 ************************/
-#define RESOLUTION 35  //20;
+#define RESOLUTION 18  //20;
 
 // we will store up to 120 pulse pairs (this is -a lot-)
 uint16_t pulses[120][2];    // pair is high and low pulse
@@ -102,7 +102,7 @@ uint16_t currentpulse = 0;  // index for pulses we're storing
 #define SEND_LED_PIN 6  // OUT Pin: Color led to indicate to user that we are sending IR signal
 
 bool coderecorded = true;
-int counter = 0;  //used for logic
+int counter = 0;  //used for logic§
 
 #define RF_SWITCH_LINE1 8
 #define SD_SWITCH_LINE1 A5  //due to collistion with bootloader
@@ -419,54 +419,59 @@ void pulseIR(long microsecs) {
 
 uint16_t highpulse, lowpulse;  // temporary storage timing
 void recordircode() {
-    highpulse = lowpulse = 0;  // start out with no pulse length
-    //  while (digitalRead(IRpin)) { // this is too slow!
-    while (IRpin_PIN & (1 << IRpin)) {
-        /*****************************************
+    cli();
+    while (1) {
+        highpulse = lowpulse = 0;  // start out with no pulse length
+        //  while (digitalRead(IRpin)) { // this is too slow!
+        while (IRpin_PIN & (1 << IRpin)) {
+            /*****************************************
       // pin is still HIGH
       // count off another few microseconds
     ****************************************/
-        highpulse++;
-        delayMicroseconds(RESOLUTION);
+            highpulse++;
+            delayMicroseconds(RESOLUTION);
 
-        /*****************************************
+            /*****************************************
       // If the pulse is too long, we 'timed out' - either nothing
       // was received or the code is finished, so print what
       // we've grabbed so far, and then reset
     **************************/
-        if ((highpulse >= MAXPULSE) && (currentpulse != 0)) {
-            //Serial.println(F("break highpulse....")); //dbg
-            //Serial.println(highpulse);                //dbg
-            printAndSavePulsesToSDCard();
-            currentpulse = 0;
-            return;
+            if ((highpulse >= MAXPULSE) && (currentpulse != 0)) {
+                sei();
+                //Serial.println(F("break highpulse....")); //dbg
+                //Serial.println(highpulse);                //dbg
+                printAndSavePulsesToSDCard();
+                currentpulse = 0;
+                return;
+            }
         }
-    }
-    //Serial.print(F("done highpulse with count: ")); //dbg
-    //Serial.println(highpulse);                      //dbg
-    /********************************
+        //Serial.print(F("done highpulse with count: ")); //dbg
+        //Serial.println(highpulse);                      //dbg
+        /********************************
     // we didn't time out so lets stash the reading
   *********************************/
-    pulses[currentpulse][0] = highpulse;
+        pulses[currentpulse][0] = highpulse;
 
-    // same as above
-    while (!(IRpin_PIN & _BV(IRpin))) {
-        // pin is still LOW
-        lowpulse++;
-        delayMicroseconds(RESOLUTION);
-        if ((lowpulse >= MAXPULSE) && (currentpulse != 0)) {
-            //Serial.println(F("break lowpulse....")); //dbg
-            //Serial.println(lowpulse);                //dbg
-            printAndSavePulsesToSDCard();
-            currentpulse = 0;
-            return;
+        // same as above
+        while (!(IRpin_PIN & _BV(IRpin))) {
+            // pin is still LOW
+            lowpulse++;
+            delayMicroseconds(RESOLUTION);
+            if ((lowpulse >= MAXPULSE) && (currentpulse != 0)) {
+                sei();
+                //Serial.println(F("break lowpulse....")); //dbg
+                //Serial.println(lowpulse);                //dbg
+                printAndSavePulsesToSDCard();
+                currentpulse = 0;
+                return;
+            }
         }
-    }
-    pulses[currentpulse][1] = lowpulse;
+        pulses[currentpulse][1] = lowpulse;
 
-    // we read one high-low pulse successfully, continue!
-    currentpulse++;
-    //Serial.println(currentpulse);
+        // we read one high-low pulse successfully, continue!
+        currentpulse++;
+        //Serial.println(currentpulse);
+    }
 }
 
 void printAndSavePulsesToSDCard(void) {
