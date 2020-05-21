@@ -338,6 +338,8 @@ void sendIRCode() {
     //delayMicroseconds(4500);
 
     cli();  //Disable interrupts
+    //That interrupt is enabled by default, it happens roughly once every millisecond, and it takes roughly 5 to 6 milliseconds to execute.  delayMicroseconds() uses a wait loop for timing, and, when it's interrupted, it doesn't advance.  So, for a delay of, say, 21 microseconds, if the TIMER0 interrupt were to fire, the actual delay would be something on the order of 26.5 microseonds.
+    TIMSK0 &= ~_BV(TOIE0);  // disable timer0 overflow interrupt - https://forum.arduino.cc/index.php?topic=430299.0
     for (uint8_t i = 0; i < counter; i++) {
         unsigned long t = (unsigned long)(pulses[i][0]) * RESOLUTION;
         //Serial.print("down time: ");
@@ -374,6 +376,7 @@ void sendIRCode() {
         }
         pulseIR((((unsigned long)pulses[i][1]) * RESOLUTION));
     }
+    TIMSK0 |= _BV(TOIE0);
     sei();  //Enables interrupts
     updateUser_SendingLed(false);
     //Serial.println("DONE");
