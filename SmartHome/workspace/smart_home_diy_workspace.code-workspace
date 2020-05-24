@@ -152,7 +152,8 @@
 			"Ttiny",
 			"millis",
 			"println"
-		]
+		],
+		"favorites.sortDirection": "DESC"
 	},
 	"extensions": {
 		"recommendations": [
