@@ -128,6 +128,7 @@ void commandToFileName(char *f, char *c);
 void updateRecLed(void);
 void updateUser_SendingLed(bool sending);
 void reportLedCriticalError();
+void reportLedWarning();
 void blinkReady();
 
 void setup(void) {
@@ -293,7 +294,9 @@ void loop(void) {
                 sendIRCode();
             } else {
                 Serial.println(F("File open Error file \n\r\n"));
-                reportLedCriticalError();
+                //reportLedCriticalError();
+                reportLedWarning();
+                return;
             }
         }
     }
@@ -570,6 +573,17 @@ void reportLedCriticalError() {
         delay(500);
         digitalWrite(SEND_LED_PIN, LOW);
         delay(500);
+    }
+}
+
+void reportLedWarning() {
+    int i = 0;
+    while (i < 10) {
+        digitalWrite(SEND_LED_PIN, HIGH);
+        delay(50);
+        digitalWrite(SEND_LED_PIN, LOW);
+        delay(50);
+        i++;
     }
 }
 
