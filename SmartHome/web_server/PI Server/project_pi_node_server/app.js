@@ -197,69 +197,46 @@ serialPort.on('open', function() {
 				currentCommand = currentResponse.slice(0, 3);
 				//remove first 3 items
 				currentResponse.splice(0, 3);
-				//currentResponse = [];
-				//total = 0;
 				total = total - 3;
-				shouldHandleMessage = true;
-				//console.log('RESET');
-				//return;
-
-				//logger.log('got data - a station with address ' + data + ' is on');
-
-				if (/*total == 3*/ shouldHandleMessage) {
-					// if (total > 3) {
-					//   total = 0;
-					//   currentResponse = [];
-					//   console.log('RESET');
-					//   return;
-					// }
-					shouldHandleMessage = false;
-					var requestData = Buffer.concat(currentCommand);
-					total = 0;
-					currentResponse = [];
-					var buf = new Buffer(requestData);
-					var address = parseInt(buf[0]);
-					var type = parseInt(buf[1]);
-					var state = parseInt(buf[2]);
-					console.log('address: ' + address);
-					console.log('type: ' + type);
-					console.log('state: ' + state);
-					http
-						.get(
-							{
-								host: '10.100.102.21',
-								path:
-									'/status?address=' +
-									address +
-									'&type=' +
-									type +
-									'&state=' +
-									state,
-								port: 1880
-							},
-							function(resp) {
-								resp.on('data', function(d) {
-									console.log('******* response from homekit ok *******');
-									console.log('data: ' + d);
-								});
-								resp.on('end', function() {
-									console.log('** done **');
-								});
-							}
-						)
-						.on('error', function(err) {
-							console.log('error ' + err);
-						});
-				}
+				var requestData = Buffer.concat(currentCommand);
+				var buf = new Buffer(requestData);
+				var address = parseInt(buf[0]);
+				var type = parseInt(buf[1]);
+				var state = parseInt(buf[2]);
+				console.log('address: ' + address);
+				console.log('type: ' + type);
+				console.log('state: ' + state);
+				http
+					.get(
+						{
+							host: '10.100.102.21',
+							path:
+								'/status?address=' +
+								address +
+								'&type=' +
+								type +
+								'&state=' +
+								state,
+							port: 1880
+						},
+						function(resp) {
+							resp.on('data', function(d) {
+								console.log('******* response from homekit ok *******');
+								console.log('data: ' + d);
+							});
+							resp.on('end', function() {
+								console.log('** done **');
+							});
+						}
+					)
+					.on('error', function(err) {
+						console.log('error ' + err);
+					});
 			}
+			//total = 0;
+			currentResponse = [];
 		}
-		//logger.log(data);
-		//   //serialPort.write(data, function(err, res) {})
 	});
-	// serialPort.write('Server is running and listening on serial port\n', function(
-	//   err,
-	//   res
-	// ) {})
 });
 
 exports.serialPort = serialPort;

@@ -89,5 +89,13 @@
         "workspaceRoot": "/Users/benamsallem/docs/mystuff/git/SmartHomeDIY/SmartHome/arduino_stations/BT_To_Ant_Dispatch_Station/project_BT_To_Ant_Dispatch_Station",
         "workspacePath": "src/BT_To_Ant_Dispatch_Station_2.cpp",
         "id": "abWuDJ0AfPnEYCmp"
+    },
+    {
+        "type": "File",
+        "name": "/Users/benamsallem/docs/mystuff/git/SmartHomeDIY/SmartHome/workspace/Stations.md",
+        "parent_id": null,
+        "workspaceRoot": "/Users/benamsallem/docs/mystuff/git/SmartHomeDIY/SmartHome/workspace",
+        "workspacePath": "Stations.md",
+        "id": "M7s4vWeGAFncYbmi"
     }
 ]

@@ -99,7 +99,7 @@ void loop() {
     // };
     // digitalWrite(Radio_CSN, LOW); // ENABLE radio
     // Keep reading from HC-05 and send to Arduino Serial Monitor
-    if (BTSerial.available()) {
+    while (BTSerial.available()) {
         char command = BTSerial.read();
         Serial.print("new command char: ");
         Serial.println(command);

@@ -89,7 +89,7 @@ uint16_t MAXPULSE = 9000;
    as its more 'precise' - but too large and you wont get
    accurate timing minimum is 2 as delayMicroseconds will not work with smaller value
 ************************/
-#define RESOLUTION 35  //20;
+#define RESOLUTION 18  //20;
 
 // we will store up to 120 pulse pairs (this is -a lot-)
 uint16_t pulses[120][2];    // pair is high and low pulse
@@ -102,7 +102,7 @@ uint16_t currentpulse = 0;  // index for pulses we're storing
 #define SEND_LED_PIN 6  // OUT Pin: Color led to indicate to user that we are sending IR signal
 
 bool coderecorded = true;
-int counter = 0;  //used for logic
+int counter = 0;  //used for logic§
 
 #define RF_SWITCH_LINE1 8
 #define SD_SWITCH_LINE1 A5  //due to collistion with bootloader
@@ -128,6 +128,7 @@ void commandToFileName(char *f, char *c);
 void updateRecLed(void);
 void updateUser_SendingLed(bool sending);
 void reportLedCriticalError();
+void reportLedWarning();
 void blinkReady();
 
 void setup(void) {
@@ -293,7 +294,9 @@ void loop(void) {
                 sendIRCode();
             } else {
                 Serial.println(F("File open Error file \n\r\n"));
-                reportLedCriticalError();
+                //reportLedCriticalError();
+                reportLedWarning();
+                return;
             }
         }
     }
@@ -338,6 +341,8 @@ void sendIRCode() {
     //delayMicroseconds(4500);
 
     cli();  //Disable interrupts
+    //That interrupt is enabled by default, it happens roughly once every millisecond, and it takes roughly 5 to 6 milliseconds to execute.  delayMicroseconds() uses a wait loop for timing, and, when it's interrupted, it doesn't advance.  So, for a delay of, say, 21 microseconds, if the TIMER0 interrupt were to fire, the actual delay would be something on the order of 26.5 microseonds.
+    TIMSK0 &= ~_BV(TOIE0);  // disable timer0 overflow interrupt - https://forum.arduino.cc/index.php?topic=430299.0
     for (uint8_t i = 0; i < counter; i++) {
         unsigned long t = (unsigned long)(pulses[i][0]) * RESOLUTION;
         //Serial.print("down time: ");
@@ -374,6 +379,7 @@ void sendIRCode() {
         }
         pulseIR((((unsigned long)pulses[i][1]) * RESOLUTION));
     }
+    TIMSK0 |= _BV(TOIE0);
     sei();  //Enables interrupts
     updateUser_SendingLed(false);
     //Serial.println("DONE");
@@ -419,54 +425,59 @@ void pulseIR(long microsecs) {
 
 uint16_t highpulse, lowpulse;  // temporary storage timing
 void recordircode() {
-    highpulse = lowpulse = 0;  // start out with no pulse length
-    //  while (digitalRead(IRpin)) { // this is too slow!
-    while (IRpin_PIN & (1 << IRpin)) {
-        /*****************************************
+    cli();
+    while (1) {
+        highpulse = lowpulse = 0;  // start out with no pulse length
+        //  while (digitalRead(IRpin)) { // this is too slow!
+        while (IRpin_PIN & (1 << IRpin)) {
+            /*****************************************
       // pin is still HIGH
       // count off another few microseconds
     ****************************************/
-        highpulse++;
-        delayMicroseconds(RESOLUTION);
+            highpulse++;
+            delayMicroseconds(RESOLUTION);
 
-        /*****************************************
+            /*****************************************
       // If the pulse is too long, we 'timed out' - either nothing
       // was received or the code is finished, so print what
       // we've grabbed so far, and then reset
     **************************/
-        if ((highpulse >= MAXPULSE) && (currentpulse != 0)) {
-            //Serial.println(F("break highpulse....")); //dbg
-            //Serial.println(highpulse);                //dbg
-            printAndSavePulsesToSDCard();
-            currentpulse = 0;
-            return;
+            if ((highpulse >= MAXPULSE) && (currentpulse != 0)) {
+                sei();
+                //Serial.println(F("break highpulse....")); //dbg
+                //Serial.println(highpulse);                //dbg
+                printAndSavePulsesToSDCard();
+                currentpulse = 0;
+                return;
+            }
         }
-    }
-    //Serial.print(F("done highpulse with count: ")); //dbg
-    //Serial.println(highpulse);                      //dbg
-    /********************************
+        //Serial.print(F("done highpulse with count: ")); //dbg
+        //Serial.println(highpulse);                      //dbg
+        /********************************
     // we didn't time out so lets stash the reading
   *********************************/
-    pulses[currentpulse][0] = highpulse;
+        pulses[currentpulse][0] = highpulse;
 
-    // same as above
-    while (!(IRpin_PIN & _BV(IRpin))) {
-        // pin is still LOW
-        lowpulse++;
-        delayMicroseconds(RESOLUTION);
-        if ((lowpulse >= MAXPULSE) && (currentpulse != 0)) {
-            //Serial.println(F("break lowpulse....")); //dbg
-            //Serial.println(lowpulse);                //dbg
-            printAndSavePulsesToSDCard();
-            currentpulse = 0;
-            return;
+        // same as above
+        while (!(IRpin_PIN & _BV(IRpin))) {
+            // pin is still LOW
+            lowpulse++;
+            delayMicroseconds(RESOLUTION);
+            if ((lowpulse >= MAXPULSE) && (currentpulse != 0)) {
+                sei();
+                //Serial.println(F("break lowpulse....")); //dbg
+                //Serial.println(lowpulse);                //dbg
+                printAndSavePulsesToSDCard();
+                currentpulse = 0;
+                return;
+            }
         }
-    }
-    pulses[currentpulse][1] = lowpulse;
+        pulses[currentpulse][1] = lowpulse;
 
-    // we read one high-low pulse successfully, continue!
-    currentpulse++;
-    //Serial.println(currentpulse);
+        // we read one high-low pulse successfully, continue!
+        currentpulse++;
+        //Serial.println(currentpulse);
+    }
 }
 
 void printAndSavePulsesToSDCard(void) {
@@ -562,6 +573,17 @@ void reportLedCriticalError() {
         delay(500);
         digitalWrite(SEND_LED_PIN, LOW);
         delay(500);
+    }
+}
+
+void reportLedWarning() {
+    int i = 0;
+    while (i < 10) {
+        digitalWrite(SEND_LED_PIN, HIGH);
+        delay(50);
+        digitalWrite(SEND_LED_PIN, LOW);
+        delay(50);
+        i++;
     }
 }
 
