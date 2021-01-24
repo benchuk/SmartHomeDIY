@@ -75,7 +75,8 @@ exports.init = function(port) {
 	app.get('/harq', whitelist, function(req, res) {
 		try {
 			var value = req.query.value;
-			logger.log('harq with value:' + value);
+			logger.log('harq with value: ' + value);
+			logger.log('-------------------------');
 			setTimeout(() => {
 				serialPort.write(value, function(err, res) {});
 				res.send(value + ' sent...');
