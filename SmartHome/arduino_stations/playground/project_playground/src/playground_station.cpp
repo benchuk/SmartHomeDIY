@@ -1,5 +1,6 @@
 
-
+//https://forum.arduino.cc/index.php?topic=102430.0
+//https://gist.github.com/chendy/69454f6ec77b54f9a710
 #include <Arduino.h>
 /* Code to pulse pin 3 with a modulated signal
 * Can be used to drive an IR LED to keep a TSOP IR reciever happy
