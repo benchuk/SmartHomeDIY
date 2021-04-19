@@ -40,6 +40,28 @@ void setup() {
     Serial.println("Dispatch station ready.");
 }
 // char otaCmd[Mirf.payload + 1];
+void sendStatus(char status[]) {
+    BTSerial.write('+');
+    delay(5);
+    BTSerial.write('+');
+    delay(5);
+    BTSerial.write('+');
+    delay(5);
+    BTSerial.write(status[0]);
+    delay(5);
+    BTSerial.write(status[1]);
+    delay(5);
+    BTSerial.write(status[2]);
+    delay(5);
+    BTSerial.write('-');
+    delay(5);
+    BTSerial.write('-');
+    delay(5);
+    BTSerial.write('-');
+    delay(5);
+    BTSerial.flush();
+    delay(15);
+}
 char otaCmd[4];
 void loop() {
     watchdogReset();
@@ -54,32 +76,10 @@ void loop() {
         //     delay(5);
         // }
         //BTSerial.write(otaCmd, 3);
-        BTSerial.write(otaCmd[0]);
-        delay(5);
-        BTSerial.write(otaCmd[1]);
-        delay(5);
-        BTSerial.write(otaCmd[2]);
-        delay(5);
-        BTSerial.flush();
-        delay(15);
+        sendStatus(otaCmd);
+        sendStatus(otaCmd);
+        sendStatus(otaCmd);
 
-        BTSerial.write(otaCmd[0]);
-        delay(5);
-        BTSerial.write(otaCmd[1]);
-        delay(5);
-        BTSerial.write(otaCmd[2]);
-        delay(5);
-        BTSerial.flush();
-        delay(15);
-
-        BTSerial.write(otaCmd[0]);
-        delay(5);
-        BTSerial.write(otaCmd[1]);
-        delay(5);
-        BTSerial.write(otaCmd[2]);
-        delay(5);
-        BTSerial.flush();
-        delay(15);
         // while (BTSerial.availableForWrite()) {
         //     delay(5);
         // }
