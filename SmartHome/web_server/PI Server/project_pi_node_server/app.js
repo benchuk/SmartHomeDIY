@@ -14,6 +14,7 @@ var locallydb = require('locallydb');
 var whitelistManager = require('./whitelistManager.js');
 var whitelist = whitelistManager.whitelist;
 var logger = require('./homeLogger.js');
+var stateHandler = require('./gatewayStatePacketsHandler.js');
 
 exports.init = function(port) {
 	app.configure(function() {
@@ -172,85 +173,50 @@ exports.init = function(port) {
 	return app;
 };
 
-var currentBuffer = new Buffer(0); //;[];
-var currentCommand = new Buffer(0); //[];
-var total = 0;
-var shouldHandleMessage = false;
+//var currentBuffer = new Buffer(0); //;[];
+//var currentCommand = new Buffer(0); //[];
+//var total = 0;
+//var shouldHandleMessage = false;
+
+function makeHttpStatus(res) {
+	http
+		.get(
+			{
+				host: '10.100.102.21',
+				path:
+					'/status?address=' +
+					res.address +
+					'&type=' +
+					res.type +
+					'&state=' +
+					res.state,
+				port: 1880
+			},
+			function(resp) {
+				resp.on('data', function(d) {
+					console.log('******* response from homekit ok *******');
+					console.log('data: ' + d);
+				});
+				resp.on('end', function() {
+					console.log('** done **');
+				});
+			}
+		)
+		.on('error', function(err) {
+			console.log('error ' + err);
+		});
+}
+
 serialPort.on('open', function() {
 	console.log('open');
 	//logger.log('open');
 	//signal the homekit that a device with address is on
 	serialPort.on('data', function(data) {
-		console.log('--------------------------');
-		console.log('data size: ' + data.length);
-		console.log('data: ', data);
-
-		currentBuffer = Buffer.concat([currentBuffer, data]);
-		console.log('-currentBuffer: ', currentBuffer);
-		//total += data.length;
-		total = currentBuffer.length;
-		//currentResponse.push(data);
-		console.log('total size: ' + total);
-		console.log('data value : ' + JSON.stringify(currentBuffer));
-
-		while (total >= 3) {
-			//console.log('got a batch of ' + total / 3 + ' messages');
-			console.log('handle msg...');
-			//while (total != 0) {
-			//get first 3 items (the current command)
-			currentCommand = new Buffer(0);
-			currentCommand = currentBuffer.slice(0, 3);
-			console.log('currentCommand: ', currentCommand);
-			currentBuffer = currentBuffer.slice(3, currentBuffer.length); //delete first 3 items
-			console.log('currentBuffer: ', currentBuffer);
-			//remove first 3 items
-			//currentResponse.splice(0, 3);
-			total = total - 3;
-			//currentResponse = Buffer.from(currentResponse, 3, total); //currentResponse.slice(3).toString('hex');
-			//console.log('currentCommand: ' + currentCommand);
-			//var requestData = Buffer.concat(currentCommand);
-			//console.log('requestData: ' + requestData);
-			//var buf = new Buffer(requestData);
-			//console.log('buf: ' + buf);
-			//console.log('currentCommand: ', currentCommand);
-			var address = currentCommand[0]; //parseInt(buf[0]);
-			console.log(address);
-			var type = currentCommand[1]; //parseInt(buf[1]);
-			console.log(type);
-			var state = currentCommand[2]; //parseInt(buf[2]);
-			console.log(state);
-			console.log('address: ' + address);
-			console.log('type: ' + type);
-			console.log('state: ' + state);
-			http
-				.get(
-					{
-						host: '10.100.102.21',
-						path:
-							'/status?address=' +
-							address +
-							'&type=' +
-							type +
-							'&state=' +
-							state,
-						port: 1880
-					},
-					function(resp) {
-						resp.on('data', function(d) {
-							console.log('******* response from homekit ok *******');
-							console.log('data: ' + d);
-						});
-						resp.on('end', function() {
-							console.log('** done **');
-						});
-					}
-				)
-				.on('error', function(err) {
-					console.log('error ' + err);
-				});
-			//}
-			//total = 0;
-			//currentResponse = [];
+		stateHandler.onDataArrived(data);
+		var res = stateHandler.parse();
+		while (res !== undefined) {
+			makeHttpStatus(res);
+			res = stateHandler.parse();
 		}
 	});
 });

@@ -59,25 +59,32 @@ function onDataArrived(data) {
 	console.log('-currentBuffer: ', currentBuffer);
 	console.log('total size: ' + currentBuffer.length);
 	console.log('data value : ' + JSON.stringify(currentBuffer));
+}
 
+function parse() {
 	if (!validateAndParse()) {
-		return;
+		return undefined;
 	}
 
 	console.log('handle msg...');
 	currentCommand = currentCommand.slice(3, currentCommand.length); //delete first '+' header items
 	console.log('currentCommand: ', currentCommand);
 	console.log('currentBuffer: ', currentBuffer);
-	var address = currentCommand[0];
-	console.log(address);
-	var type = currentCommand[1];
-	console.log(type);
-	var state = currentCommand[2];
-	console.log(state);
-	console.log('address: ' + address);
-	console.log('type: ' + type);
-	console.log('state: ' + state);
+	var res = {};
+	res.address = currentCommand[0];
+	console.log(res.address);
+	res.type = currentCommand[1];
+	console.log(res.type);
+	res.state = currentCommand[2];
+	console.log(res.state);
+	console.log('address: ' + res.address);
+	console.log('type: ' + res.type);
+	console.log('state: ' + res.state);
+	return res;
 }
+
+exports.onDataArrived = onDataArrived;
+exports.parse = parse;
 
 function test() {
 	const testBuf = Buffer.alloc(9);
@@ -121,4 +128,4 @@ function test3() {
 	onDataArrived(testBuf);
 	test();
 }
-test3();
+//test3();
