@@ -81,7 +81,7 @@
 		}
 	],
 	"settings": {
-		"C_Cpp.clang_format_fallbackStyle": "{ BasedOnStyle: Google, IndentWidth: 4, ColumnLimit: 0, DerivePointerAlignment: true, PointerAlignment: Left}",
+		"C_Cpp.clang_format_fallbackStyle": "{ BasedOnStyle: Visual Studio, IndentWidth: 4, ColumnLimit: 0, DerivePointerAlignment: true, PointerAlignment: Left}",
 		"workbench.colorTheme": "IntelliJ-ish Darcula",
 		"workbench.editor.highlightModifiedTabs": true,
 		"workbench.colorCustomizations": {
@@ -110,7 +110,7 @@
 		"editor.suggestSelection": "first",
 		"editor.formatOnSave": true,
 		"editor.formatOnPaste": false,
-		"editor.autoClosingBrackets": "never",
+		"editor.autoClosingBrackets": "always",
 		"eslint.autoFixOnSave": false,
 		"eslint.trace.server": "messages",
 		"[json]": {
