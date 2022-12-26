@@ -122,6 +122,24 @@ void beep(int note, int duration) {
     // Increment counter
     counter++;
 }
+
+void starwars() {
+    beep(cH, 150);
+    beep(cH, 150);
+    beep(cH, 150);
+    beep(cH, 150);
+    // delay(100);
+    beep(aS, 150);
+    delay(220);
+    beep(cH, 150);
+    delay(550);
+    beep(cH, 150);
+    beep(cH, 150);
+    beep(cH, 150);
+
+    delay(500);
+}
+
 // C C C C A#  C  C C C
 void ninja() {
     beep(cH, 150);
@@ -787,7 +805,8 @@ void loop() {
 
         // Repeat second section
         // secondSection();
-        brawstars();
+        starwars();
+        //brawstars();
 
         //   //Variant 2
         //   beep(f, 250);
